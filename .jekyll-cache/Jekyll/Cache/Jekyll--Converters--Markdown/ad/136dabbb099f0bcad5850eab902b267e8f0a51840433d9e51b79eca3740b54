@@ -1,0 +1,245 @@
+I"nO<blockquote>
+  <p>JPA에서 QueryDsl를 사용하는 방법에 대해서 알아보자. QueryDSL은 쿼리 domain specific language로 도메인에 맞게 쿼리를 프로그링 할 수 있다는 것이다.
+<!-- more --></p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">persons</span> <span class="o">=</span> <span class="n">queryFactory</span><span class="o">.</span><span class="na">selectFrom</span><span class="o">(</span><span class="n">person</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">where</span><span class="o">(</span>
+    <span class="n">person</span><span class="o">.</span><span class="na">firstName</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="s">"John"</span><span class="o">),</span>
+    <span class="n">person</span><span class="o">.</span><span class="na">lastName</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="s">"Doe"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">fetch</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>이런 느낌!😀</p>
+
+<h2 id="예제-코드">예제 코드</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="nd">@Table</span>
+<span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Account</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">firstName</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">AccountRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>id와 title만 있는 Account엔티티를 정의하고, 기본적으로 JpaReposiotry를 상속받는 레포지토리를 만든다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.querydsl<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>querydsl-apt<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.querydsl<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>querydsl-jpa<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>다음과 같이 의존성을 주입한다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+        <span class="nt">&lt;plugins&gt;</span>
+            ...
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>com.mysema.maven<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>apt-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>1.1.3<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;executions&gt;</span>
+                    <span class="nt">&lt;execution&gt;</span>
+                        <span class="nt">&lt;goals&gt;</span>
+                            <span class="nt">&lt;goal&gt;</span>process<span class="nt">&lt;/goal&gt;</span>
+                        <span class="nt">&lt;/goals&gt;</span>
+                        <span class="nt">&lt;configuration&gt;</span>
+                            <span class="nt">&lt;outputDirectory&gt;</span>target/generated-sources/java<span class="nt">&lt;/outputDirectory&gt;</span>
+                            <span class="nt">&lt;processor&gt;</span>com.querydsl.apt.jpa.JPAAnnotationProcessor<span class="nt">&lt;/processor&gt;</span>
+                        <span class="nt">&lt;/configuration&gt;</span>
+                    <span class="nt">&lt;/execution&gt;</span>
+                <span class="nt">&lt;/executions&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+</code></pre></div></div>
+
+<p>다음과 같은 플러그인을 주입한다. 해당 플러그인은 compile할 때, Post엔티티를 통해서 Query를 만들 수 있는 QAccount라는 클래스를 자동으로 생성해 주는 플러그인이다. 위를 보면, <code class="language-plaintext highlighter-rouge">outputDirectory</code>가 QAccount 라는 클래스들이 만들어지는 위치이다. 또한 사용하는 프로세서는 <code class="language-plaintext highlighter-rouge">JPAAnnotationProcessor</code> 를 사용한다.</p>
+
+<p>이렇게 추가하고, console 창에 다음과 같이 입력한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mvn clean &amp;&amp; compile
+</code></pre></div></div>
+
+<p>clean은 target 디렉토리를 비우는 것이고, compile을 통해서 우리가 원하는 QPost라는 클래스를 생성한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * QAccount is a Querydsl query type for Account
+ */</span>
+<span class="nd">@Generated</span><span class="o">(</span><span class="s">"com.querydsl.codegen.EntitySerializer"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">QAccount</span> <span class="kd">extends</span> <span class="nc">EntityPathBase</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">760879443L</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">QAccount</span> <span class="n">account</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">QAccount</span><span class="o">(</span><span class="s">"account"</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">StringPath</span> <span class="n">firstName</span> <span class="o">=</span> <span class="n">createString</span><span class="o">(</span><span class="s">"firstName"</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">NumberPath</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">id</span> <span class="o">=</span> <span class="n">createNumber</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="nc">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">StringPath</span> <span class="n">lastName</span> <span class="o">=</span> <span class="n">createString</span><span class="o">(</span><span class="s">"lastName"</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="nf">QAccount</span><span class="o">(</span><span class="nc">String</span> <span class="n">variable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="nc">Account</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">forVariable</span><span class="o">(</span><span class="n">variable</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">QAccount</span><span class="o">(</span><span class="nc">Path</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nc">Account</span><span class="o">&gt;</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">path</span><span class="o">.</span><span class="na">getType</span><span class="o">(),</span> <span class="n">path</span><span class="o">.</span><span class="na">getMetadata</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">QAccount</span><span class="o">(</span><span class="nc">PathMetadata</span> <span class="n">metadata</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="nc">Account</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">metadata</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>QueryDsl를 사용하는 이유가 여러개 있겠지만, 결국 조건절에서 typeSafe하게 비교하는 문장을 만들 수 있기 때문에 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">AccountRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;,</span> <span class="nc">QuerydslPredicateExecutor</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>다음과 같이 <code class="language-plaintext highlighter-rouge">QueryDslPredicateExecutor&lt;T&gt;</code> 를 추가함으로써 Predicate 를 사용할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">QuerydslPredicateExecutor</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Returns a single entity matching the given {@link Predicate} or {@link Optional#empty()} if none was found.
+     *
+     * @param predicate must not be {@literal null}.
+     * @return a single entity matching the given {@link Predicate} or {@link Optional#empty()} if none was found.
+     * @throws org.springframework.dao.IncorrectResultSizeDataAccessException if the predicate yields more than one
+     *           result.
+     */</span>
+    <span class="nc">Optional</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findOne</span><span class="o">(</span><span class="nc">Predicate</span> <span class="n">predicate</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * Returns all entities matching the given {@link Predicate}. In case no match could be found an empty
+     * {@link Iterable} is returned.
+     *
+     * @param predicate must not be {@literal null}.
+     * @return all entities matching the given {@link Predicate}.
+     */</span>
+    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">(</span><span class="nc">Predicate</span> <span class="n">predicate</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * Returns all entities matching the given {@link Predicate} applying the given {@link Sort}. In case no match could
+     * be found an empty {@link Iterable} is returned.
+     *
+     * @param predicate must not be {@literal null}.
+     * @param sort the {@link Sort} specification to sort the results by, may be {@link Sort#empty()}, must not be
+     *          {@literal null}.
+     * @return all entities matching the given {@link Predicate}.
+     * @since 1.10
+     */</span>
+    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">(</span><span class="nc">Predicate</span> <span class="n">predicate</span><span class="o">,</span> <span class="nc">Sort</span> <span class="n">sort</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * Returns all entities matching the given {@link Predicate} applying the given {@link OrderSpecifier}s. In case no
+     * match could be found an empty {@link Iterable} is returned.
+     *
+     * @param predicate must not be {@literal null}.
+     * @param orders the {@link OrderSpecifier}s to sort the results by.
+     * @return all entities matching the given {@link Predicate} applying the given {@link OrderSpecifier}s.
+     */</span>
+    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">(</span><span class="nc">Predicate</span> <span class="n">predicate</span><span class="o">,</span> <span class="nc">OrderSpecifier</span><span class="o">&lt;?&gt;...</span> <span class="n">orders</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * Returns all entities ordered by the given {@link OrderSpecifier}s.
+     *
+     * @param orders the {@link OrderSpecifier}s to sort the results by.
+     * @return all entities ordered by the given {@link OrderSpecifier}s.
+     */</span>
+    <span class="nc">Iterable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">(</span><span class="nc">OrderSpecifier</span><span class="o">&lt;?&gt;...</span> <span class="n">orders</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * Returns a {@link Page} of entities matching the given {@link Predicate}. In case no match could be found, an empty
+     * {@link Page} is returned.
+     *
+     * @param predicate must not be {@literal null}.
+     * @param pageable may be {@link Pageable#unpaged()}, must not be {@literal null}.
+     * @return a {@link Page} of entities matching the given {@link Predicate}.
+     */</span>
+    <span class="nc">Page</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">(</span><span class="nc">Predicate</span> <span class="n">predicate</span><span class="o">,</span> <span class="nc">Pageable</span> <span class="n">pageable</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * Returns the number of instances matching the given {@link Predicate}.
+     *
+     * @param predicate the {@link Predicate} to count instances for, must not be {@literal null}.
+     * @return the number of instances matching the {@link Predicate}.
+     */</span>
+    <span class="kt">long</span> <span class="nf">count</span><span class="o">(</span><span class="nc">Predicate</span> <span class="n">predicate</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * Checks whether the data store contains elements that match the given {@link Predicate}.
+     *
+     * @param predicate the {@link Predicate} to use for the existence check, must not be {@literal null}.
+     * @return {@literal true} if the data store contains elements that match the given {@link Predicate}.
+     */</span>
+    <span class="kt">boolean</span> <span class="nf">exists</span><span class="o">(</span><span class="nc">Predicate</span> <span class="n">predicate</span><span class="o">);</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>테스트 케이스를 작성해보자.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@DataJpaTest</span>
+<span class="nd">@RunWith</span><span class="o">(</span><span class="nc">SpringRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AccountRepositoryTest</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">AccountRepository</span> <span class="n">accountRepository</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">crud</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">();</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">);</span>
+        <span class="n">account</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">"han"</span><span class="o">);</span>
+        <span class="n">accountRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+
+        <span class="nc">QAccount</span> <span class="n">qAccount</span> <span class="o">=</span> <span class="nc">QAccount</span><span class="o">.</span><span class="na">account</span><span class="o">;</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">&gt;</span> <span class="n">andrew</span> <span class="o">=</span> <span class="n">accountRepository</span><span class="o">.</span><span class="na">findOne</span><span class="o">(</span><span class="n">qAccount</span><span class="o">.</span><span class="na">firstName</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">));</span>
+
+        <span class="nc">Account</span> <span class="n">result</span> <span class="o">=</span> <span class="n">andrew</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="nc">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">(),</span> <span class="s">"andrew"</span><span class="o">);</span>
+
+
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Account 하나를 만들어서 저장하고, QAccount형의 필드 qAccount를 만들어 놓고, 아래와 같이 typeSafe하게 접근해서 사용할 수 있다. 예제에서는 account의 firstName이 “andrew”인 조건절을 찾는 메서드 이다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...// 생략
+Hibernate:
+    select
+        account0_.id as id1_0_,
+        account0_.first_name as first_na2_0_,
+        account0_.last_name as last_nam3_0_
+    from
+        account account0_
+    where
+        account0_.first_name=?
+
+</code></pre></div></div>
+
+<p>쿼리뭔을 보면, where 조건절의 first_name으로 찾는 것을 확인할 수 있다.</p>
+:ET

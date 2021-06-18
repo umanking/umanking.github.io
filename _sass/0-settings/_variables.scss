@@ -1,0 +1,42 @@
+// *****************
+// Global Variables
+// *****************
+
+// Spaces
+$base-spacing-unit: 15px;
+
+// Border radius
+$global-radius: 3px;
+
+// Transition
+$global-transition: all .35s;
+
+
+// *****************
+// Typography
+// *****************
+$base-font-size: 18px;
+$base-font-style: normal;
+$base-font-variant: normal;
+$base-font-weight: 500;
+$base-font-family: "Apple SD Gothic Neo",
+'Inter',
+Helvetica Neue,
+Helvetica,
+Arial,
+sans-serif;
+$base-line-height: 1.7;
+$base-letter-spacing: -0.4px;
+
+// Headings
+$heading-font-weight: 700;
+$heading-font-family: $base-font-family;
+
+$font-size-h1:  36px;
+$font-size-h2:  28px;
+$font-size-h3:  24px;
+$font-size-h4:  20px;
+$font-size-h5:  18px;
+$font-size-h6:  16px;
+
+$heading-line-height: 1.3;
