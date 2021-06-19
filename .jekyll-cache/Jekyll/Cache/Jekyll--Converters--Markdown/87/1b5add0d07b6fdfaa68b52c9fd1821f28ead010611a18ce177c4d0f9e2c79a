@@ -1,0 +1,211 @@
+I"�A<h1 id="junit5">JUnit5</h1>
+
+<h2 id="maven-추가">Maven 추가</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>junit-jupiter-engine<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.1.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p>이렇게 직접 추가해도 되고, SpringBoot를 사용한다면 <code class="language-plaintext highlighter-rouge">spring-boot-starter-test</code> 를 추가하면 junit-jupiter 모듈이 포함된다.</p>
+
+<h2 id="기본-어노테이션">기본 어노테이션</h2>
+
+<h3 id="beforeall-beforeeach">@BeforeAll, @BeforeEach</h3>
+
+<p>@BeforeAll 어노테이션이 붙은 놈은, 반드시 static이어야 한다. 단 한번만 실행되고, @BeforeEach 는 테스트 메서드 이전에 매번 실행된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@BeforeAll</span>
+<span class="kd">static</span> <span class="kt">void</span> <span class="nf">beforeAll</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"한번만 실행됨 beforeAll"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@BeforeEach</span>
+<span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"매 테스트 마다 실행됨 "</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="afterall-aftereach">@AfterAll, @AfterEach</h3>
+
+<p>@AfterAll 도 반드시 static이어야 한다. 단 한번만 실행된다. 마찬가지로 @AfterEach도 테스트 메서드 이후로 매번 실행된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@AfterAll</span>
+<span class="kd">static</span> <span class="kt">void</span> <span class="nf">afterAll</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"한번만 실행됨 afterAll"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@AfterEach</span>
+<span class="kt">void</span> <span class="nf">tearDown</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"매 테스트 마다 실행됨 (afterEach)"</span><span class="o">);</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<h3 id="junit4에서-사용하던-어노테이션명이-변경되었다">JUnit4에서 사용하던 어노테이션명이 변경되었다.</h3>
+
+<ul>
+  <li>@BeforeClass → @BeforeAll : 테스트 실행전 딱 한번 실행함 (static 으로 만들어야 함)</li>
+  <li>@Before → @BeforeEach : 모든 테스트 전에 실행함</li>
+  <li>@AfterClass → @AfterAll : 테스트 실행 후 딱 한 번 실행함 (static 으로 만들어야 함)</li>
+  <li>@After → @AfterEach : 모든 테스트 각각 종료 후에 실행함</li>
+</ul>
+
+<h3 id="displayname-disabled">@DisplayName, @Disabled</h3>
+
+<p>각 테이트 케이스를 나타내는 이름을 세부적으로 표현할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"테스트 1"</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">test1</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"test1"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>@Disabled를 통해서 해당 테스트 케이스를 비활성화 할 수 있다. (JUnit4 에서는 <code class="language-plaintext highlighter-rouge">@Ignore</code> 과 동일하다.)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="nd">@Disabled</span> 
+<span class="kt">void</span> <span class="nf">test2</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"test2"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="parameterizedtest-️"><u>@ParameterizedTest ⭐️</u></h3>
+
+<p>@ParameterizedTest는 @Test를 대신해서 여러개의 파라미터 값들을 파라미터 값으로 주고, 각 항목들을 테스트 할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span>
+<span class="nd">@ValueSource</span><span class="o">(</span><span class="n">ints</span> <span class="o">=</span> <span class="o">{</span><span class="mi">2</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="mi">8</span><span class="o">,</span><span class="mi">9</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">})</span>
+<span class="kt">void</span> <span class="nf">isEven</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">assertTrue</span><span class="o">(</span><span class="nc">Numbers</span><span class="o">.</span><span class="na">isEven</span><span class="o">(</span><span class="n">number</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>다음과 같이 <code class="language-plaintext highlighter-rouge">@ValueSource</code>를 검사하고자 하는 인자의 값을 입력하면, @ValueSource에 담은 파라미터 하나하나를 Junit이 테스트한다.</p>
+
+<h4 id="null-and-empty-source">Null and Empty Source</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span>
+<span class="nd">@NullSource</span>
+<span class="kt">void</span> <span class="nf">null_source_test</span><span class="o">(</span><span class="nc">String</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">assertThat</span><span class="o">(</span><span class="n">input</span><span class="o">).</span><span class="na">isNull</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>@NullSource -  input 파라미터값에 null값을 넣어준다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span>
+<span class="nd">@EmptySource</span>
+<span class="kt">void</span> <span class="nf">empty_source_test</span><span class="o">(</span><span class="nc">String</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">assertThat</span><span class="o">(</span><span class="n">input</span><span class="o">).</span><span class="na">isEmpty</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>@EmptySource -  input 파라미터값에 빈값(“”)을 넣어준다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span>
+<span class="nd">@NullAndEmptySource</span>
+<span class="kt">void</span> <span class="nf">null_and_empty_source_test</span><span class="o">(</span><span class="nc">String</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">assertThat</span><span class="o">(</span><span class="nc">Strings</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">input</span><span class="o">)).</span><span class="na">isTrue</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>@NullAndEmptySource - input 파라미터 값에 <code class="language-plaintext highlighter-rouge">null값</code> 또는 <code class="language-plaintext highlighter-rouge">빈값</code>을 넣어준다.</li>
+</ul>
+
+<h4 id="enumsource">EnumSource</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">RoleType</span> <span class="o">{</span>
+  <span class="no">ADMIN</span><span class="o">,</span> <span class="no">USER</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>ADMIN과 USER 타입의 RoleType Enum이 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span>
+<span class="nd">@EnumSource</span><span class="o">(</span><span class="nc">RoleType</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">enum_test</span><span class="o">(</span><span class="nc">RoleType</span> <span class="n">roleType</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">assertThat</span><span class="o">(</span><span class="nc">RoleType</span><span class="o">.</span><span class="na">values</span><span class="o">()).</span><span class="na">contains</span><span class="o">(</span><span class="n">roleType</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>RoleType Enum값을 파라미터 값으로 넘겨서 테스트 가능하다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span>
+<span class="c1">// RoleType.ADMIN 값을 제외한 테스트 케이스</span>
+<span class="nd">@EnumSource</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="nc">RoleType</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">names</span> <span class="o">=</span> <span class="o">{</span><span class="s">"ADMIN"</span><span class="o">},</span> <span class="n">mode</span> <span class="o">=</span> <span class="nc">Mode</span><span class="o">.</span><span class="na">EXCLUDE</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">enum_exclude_test</span><span class="o">(</span><span class="nc">RoleType</span> <span class="n">roleType</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">assertThat</span><span class="o">(</span><span class="n">roleType</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="nc">RoleType</span><span class="o">.</span><span class="na">USER</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>enum의 특정값을(RoleType.ADMIN) 값을 제외한 테스트 케이스</p>
+
+<h4 id="csv-files">CSV Files</h4>
+
+<p><code class="language-plaintext highlighter-rouge">src/test/resources/data.csv</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>first,second
+test,TEST
+teSt,TEST
+sprIng,SPRING
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ParameterizedTest</span>
+<span class="nd">@CsvFileSource</span><span class="o">(</span><span class="n">resources</span> <span class="o">=</span> <span class="s">"/data.csv"</span><span class="o">,</span> <span class="n">numLinesToSkip</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+<span class="kt">void</span> <span class="nf">csv_file_test</span><span class="o">(</span><span class="nc">String</span> <span class="n">firstColumn</span><span class="o">,</span> <span class="nc">String</span> <span class="n">secondColumn</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">assertThat</span><span class="o">(</span><span class="n">firstColumn</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">()).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="n">secondColumn</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>@CsvFileSource는 해당 csv파일을 resouce경로에서 파일을 읽어서, 파라미터 값으로 제공해 준다.</li>
+</ul>
+
+<h2 id="exception-test">Exception Test</h2>
+
+<p>이번에는 처음 짝수인지를 검증하는 메서드에 기능을 하나 추가 해보자.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isEven</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>0보다 작은 값이 들어온 경우에 <code class="language-plaintext highlighter-rouge">IllegalArgumentException</code>를 발생 시킨다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"짝수 테스트: 음수값인 경우에 예외 발생"</span><span class="o">)</span>
+    <span class="nd">@ParameterizedTest</span>
+    <span class="nd">@ValueSource</span><span class="o">(</span><span class="n">ints</span> <span class="o">=</span> <span class="o">{-</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">})</span>
+    <span class="kt">void</span> <span class="nf">isEven_negative_test</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">assertThatExceptionOfType</span><span class="o">(</span><span class="nc">IllegalArgumentException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">isThrownBy</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="nc">Numbers</span><span class="o">.</span><span class="na">isEven</span><span class="o">(</span><span class="n">number</span><span class="o">));</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>역시나 @ParameterizedTest와 <code class="language-plaintext highlighter-rouge">assertThatExceptionOfType</code>을 활용한다.
+발생할 exception클래스를 적고 누구에 의해서 던져지는지(isThrownBy)를 명시한다. 다만 해당 메서드의 인자는 ThrowingCallable 이기 때문에 람다형태로 작성해 준다.</p>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+  <li>
+    <p>https://www.baeldung.com/junit-5</p>
+  </li>
+  <li>
+    <p>https://www.baeldung.com/parameterized-tests-junit-5</p>
+  </li>
+</ul>
+
+:ET

@@ -73,7 +73,7 @@ image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMj
 
 homebrew  & nodejs 설치
 
-```shell
+```
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 $ brew update
 $ brew install node
@@ -81,7 +81,7 @@ $ brew install node
 
 Zsh 설치
 
-```shell
+```
 $ brew install zsh
 $ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 $ chsh -s /bin/zsh
@@ -89,41 +89,31 @@ $ chsh -s /bin/zsh
 
 vim 설치
 
-```shell
+```
 $ brew install neovim
 $ brew tap caskroom/fonts
 $ brew cask install font-hack-nerd-font
 $ curl -sLf https://spacevim.org/install.sh | bash
 ```
 
-vim 테마변경
-
-```shell
- ~/.SpaceVim.d/init.vim` 파일에 다음 항목 추가
-let g:spacevim_colorscheme = 'onedark'
-```
-
-
-
 ## Zsh 플러그인 설치 
 
 autosuggesstion (자동완성)
 
-```sh
+```
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 ```
 
 ~/.oh-my-zsh/custom/plugins 폴더하위에 zsh-autosuggestions 플러그인을 이동시킵니다.`vi ~/.zshrc` 를 입력해서 다음과 같이 plugins 목록에 추가합니다.
 
-```sh
+```
 plugins=(
   git
   zsh-autosuggestions
 )
 ```
 
->  ⚠️ 주의해야 할 사항은 `,` delimiter 를 [사용하지 말라고 권고합니다](https://github.com/ohmyzsh/ohmyzsh/issues/7728).
-> `source ~/.zshrc`를 적용하고, 재 실행시키면 자동완성됩니다!
+>  주의해야 할 사항은 `,` delimiter 를 [사용하지 말라고 권고합니다.](https://github.com/ohmyzsh/ohmyzsh/issues/7728).`source ~/.zshrc`를 적용하고, 재 실행시키면 자동완성됩니다!
 
 
 
@@ -159,7 +149,7 @@ plugins=(
 
 회사 컴퓨터에서 `vi ~/.gitcofing` 로 접속 해서 다음과 같이 추가한다. 
 
-```sh
+```
 [user]
   email = andrew@회사도메인.com
   name = andrew
@@ -172,7 +162,7 @@ gitconfig default 설정은 회사걸로 하고, 내 개인 프로젝트는 `~/w
 
 `vi ~/.gitconfig-personal` 입력후 다음과 같이 개인 계정 관련 부분을 넣는다.
 
-```sh
+```
 [user]
   email = andrew@gmail.com
   name = andrew han
