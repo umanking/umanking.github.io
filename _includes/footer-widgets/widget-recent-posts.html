@@ -3,7 +3,7 @@
     <div class="widget__head">
       <h3 class="widget__title">Recent Posts</h3>
     </div>
-    {% for post in site.posts limit:4 %}
+    {% for post in site.posts limit:2 %}
     <div class="recent-posts">
       {% if post.image %}
       <a class="recent-posts__image" href="{{ post.url }}">
