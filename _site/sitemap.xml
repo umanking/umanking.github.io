@@ -141,10 +141,6 @@
 <lastmod>2020-01-19T15:59:00+09:00</lastmod>
 </url>
 <url>
-<loc>https://umanking.github.io/2020/02/15/spring-junit5</loc>
-<lastmod>2020-02-15T20:51:00+09:00</lastmod>
-</url>
-<url>
 <loc>https://umanking.github.io/2020/03/10/java-comparable-comparator</loc>
 <lastmod>2020-03-10T08:18:00+09:00</lastmod>
 </url>
@@ -209,6 +205,10 @@
 <lastmod>2021-06-19T17:21:00+09:00</lastmod>
 </url>
 <url>
+<loc>https://umanking.github.io/2021/06/19/junit5-best-usage</loc>
+<lastmod>2021-06-19T17:37:00+09:00</lastmod>
+</url>
+<url>
 <loc>https://umanking.github.io/</loc>
 </url>
 <url>
@@ -249,6 +249,9 @@
 </url>
 <url>
 <loc>https://umanking.github.io/tag/orm</loc>
+</url>
+<url>
+<loc>https://umanking.github.io/tag/junit5</loc>
 </url>
 <url>
 <loc>https://umanking.github.io/page/2/</loc>

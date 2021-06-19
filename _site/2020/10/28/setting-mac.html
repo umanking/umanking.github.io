@@ -161,6 +161,10 @@
                   
                 
               
+                
+                  
+                
+              
             </ul>
           </div>
         </nav>
@@ -349,50 +353,43 @@
 
 <p>homebrew  &amp; nodejs 설치</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="si">)</span><span class="s2">"</span>
-<span class="nv">$ </span>brew update
-<span class="nv">$ </span>brew <span class="nb">install </span>node
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ brew update
+$ brew install node
 </code></pre></div></div>
 
 <p>Zsh 설치</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>zsh
-<span class="nv">$ </span>curl <span class="nt">-L</span> https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-<span class="nv">$ </span>chsh <span class="nt">-s</span> /bin/zsh
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew install zsh
+$ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+$ chsh -s /bin/zsh
 </code></pre></div></div>
 
 <p>vim 설치</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>neovim
-<span class="nv">$ </span>brew tap caskroom/fonts
-<span class="nv">$ </span>brew cask <span class="nb">install </span>font-hack-nerd-font
-<span class="nv">$ </span>curl <span class="nt">-sLf</span> https://spacevim.org/install.sh | bash
-</code></pre></div></div>
-
-<p>vim 테마변경</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ~/.SpaceVim.d/init.vim<span class="sb">`</span> 파일에 다음 항목 추가
-<span class="nb">let </span>g:spacevim_colorscheme <span class="o">=</span> <span class="s1">'onedark'</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew install neovim
+$ brew tap caskroom/fonts
+$ brew cask install font-hack-nerd-font
+$ curl -sLf https://spacevim.org/install.sh | bash
 </code></pre></div></div>
 
 <h2 id="zsh-플러그인-설치">Zsh 플러그인 설치</h2>
 
 <p>autosuggesstion (자동완성)</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/zsh-users/zsh-autosuggestions <span class="nv">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 </code></pre></div></div>
 
 <p>~/.oh-my-zsh/custom/plugins 폴더하위에 zsh-autosuggestions 플러그인을 이동시킵니다.<code class="language-plaintext highlighter-rouge">vi ~/.zshrc</code> 를 입력해서 다음과 같이 plugins 목록에 추가합니다.</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">plugins</span><span class="o">=(</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins=(
   git
   zsh-autosuggestions
-<span class="o">)</span>
+)
 </code></pre></div></div>
 
 <blockquote>
-  <p>⚠️ 주의해야 할 사항은 <code class="language-plaintext highlighter-rouge">,</code> delimiter 를 <a href="https://github.com/ohmyzsh/ohmyzsh/issues/7728">사용하지 말라고 권고합니다</a>.
-<code class="language-plaintext highlighter-rouge">source ~/.zshrc</code>를 적용하고, 재 실행시키면 자동완성됩니다!</p>
+  <p>주의해야 할 사항은 <code class="language-plaintext highlighter-rouge">,</code> delimiter 를 <a href="https://github.com/ohmyzsh/ohmyzsh/issues/7728">사용하지 말라고 권고합니다.</a>.<code class="language-plaintext highlighter-rouge">source ~/.zshrc</code>를 적용하고, 재 실행시키면 자동완성됩니다!</p>
 </blockquote>
 
 <h1 id="2-소소한-팁들">2. 소소한 팁들</h1>
@@ -426,11 +423,11 @@
 
 <p>회사 컴퓨터에서 <code class="language-plaintext highlighter-rouge">vi ~/.gitcofing</code> 로 접속 해서 다음과 같이 추가한다.</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user]
-  email <span class="o">=</span> andrew@회사도메인.com
-  name <span class="o">=</span> andrew
-<span class="o">[</span>includeIf <span class="s2">"gitdir:~/workspace/"</span><span class="o">]</span>
-  path <span class="o">=</span> .gitconfig-personal
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user]
+  email = andrew@회사도메인.com
+  name = andrew
+[includeIf "gitdir:~/workspace/"]
+  path = .gitconfig-personal
 </code></pre></div></div>
 
 <p>gitconfig default 설정은 회사걸로 하고, 내 개인 프로젝트는 <code class="language-plaintext highlighter-rouge">~/workspace</code>하위에 들어가는 경우에는 
@@ -438,9 +435,9 @@
 
 <p><code class="language-plaintext highlighter-rouge">vi ~/.gitconfig-personal</code> 입력후 다음과 같이 개인 계정 관련 부분을 넣는다.</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>user]
-  email <span class="o">=</span> andrew@gmail.com
-  name <span class="o">=</span> andrew han
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user]
+  email = andrew@gmail.com
+  name = andrew han
 </code></pre></div></div>
 
 <h2 id="vscode-code--설치">vscode <code class="language-plaintext highlighter-rouge">code .</code> 설치</h2>
@@ -581,9 +578,9 @@
       
       <div class="recent-posts__content">
         <div class="recent-posts__date">
-          <time class="timeago" datetime="2021-06-19T17:21:00+09:00">Jun 19, 2021</time>
+          <time class="timeago" datetime="2021-06-19T17:37:00+09:00">Jun 19, 2021</time>
         </div>
-        <h4 class="recent-posts__title"><a href="/2021/06/19/jpa-summary-advanced-releation-mapping">JPA - 다양한 연관관계 매핑(4)</a></h4>
+        <h4 class="recent-posts__title"><a href="/2021/06/19/junit5-best-usage">Junit5 - 기본 사용법</a></h4>
       </div>
     </div>
     
@@ -592,9 +589,9 @@
       
       <div class="recent-posts__content">
         <div class="recent-posts__date">
-          <time class="timeago" datetime="2021-06-19T17:20:00+09:00">Jun 19, 2021</time>
+          <time class="timeago" datetime="2021-06-19T17:21:00+09:00">Jun 19, 2021</time>
         </div>
-        <h4 class="recent-posts__title"><a href="/2021/06/19/jpa-summary-basic-releation-mapping">JPA - 연관관계 매핑(기초)(3)</a></h4>
+        <h4 class="recent-posts__title"><a href="/2021/06/19/jpa-summary-advanced-releation-mapping">JPA - 다양한 연관관계 매핑(4)</a></h4>
       </div>
     </div>
     
