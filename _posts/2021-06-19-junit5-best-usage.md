@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Junit5 
+title: Junit5 - 기본 사용법
 date: 2021-06-19 17:37 +0900
 tags: [Junit5]
 ---
@@ -204,10 +204,6 @@ void csv_file_test(String firstColumn, String secondColumn) {
 
 
 
-#### Method
-
-
-
 ## Exception Test
 
 이번에는 처음 짝수인지를 검증하는 메서드에 기능을 하나 추가 해보자.
@@ -235,10 +231,6 @@ void csv_file_test(String firstColumn, String secondColumn) {
 
 역시나 @ParameterizedTest와 `assertThatExceptionOfType`을 활용한다.
 발생할 exception클래스를 적고 누구에 의해서 던져지는지(isThrownBy)를 명시한다. 다만 해당 메서드의 인자는 ThrowingCallable 이기 때문에 람다형태로 작성해 준다.
-
-
-
-## 관련 포스팅
 
 
 
