@@ -7,7 +7,6 @@ tags: [jpa]
 ---
 
 > 멤버(Member)와 사물함(Locker) 1:1 매핑 상황을 살펴보고, cascade 옵션이 어떤 상황에서 쓰이는지 알아보자.
-<!-- more -->
 # 예제코드
 
 ### Member, Locker 엔티티
