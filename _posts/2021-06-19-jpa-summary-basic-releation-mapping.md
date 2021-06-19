@@ -62,7 +62,7 @@ em.remove(team); // 팀삭제
 @Entity 
 public class Member {
   
-	@Id 
+  @Id
   @Column(name="MEMBER_ID")
   private Long id;
   
