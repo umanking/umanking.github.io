@@ -21,7 +21,6 @@ tags: [jpa]
     <artifactId>h2</artifactId>
     <scope>runtime</scope>
 </dependency>
-
 ```
 
 `spring-data-jpa` 와 `h2(인메모리)` 디펜던시를 추가합니다.

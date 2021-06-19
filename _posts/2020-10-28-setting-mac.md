@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 맥전용 개발자 컴퓨터 환경셋팅(Mac Setting)
+title: 개발자 환경 셋팅
 category: [mac]
 tags: [tip, setting, mac]
 date: 2020-10-28 09:41 +0900

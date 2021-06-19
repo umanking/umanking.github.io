@@ -6,8 +6,10 @@ categories: [jpa]
 tags: [jpa]
 ---
 
-> 저번에 올린 포스팅 설명이 너무 불충분하고 날림😔이라서, 새롭게 정리. 기존의 JpaRepository를 상속받아서 기본적인 CRUD 기능을 사용할 수 있지만, 내가 1)커스텀하게 만들어서 사용하고 싶은 경우와 이미 JpaReposptry에서 제공하는 메서드를 새롭게 2)오버라이딩해서 사용할 수 있는 경우에 대해서 알아보자 .
-<!-- more -->
+기존의 JpaRepository를 상속받아서 기본적인 CRUD 기능을 사용할 수 있지만, 내가 1)커스텀하게 만들어서 사용하고 싶은 경우와 이미 JpaReposptry에서 제공하는 메서드를 새롭게 2)오버라이딩해서 사용할 수 있는 경우에 대해서 알아보자 .
+
+
+
 ## 1\. 기본 Post 엔티티, 레포지토리
 
 ```java
@@ -77,18 +79,16 @@ public class JpaTest {
 
     @Autowired
     private PostRepository postRepository;
-
         private Post createPost() {
         Post post = new Post();
         post.setTitle("new post");
         return postRepository.save(post);
     }
 
-      @Test
+    @Test
     public void postCustomRepositoryTest() {
-        Post post = createPost(); // post만드는 동작
-
-          // 커스텀하게 만든 메서드를 사용해 보자!
+        Post post = createPost();
+        // 커스텀하게 만든 메서드를 사용해 보자!
         List<Post> myPost = postRepository.findMyPost();
         System.out.println(myPost);
     }
@@ -121,7 +121,7 @@ Hibernate:
 
 결과를 보면, 내가 만든 `findMyPost()`가 잘 동작하고 결과 까지 잘 가져오는 것을 확인 했다.
 
-#
+
 
 > 이번에는 기존에 JpaRepository가 제공하는 CRUD에서 내가 새롭게 오버라이딩 하고 싶은 경우에는 어떻게 하는지 알아 보자. 위의 예제를 그대로 활용한다.
 
@@ -129,10 +129,8 @@ Hibernate:
 
 ```java
 public interface PostCustomRepository<T> {
-
     List<Post> findMyPost();
-
-      void delete(T entity);
+  	void delete(T entity);
 }
 ```
 
@@ -158,8 +156,7 @@ public class PostCustomRepositoryImpl implements PostCustomRepository<Post> {
 기존에 Generic 부분이 없었기 때문에, Post로 엔티티 타입을 설정한다.
 
 ```java
-public interface PostRepository extends JpaRepository<Post, Long>, PostCustomRepository<Post> {
-}
+public interface PostRepository extends JpaRepository<Post, Long>, PostCustomRepository<Post> {}
 ```
 
 역시나 똑같이 PostRepository에서 커스텀하게 만든 레포지토리를 상속받아서 사용한다. (Generic 추가)
@@ -180,11 +177,10 @@ public class JpaTest {
         return postRepository.save(post);
     }
 
-      @Test
+    @Test
     public void postCustomRepositoryTest() {
         Post post = createPost();
-
-          postRepository.delete(post);
+      	postRepository.delete(post);
     }
 }
 ```

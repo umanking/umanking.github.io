@@ -70,7 +70,7 @@ void shouldNotImportMissingFile()throw Exception {
 
 자바에서는 C++ 처럼 const키워드는 없지만 대신 static final 키워로 상수를 표현한다. 테스트에서는 프로그램을 어떻게 사용해야 하는지 예를 포함하므로 많은 상수를 사용한다. 
 
-```java 
+```java
 private static final String RESOURCES = "scr" + File.separator + "test" + File.separator + "resources" + File.separator; 
 private static final String LETTER = RESOURCES + "patient.letter";
 private static final String REPORTER = RESOURCES + "patient.reporter";
