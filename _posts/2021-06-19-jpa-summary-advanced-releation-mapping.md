@@ -88,7 +88,7 @@ public class Team {
 public class Member {...}
 ```
 
--   일대다 단방향 관계는 약간 특이한데, 보통 자신이 매핑한 테이블의 외래키를 관리하는데, 이매핑은 반대쪽 테이블에 있는 외래키를 관리한다. 그럴 수 밖에 없는 것이 일대다 관계에서 외래키는 항상 다쪽 테이블에 있다. 하지만 다쪽인 Member엔티티에는 외래키를 매핑할 수 있는 참조 필드가 없다. 대신에 반대쪽인 Team 엔티티에만 참조 필드인 members가 있다. 따라서 반대편 테이블의 외래키를 관리하는 특이한 모습이 나타난다.
+-  일대다 단방향 관계는 약간 특이한데, 보통 자신이 매핑한 테이블의 외래키를 관리하는데, 이매핑은 반대쪽 테이블에 있는 외래키를 관리한다. 그럴 수 밖에 없는 것이 일대다 관계에서 외래키는 항상 다쪽 테이블에 있다. 하지만 다쪽인 Member엔티티에는 외래키를 매핑할 수 있는 참조 필드가 없다. 대신에 반대쪽인 Team 엔티티에만 참조 필드인 members가 있다. 따라서 반대편 테이블의 외래키를 관리하는 특이한 모습이 나타난다.
 
 -   일대다 단방향 관계를 매핑할때는 @JoinColumn을 명시해야 한다. 그렇지 않으면 JPA는 연결 테이블을 중간에 두고 연관관계를 관리하는 조인테이블(JoinTable) 전략을 기본으로 사용해서 매핑한다. 
 
@@ -99,7 +99,7 @@ public class Member {...}
 ```java 
 public void testSave(){
   
-	Member member1 = new Member("member1");
+  Member member1 = new Member("member1");
   Member member2 = new Member("member2");
   
   Team team1 = new Team("team1");
