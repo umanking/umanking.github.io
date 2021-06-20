@@ -10,7 +10,7 @@ tags: [jpa, orm]
 - [실무에서 필요한JPA - 엔티티 매핑(2)]({% post_url 2021-06-19-jpa-summary-entity-mapping %})
 - [실무에서 필요한JPA - 연관관계 매핑(기초)(3)]({% post_url 2021-06-19-jpa-summary-basic-releation-mapping %})
 - [실무에서 필요한JPA - 다양한 연관관계매핑(4)]({% post_url 2021-06-19-jpa-summary-advanced-releation-mapping %})
-- 실무에서 필요한JPA - 프록시와 연관관계(5)
+- [실무에서 필요한JPA - 프록시와 연관관계(5)]({% post_url 2021-06-20-jpa-summary-proxy %})
 - 실무에서 필요한JPA - 값타입(6)
 - 실무에서 필요한JPA - 객체지향 쿼리(7)
 - 실무에서 필요한JPA - 스프링 데이터 JPA(8)

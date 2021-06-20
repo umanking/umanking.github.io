@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>개발자 환경 셋팅</title>
+  <title>JPA - 프록시와 연관관계(5)</title>
   <meta name='description' content='Java, Spring development blog'>
 
 
-  <link rel="canonical" href="https://umanking.github.io/2020/10/28/setting-mac">
+  <link rel="canonical" href="https://umanking.github.io/2021/06/20/jpa-summary-proxy">
   <link rel="alternate" type="application/rss+xml" title="GeonGuk" href="/feed.xml">
 
   <!-- Fonts -->
@@ -212,7 +212,7 @@
 <section class="hero hero--post">
   <!-- 
   <div class="post__image">
-    <img class="lazy" data-src="https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="">
+    <img class="lazy" data-src="" alt="">
   </div>
    -->
 
@@ -224,21 +224,19 @@
             
 
             <div class="article__meta">
-              <span class="article__date"><time datetime="2020-10-28T09:41:00+09:00">28 Oct 2020</time></span>
+              <span class="article__date"><time datetime="2021-06-20T16:22:00+09:00">20 Jun 2021</time></span>
               
               <div class="article-tags__box">
                 
-                  <a href="/tag/tip" class="article__tag">tip</a>
+                  <a href="/tag/jpa" class="article__tag">jpa</a>
                 
-                  <a href="/tag/setting" class="article__tag">setting</a>
-                
-                  <a href="/tag/mac" class="article__tag">mac</a>
+                  <a href="/tag/orm" class="article__tag">orm</a>
                 
               </div>
               
             </div>
 
-            <h1 class="hero__title">개발자 환경 셋팅</h1>
+            <h1 class="hero__title">JPA - 프록시와 연관관계(5)</h1>
             <a href="/about/" class="article__author-link"><span>By</span> GeonGuk</a>
 
             
@@ -259,7 +257,7 @@
     <div class="post__content">
       
         <!-- <div class="post__image">
-          <img class="lazy" data-src="https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="">
+          <img class="lazy" data-src="" alt="">
         </div> -->
       
 
@@ -274,196 +272,254 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-      <h1 id="1-설치">1. 설치</h1>
+      <h1 id="실무에서-필요한jpa---프록시와-연관관계5">실무에서 필요한JPA - 프록시와 연관관계(5)</h1>
 
-<h2 id="필수-설치-프로그램">필수 설치 프로그램</h2>
-
-<ul>
-  <li>개발도구
-    <ul>
-      <li><a href="https://www.jetbrains.com/toolbox-app/">JetBrain toolbox</a></li>
-      <li><a href="https://code.visualstudio.com/download">VsCode</a></li>
-      <li><a href="https://www.getpostman.com/downloads/">PostMan</a></li>
-      <li><a href="https://sequelpro.com/download">SequelPro</a></li>
-      <li><a href="https://www.mysql.com/products/workbench/">Mysql Workbench</a></li>
-      <li><a href="https://www.sourcetreeapp.com/">SourceTree</a></li>
-      <li><a href="https://www.iterm2.com/downloads.html">Iterms2(Zsh, Oh-my-zsh, dracular theme)</a></li>
-    </ul>
-  </li>
-  <li>업무툴
-    <ul>
-      <li><a href="https://www.alfredapp.com/">Alfred4</a></li>
-      <li><a href="https://apps.apple.com/us/app/magnet/id441258766?mt=12">Magnet</a></li>
-      <li><a href="https://www.spectacleapp.com/">Spectacle</a></li>
-      <li><a href="https://pqrs.org/osx/karabiner/">Karabiner</a></li>
-      <li><a href="https://apps.apple.com/us/app/jolt-of-caffeine/id1437130425?mt=12">Jolt of Caffein</a></li>
-      <li><a href="https://www.notion.so/desktop">Notion</a></li>
-      <li><a href="https://macromates.com/download">TextMate</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="각종-플러그인-추천">각종 플러그인 추천</h2>
+<h2 id="프록시">프록시</h2>
 
 <ul>
-  <li>Intellij Plugin 추천
-    <ul>
-      <li><a href="https://plugins.jetbrains.com/plugin/6317-lombok">Lombok</a></li>
-      <li><a href="https://plugins.jetbrains.com/plugin/7642-save-actions">Save Action</a></li>
-    </ul>
-  </li>
-  <li>VsCode Plugin 추천
-    <ul>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=akamud.vscode-theme-onedark">Atom one dark theme</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings">Intellij keybinding</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag">Auto close tag</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=steoates.autoimport">Auto Import</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify">Beautify</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer">Bracket Pair Colorizer</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=SirTori.indenticator">Indenticator</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=IBM.output-colorizer">Output colorizer</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme">Material icon theme</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components">Vscode-styld-components</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight">todo highlight</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=waderyan.nodejs-extension-pack">Node.js extension pack</a></li>
-      <li><a href="https://marketplace.visualstudio.com/items?itemName=jawandarajbir.react-vscode-extension-pack">React extension pack</a></li>
-    </ul>
-  </li>
-  <li>크롬 플러그인
-    <ul>
-      <li><a href="https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa">JsonFormatter</a></li>
-      <li><a href="https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc">Octotree</a></li>
-      <li><a href="https://chrome.google.com/webstore/detail/momentum/laookkfknpbbblfpciffpaejjkokdgca">Momentum</a></li>
-      <li><a href="https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg">EditThisCookie</a></li>
-      <li><a href="https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb">Google translate</a></li>
-    </ul>
-  </li>
+  <li>JPA는 엔티티가 실제 사용될 때까지 데이터베이스 조회를 지연하는 방법을 제공하는데 이것을 지연로딩이라 한다.</li>
+  <li>그런데 지연 로딩 기능을 사용하려면 실제 엔티티 객체 대신에 데이터베이스 조회를 지연할 수 있는 가짜 객체가 필요한데 이를 <code class="language-plaintext highlighter-rouge">프록시 객체</code>라 한다.</li>
 </ul>
-
-<h2 id="zsh-설치">Zsh 설치</h2>
-
-<p>homebrew  &amp; nodejs 설치</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-$ brew update
-$ brew install node
-</code></pre></div></div>
-
-<p>Zsh 설치</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew install zsh
-$ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-$ chsh -s /bin/zsh
-</code></pre></div></div>
-
-<p>vim 설치</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew install neovim
-$ brew tap caskroom/fonts
-$ brew cask install font-hack-nerd-font
-$ curl -sLf https://spacevim.org/install.sh | bash
-</code></pre></div></div>
-
-<h2 id="zsh-플러그인-설치">Zsh 플러그인 설치</h2>
-
-<p>autosuggesstion (자동완성)</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-</code></pre></div></div>
-
-<p>~/.oh-my-zsh/custom/plugins 폴더하위에 zsh-autosuggestions 플러그인을 이동시킵니다.<code class="language-plaintext highlighter-rouge">vi ~/.zshrc</code> 를 입력해서 다음과 같이 plugins 목록에 추가합니다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plugins=(
-  git
-  zsh-autosuggestions
-)
-</code></pre></div></div>
 
 <blockquote>
-  <p>주의해야 할 사항은 <code class="language-plaintext highlighter-rouge">,</code> delimiter 를 <a href="https://github.com/ohmyzsh/ohmyzsh/issues/7728">사용하지 말라고 권고합니다.</a>.<code class="language-plaintext highlighter-rouge">source ~/.zshrc</code>를 적용하고, 재 실행시키면 자동완성됩니다!</p>
+  <p>JPA 표준 명세는 지연로딩 구현 방법을 JPA구현체에 위임했다. 하이버네이트 구현체에 대한 내용이다. 
+하이버네이트는 지연 로딩을 지원하기 위해 <code class="language-plaintext highlighter-rouge">프록시</code>를 사용하는 방법과 <code class="language-plaintext highlighter-rouge">바이트코드</code>를 수정하는 두 가지 방법을 제공한다.</p>
 </blockquote>
 
-<h1 id="2-소소한-팁들">2. 소소한 팁들</h1>
+<h3 id="프록시-기초">프록시 기초</h3>
 
-<h2 id="키변환-한영키--오른쪽-command키로-변경하는-방법">[키변환] 한/영키 &gt; 오른쪽 command키로 변경하는 방법</h2>
+<ul>
+  <li>JPA에서 식별자로 엔티티 하나를 조회할때 EntityManager.find()를 사용한다.</li>
+  <li>
+    <p>엔티티를 실제 사용 시점까지 데이터베이스 조회를 미루고 싶으면 EntityManager.getReference() 메서드를 사용하면 된다. 이 메서드를 호출할 때 JPA는 데이터베이스를 조회하지 않고 실제 엔티티 객체도 생성하지 않는다. 대신에 데이터베이스 접근을 위임한 프록시 객체를 반환한다.</p>
+  </li>
+  <li>프록시의 특징
+    <ul>
+      <li>프록시 클래스는 실제 클래스를 <code class="language-plaintext highlighter-rouge">상속</code> 받아서 만들어지므로 실제 클래스와 겉 모양이 같다. 따라서 사용하는 입장에서 이것이 진짜 객체인지, 프록시 객체인지 구분하지 않고 사용하면 된다.</li>
+      <li>프록시 객체는 실제 객체에 대한 참조(target)를 보관한다. 그리고 프록시 객체의 메서드를 호출하면 프록시 객체는 실제 객체의 메서드를 호출한다.</li>
+    </ul>
+  </li>
+  <li>프록시 객체의 초기화
+    <ul>
+      <li>프록시 객체는 member.getName()처럼 실제 사용될 때 데이터베이스를 조회해서 실제 엔티티 객체를 생성하는데, 이것을 프록시 객체의 초기화라 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// MemberProxy 변환</span>
+<span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getReference</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"id1"</span><span class="o">);</span>
+<span class="n">member</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 프록시 클래스 예상 코드</span>
+<span class="kd">class</span> <span class="nc">MemberProxy</span> <span class="kd">extends</span> <span class="nc">Member</span> <span class="o">{</span>
+  <span class="nc">Member</span> <span class="n">target</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">//실제 엔티티 참조</span>
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">(){</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">target</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+      <span class="c1">// 초기화 요청</span>
+      <span class="c1">// DB조회</span>
+      <span class="c1">// 실제 엔티티 생성 및 참조 보관 </span>
+      <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="o">...;</span> 
+    <span class="o">}</span>
+    
+    <span class="c1">// target.getName();</span>
+    <span class="k">return</span> <span class="n">target</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <ol>
-  <li><a href="https://pqrs.org/osx/karabiner/">karabiner 설치</a></li>
-  <li>Simple modifications 탭에서 right_command - f18로 추가</li>
-  <li>System Preference - Keyboard - 단축키 탭 - 입력소스 - 이전소스 입력을 (right command) 키로 변경</li>
+  <li>프록시 객체에 member.getName() 호출해서 실제 데이터를 조회한다.</li>
+  <li>프록시 객체는 실제 엔티티가 생성되어 있지 않으면 영속성 컨텍스트에 실제 엔티티 생성을 요청하는데 이것을 초기화라 한다.</li>
+  <li>영속성컨텍스트는 데이터베이스를 조회해서 실제 엔티티 객체를 생성한다.</li>
+  <li>프록시 객체는 생성된 실제 엔티티 객체의 참조를 Member target 멤버 변수에 보관한다.</li>
+  <li>프록시 객체는 실제 엔티티 객체의 getName()을 호출해서 결과를 반환한다.</li>
 </ol>
 
-<h2 id="github-ssh키-등록">github ssh키 등록</h2>
-
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">ssh-keygen -t rsa</code> 를 통해서 ssh key를 만든다.</li>
-  <li><code class="language-plaintext highlighter-rouge">cat ~/.ssh/id_psa.pub</code> 을 통해서 퍼블릭키를 복사한다.</li>
-  <li>github 계정의 SSH and GPG keys 에서 <code class="language-plaintext highlighter-rouge">New SSH Key</code> 를 등록한다.</li>
+  <li>프록시의 특징
+    <ul>
+      <li>프록시 객체는 처음 사용할 때 한번만 초기화 된다.</li>
+      <li>프록시 객체가 초기화 되면 실제 엔티티에 접근할 수 있다.(위임)</li>
+      <li>프록시 객체는 원본 엔티티를 상속받은 객체이므로 타입 체크시 주의해서 사용해야 한다.</li>
+      <li>영속성 컨텍스에 찾는 엔티티가 이미 있으면 데이터베이스를 조회할 필요가 없으므로 em.getReference()를 호출해도 프록시가 아닌 실제 엔티티를 반환한다.</li>
+      <li>초기화는 영속성 컨텍스트의 도움을 받아야 가능하다. 따라서 영속성 컨텍스트의 도움을 받을 수 없는 준영속 상태의 프록시를 초기화 하면 문제가 발생한다. 하이버네이트는 LazyInitializationException 예외를 발생시킨다.</li>
+    </ul>
+  </li>
+  <li>준영속 상태와 초기화</li>
 </ul>
 
-<h2 id="회사-이메일-계정이랑-개인-계정-함께-사용하기">회사 이메일 계정이랑, 개인 계정 함께 사용하기</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getReference</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"id1"</span><span class="o">);</span>
+<span class="n">tx</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="n">em</span><span class="o">.</span><span class="na">clse</span><span class="o">();</span>
+
+<span class="n">member</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span> <span class="c1">// 준영속 상태 초기화 시도, LazyInitializationException 예외 발생</span>
+</code></pre></div></div>
+
+<h3 id="프록시와-식별자-">프록시와 식별자 📖📖</h3>
+
+<h3 id="프록시-확인">프록시 확인</h3>
+
+<ul>
+  <li>JPA가 제공하는 PersistenceUnitUtil.isLoaded(Object entity) 메서드를 사용하면 프록시 인스턴스의 초기화 여부를 확인할 수 있다.</li>
+  <li>조회한 엔티티가 진짜 엔티티인지, 프록시로 조회한 것인지 확인할려면 클래스명을 직접 출력해보면 된다. …javassist.. 라고 되어있으면 프록시이다.</li>
+</ul>
+
+<h2 id="즉시-로딩과-지연로딩">즉시 로딩과 지연로딩</h2>
+
+<p>프록시 객체는 주로 연관된 엔티티를 지연로딩 할때 사용한다.</p>
+
+<ul>
+  <li>즉시로딩: 엔티티를 조회할 때 연관된 엔티티도 함께 조회한다.
+    <ul>
+      <li>설정방법: @ManyToOne(fetch = FetchType.EAGER)</li>
+    </ul>
+  </li>
+  <li>지연로딩: 연관된 엔티티를 실제 사용할 때 조회한다.
+    <ul>
+      <li>설정방법: @ManyToOne(fetch = FetchType.LAZY)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="즉시로딩">즉시로딩</h3>
+
+<ul>
+  <li>JPA 구현체는 즉시 로딩을 최적화 하기 위해 가능하면 조인 쿼리를 사용한다.</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
+<span class="p">...</span> 
+<span class="k">FROM</span> <span class="n">MEMBER</span> <span class="n">M</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">TEAM</span> <span class="n">T</span> 
+	<span class="k">ON</span> <span class="n">M</span><span class="p">.</span><span class="n">TEAM_ID</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">TEAM_ID</span>
+<span class="k">WHERE</span> 
+	<span class="n">M</span><span class="p">.</span><span class="n">MEMBER_ID</span> <span class="o">=</span> <span class="s1">'member1'</span>
+</code></pre></div></div>
 
 <blockquote>
-  <p>IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 분리해서 사용한다.</p>
+  <p>즉시 로딩 실행 SQL에서 JPA가 INNER JOIN이 아닌 LEFT OUTER JOIN을 사용한다. 
+현재 회원테이블의 TEAM_ID 외래키는 NULL값을 허용한다. 그렇기 때문에 팀에 소속되지 않은 회원이 있을 가능성이 있고, JPA는 이런 상황을 고려해서 외부조인을 사용한것이다.</p>
+
+  <p>Q. 성능최적화에 유리한 내부조인은 어떻게 해야할까?</p>
+
+  <p>A. 외래키에 NOT NULL 제약 조건을 설정하면 값이 있는 것을 보장한다. 따라서 이때는 내부 조인으로 사용된다. 
+JPA에게도 이런 사실을 알려야 한다.</p>
+
+  <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+<span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">EAGER</span><span class="o">)</span>
+<span class="nd">@JoinColum</span><span class="o">(</span><span class="n">name</span><span class="o">=</span> <span class="s">"TEAM_ID"</span><span class="o">,</span> <span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span> <span class="c1">// nullable 속성값을 설정해야 한다.</span>
+<span class="o">}</span>
+</code></pre></div>  </div>
+
+  <p>또는 @ManyToOne(optional= false)로 설정해도 내부 조인을 사용한다. 
+결국 정리하면, JPA는 선택적 관계면 외부 조인을 사용하고, 필수관계면 내부 조인을 사용한다.</p>
 </blockquote>
 
-<ul>
-  <li>회사 프로젝트 폴더: ~/IdeaProject</li>
-  <li>개인 프로젝트 폴더: ~/workspace</li>
-</ul>
-
-<p>회사 컴퓨터에서 <code class="language-plaintext highlighter-rouge">vi ~/.gitcofing</code> 로 접속 해서 다음과 같이 추가한다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user]
-  email = andrew@회사도메인.com
-  name = andrew
-[includeIf "gitdir:~/workspace/"]
-  path = .gitconfig-personal
-</code></pre></div></div>
-
-<p>gitconfig default 설정은 회사걸로 하고, 내 개인 프로젝트는 <code class="language-plaintext highlighter-rouge">~/workspace</code>하위에 들어가는 경우에는 
-<code class="language-plaintext highlighter-rouge">.gitconfig-personal</code> 위치에 있는 정보를 사용한다는 뜻이다.</p>
-
-<p><code class="language-plaintext highlighter-rouge">vi ~/.gitconfig-personal</code> 입력후 다음과 같이 개인 계정 관련 부분을 넣는다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[user]
-  email = andrew@gmail.com
-  name = andrew han
-</code></pre></div></div>
-
-<h2 id="vscode-code--설치">vscode <code class="language-plaintext highlighter-rouge">code .</code> 설치</h2>
+<h3 id="지연로딩">지연로딩</h3>
 
 <ul>
-  <li>vs code 실행</li>
-  <li>shell command: <code class="language-plaintext highlighter-rouge">install code</code> 설치</li>
-  <li>iterms에서 <code class="language-plaintext highlighter-rouge">code .</code> 하면 vscode로 열림</li>
+  <li>지연로딩을 사용하려면 fetch의 속성을 FethType.LAZY로 설정한다.</li>
 </ul>
 
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Member</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"member1"</span><span class="o">);</span>
+<span class="nc">Team</span> <span class="n">team</span> <span class="o">=</span> <span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span> <span class="c1">// team멤버변수에 프록시 객체를 넣어둔다.</span>
+<span class="n">team</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span> <span class="c1">// 팀 객체 실제 사용</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>조회 대상이 영속성 컨텍스트에 이미 있으면 프록시 객체를 사용할 이유가 없다. 따라서 프록시 객체가 아닌 실제 객체를 사용한다.</p>
+</blockquote>
+
+<h3 id="즉시로딩-지연-로딩-정리">즉시로딩, 지연 로딩 정리</h3>
+
+<ul>
+  <li>즉시 로딩이 좋은지, 지연 로딩이 좋은지 상황에 따라 다르다.</li>
+  <li>지연로딩: 연관된 엔티티를 프록시로 조회한다. 프록시를 실제 사용할 때 초기화하면서 데이터베이스를 조회한다.</li>
+  <li>즉시로딩: 연관된 엔티티를 즉시 조회한다. 하이버네이트는 가능하면 SQL조인을 사용해서 한번에 조회한다.</li>
+</ul>
+
+<h2 id="영속성-전이casecad">영속성 전이:CASECAD</h2>
+
+<p>부모 엔티티를 저장할 때 자식 엔티티도 함께 저장할수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span> <span class="o">{</span>
+  
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBby</span> <span class="o">=</span> <span class="s">"parent"</span><span class="o">,</span> <span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">PERSIST</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>영속성 전이: 저장
+    <ul>
+      <li>부모 엔티티만 저장하면, 연관된 엔티티도 같이 저장된다.</li>
+    </ul>
+  </li>
+  <li>영속성 전이: 삭제
+    <ul>
+      <li>부모 엔티티만 삭제하면 연관도니 자식 엔티티도 함께 삭제된다.</li>
+      <li>삭제 순서는 외래키 제약 조건을 고려해서 자식을 먼저 삭제 하고, 부모를 삭제한다.</li>
+    </ul>
+  </li>
+  <li>CASCADE 종류
+    <ul>
+      <li>ALL</li>
+      <li>PERSIST</li>
+      <li>MERGE</li>
+      <li>REMOVE</li>
+      <li>REFRESH</li>
+      <li>DETACH</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="고아-객체">고아 객체</h2>
+
+<ul>
+  <li>JPA는 부모 엔티티와 연관관계가 끊어진 자식 엔티티를 자동으로 삭제하는 기능을 제공하데 이를 고아 객체 제거라 한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span> <span class="o">{</span>
+  
+  <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBby</span> <span class="o">=</span> <span class="s">"parent"</span><span class="o">,</span> <span class="n">orphanRemoval</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Child</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="정리">정리</h2>
+
+<ul>
+  <li>JPA 구현체들은 객체 그래프를 마음껏 탐색할 수 있도록 지원하고 이 때 프록시 기술을 사용한다.</li>
+  <li>객체를 조회할때 즉시 로딩, 지연 로딩이 존재한다.</li>
+  <li>객체를 저장,삭제 할때 연관된 객체도 함께 저장, 삭제 할 수 있는데 이를 <code class="language-plaintext highlighter-rouge">영속성 전이</code> 라 한다.</li>
+  <li>부모 엔티티와 연관관계가 끊어진 자식 엔티티를 자동으로 삭제 하려면 고아 객체 제거 기능을 사용하면 된다.</li>
+</ul>
 
     </div>
 
     <div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://umanking.github.io/2020/10/28/setting-mac"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://umanking.github.io/2021/06/20/jpa-summary-proxy"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%EA%B0%9C%EB%B0%9C%EC%9E%90%20%ED%99%98%EA%B2%BD%20%EC%85%8B%ED%8C%85&url=https://umanking.github.io/2020/10/28/setting-mac"
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=JPA%20-%20%ED%94%84%EB%A1%9D%EC%8B%9C%EC%99%80%20%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84(5)&url=https://umanking.github.io/2021/06/20/jpa-summary-proxy"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://umanking.github.io/2020/10/28/setting-mac&title=%EA%B0%9C%EB%B0%9C%EC%9E%90%20%ED%99%98%EA%B2%BD%20%EC%85%8B%ED%8C%85&summary=&source=GeonGuk"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://umanking.github.io/2021/06/20/jpa-summary-proxy&title=JPA%20-%20%ED%94%84%EB%A1%9D%EC%8B%9C%EC%99%80%20%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84(5)&summary=&source=GeonGuk"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=https://umanking.github.io/2020/10/28/setting-mac&amp;media=https://umanking.github.iohttps://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80&amp;description=%EA%B0%9C%EB%B0%9C%EC%9E%90%20%ED%99%98%EA%B2%BD%20%EC%85%8B%ED%8C%85"
+      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=https://umanking.github.io/2021/06/20/jpa-summary-proxy&amp;media=https://umanking.github.io&amp;description=JPA%20-%20%ED%94%84%EB%A1%9D%EC%8B%9C%EC%99%80%20%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84(5)"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;" title="Share on Pinterest"
       rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
     </li>
@@ -472,27 +528,17 @@ $ curl -sLf https://spacevim.org/install.sh | bash
 
     <div class="post__navigation">
   
-  <a class="post__prev" href="/2020/10/26/jpa-mapping-2">
+  <a class="post__prev" href="/2021/06/19/junit5-best-usage">
     <div class="prev__image">
-      <img class="lazy" data-src="" alt="개발자 환경 셋팅">
+      <img class="lazy" data-src="" alt="JPA - 프록시와 연관관계(5)">
     </div>
     <div class="prev__box">
       <span class="post__nav post__nav__prev">Older post</span>
-      <h2 class="post__nav__title">[JPA] 연관관계 매핑 (연관관계 편의 메서드)</h2>
+      <h2 class="post__nav__title">Junit5 - 기본 사용법</h2>
     </div>
   </a>
   
 
-  
-  <a class="post__next" href="/2020/10/28/spring-cloud-config-example">
-    <div class="next__box">
-      <span class="post__nav post__nav__next">Newer post</span>
-      <h2 class="post__nav__title">[Spring Cloud] spring cloud config 간단 예제</h2>
-    </div>
-    <div class="next__image">
-      <img class="lazy" data-src="" alt="개발자 환경 셋팅">
-    </div>
-  </a>
   
 </div>
 
