@@ -2,7 +2,7 @@
 layout: post
 title: JPA - 다양한 연관관계 매핑(4)
 date: 2021-06-19 17:21 +0900
-tags: [JPA, ORM]
+tags: [jpa, orm]
 ---
 # 실무에서 필요한JPA - 다양한 연관관계매핑(4)
 

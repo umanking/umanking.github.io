@@ -5,8 +5,8 @@
     <description>Java, Spring development blog</description>
     <link>https://umanking.github.io/</link>
     <atom:link href="https://umanking.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 Jun 2021 12:17:36 +0900</pubDate>
-    <lastBuildDate>Sun, 20 Jun 2021 12:17:36 +0900</lastBuildDate>
+    <pubDate>Sun, 20 Jun 2021 12:18:36 +0900</pubDate>
+    <lastBuildDate>Sun, 20 Jun 2021 12:18:36 +0900</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -226,7 +226,7 @@ sprIng,SPRING
         <link>https://umanking.github.io/2021/06/19/junit5-best-usage</link>
         <guid isPermaLink="true">https://umanking.github.io/2021/06/19/junit5-best-usage</guid>
         
-        <category>Junit5</category>
+        <category>junit5</category>
         
         
       </item>
@@ -738,9 +738,9 @@ sprIng,SPRING
         <link>https://umanking.github.io/2021/06/19/jpa-summary-advanced-releation-mapping</link>
         <guid isPermaLink="true">https://umanking.github.io/2021/06/19/jpa-summary-advanced-releation-mapping</guid>
         
-        <category>JPA</category>
+        <category>jpa</category>
         
-        <category>ORM</category>
+        <category>orm</category>
         
         
       </item>
@@ -985,9 +985,9 @@ sprIng,SPRING
         <link>https://umanking.github.io/2021/06/19/jpa-summary-basic-releation-mapping</link>
         <guid isPermaLink="true">https://umanking.github.io/2021/06/19/jpa-summary-basic-releation-mapping</guid>
         
-        <category>JPA</category>
+        <category>jpa</category>
         
-        <category>ORM</category>
+        <category>orm</category>
         
         
       </item>
@@ -1295,9 +1295,9 @@ sprIng,SPRING
         <link>https://umanking.github.io/2021/06/19/jpa-summary-entity-mapping</link>
         <guid isPermaLink="true">https://umanking.github.io/2021/06/19/jpa-summary-entity-mapping</guid>
         
-        <category>JPA</category>
+        <category>jpa</category>
         
-        <category>ORM</category>
+        <category>orm</category>
         
         
       </item>
@@ -1495,9 +1495,9 @@ sprIng,SPRING
         <link>https://umanking.github.io/2021/06/19/jpa-summary-persistence-context</link>
         <guid isPermaLink="true">https://umanking.github.io/2021/06/19/jpa-summary-persistence-context</guid>
         
-        <category>JPA</category>
+        <category>jpa</category>
         
-        <category>ORM</category>
+        <category>orm</category>
         
         
       </item>

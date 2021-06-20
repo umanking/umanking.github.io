@@ -2,7 +2,7 @@
 layout: post
 title: JPA - 연관관계 매핑(기초)(3)
 date: 2021-06-19 17:20 +0900
-tags: [JPA, ORM]
+tags: [jpa, orm]
 ---
 # 실무에서 필요한JPA - 연관관계 매핑(기초)(3)
 

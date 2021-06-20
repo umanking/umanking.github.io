@@ -2,7 +2,7 @@
 layout: post
 title: JPA - 엔티티 매핑(2)
 date: 2021-06-19 17:19 +0900
-tags: [JPA, ORM]
+tags: [jpa, orm]
 ---
 
 # 실무에서 필요한JPA - 엔티티 매핑(2)
