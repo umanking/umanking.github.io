@@ -1,4 +1,4 @@
-I"��<h1 id="실무에서-필요한jpa---다양한-연관관계매핑4">실무에서 필요한JPA - 다양한 연관관계매핑(4)</h1>
+I"��<h1 id="실무에서-필요한jpa---다양한-연관관계매핑4">실무에서 필요한JPA - 다양한 연관관계매핑(4)</h1>
 
 <h2 id="들어가며">들어가며</h2>
 
@@ -97,7 +97,7 @@
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSave</span><span class="o">(){</span>
   
-	<span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
+  <span class="nc">Member</span> <span class="n">member1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"member1"</span><span class="o">);</span>
   <span class="nc">Member</span> <span class="n">member2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">(</span><span class="s">"member2"</span><span class="o">);</span>
   
   <span class="nc">Team</span> <span class="n">team1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Team</span><span class="o">(</span><span class="s">"team1"</span><span class="o">);</span>
