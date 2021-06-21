@@ -15,7 +15,7 @@ div.highlight {
 
   .highlighter-rouge & {
     color: #A9B7C6;
-    background: #2B2B2B;
+    background: rgb(1, 22, 39);
     letter-spacing: -0.2px;
     line-height: 1.7;
     border-radius: 4px;
@@ -33,14 +33,16 @@ div.highlight {
     background-color: #e3d2d2
   }
 
+  // new키워드
   // Error
   .k {
-    color: #CC7832;
+    color: rgb(255, 167, 196);
     // font-weight: bold
   }
 
   // Keyword
   .o {
+    color: rgb(199, 146, 234);
   }
 
   // Operator
@@ -57,13 +59,13 @@ div.highlight {
 
   // Comment.Preproc
   .c1 {
-    color: #808080;
+    color: rgb(128, 147, 147);
     font-style: italic
   }
 
   // Comment.Single
   .cs {
-    color: #999;
+    color: rgb(128, 147, 147);
     font-weight: bold;
     font-style: italic
   }
@@ -139,7 +141,7 @@ div.highlight {
 
   // Keyword.Constant
   .kd {
-    color:#CC7832;
+    color:rgb(255, 167, 196)
     // font-weight: bold
   }
 
@@ -153,9 +155,10 @@ div.highlight {
     font-weight: bold
   }
 
+  // void
   // Keyword.Reserved
   .kt {
-    color: #CC7832;
+    color: rgb(255, 167, 196);
     // font-weight: bold;
   }
 
@@ -164,16 +167,19 @@ div.highlight {
     color: #099
   }
 
+  // 변수값
   // Literal.Number
   .s {
-    color: #6A8759
+    color: rgb(173, 219, 103)
   }
 
   .n {
-    
+    color: white
   }
   // Literal.String
   .na {
+    
+    color: rgb(130, 170, 255)
   }
 
   // Name.Attribute
@@ -183,17 +189,17 @@ div.highlight {
 
   // Name.Builtin
   .nc {
-    
+    color: rgb(255, 203, 139)
   }
 
   .nd {
-    color: #BBB529;
+    color: rgb(199, 146, 234);
     // font-weight: 700;
   }
 
   // Name.Class
   .no {
-    color: #9876AA;
+    color: white;
   }
 
   // Name.Constant
@@ -208,9 +214,11 @@ div.highlight {
     font-weight: bold
   }
 
+  //메서드명, const
   // Name.Exception
   .nf {
-    color: #FFC66D;
+    color: rgb(130, 170, 255)
+    // color: rgb(255, 203, 139)
     // font-weight: bold
   }
 
@@ -251,7 +259,7 @@ div.highlight {
 
   // Literal.Number.Hex
   .mi {
-    color: #6897BB
+    color: rgb(247, 140, 108)
   }
 
   // Literal.Number.Integer
@@ -350,7 +358,7 @@ div.highlight {
   background: #e7eaef;
   border: 1px solid #A9B7C6;
   border-radius: 4px;
-  color: #576371;
-  font-size: 12px;
+  // color: #576371;
+  font-size: 15px;
   font-weight: 600;
 }
