@@ -1,7 +1,7 @@
-I"�*<p>MSA 시스템 특성상 여러개의 프로젝트를 관리하고 띄우다 보면, configuration 정보가 이곳저곳에 흩어져 있다보니까, 변경사항을 한눈에 파악하기가 힘들다. 
+I"+<p>MSA 시스템 특성상 여러개의 프로젝트를 관리하고 띄우다 보면, configuration 정보가 이곳저곳에 흩어져 있다보니까, 변경사항을 한눈에 파악하기가 힘들다. 
 그래서 spring cloud config 라는 프로젝트가 나왔다.</p>
 
-<h2 id="구성-요소">구성 요소</h2>
+<h2 id="1-구성-요소">1. 구성 요소</h2>
 
 <p>구성요소는 다음과 같다.</p>
 
@@ -11,9 +11,9 @@
   <li>Config Client: url 에 Config Server 를 호출함으로써 정보를 읽어와서 사용할수 있다.</li>
 </ul>
 
-<h2 id="예제">예제</h2>
+<h2 id="2-예제">2. 예제</h2>
 
-<h3 id="1-git-repository-중앙으로-관리할-파일을-설정">1. Git Repository (중앙으로 관리할 파일을 설정)</h3>
+<h3 id="21-git-repository-중앙으로-관리할-파일을-설정">2.1. Git Repository (중앙으로 관리할 파일을 설정)</h3>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~
 mkdir configrepo
@@ -28,7 +28,7 @@ vi application.yml
   <span class="na">greeting</span><span class="pi">:</span> <span class="s">hello world from config server</span>
 </code></pre></div></div>
 
-<h3 id="2-서버-구성">2. 서버 구성</h3>
+<h3 id="22-서버-구성">2.2. 서버 구성</h3>
 
 <p>spring-cloud-config-server 프로젝트를 만들고 다음 dependancy 를 추가한다.</p>
 
@@ -77,7 +77,7 @@ vi application.yml
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"application"</span><span class="p">,</span><span class="nl">"profiles"</span><span class="p">:[</span><span class="s2">"default"</span><span class="p">],</span><span class="nl">"label"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nl">"version"</span><span class="p">:</span><span class="s2">"baaf27470656e4c05dd6f2beb3a0f220b2e38750"</span><span class="p">,</span><span class="nl">"state"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nl">"propertySources"</span><span class="p">:[{</span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"/Users/home/dev/configrepo/application.yml"</span><span class="p">,</span><span class="nl">"source"</span><span class="p">:{</span><span class="nl">"my.greeting"</span><span class="p">:</span><span class="s2">"hello world from config server"</span><span class="p">}}]}</span><span class="w">
 </span></code></pre></div></div>
 
-<h3 id="3-클라이언트-구성">3. 클라이언트 구성</h3>
+<h3 id="23-클라이언트-구성">2.3. 클라이언트 구성</h3>
 
 <p>Spring-cloud-config-client 프로젝트를 만든다. 다음과 같은 dependency를 추가한다.</p>
 
@@ -128,7 +128,7 @@ vi application.yml
 
 <p>greetingMessage 필드에 담긴 메세지는 처음 로컬에서 만든 파일안에 지정했던 메세지로 잘 출력된 것을 확인했다.</p>
 
-<h2 id="정리">정리</h2>
+<h2 id="3-정리">3. 정리</h2>
 
 <p>이번에는 MSA환경에서 각 프로젝트마다 필요한 config 정보를 한군데에서 관리하는 spring-cloud-config에 대해서 알아보았다.</p>
 

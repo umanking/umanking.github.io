@@ -5,11 +5,11 @@ date: 2021-06-19 17:37 +0900
 tags: [junit5]
 ---
 
-# JUnit5
+# JUnit5 기본 사용법
 
 
 
-## Maven 추가 
+## 1. Maven 추가 
 
 ```xml
 <dependency>
@@ -26,9 +26,9 @@ tags: [junit5]
 
 
 
-## 기본 어노테이션
+## 2. 기본 어노테이션
 
-### @BeforeAll, @BeforeEach
+### 2.1. @BeforeAll, @BeforeEach
 
 @BeforeAll 어노테이션이 붙은 놈은, 반드시 static이어야 한다. 단 한번만 실행되고, @BeforeEach 는 테스트 메서드 이전에 매번 실행된다.
 
@@ -46,7 +46,7 @@ void setUp() {
 
 
 
-### @AfterAll, @AfterEach
+### 2.2. @AfterAll, @AfterEach
 
 @AfterAll 도 반드시 static이어야 한다. 단 한번만 실행된다. 마찬가지로 @AfterEach도 테스트 메서드 이후로 매번 실행된다.
 
@@ -65,7 +65,7 @@ void tearDown() {
 
 
 
-### JUnit4에서 사용하던 어노테이션명이 변경되었다.
+### 2.3. JUnit4에서 사용하던 어노테이션명이 변경되었다.
 
 - @BeforeClass → @BeforeAll : 테스트 실행전 딱 한번 실행함 (static 으로 만들어야 함)
 - @Before → @BeforeEach : 모든 테스트 전에 실행함
@@ -74,7 +74,7 @@ void tearDown() {
 
 
 
-### @DisplayName, @Disabled
+### 2.4. @DisplayName, @Disabled
 
 각 테이트 케이스를 나타내는 이름을 세부적으로 표현할 수 있다.
 
@@ -98,7 +98,7 @@ void test2() {
 
 
 
-### <u>@ParameterizedTest ⭐️</u>
+### 2.5. @ParameterizedTest
 
 @ParameterizedTest는 @Test를 대신해서 여러개의 파라미터 값들을 파라미터 값으로 주고, 각 항목들을 테스트 할 수 있다. 
 
@@ -114,7 +114,7 @@ void isEven(int number) {
 
 
 
-#### Null and Empty Source
+#### 2.5.1. Null and Empty Source
 
 ```java
 @ParameterizedTest
@@ -148,7 +148,7 @@ void null_and_empty_source_test(String input) {
 
 
 
-#### EnumSource
+#### 2.5.2. EnumSource
 
 ```java
 public enum RoleType {
@@ -179,7 +179,7 @@ void enum_exclude_test(RoleType roleType) {
 
 enum의 특정값을(RoleType.ADMIN) 값을 제외한 테스트 케이스
 
-#### CSV Files
+#### 2.5.3. CSV Files
 
 `src/test/resources/data.csv`
 
@@ -204,7 +204,7 @@ void csv_file_test(String firstColumn, String secondColumn) {
 
 
 
-## Exception Test
+## 3. Exception Test
 
 이번에는 처음 짝수인지를 검증하는 메서드에 기능을 하나 추가 해보자.
 
@@ -234,10 +234,9 @@ void csv_file_test(String firstColumn, String secondColumn) {
 
 
 
-## 참고 
+## 4. 참고 
 
 - https://www.baeldung.com/junit-5
-
 - https://www.baeldung.com/parameterized-tests-junit-5
 
   

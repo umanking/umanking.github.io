@@ -5,15 +5,172 @@
     <description>Java, Spring development blog</description>
     <link>https://umanking.github.io/</link>
     <atom:link href="https://umanking.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 Jun 2021 16:25:45 +0900</pubDate>
-    <lastBuildDate>Sun, 20 Jun 2021 16:25:45 +0900</lastBuildDate>
+    <pubDate>Mon, 21 Jun 2021 10:33:12 +0900</pubDate>
+    <lastBuildDate>Mon, 21 Jun 2021 10:33:12 +0900</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>JPA - 값 타입(6)</title>
+        <description>&lt;h1 id=&quot;실무에서-필요한jpa---값타입6&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-들어가며&quot;&gt;1. 들어가며&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;JPA의 데이터 타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;엔티티 타입&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;값 타입&lt;/code&gt; 으로 나눌 수 있다.&lt;/li&gt;
+  &lt;li&gt;값 타입은 다음 3가지로 나눌 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;기본값 타입
+        &lt;ul&gt;
+          &lt;li&gt;자바 기본 타입&lt;/li&gt;
+          &lt;li&gt;래퍼 클래스&lt;/li&gt;
+          &lt;li&gt;String&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;임베디드 타입&lt;/li&gt;
+      &lt;li&gt;컬렉션 값 타입&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-기본값-타입&quot;&gt;2. 기본값 타입&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GenetratedValue&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 기본 값타입&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 기본 값타입&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-임베디드-타입&quot;&gt;3. 임베디드 타입&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GenetratedValue&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 기본 값타입&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 기본 값타입&lt;/span&gt;
+  
+  &lt;span class=&quot;nd&quot;&gt;@Embedded&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Embeddable&lt;/span&gt; 
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Address&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;city&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;street&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zipcode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;임베디드 타입을 사용하려면 2가지 어노테이션이 필요하다.
+    &lt;ul&gt;
+      &lt;li&gt;@Embeddable: 값 타입을 정의하는 곳에 표시&lt;/li&gt;
+      &lt;li&gt;@Embedded: 값 타입을 사용하는 곳에 표시&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;임베디드 타입 덕분에 객체와 테이블을 아주 세밀하게 매핑하는 것이 가능하다.&lt;/li&gt;
+  &lt;li&gt;잘 설계한 ORM 애플리케이션은 테이블 수보다 클래스 구가 더 많다.&lt;/li&gt;
+  &lt;li&gt;@AttributeOverride: 속성 재정의
+    &lt;ul&gt;
+      &lt;li&gt;임베디드 타입에 정의한 매핑 정보를 재정의 하려면 엔티티에 @AttributeOverride를 사용하면 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;임베디드 타입이 null이면 매핑한 컬럼값은 모두 null이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;4-값-타입과-불변객체&quot;&gt;4. 값 타입과 불변객체&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;값 타입을 여러 엔티티에 공유하면 위험하다.  공유 참조를 하게 되면, 값이 같이 변하게된다.&lt;/li&gt;
+  &lt;li&gt;해결하기 위해서는 값을 복사해서 사용해야 한다. (clone() 메서드를 이용)&lt;/li&gt;
+  &lt;li&gt;불변 객체를 구현하는 가장 간단한 방법
+    &lt;ul&gt;
+      &lt;li&gt;setter를 만들지 않고, 생성자로만 만든다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;5-값-타입-컬렉션&quot;&gt;5. 값 타입 컬렉션&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;값 타입 하나 이상 저장하려면 컬렉션에 보관한다.  다음 어노테이션을 사용한다.
+    &lt;ul&gt;
+      &lt;li&gt;@ElementCollection&lt;/li&gt;
+      &lt;li&gt;@CollectionTable&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  
+  &lt;span class=&quot;nd&quot;&gt;@ElementCollection&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@CollectionTable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;FAVORITE_FOODS&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; 
+                  &lt;span class=&quot;n&quot;&gt;joinColumns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MEMBER_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;FOOD_NAME&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;favoriteFoods&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HashSet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;테이블에는 컬렉션을 저장할 방법이 없기 때문에, MEMBER 테이블과 FAVORITE_FOOD 테이블로 만들었다.&lt;/li&gt;
+  &lt;li&gt;값 타입 컬렉션을 사용할때, 부모 엔티티만 저장하면, JPA가 나머지도 실행해준다.&lt;/li&gt;
+  &lt;li&gt;값 타입 컬렉션은 영속성 전이 + 고아 객체 제거 기능을 필수로 가진다.&lt;/li&gt;
+  &lt;li&gt;값 타입의 컬렉션 제약사항
+    &lt;ul&gt;
+      &lt;li&gt;특정 엔티티 하나에 소속된 값 타입 컬렉션이 변경 되었을 때, 매핑된 테이블의 연관된 모든 데이터를 삭제하고, 현재 값 타입 컬렉션 객체에 있는 모든 값을 데이터베이스 다시 저장한다.&lt;/li&gt;
+      &lt;li&gt;따라서 실무에서 값 타입 컬렉션이 매핑된 테이블에 데이터가 많다면 값 타입 컬렉션 대신에 일대다 관계를 고려해야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;6-정리&quot;&gt;6. 정리&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;JPA는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;엔티티 타입&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;값 타입&lt;/code&gt;이 있다.&lt;/li&gt;
+  &lt;li&gt;엔티티 타입
+    &lt;ul&gt;
+      &lt;li&gt;식별자 @Id가 있다.&lt;/li&gt;
+      &lt;li&gt;생명주기가 있다.&lt;/li&gt;
+      &lt;li&gt;공유할 수 있다.
+        &lt;ul&gt;
+          &lt;li&gt;참조 값을 공유할 수 있다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;값 타입
+    &lt;ul&gt;
+      &lt;li&gt;식별자가 없다.&lt;/li&gt;
+      &lt;li&gt;생명주기를 엔티티에 의존한다.&lt;/li&gt;
+      &lt;li&gt;공유하지 않는것이 안전하다.
+        &lt;ul&gt;
+          &lt;li&gt;불변객체로 만드는것이 안전하다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sun, 20 Jun 2021 17:04:00 +0900</pubDate>
+        <link>https://umanking.github.io/2021/06/20/jpa-summary-value-type</link>
+        <guid isPermaLink="true">https://umanking.github.io/2021/06/20/jpa-summary-value-type</guid>
+        
+        <category>jpa</category>
+        
+        <category>orm</category>
+        
+        
+      </item>
     
       <item>
         <title>JPA - 프록시와 연관관계(5)</title>
         <description>&lt;h1 id=&quot;실무에서-필요한jpa---프록시와-연관관계5&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/h1&gt;
 
-&lt;h2 id=&quot;프록시&quot;&gt;프록시&lt;/h2&gt;
+&lt;h2 id=&quot;1-프록시&quot;&gt;1. 프록시&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA는 엔티티가 실제 사용될 때까지 데이터베이스 조회를 지연하는 방법을 제공하는데 이것을 지연로딩이라 한다.&lt;/li&gt;
@@ -25,7 +182,7 @@
 하이버네이트는 지연 로딩을 지원하기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;프록시&lt;/code&gt;를 사용하는 방법과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;바이트코드&lt;/code&gt;를 수정하는 두 가지 방법을 제공한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;프록시-기초&quot;&gt;프록시 기초&lt;/h3&gt;
+&lt;h3 id=&quot;11-프록시-기초&quot;&gt;1.1. 프록시 기초&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA에서 식별자로 엔티티 하나를 조회할때 EntityManager.find()를 사용한다.&lt;/li&gt;
@@ -40,42 +197,36 @@
   &lt;/li&gt;
   &lt;li&gt;프록시 객체의 초기화
     &lt;ul&gt;
-      &lt;li&gt;프록시 객체는 member.getName()처럼 실제 사용될 때 데이터베이스를 조회해서 실제 엔티티 객체를 생성하는데, 이것을 프록시 객체의 초기화라 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// MemberProxy 변환&lt;/span&gt;
+      &lt;li&gt;프록시 객체는 member.getName()처럼 실제 사용될 때 데이터베이스를 조회해서 실제 엔티티 객체를 생성하는데, 이것을 프록시 객체의 초기화라 한다.
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// MemberProxy 변환&lt;/span&gt;
 &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getReference&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;id1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 프록시 클래스 예상 코드&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+        &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 프록시 클래스 예상 코드&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberProxy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//실제 엔티티 참조&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;// 초기화 요청&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;// DB조회&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;// 실제 엔티티 생성 및 참조 보관 &lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...;&lt;/span&gt; 
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// target.getName();&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//실제 엔티티 참조&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 초기화 요청&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// DB조회&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 실제 엔티티 생성 및 참조 보관 &lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...;&lt;/span&gt; 
   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      
+  &lt;span class=&quot;c1&quot;&gt;// target.getName();&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;프록시 객체에 member.getName() 호출해서 실제 데이터를 조회한다.&lt;/li&gt;
-  &lt;li&gt;프록시 객체는 실제 엔티티가 생성되어 있지 않으면 영속성 컨텍스트에 실제 엔티티 생성을 요청하는데 이것을 초기화라 한다.&lt;/li&gt;
-  &lt;li&gt;영속성컨텍스트는 데이터베이스를 조회해서 실제 엔티티 객체를 생성한다.&lt;/li&gt;
-  &lt;li&gt;프록시 객체는 생성된 실제 엔티티 객체의 참조를 Member target 멤버 변수에 보관한다.&lt;/li&gt;
-  &lt;li&gt;프록시 객체는 실제 엔티티 객체의 getName()을 호출해서 결과를 반환한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+        &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 프록시 객체에 member.getName() 호출해서 실제 데이터를 조회한다.
+2. 프록시 객체는 실제 엔티티가 생성되어 있지 않으면 영속성 컨텍스트에 실제 엔티티 생성을 요청하는데 이것을 초기화라 한다.
+3. 영속성컨텍스트는 데이터베이스를 조회해서 실제 엔티티 객체를 생성한다.
+4. 프록시 객체는 생성된 실제 엔티티 객체의 참조를 Member target 멤버 변수에 보관한다.
+5. 프록시 객체는 실제 엔티티 객체의 getName()을 호출해서 결과를 반환한다. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;프록시의 특징
     &lt;ul&gt;
       &lt;li&gt;프록시 객체는 처음 사용할 때 한번만 초기화 된다.&lt;/li&gt;
@@ -85,26 +236,25 @@
       &lt;li&gt;초기화는 영속성 컨텍스트의 도움을 받아야 가능하다. 따라서 영속성 컨텍스트의 도움을 받을 수 없는 준영속 상태의 프록시를 초기화 하면 문제가 발생한다. 하이버네이트는 LazyInitializationException 예외를 발생시킨다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;준영속 상태와 초기화&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getReference&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;id1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;li&gt;준영속 상태와 초기화
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getReference&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;id1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;tx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;commit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;clse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
 &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 준영속 상태 초기화 시도, LazyInitializationException 예외 발생&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3 id=&quot;프록시와-식별자-&quot;&gt;프록시와 식별자 📖📖&lt;/h3&gt;
+&lt;h3 id=&quot;12-프록시와-식별자-&quot;&gt;1.2. 프록시와 식별자 📖📖&lt;/h3&gt;
 
-&lt;h3 id=&quot;프록시-확인&quot;&gt;프록시 확인&lt;/h3&gt;
+&lt;h3 id=&quot;13-프록시-확인&quot;&gt;1.3. 프록시 확인&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA가 제공하는 PersistenceUnitUtil.isLoaded(Object entity) 메서드를 사용하면 프록시 인스턴스의 초기화 여부를 확인할 수 있다.&lt;/li&gt;
   &lt;li&gt;조회한 엔티티가 진짜 엔티티인지, 프록시로 조회한 것인지 확인할려면 클래스명을 직접 출력해보면 된다. …javassist.. 라고 되어있으면 프록시이다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;즉시-로딩과-지연로딩&quot;&gt;즉시 로딩과 지연로딩&lt;/h2&gt;
+&lt;h2 id=&quot;2-즉시-로딩과-지연로딩&quot;&gt;2. 즉시 로딩과 지연로딩&lt;/h2&gt;
 
 &lt;p&gt;프록시 객체는 주로 연관된 엔티티를 지연로딩 할때 사용한다.&lt;/p&gt;
 
@@ -121,7 +271,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;즉시로딩&quot;&gt;즉시로딩&lt;/h3&gt;
+&lt;h3 id=&quot;21-즉시로딩&quot;&gt;2.1. 즉시로딩&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA 구현체는 즉시 로딩을 최적화 하기 위해 가능하면 조인 쿼리를 사용한다.&lt;/li&gt;
@@ -154,7 +304,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
 결국 정리하면, JPA는 선택적 관계면 외부 조인을 사용하고, 필수관계면 내부 조인을 사용한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;지연로딩&quot;&gt;지연로딩&lt;/h3&gt;
+&lt;h3 id=&quot;22-지연로딩&quot;&gt;2.2. 지연로딩&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;지연로딩을 사용하려면 fetch의 속성을 FethType.LAZY로 설정한다.&lt;/li&gt;
@@ -169,7 +319,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
   &lt;p&gt;조회 대상이 영속성 컨텍스트에 이미 있으면 프록시 객체를 사용할 이유가 없다. 따라서 프록시 객체가 아닌 실제 객체를 사용한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;즉시로딩-지연-로딩-정리&quot;&gt;즉시로딩, 지연 로딩 정리&lt;/h3&gt;
+&lt;h3 id=&quot;23-즉시로딩-지연-로딩-정리&quot;&gt;2.3. 즉시로딩, 지연 로딩 정리&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;즉시 로딩이 좋은지, 지연 로딩이 좋은지 상황에 따라 다르다.&lt;/li&gt;
@@ -177,7 +327,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
   &lt;li&gt;즉시로딩: 연관된 엔티티를 즉시 조회한다. 하이버네이트는 가능하면 SQL조인을 사용해서 한번에 조회한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;영속성-전이casecad&quot;&gt;영속성 전이:CASECAD&lt;/h2&gt;
+&lt;h2 id=&quot;3-영속성-전이casecad&quot;&gt;3. 영속성 전이:CASECAD&lt;/h2&gt;
 
 &lt;p&gt;부모 엔티티를 저장할 때 자식 엔티티도 함께 저장할수 있다.&lt;/p&gt;
 
@@ -213,7 +363,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;고아-객체&quot;&gt;고아 객체&lt;/h2&gt;
+&lt;h2 id=&quot;4-고아-객체&quot;&gt;4. 고아 객체&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA는 부모 엔티티와 연관관계가 끊어진 자식 엔티티를 자동으로 삭제하는 기능을 제공하데 이를 고아 객체 제거라 한다.&lt;/li&gt;
@@ -227,7 +377,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+&lt;h2 id=&quot;5-정리&quot;&gt;5. 정리&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA 구현체들은 객체 그래프를 마음껏 탐색할 수 있도록 지원하고 이 때 프록시 기술을 사용한다.&lt;/li&gt;
@@ -249,9 +399,9 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
     
       <item>
         <title>Junit5 - 기본 사용법</title>
-        <description>&lt;h1 id=&quot;junit5&quot;&gt;JUnit5&lt;/h1&gt;
+        <description>&lt;h1 id=&quot;junit5-기본-사용법&quot;&gt;JUnit5 기본 사용법&lt;/h1&gt;
 
-&lt;h2 id=&quot;maven-추가&quot;&gt;Maven 추가&lt;/h2&gt;
+&lt;h2 id=&quot;1-maven-추가&quot;&gt;1. Maven 추가&lt;/h2&gt;
 
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.junit.jupiter&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
@@ -263,9 +413,9 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
 
 &lt;p&gt;이렇게 직접 추가해도 되고, SpringBoot를 사용한다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-boot-starter-test&lt;/code&gt; 를 추가하면 junit-jupiter 모듈이 포함된다.&lt;/p&gt;
 
-&lt;h2 id=&quot;기본-어노테이션&quot;&gt;기본 어노테이션&lt;/h2&gt;
+&lt;h2 id=&quot;2-기본-어노테이션&quot;&gt;2. 기본 어노테이션&lt;/h2&gt;
 
-&lt;h3 id=&quot;beforeall-beforeeach&quot;&gt;@BeforeAll, @BeforeEach&lt;/h3&gt;
+&lt;h3 id=&quot;21-beforeall-beforeeach&quot;&gt;2.1. @BeforeAll, @BeforeEach&lt;/h3&gt;
 
 &lt;p&gt;@BeforeAll 어노테이션이 붙은 놈은, 반드시 static이어야 한다. 단 한번만 실행되고, @BeforeEach 는 테스트 메서드 이전에 매번 실행된다.&lt;/p&gt;
 
@@ -280,7 +430,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;afterall-aftereach&quot;&gt;@AfterAll, @AfterEach&lt;/h3&gt;
+&lt;h3 id=&quot;22-afterall-aftereach&quot;&gt;2.2. @AfterAll, @AfterEach&lt;/h3&gt;
 
 &lt;p&gt;@AfterAll 도 반드시 static이어야 한다. 단 한번만 실행된다. 마찬가지로 @AfterEach도 테스트 메서드 이후로 매번 실행된다.&lt;/p&gt;
 
@@ -296,7 +446,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;junit4에서-사용하던-어노테이션명이-변경되었다&quot;&gt;JUnit4에서 사용하던 어노테이션명이 변경되었다.&lt;/h3&gt;
+&lt;h3 id=&quot;23-junit4에서-사용하던-어노테이션명이-변경되었다&quot;&gt;2.3. JUnit4에서 사용하던 어노테이션명이 변경되었다.&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;@BeforeClass → @BeforeAll : 테스트 실행전 딱 한번 실행함 (static 으로 만들어야 함)&lt;/li&gt;
@@ -305,7 +455,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
   &lt;li&gt;@After → @AfterEach : 모든 테스트 각각 종료 후에 실행함&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;displayname-disabled&quot;&gt;@DisplayName, @Disabled&lt;/h3&gt;
+&lt;h3 id=&quot;24-displayname-disabled&quot;&gt;2.4. @DisplayName, @Disabled&lt;/h3&gt;
 
 &lt;p&gt;각 테이트 케이스를 나타내는 이름을 세부적으로 표현할 수 있다.&lt;/p&gt;
 
@@ -325,7 +475,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;parameterizedtest-️&quot;&gt;&lt;u&gt;@ParameterizedTest ⭐️&lt;/u&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;25-parameterizedtest&quot;&gt;2.5. @ParameterizedTest&lt;/h3&gt;
 
 &lt;p&gt;@ParameterizedTest는 @Test를 대신해서 여러개의 파라미터 값들을 파라미터 값으로 주고, 각 항목들을 테스트 할 수 있다.&lt;/p&gt;
 
@@ -338,7 +488,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
 
 &lt;p&gt;다음과 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ValueSource&lt;/code&gt;를 검사하고자 하는 인자의 값을 입력하면, @ValueSource에 담은 파라미터 하나하나를 Junit이 테스트한다.&lt;/p&gt;
 
-&lt;h4 id=&quot;null-and-empty-source&quot;&gt;Null and Empty Source&lt;/h4&gt;
+&lt;h4 id=&quot;251-null-and-empty-source&quot;&gt;2.5.1. Null and Empty Source&lt;/h4&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ParameterizedTest&lt;/span&gt;
 &lt;span class=&quot;nd&quot;&gt;@NullSource&lt;/span&gt;
@@ -373,7 +523,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
   &lt;li&gt;@NullAndEmptySource - input 파라미터 값에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null값&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;빈값&lt;/code&gt;을 넣어준다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;enumsource&quot;&gt;EnumSource&lt;/h4&gt;
+&lt;h4 id=&quot;252-enumsource&quot;&gt;2.5.2. EnumSource&lt;/h4&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RoleType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;no&quot;&gt;ADMIN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;USER&lt;/span&gt;
@@ -401,7 +551,7 @@ JPA에게도 이런 사실을 알려야 한다.&lt;/p&gt;
 
 &lt;p&gt;enum의 특정값을(RoleType.ADMIN) 값을 제외한 테스트 케이스&lt;/p&gt;
 
-&lt;h4 id=&quot;csv-files&quot;&gt;CSV Files&lt;/h4&gt;
+&lt;h4 id=&quot;253-csv-files&quot;&gt;2.5.3. CSV Files&lt;/h4&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/test/resources/data.csv&lt;/code&gt;&lt;/p&gt;
 
@@ -422,7 +572,7 @@ sprIng,SPRING
   &lt;li&gt;@CsvFileSource는 해당 csv파일을 resouce경로에서 파일을 읽어서, 파라미터 값으로 제공해 준다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;exception-test&quot;&gt;Exception Test&lt;/h2&gt;
+&lt;h2 id=&quot;3-exception-test&quot;&gt;3. Exception Test&lt;/h2&gt;
 
 &lt;p&gt;이번에는 처음 짝수인지를 검증하는 메서드에 기능을 하나 추가 해보자.&lt;/p&gt;
 
@@ -448,15 +598,11 @@ sprIng,SPRING
 &lt;p&gt;역시나 @ParameterizedTest와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertThatExceptionOfType&lt;/code&gt;을 활용한다.
 발생할 exception클래스를 적고 누구에 의해서 던져지는지(isThrownBy)를 명시한다. 다만 해당 메서드의 인자는 ThrowingCallable 이기 때문에 람다형태로 작성해 준다.&lt;/p&gt;
 
-&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+&lt;h2 id=&quot;4-참고&quot;&gt;4. 참고&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://www.baeldung.com/junit-5&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://www.baeldung.com/parameterized-tests-junit-5&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;https://www.baeldung.com/junit-5&lt;/li&gt;
+  &lt;li&gt;https://www.baeldung.com/parameterized-tests-junit-5&lt;/li&gt;
 &lt;/ul&gt;
 
 </description>
@@ -473,7 +619,7 @@ sprIng,SPRING
         <title>JPA - 다양한 연관관계 매핑(4)</title>
         <description>&lt;h1 id=&quot;실무에서-필요한jpa---다양한-연관관계매핑4&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/h1&gt;
 
-&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;h2 id=&quot;1-들어가며&quot;&gt;1. 들어가며&lt;/h2&gt;
 
 &lt;p&gt;엔티티의 연관관계를 매핑할 때는 다음 3가지를 고려해야 한다.&lt;/p&gt;
 
@@ -483,9 +629,9 @@ sprIng,SPRING
   &lt;li&gt;연관관계의 주인: JPA는 두 객체 연관관계 중 하나를 정해서 데이터 베이스 외래키를 관리하는데 이것을 연관관계의 주인이라 한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;다대일&quot;&gt;다대일&lt;/h2&gt;
+&lt;h2 id=&quot;2-다대일&quot;&gt;2. 다대일&lt;/h2&gt;
 
-&lt;h3 id=&quot;다대일-단방향n1&quot;&gt;다대일 단방향[N:1]&lt;/h3&gt;
+&lt;h3 id=&quot;21-다대일-단방향n1&quot;&gt;2.1. 다대일 단방향[N:1]&lt;/h3&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
@@ -497,7 +643,7 @@ sprIng,SPRING
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{...}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;다대일-양방향1n-n1&quot;&gt;다대일 양방향[1:N, N:1]&lt;/h3&gt;
+&lt;h3 id=&quot;22-다대일-양방향1n-n1&quot;&gt;2.2. 다대일 양방향[1:N, N:1]&lt;/h3&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
@@ -538,9 +684,9 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;일대다&quot;&gt;일대다❌&lt;/h2&gt;
+&lt;h2 id=&quot;3-일대다&quot;&gt;3. 일대다❌&lt;/h2&gt;
 
-&lt;h3 id=&quot;일대다-단방향1n&quot;&gt;일대다 단방향[1:N]&lt;/h3&gt;
+&lt;h3 id=&quot;31-일대다-단방향1n&quot;&gt;3.1. 일대다 단방향[1:N]&lt;/h3&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nd&quot;&gt;@OneToMany&lt;/span&gt;
@@ -597,7 +743,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;일대다-양방향1n-n1&quot;&gt;일대다 양방향[1:N, N:1]&lt;/h3&gt;
+&lt;h3 id=&quot;32-일대다-양방향1n-n1&quot;&gt;3.2. 일대다 양방향[1:N, N:1]&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;일대다 양방향 매핑은 존재하지 않는다. 대신 다대일 양방향 매핑을 사용해야 한다.&lt;/li&gt;
@@ -627,7 +773,7 @@ sprIng,SPRING
   &lt;li&gt;결론: 될 수 있으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;다대일 양방향&lt;/code&gt;을 사용하자!&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;일대일11&quot;&gt;일대일[1:1]&lt;/h2&gt;
+&lt;h2 id=&quot;4-일대일11&quot;&gt;4. 일대일[1:1]&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;일대일 관계는 양쪽이 서로 하나의 관계만 가진다.&lt;/li&gt;
@@ -635,13 +781,13 @@ sprIng,SPRING
   &lt;li&gt;따라서 일대일 관계는 누가 외래키를 가질지 선택해야 한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;주테이블에-외래키&quot;&gt;주테이블에 외래키&lt;/h3&gt;
+&lt;h3 id=&quot;41-주테이블에-외래키&quot;&gt;4.1. 주테이블에 외래키&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;주로 객체지향 개발자들이 선호&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;단방향&quot;&gt;단방향&lt;/h4&gt;
+&lt;h4 id=&quot;411-단방향&quot;&gt;4.1.1. 단방향&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;회원(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;주테이블&lt;/code&gt;)과 사물함(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;대상 테이블&lt;/code&gt;) 일대일&lt;/li&gt;
@@ -658,7 +804,7 @@ sprIng,SPRING
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Locker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{...}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;양방향&quot;&gt;양방향&lt;/h4&gt;
+&lt;h4 id=&quot;412-양방향&quot;&gt;4.1.2. 양방향&lt;/h4&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nd&quot;&gt;@OneToOne&lt;/span&gt;
@@ -675,17 +821,17 @@ sprIng,SPRING
 
 &lt;p&gt;양방향이므로 연관관계 주인을 정해야 한다. MEMBER 테이블이 외래키를 가지고 있으므로 Member엔티티에 있는 &lt;strong&gt;&lt;u&gt;Member.locker가 연관관계의 주인이다.&lt;/u&gt;&lt;/strong&gt; 따라서 반대 매핑인 사물함의 Locker.member는 mappedBy를 선언해서 반대편이 연관관계의 주인임을 나타낸다.&lt;/p&gt;
 
-&lt;h3 id=&quot;대상-테이블에-외래키&quot;&gt;대상 테이블에 외래키&lt;/h3&gt;
+&lt;h3 id=&quot;42-대상-테이블에-외래키&quot;&gt;4.2. 대상 테이블에 외래키&lt;/h3&gt;
 
 &lt;p&gt;이번에는 대상 테이블에 외래키가 있는 일대일 관계를 보자.&lt;/p&gt;
 
-&lt;h4 id=&quot;단방향-1&quot;&gt;단방향&lt;/h4&gt;
+&lt;h4 id=&quot;421-단방향&quot;&gt;4.2.1. 단방향&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;대상 테이블에 외래키가 있는 단방향 관계는 JPA는 지원하지 않는다. ❌&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;양방향-1&quot;&gt;양방향&lt;/h4&gt;
+&lt;h4 id=&quot;422-양방향&quot;&gt;4.2.2. 양방향&lt;/h4&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 일대일 대상 테이블에 외래키, 양방향 예제코드 &lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -703,7 +849,7 @@ sprIng,SPRING
 
 &lt;p&gt;일대일 매핑에서 대상 테이블에 외래 키를 두고 싶으면 이렇게 양방향으로 매핑한다.&lt;/p&gt;
 
-&lt;h2 id=&quot;다대다nn&quot;&gt;다대다[N:N]&lt;/h2&gt;
+&lt;h2 id=&quot;5-다대다nn&quot;&gt;5. 다대다[N:N]&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;관계형 데이터베이스는 정규화된 테이블 2개로 다대다 관계를 표현할 수 없다.&lt;/li&gt;
@@ -716,7 +862,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;다대다단방향&quot;&gt;다대다:단방향&lt;/h3&gt;
+&lt;h3 id=&quot;51-다대다단방향&quot;&gt;5.1. 다대다:단방향&lt;/h3&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nd&quot;&gt;@ManyToMany&lt;/span&gt;
@@ -765,7 +911,7 @@ sprIng,SPRING
 
 &lt;p&gt;연결테이블인 MEMBER_PRODUCT와 상품테이블을 조인해서 연관된 상품을 조회한다.&lt;/p&gt;
 
-&lt;h3 id=&quot;다대다양방향&quot;&gt;다대다:양방향&lt;/h3&gt;
+&lt;h3 id=&quot;52-다대다양방향&quot;&gt;5.2. 다대다:양방향&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;다대다 매핑이므로 역방향도 @ManyToMany를 사용한다. 양쪽 원하는 곳에 mappedBy로 연관관계의 주인을 지정한다.&lt;/li&gt;
@@ -793,7 +939,7 @@ sprIng,SPRING
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;다대다매핑의-한계와-극복-연결-엔티티-사용&quot;&gt;다대다:매핑의 한계와 극복, 연결 엔티티 사용❌&lt;/h3&gt;
+&lt;h3 id=&quot;53-다대다매핑의-한계와-극복-연결-엔티티-사용&quot;&gt;5.3. 다대다:매핑의 한계와 극복, 연결 엔티티 사용❌&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;@ManyToMany를 사용하면 연결 테이블을 자동으로 처리해주므로 편리하다. 하지만 실무에서 사용하기에는 한계가 있다.&lt;/li&gt;
@@ -918,7 +1064,7 @@ sprIng,SPRING
   &lt;li&gt;다음으로 복합키를 사용하지 않고 간단히 다대다 관계를 구성하는 방법을 알아보자.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;다대다새로운-기본-키-사용&quot;&gt;다대다:새로운 기본 키 사용&lt;/h3&gt;
+&lt;h3 id=&quot;54-다대다새로운-기본-키-사용&quot;&gt;5.4. 다대다:새로운 기본 키 사용&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;추천하는 기본 키 생성전략은 데이터베이스에서 자동으로 생성해주는 대리 키를 Long값으로 사용하는 것이다. 이것의 장점은 간편하고 거의 영구히 쓸수 있으며 비즈니스에 의존하지 않는다. 그리고 ORM 매핑시 복합키를 만들지 않아도 되므로 간단히 매핑을 완성할 수 있다.&lt;/li&gt;
@@ -960,7 +1106,7 @@ sprIng,SPRING
 
 &lt;p&gt;식별자 클래스를 사용하지 않아서 코드가 한결 단순해졌다.&lt;/p&gt;
 
-&lt;h3 id=&quot;다대다-연관관계-정리&quot;&gt;다대다 연관관계 정리&lt;/h3&gt;
+&lt;h3 id=&quot;55-다대다-연관관계-정리&quot;&gt;5.5. 다대다 연관관계 정리&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;다대다 관계를 일대다, 다대일 관계로 풀어내기 위해 연결테이블을 만들 때 식별자를 어떻게 구성할지 선택해야 한다.
@@ -987,7 +1133,7 @@ sprIng,SPRING
         <title>JPA - 연관관계 매핑(기초)(3)</title>
         <description>&lt;h1 id=&quot;실무에서-필요한jpa---연관관계-매핑기초3&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/h1&gt;
 
-&lt;h2 id=&quot;학습목표&quot;&gt;학습목표&lt;/h2&gt;
+&lt;h2 id=&quot;1-학습목표&quot;&gt;1. 학습목표&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;단방향 연관관계 매핑을 이해한다.&lt;/li&gt;
@@ -999,7 +1145,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;h2 id=&quot;2-들어가며&quot;&gt;2. 들어가며&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;엔티티들은 다른 엔티티와 연관관계가 있다.&lt;/li&gt;
@@ -1014,7 +1160,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;단방향-연관관계&quot;&gt;단방향 연관관계&lt;/h2&gt;
+&lt;h2 id=&quot;3-단방향-연관관계&quot;&gt;3. 단방향 연관관계&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;회원(N): 팀(1)의 관계를 생각해보자.
@@ -1039,11 +1185,11 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;연관관계-사용&quot;&gt;연관관계 사용&lt;/h2&gt;
+&lt;h2 id=&quot;4-연관관계-사용&quot;&gt;4. 연관관계 사용&lt;/h2&gt;
 
-&lt;h3 id=&quot;저장&quot;&gt;저장&lt;/h3&gt;
+&lt;h3 id=&quot;41-저장&quot;&gt;4.1. 저장&lt;/h3&gt;
 
-&lt;h3 id=&quot;조회&quot;&gt;조회&lt;/h3&gt;
+&lt;h3 id=&quot;42-조회&quot;&gt;4.2. 조회&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;연관관계가 있는 엔티티를 조회하는 방법
@@ -1054,7 +1200,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;연관된-엔티티-삭제&quot;&gt;연관된 엔티티 삭제&lt;/h3&gt;
+&lt;h3 id=&quot;43-연관된-엔티티-삭제&quot;&gt;4.3. 연관된 엔티티 삭제&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;연관된 엔티티를 삭제하려면, 기존에 있던 연관관계를 먼저 제거하고 삭제해야 한다.&lt;/li&gt;
@@ -1065,9 +1211,9 @@ sprIng,SPRING
 &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 팀삭제&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;양방향-연관관계&quot;&gt;양방향 연관관계&lt;/h2&gt;
+&lt;h2 id=&quot;5-양방향-연관관계&quot;&gt;5. 양방향 연관관계&lt;/h2&gt;
 
-&lt;h3 id=&quot;양방향-연관관계-매핑&quot;&gt;양방향 연관관계 매핑&lt;/h3&gt;
+&lt;h3 id=&quot;51-양방향-연관관계-매핑&quot;&gt;5.1. 양방향 연관관계 매핑&lt;/h3&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt; 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -1103,7 +1249,7 @@ sprIng,SPRING
   &lt;li&gt;mappedBy 속성은 양방향 매핑일 때 사용하는데, 반대쪽 매핑의 필드 이름을 값으로 주면된다.  &amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;연관관계의 주인&lt;/code&gt; 에서 자세한 설명 !!&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;연관관계의-주인&quot;&gt;연관관계의 주인&lt;/h2&gt;
+&lt;h2 id=&quot;6-연관관계의-주인&quot;&gt;6. 연관관계의 주인&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;@OneToMany에서 mappedBy 속성이 왜 필요할까?
@@ -1114,7 +1260,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;양방향-매핑의-규칙-연관관계의-주인&quot;&gt;양방향 매핑의 규칙: 연관관계의 주인&lt;/h3&gt;
+&lt;h3 id=&quot;61-양방향-매핑의-규칙-연관관계의-주인&quot;&gt;6.1. 양방향 매핑의 규칙: 연관관계의 주인&lt;/h3&gt;
 
 &lt;p&gt;연관관계의 주인만이 데이터베이스 연관관계와 매핑되고 외래 키를 관리(등록, 수정,삭제)할 수 있다. 반면에 주인이 아닌 쪽은 읽기만 할 수 있다.&lt;/p&gt;
 
@@ -1123,7 +1269,7 @@ sprIng,SPRING
   &lt;li&gt;주인이 아니면mappedBy 속성을 사용해서 속성의 값으로 연관관계의 주인을 지정해야 한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;연관관계의-주인은-외래키가-있는곳&quot;&gt;연관관계의 주인은 외래키가 있는곳&lt;/h3&gt;
+&lt;h3 id=&quot;62-연관관계의-주인은-외래키가-있는곳&quot;&gt;6.2. 연관관계의 주인은 외래키가 있는곳&lt;/h3&gt;
 
 &lt;p&gt;연관관계의 주인은 테이블에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;외래키가 있는곳&lt;/code&gt; 으로 정해야 한다.&lt;/p&gt;
 
@@ -1131,7 +1277,7 @@ sprIng,SPRING
   &lt;p&gt;데이터베이스 테이블의 다대일, 일대다 관계에서 항상 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;다&lt;/code&gt; 쪽이 외래키를 가진다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;양방향-연관관계-저장&quot;&gt;양방향 연관관계 저장&lt;/h2&gt;
+&lt;h2 id=&quot;7-양방향-연관관계-저장&quot;&gt;7. 양방향 연관관계 저장&lt;/h2&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;team1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;팀1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -1158,13 +1304,13 @@ sprIng,SPRING
 
 &lt;p&gt;이런 코드가 추가로 있어야 할것 같지만 Team.members는 연관관계의 주인이 아니다. &lt;strong&gt;주인이 아닌 곳에 입력된 값은 외래키에 영향을 주지 않는다.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;양방향-연관관계의-주의점&quot;&gt;양방향 연관관계의 주의점&lt;/h2&gt;
+&lt;h2 id=&quot;8-양방향-연관관계의-주의점&quot;&gt;8. 양방향 연관관계의 주의점&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;가장 많이 하는 실수는 연관관계의 주인에는 값을 입력하지 않고, 주인이 아닌 곳에만 값을 입력하는 것이다. 외래키값이 정상적으로 저장되지 않으면 이것부터 의심해보자.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;순수한-객체까지-고려한-양방향-연관관계&quot;&gt;순수한 객체까지 고려한 양방향 연관관계&lt;/h3&gt;
+&lt;h3 id=&quot;81-순수한-객체까지-고려한-양방향-연관관계&quot;&gt;8.1. 순수한 객체까지 고려한 양방향 연관관계&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Q.  정말 연관관계의 주인에만 값을 저장하고, 주인이 아닌 곳에는 값을 저장하지 않아도 될까?
@@ -1174,7 +1320,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;연관관계-편의-메서드&quot;&gt;연관관계 편의 메서드&lt;/h3&gt;
+&lt;h3 id=&quot;82-연관관계-편의-메서드&quot;&gt;8.2. 연관관계 편의 메서드&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;양방향 연관관계는 결국 양쪽 연관관계를 다 신경써야 한다. member.setTeam(team)과 team.getMembers().add(member) 를 각각 호출하다 보면 실수 할 수 있다.&lt;/li&gt;
@@ -1191,7 +1337,7 @@ sprIng,SPRING
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;연관관계-편의-메서드-작성시-주의사항&quot;&gt;연관관계 편의 메서드 작성시 주의사항&lt;/h3&gt;
+&lt;h3 id=&quot;83-연관관계-편의-메서드-작성시-주의사항&quot;&gt;8.3. 연관관계 편의 메서드 작성시 주의사항&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;연관관계를 변경할 때는 기존 팀이 있으면 기존 팀과 회원의 연관관계를 삭제하는 코드를 추가해야 한다.&lt;/li&gt;
@@ -1210,7 +1356,7 @@ sprIng,SPRING
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+&lt;h2 id=&quot;9-정리&quot;&gt;9. 정리&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;단방향 매핑에 비해, 양방향은 복잡하다. 연관관계의 주인(외래키가 있는곳)도 정해야 하고, 두개의 단방향 연관관계를 양방향으로 만들기 위해 로직도 잘 관리해야 한다.&lt;/li&gt;
@@ -1234,14 +1380,14 @@ sprIng,SPRING
         <title>JPA - 엔티티 매핑(2)</title>
         <description>&lt;h1 id=&quot;실무에서-필요한jpa---엔티티-매핑2&quot;&gt;실무에서 필요한JPA - 엔티티 매핑(2)&lt;/h1&gt;
 
-&lt;h2 id=&quot;학습목표&quot;&gt;학습목표&lt;/h2&gt;
+&lt;h2 id=&quot;1-학습목표&quot;&gt;1. 학습목표&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA의 핵심 엔티티와 테이블을 매핑하는 방법에대해서배운다.&lt;/li&gt;
   &lt;li&gt;다양한 매핑을 학습한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;h2 id=&quot;2-들어가며&quot;&gt;2. 들어가며&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA를 사용하는 데  가장 중요한 일은 엔티티와 테이블을 정확히 매핑하는것&lt;/li&gt;
@@ -1255,7 +1401,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;entity&quot;&gt;@Entity&lt;/h2&gt;
+&lt;h2 id=&quot;3-entity&quot;&gt;3. @Entity&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA를 사용해서 테이블과 매핑할 클래스는 @Enitty 어노테이션을 필수로 붙여야 한다. @Entity 가 붙은 클래스는 JPA가 관리하는것으로 엔티티라 부른다.&lt;/li&gt;
@@ -1273,13 +1419,13 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;table&quot;&gt;@Table&lt;/h2&gt;
+&lt;h2 id=&quot;4-table&quot;&gt;4. @Table&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;엔티티와 매핑할 테이블을 지정한다. 생략하면 매핑한 엔티티 이름을 테이블 이름으로 사용한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;다양한매핑-사용&quot;&gt;다양한매핑 사용&lt;/h2&gt;
+&lt;h2 id=&quot;5-다양한매핑-사용&quot;&gt;5. 다양한매핑 사용&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;@Enumerated(EnumType.STRING): enum을 사용한다.&lt;/li&gt;
@@ -1287,7 +1433,7 @@ sprIng,SPRING
   &lt;li&gt;@Lob: 데이터베이스의 VARCHAR 타입대신 CLOB 타입을 저장해야 한다. @Lob를 사용하면 CLOB, BLOB 타입을 매핑할 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;데이터베이스-스키마-자동생성&quot;&gt;데이터베이스 스키마 자동생성&lt;/h2&gt;
+&lt;h2 id=&quot;6-데이터베이스-스키마-자동생성&quot;&gt;6. 데이터베이스 스키마 자동생성&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA는 데이터베이스 스키마를 자동으로 생성하는 기능을 지원한다.&lt;/li&gt;
@@ -1296,7 +1442,7 @@ sprIng,SPRING
   &lt;li&gt;개발환경이나 매핑을 어떻게 해야 하는지 참고하는 정도로만 사용하자. 운영환경에서는 사용하지 않는다.⚠️&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;ddl생성기능&quot;&gt;DDL생성기능&lt;/h2&gt;
+&lt;h2 id=&quot;7-ddl생성기능&quot;&gt;7. DDL생성기능&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;회원이름은 필수이고, 10자를 초과하면 안되는 제약조건을 추가하는 경우&lt;/li&gt;
@@ -1327,7 +1473,7 @@ sprIng,SPRING
   &lt;li&gt;이 기능들은 DDL을 자동으로 생성할 때만 사용되고, JPA 실행로직에 영향을 주지 않는다. 직접 DDL를 만드는 경우 굳이 필요하지 않다. 하지만, 애플리케이션을 통해서 제약조건을 한눈에 확인할 수 있다는 장점도 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;기본-키-매핑&quot;&gt;기본 키 매핑&lt;/h2&gt;
+&lt;h2 id=&quot;8-기본-키-매핑&quot;&gt;8. 기본 키 매핑&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA가 제공하는 데이터베이스 기본키 생성 전략
@@ -1345,7 +1491,7 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;기본키-직접-할당-전략&quot;&gt;기본키 직접 할당 전략&lt;/h3&gt;
+&lt;h3 id=&quot;81-기본키-직접-할당-전략&quot;&gt;8.1. 기본키 직접 할당 전략&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;@Id에 적용가능한 타입
@@ -1361,7 +1507,7 @@ sprIng,SPRING
 &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;board&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;identity-전략&quot;&gt;IDENTITY 전략&lt;/h3&gt;
+&lt;h3 id=&quot;82-identity-전략&quot;&gt;8.2. IDENTITY 전략&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;기본키 생성을 데이터베이스에 위임하는 전략.&lt;/li&gt;
@@ -1376,7 +1522,7 @@ sprIng,SPRING
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;sequence-전략&quot;&gt;SEQUENCE 전략&lt;/h3&gt;
+&lt;h3 id=&quot;83-sequence-전략&quot;&gt;8.3. SEQUENCE 전략&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;시퀀스를 지원하는 오라클, PostgreSQL, DB2, H2 데이터베이스에서 사용할 수 있다.&lt;/li&gt;
@@ -1400,7 +1546,7 @@ sprIng,SPRING
   &lt;li&gt;SEQUENCE 전략은 emp.persist()를 호출할 때 먼저 데이터베이스 시퀀스를 사용해서 식별자를 조회한다. 조회한 식별자를 엔티티에 할당한 후에 엔티티를 영속성 컨텍스트에 저장한다. 이후 트랜잭션을 커밋해서 플러시가 일어나면 엔티티를 데이터베이스에 저장한다. 반대로 IDENTITY 전략은 먼저 엔티티를 데이터베이스에 저장한 후에 식별자를 조회해서 엔티티의 식별자에 할당한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;table전략&quot;&gt;TABLE전략&lt;/h3&gt;
+&lt;h3 id=&quot;84-table전략&quot;&gt;8.4. TABLE전략&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;키 생성 전용 테이블을 하나 만들고 여기에 이름과 값으로 사용할 컬럼을 만들어 데이터베이스 시퀀스를 흉내내는 전략이다. 이 전략은 테이블을 사용하므로 모든 데이터베이스에 적용할 수 있다.&lt;/li&gt;
@@ -1418,7 +1564,7 @@ sprIng,SPRING
   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;auto-전략&quot;&gt;AUTO 전략&lt;/h3&gt;
+&lt;h3 id=&quot;85-auto-전략&quot;&gt;8.5. AUTO 전략&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;데이터베이스의 종류도 많고 기본 키를 만드는 방법도 다양하다. GenerationType.AUTO는 선택한 데이터베이스 방언에 따라 IDENTITY, SEQUENCE, TABLE 전략중 하나를 자동으로 선택한다.&lt;/li&gt;
@@ -1426,7 +1572,7 @@ sprIng,SPRING
   &lt;li&gt;AUTO를 사용할때 SEQUENCE나 TABLE 전략이 선택되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;시퀀스&lt;/code&gt;나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;키 생성용 테이블&lt;/code&gt;을 미리 만들어야 한다. 만약 스키마 자동생성을 사용한다면, 하이버네이트가 기본값을 사용해서 적절한 시퀀스나 키 생성용 테이블을 만들어 줄 것이다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;기본키-매핑-정리&quot;&gt;기본키 매핑 정리&lt;/h3&gt;
+&lt;h3 id=&quot;86-기본키-매핑-정리&quot;&gt;8.6. 기본키 매핑 정리&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;직접 할당: em.persist()를 호출기 전에 직접 식별자 값을 할당해야 한다. 없으면 예외가 발생한다.&lt;/li&gt;
@@ -1435,16 +1581,16 @@ sprIng,SPRING
   &lt;li&gt;TABLE: 데이터베이스 시퀀스 생성용 테이블에서 식별자 값을 획득한 후, 영속성 컨텍스트에 저장한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;필드와-컬럼-매핑-레퍼런스&quot;&gt;필드와 컬럼 매핑: 레퍼런스&lt;/h2&gt;
+&lt;h2 id=&quot;9-필드와-컬럼-매핑-레퍼런스&quot;&gt;9. 필드와 컬럼 매핑: 레퍼런스&lt;/h2&gt;
 
-&lt;h3 id=&quot;column&quot;&gt;@Column&lt;/h3&gt;
+&lt;h3 id=&quot;91-column&quot;&gt;9.1. @Column&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;객체 필드를 테이블 컬럼에 매핑한다.&lt;/li&gt;
   &lt;li&gt;insertable, updatable 속성은 데이터베이스에 저장되어 있는 정보를 읽기만 하고 변경하는 것을 방지하고 싶을때 사용한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;enumerated&quot;&gt;@Enumerated&lt;/h3&gt;
+&lt;h3 id=&quot;92-enumerated&quot;&gt;9.2. @Enumerated&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;자바의 enum 타입을 매핑할 때 사용한다.&lt;/li&gt;
@@ -1471,7 +1617,7 @@ sprIng,SPRING
   enum이 하나 추가된 경우, 순서가 변경될 수 있기 때문에. 무조건 EnumType.STRING 으로 사용한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;temporal&quot;&gt;@Temporal&lt;/h3&gt;
+&lt;h3 id=&quot;93-temporal&quot;&gt;9.3. @Temporal&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;자바의 날짜 타입을 매핑할때 사용한다.&lt;/li&gt;
@@ -1492,7 +1638,7 @@ sprIng,SPRING
   &lt;li&gt;&lt;strong&gt;자바8에서 지원하는 LocalDate, LocalDateTime을 사용할때는 생략 가능하다.(하이버네이트 지원)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;lob&quot;&gt;@Lob&lt;/h3&gt;
+&lt;h3 id=&quot;94-lob&quot;&gt;9.4. @Lob&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;@Lob에는 속성이 없다. 대신 매핑할 필드 타입이 문자면 CLOB으로 나머지는 BLOB으로 매핑한다.
@@ -1503,13 +1649,13 @@ sprIng,SPRING
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;transient&quot;&gt;@Transient&lt;/h3&gt;
+&lt;h3 id=&quot;95-transient&quot;&gt;9.5. @Transient&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;이 필드는 매핑하지 않는다. 데이터베이스에 저장하지 않고, 조회하지도 않는다. 객체에 임시로 어떤 값을 보관하고 싶을 때 사용한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;access&quot;&gt;@Access✅&lt;/h3&gt;
+&lt;h3 id=&quot;96-access&quot;&gt;9.6. @Access✅&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;JPA가 엔티티 데이터에 접근하는 방식을 지정한다.
@@ -1521,7 +1667,7 @@ sprIng,SPRING
   &lt;li&gt;@Access를 설정하지 않으면 @Id의 위치를 기준으로 접근방식이 설정된다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+&lt;h2 id=&quot;10-정리&quot;&gt;10. 정리&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;데이터베이스 스키마 자동생성 기능을 사용하면, 엔티티 객체를 먼저 만들고 테이블은 자동으로 생성할 수 있다.&lt;/li&gt;
@@ -1552,7 +1698,7 @@ sprIng,SPRING
   &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-basic-releation-mapping&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-advanced-releation-mapping&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-proxy&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;실무에서 필요한JPA - 값타입(6)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-value-type&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;실무에서 필요한JPA - 객체지향 쿼리(7)&lt;/li&gt;
   &lt;li&gt;실무에서 필요한JPA - 스프링 데이터 JPA(8)&lt;/li&gt;
   &lt;li&gt;실무에서 필요한JPA - 컬렉션과 부가기능(9)&lt;/li&gt;
@@ -1908,10 +2054,7 @@ sprIng,SPRING
       <item>
         <title>SpringBoot RabbitMQ 연동하기</title>
         <description>&lt;p&gt;이번시간에는 오픈소스 메세지 브로커인 RabbitMQ를 로컬에 설치하고, Spring Boot 프로젝트를 이용해서 간단하게 메세지를 전송하고, Listening 하는 샘플 프로젝트를 만들어보도록 하겠습니다.!!&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h2 id=&quot;rabbitmq의-구성요소&quot;&gt;RabbitMQ의 구성요소&lt;/h2&gt;
+&lt;h2 id=&quot;1-rabbitmq의-구성요소&quot;&gt;1. RabbitMQ의 구성요소&lt;/h2&gt;
 &lt;p&gt;들어가기에 앞서 RabbitMQ는 메세지큐로 Advanced Message Queuing Protocol(AMQP)의 구현체라고 할 수 있습니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png&quot; alt=&quot;&quot; /&gt;
@@ -1925,7 +2068,7 @@ sprIng,SPRING
 
 &lt;p&gt;마지막으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fanout&lt;/code&gt;은 SpreadOut 처럼 흩뿌리기! 라고 생각하면 될것 같습니다. 더 자세한건 &lt;a href=&quot;https://docs.spring.io/spring-amqp/docs/2.3.2-SNAPSHOT/reference/html/#exchange&quot;&gt;문서&lt;/a&gt;를 확인하고, 아래에서 Config 설정할때 추가로 다루도록 하겠습니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;설치하기&quot;&gt;설치하기&lt;/h2&gt;
+&lt;h2 id=&quot;2-설치하기&quot;&gt;2. 설치하기&lt;/h2&gt;
 
 &lt;p&gt;docker 로 설치하기&lt;/p&gt;
 
@@ -1937,7 +2080,7 @@ sprIng,SPRING
   &lt;li&gt;guest/guest&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;의존성-추가&quot;&gt;의존성 추가&lt;/h2&gt;
+&lt;h2 id=&quot;3-의존성-추가&quot;&gt;3. 의존성 추가&lt;/h2&gt;
 
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
@@ -1945,7 +2088,7 @@ sprIng,SPRING
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;환경설정&quot;&gt;환경설정&lt;/h2&gt;
+&lt;h2 id=&quot;4-환경설정&quot;&gt;4. 환경설정&lt;/h2&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queueName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;message-queue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;topicExchangeName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;topic-message&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -1987,7 +2130,7 @@ sprIng,SPRING
 
 &lt;p&gt;Jackson 메세지 컨버터를 빈으로 등록하고, RabbitTemplate도 빈으로 등록한다. Spring boot가 ConnectionFactory를 주입해서 넣어준다.&lt;/p&gt;
 
-&lt;h2 id=&quot;메세지-pojo&quot;&gt;메세지 POJO&lt;/h2&gt;
+&lt;h2 id=&quot;5-메세지-pojo&quot;&gt;5. 메세지 POJO&lt;/h2&gt;
 
 &lt;p&gt;메세지를 주고 받을 수 있는 CustomMessage pojo를 만든다.&lt;/p&gt;
 
@@ -1997,7 +2140,7 @@ sprIng,SPRING
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;메세지-보내기&quot;&gt;메세지 보내기&lt;/h2&gt;
+&lt;h2 id=&quot;6-메세지-보내기&quot;&gt;6. 메세지 보내기&lt;/h2&gt;
 
 &lt;p&gt;Spring에서 ApplicationRunner 인터페이스를 구현하면 프로젝트가 실행이될때 동작하는 run메서드에서 간단한 메세지를 보내 보겠습니다.&lt;/p&gt;
 
@@ -2022,7 +2165,7 @@ sprIng,SPRING
 
 &lt;p&gt;rabbitTemplate으로 message 객체를 json으로 변환해서 메세지를 보냅니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;메세지-받기&quot;&gt;메세지 받기&lt;/h2&gt;
+&lt;h2 id=&quot;7-메세지-받기&quot;&gt;7. 메세지 받기&lt;/h2&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RabbitListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;queues&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;message-queue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;receiveMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Message&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -2034,7 +2177,7 @@ sprIng,SPRING
 
 &lt;p&gt;&lt;img width=&quot;1137&quot; alt=&quot;스크린샷 2020-11-25 오전 9 20 05&quot; src=&quot;https://user-images.githubusercontent.com/28615416/100166175-6de20800-2eff-11eb-8c80-b7029e8c402f.png&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;마치며&quot;&gt;마치며&lt;/h2&gt;
+&lt;h2 id=&quot;8-마치며&quot;&gt;8. 마치며&lt;/h2&gt;
 
 &lt;p&gt;이번시간에는 아주 간단한 RabbitMQ를 설치하고, SpringBoot 프로젝트랑 연동하는 방법을 알아봤습니다.기본적인 TopicExchnage 외에도 다른 Exchange를 구성하는 방법, Batch로 메세지를 전송하고 Listen하는 방법, 큐 네이밍전략, 클러스터 구성, fail-over 등등.. 많은 것들을 시도해 볼수 있는 프로젝트라고 생각됩니다.&lt;/p&gt;
 
@@ -2055,7 +2198,7 @@ sprIng,SPRING
         <description>&lt;p&gt;MSA 시스템 특성상 여러개의 프로젝트를 관리하고 띄우다 보면, configuration 정보가 이곳저곳에 흩어져 있다보니까, 변경사항을 한눈에 파악하기가 힘들다. 
 그래서 spring cloud config 라는 프로젝트가 나왔다.&lt;/p&gt;
 
-&lt;h2 id=&quot;구성-요소&quot;&gt;구성 요소&lt;/h2&gt;
+&lt;h2 id=&quot;1-구성-요소&quot;&gt;1. 구성 요소&lt;/h2&gt;
 
 &lt;p&gt;구성요소는 다음과 같다.&lt;/p&gt;
 
@@ -2065,9 +2208,9 @@ sprIng,SPRING
   &lt;li&gt;Config Client: url 에 Config Server 를 호출함으로써 정보를 읽어와서 사용할수 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;예제&quot;&gt;예제&lt;/h2&gt;
+&lt;h2 id=&quot;2-예제&quot;&gt;2. 예제&lt;/h2&gt;
 
-&lt;h3 id=&quot;1-git-repository-중앙으로-관리할-파일을-설정&quot;&gt;1. Git Repository (중앙으로 관리할 파일을 설정)&lt;/h3&gt;
+&lt;h3 id=&quot;21-git-repository-중앙으로-관리할-파일을-설정&quot;&gt;2.1. Git Repository (중앙으로 관리할 파일을 설정)&lt;/h3&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd ~
 mkdir configrepo
@@ -2082,7 +2225,7 @@ vi application.yml
   &lt;span class=&quot;na&quot;&gt;greeting&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;hello world from config server&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;2-서버-구성&quot;&gt;2. 서버 구성&lt;/h3&gt;
+&lt;h3 id=&quot;22-서버-구성&quot;&gt;2.2. 서버 구성&lt;/h3&gt;
 
 &lt;p&gt;spring-cloud-config-server 프로젝트를 만들고 다음 dependancy 를 추가한다.&lt;/p&gt;
 
@@ -2131,7 +2274,7 @@ vi application.yml
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;profiles&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;default&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;label&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;baaf27470656e4c05dd6f2beb3a0f220b2e38750&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;state&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;propertySources&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/Users/home/dev/configrepo/application.yml&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;source&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;my.greeting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hello world from config server&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}]}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;3-클라이언트-구성&quot;&gt;3. 클라이언트 구성&lt;/h3&gt;
+&lt;h3 id=&quot;23-클라이언트-구성&quot;&gt;2.3. 클라이언트 구성&lt;/h3&gt;
 
 &lt;p&gt;Spring-cloud-config-client 프로젝트를 만든다. 다음과 같은 dependency를 추가한다.&lt;/p&gt;
 
@@ -2182,7 +2325,7 @@ vi application.yml
 
 &lt;p&gt;greetingMessage 필드에 담긴 메세지는 처음 로컬에서 만든 파일안에 지정했던 메세지로 잘 출력된 것을 확인했다.&lt;/p&gt;
 
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+&lt;h2 id=&quot;3-정리&quot;&gt;3. 정리&lt;/h2&gt;
 
 &lt;p&gt;이번에는 MSA환경에서 각 프로젝트마다 필요한 config 정보를 한군데에서 관리하는 spring-cloud-config에 대해서 알아보았다.&lt;/p&gt;
 
@@ -2198,37 +2341,126 @@ vi application.yml
       </item>
     
       <item>
-        <title>개발자 환경 셋팅</title>
-        <description>&lt;h1 id=&quot;1-설치&quot;&gt;1. 설치&lt;/h1&gt;
-
-&lt;h2 id=&quot;필수-설치-프로그램&quot;&gt;필수 설치 프로그램&lt;/h2&gt;
-
+        <title>개발자 컴퓨터 환경 세팅</title>
+        <description>&lt;h2 id=&quot;1-필수-설치-프로그램&quot;&gt;1. 필수 설치 프로그램&lt;/h2&gt;
+&lt;h3 id=&quot;11-개발도구&quot;&gt;1.1. 개발도구&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;개발도구
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/toolbox-app/&quot;&gt;JetBrain toolbox&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://code.visualstudio.com/download&quot;&gt;VsCode&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.getpostman.com/downloads/&quot;&gt;PostMan&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://sequelpro.com/download&quot;&gt;SequelPro&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.mysql.com/products/workbench/&quot;&gt;Mysql Workbench&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.sourcetreeapp.com/&quot;&gt;SourceTree&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.iterm2.com/downloads.html&quot;&gt;Iterms2(Zsh, Oh-my-zsh, dracular theme)&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;업무툴
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.alfredapp.com/&quot;&gt;Alfred4&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://apps.apple.com/us/app/magnet/id441258766?mt=12&quot;&gt;Magnet&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.spectacleapp.com/&quot;&gt;Spectacle&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://pqrs.org/osx/karabiner/&quot;&gt;Karabiner&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://apps.apple.com/us/app/jolt-of-caffeine/id1437130425?mt=12&quot;&gt;Jolt of Caffein&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://www.notion.so/desktop&quot;&gt;Notion&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;https://macromates.com/download&quot;&gt;TextMate&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/toolbox-app/&quot;&gt;JetBrain toolbox&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://code.visualstudio.com/download&quot;&gt;VsCode&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.getpostman.com/downloads/&quot;&gt;PostMan&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sequelpro.com/download&quot;&gt;SequelPro&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.mysql.com/products/workbench/&quot;&gt;Mysql Workbench&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.sourcetreeapp.com/&quot;&gt;SourceTree&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.iterm2.com/downloads.html&quot;&gt;Iterms2(Zsh, Oh-my-zsh, dracular theme)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;각종-플러그인-추천&quot;&gt;각종 플러그인 추천&lt;/h2&gt;
+&lt;h3 id=&quot;12-업무툴&quot;&gt;1.2. 업무툴&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.alfredapp.com/&quot;&gt;Alfred4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apps.apple.com/us/app/magnet/id441258766?mt=12&quot;&gt;Magnet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.spectacleapp.com/&quot;&gt;Spectacle&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pqrs.org/osx/karabiner/&quot;&gt;Karabiner&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apps.apple.com/us/app/jolt-of-caffeine/id1437130425?mt=12&quot;&gt;Jolt of Caffein&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.notion.so/desktop&quot;&gt;Notion&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://macromates.com/download&quot;&gt;TextMate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-zsh-설치&quot;&gt;2. Zsh 설치&lt;/h2&gt;
+
+&lt;p&gt;homebrew  &amp;amp; nodejs 설치&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+$ brew update
+$ brew install node
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Zsh 설치&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install zsh
+$ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+$ chsh -s /bin/zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;vim 설치&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install neovim
+$ brew tap caskroom/fonts
+$ brew cask install font-hack-nerd-font
+$ curl -sLf https://spacevim.org/install.sh | bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-zsh-플러그인-설치&quot;&gt;3. Zsh 플러그인 설치&lt;/h2&gt;
+
+&lt;p&gt;autosuggesstion (자동완성)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;~/.oh-my-zsh/custom/plugins 폴더하위에 zsh-autosuggestions 플러그인을 이동시킵니다.&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vi ~/.zshrc&lt;/code&gt; 를 입력해서 다음과 같이 plugins 목록에 추가합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugins=(
+  git
+  zsh-autosuggestions
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;주의해야 할 사항은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;,&lt;/code&gt; delimiter 를 &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/issues/7728&quot;&gt;사용하지 말라고 권고합니다.&lt;/a&gt;.&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source ~/.zshrc&lt;/code&gt;를 적용하고, 재 실행시키면 자동완성됩니다!&lt;/p&gt;
+
+&lt;h2 id=&quot;4-키변환-한영키--오른쪽-command키로-변경하는-방법&quot;&gt;4. [키변환] 한/영키 &amp;gt; 오른쪽 command키로 변경하는 방법&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pqrs.org/osx/karabiner/&quot;&gt;karabiner 설치&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Simple modifications 탭에서 right_command - f18로 추가&lt;/li&gt;
+  &lt;li&gt;System Preference - Keyboard - 단축키 탭 - 입력소스 - 이전소스 입력을 (right command) 키로 변경&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;5-github-ssh키-등록&quot;&gt;5. github ssh키 등록&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh-keygen -t rsa&lt;/code&gt; 를 통해서 ssh key를 만든다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat ~/.ssh/id_psa.pub&lt;/code&gt; 을 통해서 퍼블릭키를 복사한다.&lt;/li&gt;
+  &lt;li&gt;github 계정의 SSH and GPG keys 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;New SSH Key&lt;/code&gt; 를 등록한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;6-회사-이메일-계정이랑-개인-계정-함께-사용하기&quot;&gt;6. 회사 이메일 계정이랑, 개인 계정 함께 사용하기&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 분리해서 사용한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;회사 프로젝트 폴더: ~/IdeaProject&lt;/li&gt;
+  &lt;li&gt;개인 프로젝트 폴더: ~/workspace&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;회사 컴퓨터에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vi ~/.gitcofing&lt;/code&gt; 로 접속 해서 다음과 같이 추가한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[user]
+  email = andrew@회사도메인.com
+  name = andrew
+[includeIf &quot;gitdir:~/workspace/&quot;]
+  path = .gitconfig-personal
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;gitconfig default 설정은 회사걸로 하고, 내 개인 프로젝트는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/workspace&lt;/code&gt;하위에 들어가는 경우에는 
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitconfig-personal&lt;/code&gt; 위치에 있는 정보를 사용한다는 뜻이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vi ~/.gitconfig-personal&lt;/code&gt; 입력후 다음과 같이 개인 계정 관련 부분을 넣는다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[user]
+  email = andrew@gmail.com
+  name = andrew han
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;7-vscode-code--설치&quot;&gt;7. vscode &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code .&lt;/code&gt; 설치&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;vs code 실행&lt;/li&gt;
+  &lt;li&gt;shell command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;install code&lt;/code&gt; 설치&lt;/li&gt;
+  &lt;li&gt;iterms에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code .&lt;/code&gt; 하면 vscode로 열림&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;8-플러그인-추천&quot;&gt;8. 플러그인 추천&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Intellij Plugin 추천
@@ -2266,115 +2498,14 @@ vi application.yml
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;zsh-설치&quot;&gt;Zsh 설치&lt;/h2&gt;
-
-&lt;p&gt;homebrew  &amp;amp; nodejs 설치&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-$ brew update
-$ brew install node
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Zsh 설치&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install zsh
-$ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-$ chsh -s /bin/zsh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;vim 설치&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew install neovim
-$ brew tap caskroom/fonts
-$ brew cask install font-hack-nerd-font
-$ curl -sLf https://spacevim.org/install.sh | bash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;zsh-플러그인-설치&quot;&gt;Zsh 플러그인 설치&lt;/h2&gt;
-
-&lt;p&gt;autosuggesstion (자동완성)&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;~/.oh-my-zsh/custom/plugins 폴더하위에 zsh-autosuggestions 플러그인을 이동시킵니다.&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vi ~/.zshrc&lt;/code&gt; 를 입력해서 다음과 같이 plugins 목록에 추가합니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugins=(
-  git
-  zsh-autosuggestions
-)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;주의해야 할 사항은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;,&lt;/code&gt; delimiter 를 &lt;a href=&quot;https://github.com/ohmyzsh/ohmyzsh/issues/7728&quot;&gt;사용하지 말라고 권고합니다.&lt;/a&gt;.&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source ~/.zshrc&lt;/code&gt;를 적용하고, 재 실행시키면 자동완성됩니다!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;2-소소한-팁들&quot;&gt;2. 소소한 팁들&lt;/h1&gt;
-
-&lt;h2 id=&quot;키변환-한영키--오른쪽-command키로-변경하는-방법&quot;&gt;[키변환] 한/영키 &amp;gt; 오른쪽 command키로 변경하는 방법&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://pqrs.org/osx/karabiner/&quot;&gt;karabiner 설치&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Simple modifications 탭에서 right_command - f18로 추가&lt;/li&gt;
-  &lt;li&gt;System Preference - Keyboard - 단축키 탭 - 입력소스 - 이전소스 입력을 (right command) 키로 변경&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;github-ssh키-등록&quot;&gt;github ssh키 등록&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh-keygen -t rsa&lt;/code&gt; 를 통해서 ssh key를 만든다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat ~/.ssh/id_psa.pub&lt;/code&gt; 을 통해서 퍼블릭키를 복사한다.&lt;/li&gt;
-  &lt;li&gt;github 계정의 SSH and GPG keys 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;New SSH Key&lt;/code&gt; 를 등록한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;회사-이메일-계정이랑-개인-계정-함께-사용하기&quot;&gt;회사 이메일 계정이랑, 개인 계정 함께 사용하기&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 분리해서 사용한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;회사 프로젝트 폴더: ~/IdeaProject&lt;/li&gt;
-  &lt;li&gt;개인 프로젝트 폴더: ~/workspace&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;회사 컴퓨터에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vi ~/.gitcofing&lt;/code&gt; 로 접속 해서 다음과 같이 추가한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[user]
-  email = andrew@회사도메인.com
-  name = andrew
-[includeIf &quot;gitdir:~/workspace/&quot;]
-  path = .gitconfig-personal
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;gitconfig default 설정은 회사걸로 하고, 내 개인 프로젝트는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/workspace&lt;/code&gt;하위에 들어가는 경우에는 
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gitconfig-personal&lt;/code&gt; 위치에 있는 정보를 사용한다는 뜻이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vi ~/.gitconfig-personal&lt;/code&gt; 입력후 다음과 같이 개인 계정 관련 부분을 넣는다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[user]
-  email = andrew@gmail.com
-  name = andrew han
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;vscode-code--설치&quot;&gt;vscode &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code .&lt;/code&gt; 설치&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;vs code 실행&lt;/li&gt;
-  &lt;li&gt;shell command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;install code&lt;/code&gt; 설치&lt;/li&gt;
-  &lt;li&gt;iterms에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code .&lt;/code&gt; 하면 vscode로 열림&lt;/li&gt;
-&lt;/ul&gt;
-
 </description>
         <pubDate>Wed, 28 Oct 2020 09:41:00 +0900</pubDate>
         <link>https://umanking.github.io/2020/10/28/setting-mac</link>
         <guid isPermaLink="true">https://umanking.github.io/2020/10/28/setting-mac</guid>
         
-        <category>tip</category>
-        
         <category>setting</category>
         
-        <category>mac</category>
+        <category>tip</category>
         
         
         <category>mac</category>
@@ -3093,8 +3224,9 @@ store에 시작 시간 정보를 기록하고, afterTestExecution 메서드에�
         <title>[JPA] 엔티티 설계시 주의사항들</title>
         <description>&lt;blockquote&gt;
   &lt;p&gt;엔티티 설계시 주의사항? 고려사항들을 알아본다. 관련내용은 김영한님의 인프런 강좌내용을 발췌했습니다!&lt;/p&gt;
-  &lt;h2 id=&quot;1-setter를-사용하지-않는다&quot;&gt;1. setter를 사용하지 않는다.&lt;/h2&gt;
 &lt;/blockquote&gt;
+
+&lt;h2 id=&quot;1-setter를-사용하지-않는다&quot;&gt;1. setter를 사용하지 않는다.&lt;/h2&gt;
 
 &lt;p&gt;객체에 대한 변경사항을 파악하기 어렵고, 유지보수하기 매우 힘들다.&lt;/p&gt;
 
@@ -4584,155 +4716,6 @@ System.out.println(Arrays.toString(intArray));  [5,4,3,2,1]
         <pubDate>Sun, 21 Apr 2019 21:30:30 +0900</pubDate>
         <link>https://umanking.github.io/2019/04/21/spring-mvc-dispatcher-servlet</link>
         <guid isPermaLink="true">https://umanking.github.io/2019/04/21/spring-mvc-dispatcher-servlet</guid>
-        
-        <category>spring</category>
-        
-        
-        <category>spring</category>
-        
-      </item>
-    
-      <item>
-        <title>[Spring] MVC 만들어 보기</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;Spring MVC 에 대해서 알아보자
-MVC는 Model, View, Controller로 구성되어 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Model : 데이터를 담을 도메인 객체, DTO&lt;/li&gt;
-  &lt;li&gt;View: 화면에 보여주는 부분, jsp, thymeleaf, React …&lt;/li&gt;
-  &lt;li&gt;Controller: 사용자의 입력을 받아서 모델 데이터를 검증/변경 하고, View단으로 전달하는 역할을 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;예제코드&quot;&gt;예제코드&lt;/h3&gt;
-
-&lt;p&gt;Boot 기반의 프로젝트를 만든다.&lt;/p&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;		&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-boot-starter-thymeleaf&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-
-	    &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.springframework.boot&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;spring-boot-starter-web&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.projectlombok&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;lombok&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;optional&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/optional&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;thymeleaf&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lombok&lt;/code&gt; 를 추가한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Event 도메인 클래스&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Getter&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Setter&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@AllArgsConstructor&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@NoArgsConstructor&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Builder&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Event&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;limitOfEnrollment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LocalDateTime&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;startDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LocalDateTime&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Service&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EventService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;Event&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;event1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;effective java&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;limitOfEnrollment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2019&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2019&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-        &lt;span class=&quot;nc&quot;&gt;Event&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;event2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;spring boot&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;limitOfEnrollment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2019&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;endDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LocalDateTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2019&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-        &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;event1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;event2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;EventService에는 2개의 이벤트를 미리 넣어놓고(사실은 데이터베이서에 접근해서 데이터를 가지고 와야함), 이벤트의 리스트를 가지고 오는 코드를 작성한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Controller&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EventController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EventService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eventService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/events&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;events&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAttribute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;events&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eventService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;events&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/events&lt;/code&gt; 라는 경로로 요청이 들어왔을 때, 모델에 eventService에서 가지고 온 이벤트 목록을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;events&lt;/code&gt; 모델에 담는다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;return &quot;events&quot;;&lt;/code&gt; 이 부분은 events 라는 뷰(여기서는 thymeleaf)로 전달하겠다는 의미.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/main/resources/templates&lt;/code&gt; 하위에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;events.html&lt;/code&gt; (컨트롤러에서 return하는 view name과 동일하게) 파일을 만든다.&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:th=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.thymeleaf.org&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Title&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xmlns:th=&quot;http://www.thymeleaf.org&quot;&lt;/code&gt; 타임리프를 사용할 xml name space를 지정해준다.&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:th=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.thymeleaf.org&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Title&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;table&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;tr&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;th&amp;gt;&lt;/span&gt;이름&lt;span class=&quot;nt&quot;&gt;&amp;lt;/th&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;th&amp;gt;&lt;/span&gt;참가인원&lt;span class=&quot;nt&quot;&gt;&amp;lt;/th&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;th&amp;gt;&lt;/span&gt;시작&lt;span class=&quot;nt&quot;&gt;&amp;lt;/th&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;th&amp;gt;&lt;/span&gt;종료&lt;span class=&quot;nt&quot;&gt;&amp;lt;/th&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/tr&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;tr&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;th:each=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;event: ${events}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;td&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;th:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${event.name}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;td&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;th:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${event.limitOfEnrollment}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;td&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;th:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${event.startDateTime}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;td&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;th:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;${event.endDateTime}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/td&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/tr&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/table&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;타임리프의 each구문을 사용해서 events 모델로 전달받은 객체를 event로 명명하고, event.name 이런식으로 접근해서 사용한다.&lt;/p&gt;
-
-&lt;p&gt;애플리케이션을 띄우고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localhost:8080/events&lt;/code&gt; 로 요청하면 원하는 데이터가 화면에 잘 보여진다.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 17 Apr 2019 18:21:01 +0900</pubDate>
-        <link>https://umanking.github.io/2019/04/17/spring-mvc-introduce-1</link>
-        <guid isPermaLink="true">https://umanking.github.io/2019/04/17/spring-mvc-introduce-1</guid>
         
         <category>spring</category>
         

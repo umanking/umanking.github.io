@@ -8,10 +8,7 @@ tags: [spring]
 ---
 
 이번시간에는 오픈소스 메세지 브로커인 RabbitMQ를 로컬에 설치하고, Spring Boot 프로젝트를 이용해서 간단하게 메세지를 전송하고, Listening 하는 샘플 프로젝트를 만들어보도록 하겠습니다.!!
-
-<!-- more -->
-
-## RabbitMQ의 구성요소
+## 1. RabbitMQ의 구성요소
 들어가기에 앞서 RabbitMQ는 메세지큐로 Advanced Message Queuing Protocol(AMQP)의 구현체라고 할 수 있습니다. 
 
 ![](https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png)
@@ -27,7 +24,7 @@ tags: [spring]
 
 
 
-## 설치하기
+## 2. 설치하기
 
 docker 로 설치하기
 
@@ -40,7 +37,7 @@ $ docker run -d --hostname localhost --name my-rabbitmq  -p 5672:5672 -p 15672:1
 
 
 
-## 의존성 추가
+## 3. 의존성 추가
 
 ```xml
 <dependency>
@@ -51,7 +48,7 @@ $ docker run -d --hostname localhost --name my-rabbitmq  -p 5672:5672 -p 15672:1
 
 
 
-## 환경설정
+## 4. 환경설정
 
 ```java
 private static final String queueName = "message-queue";
@@ -97,7 +94,7 @@ Jackson 메세지 컨버터를 빈으로 등록하고, RabbitTemplate도 빈으�
 
 
 
-## 메세지 POJO
+## 5. 메세지 POJO
 
 메세지를 주고 받을 수 있는 CustomMessage pojo를 만든다.
 
@@ -110,7 +107,7 @@ public class CustomMessage {
 
 
 
-## 메세지 보내기 
+## 6. 메세지 보내기 
 
 Spring에서 ApplicationRunner 인터페이스를 구현하면 프로젝트가 실행이될때 동작하는 run메서드에서 간단한 메세지를 보내 보겠습니다. 
 
@@ -138,7 +135,7 @@ rabbitTemplate으로 message 객체를 json으로 변환해서 메세지를 보�
 
 
 
-## 메세지 받기
+## 7. 메세지 받기
 
 ```java
 @RabbitListener(queues = "message-queue")
@@ -153,7 +150,7 @@ Listener는 비교적 간단하게 앞에서 보냈던 @RabbitListner 어노테�
 
 
 
-## 마치며
+## 8. 마치며
 
 이번시간에는 아주 간단한 RabbitMQ를 설치하고, SpringBoot 프로젝트랑 연동하는 방법을 알아봤습니다.기본적인 TopicExchnage 외에도 다른 Exchange를 구성하는 방법, Batch로 메세지를 전송하고 Listen하는 방법, 큐 네이밍전략, 클러스터 구성, fail-over 등등.. 많은 것들을 시도해 볼수 있는 프로젝트라고 생각됩니다.
 
