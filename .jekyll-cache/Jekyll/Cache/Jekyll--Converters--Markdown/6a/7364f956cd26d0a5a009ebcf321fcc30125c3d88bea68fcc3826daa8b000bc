@@ -1,6 +1,6 @@
-I"��<h1 id="실무에서-필요한jpa---다양한-연관관계매핑4">실무에서 필요한JPA - 다양한 연관관계매핑(4)</h1>
+I"S�<h1 id="실무에서-필요한jpa---다양한-연관관계매핑4">실무에서 필요한JPA - 다양한 연관관계매핑(4)</h1>
 
-<h2 id="들어가며">들어가며</h2>
+<h2 id="1-들어가며">1. 들어가며</h2>
 
 <p>엔티티의 연관관계를 매핑할 때는 다음 3가지를 고려해야 한다.</p>
 
@@ -10,9 +10,9 @@
   <li>연관관계의 주인: JPA는 두 객체 연관관계 중 하나를 정해서 데이터 베이스 외래키를 관리하는데 이것을 연관관계의 주인이라 한다.</li>
 </ul>
 
-<h2 id="다대일">다대일</h2>
+<h2 id="2-다대일">2. 다대일</h2>
 
-<h3 id="다대일-단방향n1">다대일 단방향[N:1]</h3>
+<h3 id="21-다대일-단방향n1">2.1. 다대일 단방향[N:1]</h3>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
   <span class="nd">@ManyToOne</span>
@@ -24,7 +24,7 @@
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{...}</span>
 </code></pre></div></div>
 
-<h3 id="다대일-양방향1n-n1">다대일 양방향[1:N, N:1]</h3>
+<h3 id="22-다대일-양방향1n-n1">2.2. 다대일 양방향[1:N, N:1]</h3>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
   <span class="nd">@ManyToOne</span>
@@ -65,9 +65,9 @@
   </li>
 </ul>
 
-<h2 id="일대다">일대다❌</h2>
+<h2 id="3-일대다">3. 일대다❌</h2>
 
-<h3 id="일대다-단방향1n">일대다 단방향[1:N]</h3>
+<h3 id="31-일대다-단방향1n">3.1. 일대다 단방향[1:N]</h3>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
   <span class="nd">@OneToMany</span>
@@ -124,7 +124,7 @@
   </li>
 </ul>
 
-<h3 id="일대다-양방향1n-n1">일대다 양방향[1:N, N:1]</h3>
+<h3 id="32-일대다-양방향1n-n1">3.2. 일대다 양방향[1:N, N:1]</h3>
 
 <ul>
   <li>일대다 양방향 매핑은 존재하지 않는다. 대신 다대일 양방향 매핑을 사용해야 한다.</li>
@@ -154,7 +154,7 @@
   <li>결론: 될 수 있으면 <code class="language-plaintext highlighter-rouge">다대일 양방향</code>을 사용하자!</li>
 </ul>
 
-<h2 id="일대일11">일대일[1:1]</h2>
+<h2 id="4-일대일11">4. 일대일[1:1]</h2>
 
 <ul>
   <li>일대일 관계는 양쪽이 서로 하나의 관계만 가진다.</li>
@@ -162,13 +162,13 @@
   <li>따라서 일대일 관계는 누가 외래키를 가질지 선택해야 한다.</li>
 </ul>
 
-<h3 id="주테이블에-외래키">주테이블에 외래키</h3>
+<h3 id="41-주테이블에-외래키">4.1. 주테이블에 외래키</h3>
 
 <ul>
   <li>주로 객체지향 개발자들이 선호</li>
 </ul>
 
-<h4 id="단방향">단방향</h4>
+<h4 id="411-단방향">4.1.1. 단방향</h4>
 
 <ul>
   <li>회원(<code class="language-plaintext highlighter-rouge">주테이블</code>)과 사물함(<code class="language-plaintext highlighter-rouge">대상 테이블</code>) 일대일</li>
@@ -185,7 +185,7 @@
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Locker</span> <span class="o">{...}</span>
 </code></pre></div></div>
 
-<h4 id="양방향">양방향</h4>
+<h4 id="412-양방향">4.1.2. 양방향</h4>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
   <span class="nd">@OneToOne</span>
@@ -202,17 +202,17 @@
 
 <p>양방향이므로 연관관계 주인을 정해야 한다. MEMBER 테이블이 외래키를 가지고 있으므로 Member엔티티에 있는 <strong><u>Member.locker가 연관관계의 주인이다.</u></strong> 따라서 반대 매핑인 사물함의 Locker.member는 mappedBy를 선언해서 반대편이 연관관계의 주인임을 나타낸다.</p>
 
-<h3 id="대상-테이블에-외래키">대상 테이블에 외래키</h3>
+<h3 id="42-대상-테이블에-외래키">4.2. 대상 테이블에 외래키</h3>
 
 <p>이번에는 대상 테이블에 외래키가 있는 일대일 관계를 보자.</p>
 
-<h4 id="단방향-1">단방향</h4>
+<h4 id="421-단방향">4.2.1. 단방향</h4>
 
 <ul>
   <li>대상 테이블에 외래키가 있는 단방향 관계는 JPA는 지원하지 않는다. ❌</li>
 </ul>
 
-<h4 id="양방향-1">양방향</h4>
+<h4 id="422-양방향">4.2.2. 양방향</h4>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 일대일 대상 테이블에 외래키, 양방향 예제코드 </span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
@@ -230,7 +230,7 @@
 
 <p>일대일 매핑에서 대상 테이블에 외래 키를 두고 싶으면 이렇게 양방향으로 매핑한다.</p>
 
-<h2 id="다대다nn">다대다[N:N]</h2>
+<h2 id="5-다대다nn">5. 다대다[N:N]</h2>
 
 <ul>
   <li>관계형 데이터베이스는 정규화된 테이블 2개로 다대다 관계를 표현할 수 없다.</li>
@@ -243,7 +243,7 @@
   </li>
 </ul>
 
-<h3 id="다대다단방향">다대다:단방향</h3>
+<h3 id="51-다대다단방향">5.1. 다대다:단방향</h3>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
   <span class="nd">@ManyToMany</span>
@@ -292,7 +292,7 @@
 
 <p>연결테이블인 MEMBER_PRODUCT와 상품테이블을 조인해서 연관된 상품을 조회한다.</p>
 
-<h3 id="다대다양방향">다대다:양방향</h3>
+<h3 id="52-다대다양방향">5.2. 다대다:양방향</h3>
 
 <ul>
   <li>다대다 매핑이므로 역방향도 @ManyToMany를 사용한다. 양쪽 원하는 곳에 mappedBy로 연관관계의 주인을 지정한다.</li>
@@ -320,7 +320,7 @@
 
 </code></pre></div></div>
 
-<h3 id="다대다매핑의-한계와-극복-연결-엔티티-사용">다대다:매핑의 한계와 극복, 연결 엔티티 사용❌</h3>
+<h3 id="53-다대다매핑의-한계와-극복-연결-엔티티-사용">5.3. 다대다:매핑의 한계와 극복, 연결 엔티티 사용❌</h3>
 
 <ul>
   <li>@ManyToMany를 사용하면 연결 테이블을 자동으로 처리해주므로 편리하다. 하지만 실무에서 사용하기에는 한계가 있다.</li>
@@ -445,7 +445,7 @@
   <li>다음으로 복합키를 사용하지 않고 간단히 다대다 관계를 구성하는 방법을 알아보자.</li>
 </ul>
 
-<h3 id="다대다새로운-기본-키-사용">다대다:새로운 기본 키 사용</h3>
+<h3 id="54-다대다새로운-기본-키-사용">5.4. 다대다:새로운 기본 키 사용</h3>
 
 <ul>
   <li>추천하는 기본 키 생성전략은 데이터베이스에서 자동으로 생성해주는 대리 키를 Long값으로 사용하는 것이다. 이것의 장점은 간편하고 거의 영구히 쓸수 있으며 비즈니스에 의존하지 않는다. 그리고 ORM 매핑시 복합키를 만들지 않아도 되므로 간단히 매핑을 완성할 수 있다.</li>
@@ -487,7 +487,7 @@
 
 <p>식별자 클래스를 사용하지 않아서 코드가 한결 단순해졌다.</p>
 
-<h3 id="다대다-연관관계-정리">다대다 연관관계 정리</h3>
+<h3 id="55-다대다-연관관계-정리">5.5. 다대다 연관관계 정리</h3>
 
 <ul>
   <li>다대다 관계를 일대다, 다대일 관계로 풀어내기 위해 연결테이블을 만들 때 식별자를 어떻게 구성할지 선택해야 한다.

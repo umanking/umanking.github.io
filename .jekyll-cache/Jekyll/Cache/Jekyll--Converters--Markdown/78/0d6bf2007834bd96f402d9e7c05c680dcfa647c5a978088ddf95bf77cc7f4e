@@ -1,8 +1,5 @@
-I"�1<p>이번시간에는 오픈소스 메세지 브로커인 RabbitMQ를 로컬에 설치하고, Spring Boot 프로젝트를 이용해서 간단하게 메세지를 전송하고, Listening 하는 샘플 프로젝트를 만들어보도록 하겠습니다.!!</p>
-
-<!-- more -->
-
-<h2 id="rabbitmq의-구성요소">RabbitMQ의 구성요소</h2>
+I"�1<p>이번시간에는 오픈소스 메세지 브로커인 RabbitMQ를 로컬에 설치하고, Spring Boot 프로젝트를 이용해서 간단하게 메세지를 전송하고, Listening 하는 샘플 프로젝트를 만들어보도록 하겠습니다.!!</p>
+<h2 id="1-rabbitmq의-구성요소">1. RabbitMQ의 구성요소</h2>
 <p>들어가기에 앞서 RabbitMQ는 메세지큐로 Advanced Message Queuing Protocol(AMQP)의 구현체라고 할 수 있습니다.</p>
 
 <p><img src="https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png" alt="" />
@@ -16,7 +13,7 @@
 
 <p>마지막으로 <code class="language-plaintext highlighter-rouge">Fanout</code>은 SpreadOut 처럼 흩뿌리기! 라고 생각하면 될것 같습니다. 더 자세한건 <a href="https://docs.spring.io/spring-amqp/docs/2.3.2-SNAPSHOT/reference/html/#exchange">문서</a>를 확인하고, 아래에서 Config 설정할때 추가로 다루도록 하겠습니다.</p>
 
-<h2 id="설치하기">설치하기</h2>
+<h2 id="2-설치하기">2. 설치하기</h2>
 
 <p>docker 로 설치하기</p>
 
@@ -28,7 +25,7 @@
   <li>guest/guest</li>
 </ul>
 
-<h2 id="의존성-추가">의존성 추가</h2>
+<h2 id="3-의존성-추가">3. 의존성 추가</h2>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
@@ -36,7 +33,7 @@
 <span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
 
-<h2 id="환경설정">환경설정</h2>
+<h2 id="4-환경설정">4. 환경설정</h2>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">queueName</span> <span class="o">=</span> <span class="s">"message-queue"</span><span class="o">;</span>
 <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">topicExchangeName</span> <span class="o">=</span> <span class="s">"topic-message"</span><span class="o">;</span>
@@ -78,7 +75,7 @@
 
 <p>Jackson 메세지 컨버터를 빈으로 등록하고, RabbitTemplate도 빈으로 등록한다. Spring boot가 ConnectionFactory를 주입해서 넣어준다.</p>
 
-<h2 id="메세지-pojo">메세지 POJO</h2>
+<h2 id="5-메세지-pojo">5. 메세지 POJO</h2>
 
 <p>메세지를 주고 받을 수 있는 CustomMessage pojo를 만든다.</p>
 
@@ -88,7 +85,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h2 id="메세지-보내기">메세지 보내기</h2>
+<h2 id="6-메세지-보내기">6. 메세지 보내기</h2>
 
 <p>Spring에서 ApplicationRunner 인터페이스를 구현하면 프로젝트가 실행이될때 동작하는 run메서드에서 간단한 메세지를 보내 보겠습니다.</p>
 
@@ -113,7 +110,7 @@
 
 <p>rabbitTemplate으로 message 객체를 json으로 변환해서 메세지를 보냅니다.</p>
 
-<h2 id="메세지-받기">메세지 받기</h2>
+<h2 id="7-메세지-받기">7. 메세지 받기</h2>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RabbitListener</span><span class="o">(</span><span class="n">queues</span> <span class="o">=</span> <span class="s">"message-queue"</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">receiveMessage</span><span class="o">(</span><span class="nc">Message</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
@@ -125,7 +122,7 @@
 
 <p><img width="1137" alt="스크린샷 2020-11-25 오전 9 20 05" src="https://user-images.githubusercontent.com/28615416/100166175-6de20800-2eff-11eb-8c80-b7029e8c402f.png" /></p>
 
-<h2 id="마치며">마치며</h2>
+<h2 id="8-마치며">8. 마치며</h2>
 
 <p>이번시간에는 아주 간단한 RabbitMQ를 설치하고, SpringBoot 프로젝트랑 연동하는 방법을 알아봤습니다.기본적인 TopicExchnage 외에도 다른 Exchange를 구성하는 방법, Batch로 메세지를 전송하고 Listen하는 방법, 큐 네이밍전략, 클러스터 구성, fail-over 등등.. 많은 것들을 시도해 볼수 있는 프로젝트라고 생각됩니다.</p>
 

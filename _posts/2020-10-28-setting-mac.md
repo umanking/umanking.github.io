@@ -1,20 +1,13 @@
 ---
 layout: post
-title: 개발자 환경 셋팅
+title: 개발자 컴퓨터 환경 세팅
 category: [mac]
-tags: [tip, setting, mac]
+tags: [setting, tip]
 date: 2020-10-28 09:41 +0900
-toc: true
 image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
 ---
-
-
-
-# 1. 설치
-
-## 필수 설치 프로그램
-
-- 개발도구
+## 1. 필수 설치 프로그램
+### 1.1. 개발도구
   - [JetBrain toolbox](https://www.jetbrains.com/toolbox-app/)
   - [VsCode](https://code.visualstudio.com/download)
   - [PostMan](https://www.getpostman.com/downloads/)
@@ -23,7 +16,7 @@ image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMj
   - [SourceTree](https://www.sourcetreeapp.com/)
   - [Iterms2(Zsh, Oh-my-zsh, dracular theme)](https://www.iterm2.com/downloads.html)
 
-- 업무툴
+### 1.2. 업무툴
   - [Alfred4](https://www.alfredapp.com/)
   - [Magnet](https://apps.apple.com/us/app/magnet/id441258766?mt=12)
   - [Spectacle](https://www.spectacleapp.com/)
@@ -34,42 +27,10 @@ image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMj
 
 
 
-## 각종 플러그인 추천
-
-- Intellij Plugin 추천
-  - [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)
-  - [Save Action](https://plugins.jetbrains.com/plugin/7642-save-actions)
-
-- VsCode Plugin 추천
-  - [Atom one dark theme](https://marketplace.visualstudio.com/items?itemName=akamud.vscode-theme-onedark)
-  - [Intellij keybinding](https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings)
-  - [Auto close tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
-  - [Auto Import](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport)
-  - [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
-  - [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
-  - [Indenticator](https://marketplace.visualstudio.com/items?itemName=SirTori.indenticator)
-  - [Output colorizer](https://marketplace.visualstudio.com/items?itemName=IBM.output-colorizer)
-  - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-  - [Material icon theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
-  - [Vscode-styld-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
-  - [todo highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)
-  - [Node.js extension pack](https://marketplace.visualstudio.com/items?itemName=waderyan.nodejs-extension-pack)
-  - [React extension pack](https://marketplace.visualstudio.com/items?itemName=jawandarajbir.react-vscode-extension-pack)
-
-- 크롬 플러그인
-  - [JsonFormatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
-  - [Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc)
-  - [Momentum](https://chrome.google.com/webstore/detail/momentum/laookkfknpbbblfpciffpaejjkokdgca)
-  - [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg)
-  - [Google translate](https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb)
-
-  
 
 
 
-
-
-## Zsh 설치
+## 2. Zsh 설치
 
 homebrew  & nodejs 설치
 
@@ -96,7 +57,7 @@ $ brew cask install font-hack-nerd-font
 $ curl -sLf https://spacevim.org/install.sh | bash
 ```
 
-## Zsh 플러그인 설치 
+## 3. Zsh 플러그인 설치 
 
 autosuggesstion (자동완성)
 
@@ -113,25 +74,17 @@ plugins=(
 )
 ```
 
->  주의해야 할 사항은 `,` delimiter 를 [사용하지 말라고 권고합니다.](https://github.com/ohmyzsh/ohmyzsh/issues/7728).`source ~/.zshrc`를 적용하고, 재 실행시키면 자동완성됩니다!
+ 주의해야 할 사항은 `,` delimiter 를 [사용하지 말라고 권고합니다.](https://github.com/ohmyzsh/ohmyzsh/issues/7728).`source ~/.zshrc`를 적용하고, 재 실행시키면 자동완성됩니다!
 
 
-
-
-
-
-
-# 2. 소소한 팁들
-
-## [키변환] 한/영키 > 오른쪽 command키로 변경하는 방법
+## 4. [키변환] 한/영키 > 오른쪽 command키로 변경하는 방법
 
 1. [karabiner 설치](https://pqrs.org/osx/karabiner/)
 2. Simple modifications 탭에서 right_command - f18로 추가
 3. System Preference - Keyboard - 단축키 탭 - 입력소스 - 이전소스 입력을 (right command) 키로 변경
 
 
-
-## github ssh키 등록
+## 5. github ssh키 등록
 
 - `ssh-keygen -t rsa` 를 통해서 ssh key를 만든다.
 - `cat ~/.ssh/id_psa.pub` 을 통해서 퍼블릭키를 복사한다.
@@ -139,7 +92,7 @@ plugins=(
 
 
 
-## 회사 이메일 계정이랑, 개인 계정 함께 사용하기 
+## 6. 회사 이메일 계정이랑, 개인 계정 함께 사용하기 
 
 > IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 분리해서 사용한다.
 
@@ -170,7 +123,7 @@ gitconfig default 설정은 회사걸로 하고, 내 개인 프로젝트는 `~/w
 
 
 
-## vscode `code .` 설치
+## 7. vscode `code .` 설치
 
 - vs code 실행
 - shell command: `install code` 설치
@@ -179,4 +132,36 @@ gitconfig default 설정은 회사걸로 하고, 내 개인 프로젝트는 `~/w
 
 
 
+
+
+## 8. 플러그인 추천
+
+- Intellij Plugin 추천
+  - [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)
+  - [Save Action](https://plugins.jetbrains.com/plugin/7642-save-actions)
+
+- VsCode Plugin 추천
+  - [Atom one dark theme](https://marketplace.visualstudio.com/items?itemName=akamud.vscode-theme-onedark)
+  - [Intellij keybinding](https://marketplace.visualstudio.com/items?itemName=k--kato.intellij-idea-keybindings)
+  - [Auto close tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+  - [Auto Import](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport)
+  - [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
+  - [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
+  - [Indenticator](https://marketplace.visualstudio.com/items?itemName=SirTori.indenticator)
+  - [Output colorizer](https://marketplace.visualstudio.com/items?itemName=IBM.output-colorizer)
+  - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+  - [Material icon theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
+  - [Vscode-styld-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+  - [todo highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)
+  - [Node.js extension pack](https://marketplace.visualstudio.com/items?itemName=waderyan.nodejs-extension-pack)
+  - [React extension pack](https://marketplace.visualstudio.com/items?itemName=jawandarajbir.react-vscode-extension-pack)
+
+- 크롬 플러그인
+  - [JsonFormatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
+  - [Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc)
+  - [Momentum](https://chrome.google.com/webstore/detail/momentum/laookkfknpbbblfpciffpaejjkokdgca)
+  - [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg)
+  - [Google translate](https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb)
+
+  
 

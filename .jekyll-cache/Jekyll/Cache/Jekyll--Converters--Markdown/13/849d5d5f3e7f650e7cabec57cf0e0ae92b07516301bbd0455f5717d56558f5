@@ -1,13 +1,13 @@
-I"�F<h1 id="실무에서-필요한jpa---엔티티-매핑2">실무에서 필요한JPA - 엔티티 매핑(2)</h1>
+I">G<h1 id="실무에서-필요한jpa---엔티티-매핑2">실무에서 필요한JPA - 엔티티 매핑(2)</h1>
 
-<h2 id="학습목표">학습목표</h2>
+<h2 id="1-학습목표">1. 학습목표</h2>
 
 <ul>
   <li>JPA의 핵심 엔티티와 테이블을 매핑하는 방법에대해서배운다.</li>
   <li>다양한 매핑을 학습한다.</li>
 </ul>
 
-<h2 id="들어가며">들어가며</h2>
+<h2 id="2-들어가며">2. 들어가며</h2>
 
 <ul>
   <li>JPA를 사용하는 데  가장 중요한 일은 엔티티와 테이블을 정확히 매핑하는것</li>
@@ -21,7 +21,7 @@
   </li>
 </ul>
 
-<h2 id="entity">@Entity</h2>
+<h2 id="3-entity">3. @Entity</h2>
 
 <ul>
   <li>JPA를 사용해서 테이블과 매핑할 클래스는 @Enitty 어노테이션을 필수로 붙여야 한다. @Entity 가 붙은 클래스는 JPA가 관리하는것으로 엔티티라 부른다.</li>
@@ -39,13 +39,13 @@
   </li>
 </ul>
 
-<h2 id="table">@Table</h2>
+<h2 id="4-table">4. @Table</h2>
 
 <ul>
   <li>엔티티와 매핑할 테이블을 지정한다. 생략하면 매핑한 엔티티 이름을 테이블 이름으로 사용한다.</li>
 </ul>
 
-<h2 id="다양한매핑-사용">다양한매핑 사용</h2>
+<h2 id="5-다양한매핑-사용">5. 다양한매핑 사용</h2>
 
 <ul>
   <li>@Enumerated(EnumType.STRING): enum을 사용한다.</li>
@@ -53,7 +53,7 @@
   <li>@Lob: 데이터베이스의 VARCHAR 타입대신 CLOB 타입을 저장해야 한다. @Lob를 사용하면 CLOB, BLOB 타입을 매핑할 수 있다.</li>
 </ul>
 
-<h2 id="데이터베이스-스키마-자동생성">데이터베이스 스키마 자동생성</h2>
+<h2 id="6-데이터베이스-스키마-자동생성">6. 데이터베이스 스키마 자동생성</h2>
 
 <ul>
   <li>JPA는 데이터베이스 스키마를 자동으로 생성하는 기능을 지원한다.</li>
@@ -62,7 +62,7 @@
   <li>개발환경이나 매핑을 어떻게 해야 하는지 참고하는 정도로만 사용하자. 운영환경에서는 사용하지 않는다.⚠️</li>
 </ul>
 
-<h2 id="ddl생성기능">DDL생성기능</h2>
+<h2 id="7-ddl생성기능">7. DDL생성기능</h2>
 
 <ul>
   <li>회원이름은 필수이고, 10자를 초과하면 안되는 제약조건을 추가하는 경우</li>
@@ -93,7 +93,7 @@
   <li>이 기능들은 DDL을 자동으로 생성할 때만 사용되고, JPA 실행로직에 영향을 주지 않는다. 직접 DDL를 만드는 경우 굳이 필요하지 않다. 하지만, 애플리케이션을 통해서 제약조건을 한눈에 확인할 수 있다는 장점도 있다.</li>
 </ul>
 
-<h2 id="기본-키-매핑">기본 키 매핑</h2>
+<h2 id="8-기본-키-매핑">8. 기본 키 매핑</h2>
 
 <ul>
   <li>JPA가 제공하는 데이터베이스 기본키 생성 전략
@@ -111,7 +111,7 @@
   </li>
 </ul>
 
-<h3 id="기본키-직접-할당-전략">기본키 직접 할당 전략</h3>
+<h3 id="81-기본키-직접-할당-전략">8.1. 기본키 직접 할당 전략</h3>
 
 <ul>
   <li>@Id에 적용가능한 타입
@@ -127,7 +127,7 @@
 <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">board</span><span class="o">);</span>
 </code></pre></div></div>
 
-<h3 id="identity-전략">IDENTITY 전략</h3>
+<h3 id="82-identity-전략">8.2. IDENTITY 전략</h3>
 
 <ul>
   <li>기본키 생성을 데이터베이스에 위임하는 전략.</li>
@@ -142,7 +142,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="sequence-전략">SEQUENCE 전략</h3>
+<h3 id="83-sequence-전략">8.3. SEQUENCE 전략</h3>
 
 <ul>
   <li>시퀀스를 지원하는 오라클, PostgreSQL, DB2, H2 데이터베이스에서 사용할 수 있다.</li>
@@ -166,7 +166,7 @@
   <li>SEQUENCE 전략은 emp.persist()를 호출할 때 먼저 데이터베이스 시퀀스를 사용해서 식별자를 조회한다. 조회한 식별자를 엔티티에 할당한 후에 엔티티를 영속성 컨텍스트에 저장한다. 이후 트랜잭션을 커밋해서 플러시가 일어나면 엔티티를 데이터베이스에 저장한다. 반대로 IDENTITY 전략은 먼저 엔티티를 데이터베이스에 저장한 후에 식별자를 조회해서 엔티티의 식별자에 할당한다.</li>
 </ul>
 
-<h3 id="table전략">TABLE전략</h3>
+<h3 id="84-table전략">8.4. TABLE전략</h3>
 
 <ul>
   <li>키 생성 전용 테이블을 하나 만들고 여기에 이름과 값으로 사용할 컬럼을 만들어 데이터베이스 시퀀스를 흉내내는 전략이다. 이 전략은 테이블을 사용하므로 모든 데이터베이스에 적용할 수 있다.</li>
@@ -184,7 +184,7 @@
   <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
 </code></pre></div></div>
 
-<h3 id="auto-전략">AUTO 전략</h3>
+<h3 id="85-auto-전략">8.5. AUTO 전략</h3>
 
 <ul>
   <li>데이터베이스의 종류도 많고 기본 키를 만드는 방법도 다양하다. GenerationType.AUTO는 선택한 데이터베이스 방언에 따라 IDENTITY, SEQUENCE, TABLE 전략중 하나를 자동으로 선택한다.</li>
@@ -192,7 +192,7 @@
   <li>AUTO를 사용할때 SEQUENCE나 TABLE 전략이 선택되면 <code class="language-plaintext highlighter-rouge">시퀀스</code>나 <code class="language-plaintext highlighter-rouge">키 생성용 테이블</code>을 미리 만들어야 한다. 만약 스키마 자동생성을 사용한다면, 하이버네이트가 기본값을 사용해서 적절한 시퀀스나 키 생성용 테이블을 만들어 줄 것이다.</li>
 </ul>
 
-<h3 id="기본키-매핑-정리">기본키 매핑 정리</h3>
+<h3 id="86-기본키-매핑-정리">8.6. 기본키 매핑 정리</h3>
 
 <ul>
   <li>직접 할당: em.persist()를 호출기 전에 직접 식별자 값을 할당해야 한다. 없으면 예외가 발생한다.</li>
@@ -201,16 +201,16 @@
   <li>TABLE: 데이터베이스 시퀀스 생성용 테이블에서 식별자 값을 획득한 후, 영속성 컨텍스트에 저장한다.</li>
 </ul>
 
-<h2 id="필드와-컬럼-매핑-레퍼런스">필드와 컬럼 매핑: 레퍼런스</h2>
+<h2 id="9-필드와-컬럼-매핑-레퍼런스">9. 필드와 컬럼 매핑: 레퍼런스</h2>
 
-<h3 id="column">@Column</h3>
+<h3 id="91-column">9.1. @Column</h3>
 
 <ul>
   <li>객체 필드를 테이블 컬럼에 매핑한다.</li>
   <li>insertable, updatable 속성은 데이터베이스에 저장되어 있는 정보를 읽기만 하고 변경하는 것을 방지하고 싶을때 사용한다.</li>
 </ul>
 
-<h3 id="enumerated">@Enumerated</h3>
+<h3 id="92-enumerated">9.2. @Enumerated</h3>
 
 <ul>
   <li>자바의 enum 타입을 매핑할 때 사용한다.</li>
@@ -237,7 +237,7 @@
   enum이 하나 추가된 경우, 순서가 변경될 수 있기 때문에. 무조건 EnumType.STRING 으로 사용한다.</p>
 </blockquote>
 
-<h3 id="temporal">@Temporal</h3>
+<h3 id="93-temporal">9.3. @Temporal</h3>
 
 <ul>
   <li>자바의 날짜 타입을 매핑할때 사용한다.</li>
@@ -258,7 +258,7 @@
   <li><strong>자바8에서 지원하는 LocalDate, LocalDateTime을 사용할때는 생략 가능하다.(하이버네이트 지원)</strong></li>
 </ul>
 
-<h3 id="lob">@Lob</h3>
+<h3 id="94-lob">9.4. @Lob</h3>
 
 <ul>
   <li>@Lob에는 속성이 없다. 대신 매핑할 필드 타입이 문자면 CLOB으로 나머지는 BLOB으로 매핑한다.
@@ -269,13 +269,13 @@
   </li>
 </ul>
 
-<h3 id="transient">@Transient</h3>
+<h3 id="95-transient">9.5. @Transient</h3>
 
 <ul>
   <li>이 필드는 매핑하지 않는다. 데이터베이스에 저장하지 않고, 조회하지도 않는다. 객체에 임시로 어떤 값을 보관하고 싶을 때 사용한다.</li>
 </ul>
 
-<h3 id="access">@Access✅</h3>
+<h3 id="96-access">9.6. @Access✅</h3>
 
 <ul>
   <li>JPA가 엔티티 데이터에 접근하는 방식을 지정한다.
@@ -287,7 +287,7 @@
   <li>@Access를 설정하지 않으면 @Id의 위치를 기준으로 접근방식이 설정된다.</li>
 </ul>
 
-<h2 id="정리">정리</h2>
+<h2 id="10-정리">10. 정리</h2>
 
 <ul>
   <li>데이터베이스 스키마 자동생성 기능을 사용하면, 엔티티 객체를 먼저 만들고 테이블은 자동으로 생성할 수 있다.</li>
