@@ -1,0 +1,30 @@
+I"4<p>Java 배열을 reverOrder정렬 하는 방법</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//기본 정렬</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">arraySort</span><span class="o">(){</span>
+  <span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">5</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">3</span><span class="o">};</span>
+
+  <span class="c1">//순차 정렬</span>
+  <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">intArray</span><span class="o">);</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray</span><span class="o">));</span> <span class="c1">// [1,2,3,4,5]</span>
+
+  <span class="c1">// reverse 정렬</span>
+  <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">intArray</span><span class="o">,</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">reverseOrder</span><span class="o">());</span> <span class="c1">//컴파일 에러</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>알고리즘 문제를 풀다가, int[] 배열을 reverse 정렬해야하는 상황이 있었는데, 당연히 10번라인 처럼 코딩하면 될줄 알았는데, 다음과 같이 컴파일 에러가 발생했다.</p>
+
+<p><img src="/images/reverseOrder.png" alt="" /></p>
+
+<p>인텔리J의 도움을 받아서 해석해보니, sort 메서드의 첫번째 인자가 T[] 이걸 필요로 하고, 발견된건 int[] 타입이라서 그런다고 한다. 해결책을 찾아보니</p>
+
+<p>int[] -&gt; Integer[] 로 변환 시키면, 해당 함수를 사용할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">integerArray</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">intArray</span><span class="o">).</span><span class="na">boxed</span><span class="o">().</span><span class="na">toArray</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+
+<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">integerArray</span><span class="o">,</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">reverseOrder</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray</span><span class="o">));</span>  <span class="o">[</span><span class="mi">5</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="o">]</span>
+</code></pre></div></div>
+:ET
