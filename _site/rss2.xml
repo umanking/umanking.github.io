@@ -5,8 +5,8 @@
     <description>Java, Spring development blog</description>
     <link>https://umanking.github.io/</link>
     <atom:link href="https://umanking.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 26 Jun 2021 06:32:39 +0900</pubDate>
-    <lastBuildDate>Sat, 26 Jun 2021 06:32:39 +0900</lastBuildDate>
+    <pubDate>Sat, 26 Jun 2021 06:43:03 +0900</pubDate>
+    <lastBuildDate>Sat, 26 Jun 2021 06:43:03 +0900</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -102,7 +102,25 @@
     
       <item>
         <title>JPA - 값 타입(6)</title>
-        <description>&lt;h1 id=&quot;실무에서-필요한jpa---값타입6&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/h1&gt;
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;본 글은, &lt;a href=&quot;http://www.yes24.com/Product/Goods/19040233&quot;&gt;자바 ORM 표준 JPA 프로그래밍(김영한님)&lt;/a&gt; 책을 요약 정리한 포스팅입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-persistence-context&quot;&gt;실무에서 필요한JPA - 영속성 관리(1)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-entity-mapping&quot;&gt;실무에서 필요한JPA - 엔티티 매핑(2)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-basic-releation-mapping&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-advanced-releation-mapping&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-proxy&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-value-type&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 객체지향 쿼리(7)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 스프링 데이터 JPA(8)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 컬렉션과 부가기능(9)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 고급주제와 성능 최적화(10)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 트랜잭션과 락 2차 캐시(11)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;실무에서-필요한jpa---값타입6&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/h1&gt;
 
 &lt;h2 id=&quot;1-들어가며&quot;&gt;1. 들어가며&lt;/h2&gt;
 
@@ -139,10 +157,8 @@
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GenetratedValue&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 기본 값타입&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 기본 값타입&lt;/span&gt;
   
+  &lt;span class=&quot;c1&quot;&gt;// 임베디드 타입&lt;/span&gt;
   &lt;span class=&quot;nd&quot;&gt;@Embedded&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Address&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -259,7 +275,25 @@
     
       <item>
         <title>JPA - 프록시와 연관관계(5)</title>
-        <description>&lt;h1 id=&quot;실무에서-필요한jpa---프록시와-연관관계5&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/h1&gt;
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;본 글은, &lt;a href=&quot;http://www.yes24.com/Product/Goods/19040233&quot;&gt;자바 ORM 표준 JPA 프로그래밍(김영한님)&lt;/a&gt; 책을 요약 정리한 포스팅입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-persistence-context&quot;&gt;실무에서 필요한JPA - 영속성 관리(1)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-entity-mapping&quot;&gt;실무에서 필요한JPA - 엔티티 매핑(2)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-basic-releation-mapping&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-advanced-releation-mapping&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-proxy&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-value-type&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 객체지향 쿼리(7)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 스프링 데이터 JPA(8)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 컬렉션과 부가기능(9)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 고급주제와 성능 최적화(10)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 트랜잭션과 락 2차 캐시(11)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;실무에서-필요한jpa---프록시와-연관관계5&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/h1&gt;
 
 &lt;h2 id=&quot;1-프록시&quot;&gt;1. 프록시&lt;/h2&gt;
 
@@ -708,7 +742,25 @@ sprIng,SPRING
     
       <item>
         <title>JPA - 다양한 연관관계 매핑(4)</title>
-        <description>&lt;h1 id=&quot;실무에서-필요한jpa---다양한-연관관계매핑4&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/h1&gt;
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;본 글은, &lt;a href=&quot;http://www.yes24.com/Product/Goods/19040233&quot;&gt;자바 ORM 표준 JPA 프로그래밍(김영한님)&lt;/a&gt; 책을 요약 정리한 포스팅입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-persistence-context&quot;&gt;실무에서 필요한JPA - 영속성 관리(1)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-entity-mapping&quot;&gt;실무에서 필요한JPA - 엔티티 매핑(2)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-basic-releation-mapping&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-advanced-releation-mapping&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-proxy&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-value-type&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 객체지향 쿼리(7)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 스프링 데이터 JPA(8)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 컬렉션과 부가기능(9)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 고급주제와 성능 최적화(10)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 트랜잭션과 락 2차 캐시(11)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;실무에서-필요한jpa---다양한-연관관계매핑4&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/h1&gt;
 
 &lt;h2 id=&quot;1-들어가며&quot;&gt;1. 들어가며&lt;/h2&gt;
 
@@ -1222,7 +1274,25 @@ sprIng,SPRING
     
       <item>
         <title>JPA - 연관관계 매핑(기초)(3)</title>
-        <description>&lt;h1 id=&quot;실무에서-필요한jpa---연관관계-매핑기초3&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/h1&gt;
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;본 글은, &lt;a href=&quot;http://www.yes24.com/Product/Goods/19040233&quot;&gt;자바 ORM 표준 JPA 프로그래밍(김영한님)&lt;/a&gt; 책을 요약 정리한 포스팅입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-persistence-context&quot;&gt;실무에서 필요한JPA - 영속성 관리(1)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-entity-mapping&quot;&gt;실무에서 필요한JPA - 엔티티 매핑(2)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-basic-releation-mapping&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-advanced-releation-mapping&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-proxy&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-value-type&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 객체지향 쿼리(7)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 스프링 데이터 JPA(8)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 컬렉션과 부가기능(9)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 고급주제와 성능 최적화(10)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 트랜잭션과 락 2차 캐시(11)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;실무에서-필요한jpa---연관관계-매핑기초3&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/h1&gt;
 
 &lt;h2 id=&quot;1-학습목표&quot;&gt;1. 학습목표&lt;/h2&gt;
 
@@ -1469,7 +1539,25 @@ sprIng,SPRING
     
       <item>
         <title>JPA - 엔티티 매핑(2)</title>
-        <description>&lt;h1 id=&quot;실무에서-필요한jpa---엔티티-매핑2&quot;&gt;실무에서 필요한JPA - 엔티티 매핑(2)&lt;/h1&gt;
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;본 글은, &lt;a href=&quot;http://www.yes24.com/Product/Goods/19040233&quot;&gt;자바 ORM 표준 JPA 프로그래밍(김영한님)&lt;/a&gt; 책을 요약 정리한 포스팅입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-persistence-context&quot;&gt;실무에서 필요한JPA - 영속성 관리(1)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-entity-mapping&quot;&gt;실무에서 필요한JPA - 엔티티 매핑(2)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-basic-releation-mapping&quot;&gt;실무에서 필요한JPA - 연관관계 매핑(기초)(3)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/19/jpa-summary-advanced-releation-mapping&quot;&gt;실무에서 필요한JPA - 다양한 연관관계매핑(4)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-proxy&quot;&gt;실무에서 필요한JPA - 프록시와 연관관계(5)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2021/06/20/jpa-summary-value-type&quot;&gt;실무에서 필요한JPA - 값타입(6)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 객체지향 쿼리(7)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 스프링 데이터 JPA(8)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 컬렉션과 부가기능(9)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 고급주제와 성능 최적화(10)&lt;/li&gt;
+  &lt;li&gt;실무에서 필요한JPA - 트랜잭션과 락 2차 캐시(11)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;실무에서-필요한jpa---엔티티-매핑2&quot;&gt;실무에서 필요한JPA - 엔티티 매핑(2)&lt;/h1&gt;
 
 &lt;h2 id=&quot;1-학습목표&quot;&gt;1. 학습목표&lt;/h2&gt;
 

@@ -272,7 +272,25 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-      <h1 id="실무에서-필요한jpa---값타입6">실무에서 필요한JPA - 값타입(6)</h1>
+      <blockquote>
+  <p>본 글은, <a href="http://www.yes24.com/Product/Goods/19040233">자바 ORM 표준 JPA 프로그래밍(김영한님)</a> 책을 요약 정리한 포스팅입니다.</p>
+</blockquote>
+
+<ul>
+  <li><a href="/2021/06/19/jpa-summary-persistence-context">실무에서 필요한JPA - 영속성 관리(1)</a></li>
+  <li><a href="/2021/06/19/jpa-summary-entity-mapping">실무에서 필요한JPA - 엔티티 매핑(2)</a></li>
+  <li><a href="/2021/06/19/jpa-summary-basic-releation-mapping">실무에서 필요한JPA - 연관관계 매핑(기초)(3)</a></li>
+  <li><a href="/2021/06/19/jpa-summary-advanced-releation-mapping">실무에서 필요한JPA - 다양한 연관관계매핑(4)</a></li>
+  <li><a href="/2021/06/20/jpa-summary-proxy">실무에서 필요한JPA - 프록시와 연관관계(5)</a></li>
+  <li><a href="/2021/06/20/jpa-summary-value-type">실무에서 필요한JPA - 값타입(6)</a></li>
+  <li>실무에서 필요한JPA - 객체지향 쿼리(7)</li>
+  <li>실무에서 필요한JPA - 스프링 데이터 JPA(8)</li>
+  <li>실무에서 필요한JPA - 컬렉션과 부가기능(9)</li>
+  <li>실무에서 필요한JPA - 고급주제와 성능 최적화(10)</li>
+  <li>실무에서 필요한JPA - 트랜잭션과 락 2차 캐시(11)</li>
+</ul>
+
+<h1 id="실무에서-필요한jpa---값타입6">실무에서 필요한JPA - 값타입(6)</h1>
 
 <h2 id="1-들어가며">1. 들어가며</h2>
 
@@ -309,10 +327,8 @@
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
   <span class="nd">@Id</span> <span class="nd">@GenetratedValue</span>
   <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-
-  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>  <span class="c1">// 기본 값타입</span>
-  <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>   <span class="c1">// 기본 값타입</span>
   
+  <span class="c1">// 임베디드 타입</span>
   <span class="nd">@Embedded</span> <span class="nc">Address</span> <span class="n">address</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
