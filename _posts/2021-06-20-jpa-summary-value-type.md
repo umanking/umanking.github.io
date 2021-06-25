@@ -4,6 +4,20 @@ title: JPA - 값 타입(6)
 date: 2021-06-20 17:04 +0900
 tags: [jpa, orm]
 ---
+> 본 글은, [자바 ORM 표준 JPA 프로그래밍(김영한님)](http://www.yes24.com/Product/Goods/19040233) 책을 요약 정리한 포스팅입니다.
+
+- [실무에서 필요한JPA - 영속성 관리(1)]({% post_url 2021-06-19-jpa-summary-persistence-context %})
+- [실무에서 필요한JPA - 엔티티 매핑(2)]({% post_url 2021-06-19-jpa-summary-entity-mapping %})
+- [실무에서 필요한JPA - 연관관계 매핑(기초)(3)]({% post_url 2021-06-19-jpa-summary-basic-releation-mapping %})
+- [실무에서 필요한JPA - 다양한 연관관계매핑(4)]({% post_url 2021-06-19-jpa-summary-advanced-releation-mapping %})
+- [실무에서 필요한JPA - 프록시와 연관관계(5)]({% post_url 2021-06-20-jpa-summary-proxy %})
+- [실무에서 필요한JPA - 값타입(6)]({% post_url 2021-06-20-jpa-summary-value-type %})
+- 실무에서 필요한JPA - 객체지향 쿼리(7)
+- 실무에서 필요한JPA - 스프링 데이터 JPA(8)
+- 실무에서 필요한JPA - 컬렉션과 부가기능(9)
+- 실무에서 필요한JPA - 고급주제와 성능 최적화(10)
+- 실무에서 필요한JPA - 트랜잭션과 락 2차 캐시(11)
+
 # 실무에서 필요한JPA - 값타입(6)
 
 ## 1. 들어가며 
@@ -37,10 +51,8 @@ public class Member {
 public class Member {
   @Id @GenetratedValue
   private Long id;
-
-  private String name;  // 기본 값타입
-  private int age;   // 기본 값타입
   
+  // 임베디드 타입
   @Embedded Address address;
 }
 ```
