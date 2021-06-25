@@ -255,6 +255,123 @@
     
     <div class="article__content">
       <h2 class="article__title">
+        <a href="/2019/04/12/jpa-audit">[JPA] Audit 사용하기</a>
+      </h2>
+      <p class="article__excerpt">
+        오늘은 Spring Data JPA가 제공하는 Audit 기능을 알아보자. Audit은 주로 DB값이 변경했을 때 누가 값을 변경했고, 언제 변경했는지 Audit(감사)하는 용도로 사용한다. Spring Data JPA...
+      </p>
+      <div class="article__meta">
+        <a href="/about/" class="article__author-link">GeonGuk</a>
+        <span class="article__date"><time datetime="2019-04-12T18:09:31+09:00">12 Apr 2019</time></span>
+        
+        <div class="article-tags__box">
+          
+            <a href="/tag/jpa" class="article__tag">jpa</a>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+            
+              <div class="article col col-4 col-d-6 col-t-12">
+  <div class="article__inner">
+    
+    <div class="article__content">
+      <h2 class="article__title">
+        <a href="/2019/04/12/jpa-transactional">[JPA]@Transactional를 통한 Optimization</a>
+      </h2>
+      <p class="article__excerpt">
+        Spring Data Jpa에서 제공하는 JpaRepository의 구현체인 SimpleJpaReposity의 @Transactional을 어떻게 사용하는지 살펴보고, 실제 우리 서비스에서 어떻게 적용하면 좋을지에 대해...
+      </p>
+      <div class="article__meta">
+        <a href="/about/" class="article__author-link">GeonGuk</a>
+        <span class="article__date"><time datetime="2019-04-12T18:09:13+09:00">12 Apr 2019</time></span>
+        
+        <div class="article-tags__box">
+          
+            <a href="/tag/jpa" class="article__tag">jpa</a>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+            
+              <div class="article col col-4 col-d-6 col-t-12">
+  <div class="article__inner">
+    
+    <div class="article__content">
+      <h2 class="article__title">
+        <a href="/2019/04/12/jpa-projection">[JPA] 엔티티 일부 데이터만 조회하는 Projection</a>
+      </h2>
+      <p class="article__excerpt">
+        
+  JPA를 사용해서 엔티티의 일부 데이터만 가져오는 Projection에 대해서 알아보자.
+
+
+@Data
+@Entity
+@Table
+public class Comment {
+
+    @Id
+    @Generated...
+      </p>
+      <div class="article__meta">
+        <a href="/about/" class="article__author-link">GeonGuk</a>
+        <span class="article__date"><time datetime="2019-04-12T18:08:56+09:00">12 Apr 2019</time></span>
+        
+        <div class="article-tags__box">
+          
+            <a href="/tag/jpa" class="article__tag">jpa</a>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+            
+              <div class="article col col-4 col-d-6 col-t-12">
+  <div class="article__inner">
+    
+    <div class="article__content">
+      <h2 class="article__title">
+        <a href="/2019/04/12/jpa-persist-merge">[JPA] save()메서드로 살펴보는 persist와 merge 개념</a>
+      </h2>
+      <p class="article__excerpt">
+        
+  JpaRepository의 구현체 SimpleJpaRepository에서 save()메서드가 내부적으로 어떻게 동작하는지 알아보자.
+
+
+
+SimpleJpaRepository의 save() 메서드
+
+    @Tran...
+      </p>
+      <div class="article__meta">
+        <a href="/about/" class="article__author-link">GeonGuk</a>
+        <span class="article__date"><time datetime="2019-04-12T18:08:33+09:00">12 Apr 2019</time></span>
+        
+        <div class="article-tags__box">
+          
+            <a href="/tag/jpa" class="article__tag">jpa</a>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+            
+              <div class="article col col-4 col-d-6 col-t-12">
+  <div class="article__inner">
+    
+    <div class="article__content">
+      <h2 class="article__title">
         <a href="/2019/04/12/jpa-query-method-lookup-stratege">[JPA] 쿼리메서드(Lookup 전략)</a>
       </h2>
       <p class="article__excerpt">
@@ -408,120 +525,6 @@ JPA 연관관계 매핑중, 실무에서 가장 많이 쓰이는 1:N (일대다)
   </div>
 </div>
             
-              <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-    
-    <div class="article__content">
-      <h2 class="article__title">
-        <a href="/2019/04/12/jpa-proxy">[JPA] proxy, fetch 전략</a>
-      </h2>
-      <p class="article__excerpt">
-        1. 들어가며
-
-프록시의 기본과, JPA에서 fetch 전략이 어떤 것들이 있는 지 알아보자.
-
-프록시 기초
-
-PA에서 식별자로 엔티티 하나를 조회할 때 EntityManager.find()를 사용한다. 이 메서드는 영...
-      </p>
-      <div class="article__meta">
-        <a href="/about/" class="article__author-link">GeonGuk</a>
-        <span class="article__date"><time datetime="2019-04-12T18:04:42+09:00">12 Apr 2019</time></span>
-        
-        <div class="article-tags__box">
-          
-            <a href="/tag/jpa" class="article__tag">jpa</a>
-          
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-            
-              <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-    
-    <div class="article__content">
-      <h2 class="article__title">
-        <a href="/2019/04/12/jpa-domain-class-converter">[JPA] 도메인 클래스 컨버터란?</a>
-      </h2>
-      <p class="article__excerpt">
-        
-  도메인 클래스 컨버터에 대해서 알아보자.
-
-
-도메인 클래스 컨버터는 Spring Data Jpa를 사용하게 되면 Common 프로젝트에 있는 클래스 인데, 간단하게, id-&gt; 엔티티 타입으로 변환 해주거나, ...
-      </p>
-      <div class="article__meta">
-        <a href="/about/" class="article__author-link">GeonGuk</a>
-        <span class="article__date"><time datetime="2019-04-12T18:04:25+09:00">12 Apr 2019</time></span>
-        
-        <div class="article-tags__box">
-          
-            <a href="/tag/jpa" class="article__tag">jpa</a>
-          
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-            
-              <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-    
-    <div class="article__content">
-      <h2 class="article__title">
-        <a href="/2019/04/12/jpa-custom-repository">[JPA] Custom Repository 만들기</a>
-      </h2>
-      <p class="article__excerpt">
-        기존의 JpaRepository를 상속받아서 기본적인 CRUD 기능을 사용할 수 있지만, 내가 1)커스텀하게 만들어서 사용하고 싶은 경우와 이미 JpaReposptry에서 제공하는 메서드를 새롭게 2)오버라이딩해서 사용...
-      </p>
-      <div class="article__meta">
-        <a href="/about/" class="article__author-link">GeonGuk</a>
-        <span class="article__date"><time datetime="2019-04-12T18:03:41+09:00">12 Apr 2019</time></span>
-        
-        <div class="article-tags__box">
-          
-            <a href="/tag/jpa" class="article__tag">jpa</a>
-          
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-            
-              <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-    
-    <div class="article__content">
-      <h2 class="article__title">
-        <a href="/2019/04/12/spring-data-common">[Spring] Spring Data Common 프로젝트 살펴보기</a>
-      </h2>
-      <p class="article__excerpt">
-        
-  Spring Data는 여러 가지 프로젝트로 되어 있다. 그중에서 Common 프로젝트에 대해서 알아보자.
-
-
-Spring Data는 여러개의 프로젝트로 구성되어 있다. 그 중에서 JPA에서 공통으로 사용하는 Co...
-      </p>
-      <div class="article__meta">
-        <a href="/about/" class="article__author-link">GeonGuk</a>
-        <span class="article__date"><time datetime="2019-04-12T18:03:09+09:00">12 Apr 2019</time></span>
-        
-        <div class="article-tags__box">
-          
-            <a href="/tag/spring" class="article__tag">spring</a>
-          
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-            
           
         </div>
       </div>
@@ -586,14 +589,14 @@ Spring Data는 여러개의 프로젝트로 구성되어 있다. 그 중에서 J
     <div class="recent-posts">
       
       <a class="recent-posts__image" href="/2021/06/25/java-file-system">
-        <img class="lazy" data-src="/images/java.png" alt="[Java]File System(BufferedWriter, BufferedReader, Files)">
+        <img class="lazy" data-src="/images/java.png" alt="Java - 파일 입출력(BufferedWriter, BufferedReader, Files)">
       </a>
       
       <div class="recent-posts__content">
         <div class="recent-posts__date">
           <time class="timeago" datetime="2021-06-25T17:13:00+09:00">Jun 25, 2021</time>
         </div>
-        <h4 class="recent-posts__title"><a href="/2021/06/25/java-file-system">[Java]File System(BufferedWriter, BufferedReader, Files)</a></h4>
+        <h4 class="recent-posts__title"><a href="/2021/06/25/java-file-system">Java - 파일 입출력(BufferedWriter, BufferedReader, Files)</a></h4>
       </div>
     </div>
     

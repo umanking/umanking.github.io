@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>[Java]  배열 reverseOrder 하는 방법</title>
+  <title>Java - 배열 reverseOrder 하는 방법</title>
   <meta name='description' content='Java, Spring development blog'>
 
 
@@ -212,7 +212,7 @@
 <section class="hero hero--post">
   <!-- 
   <div class="post__image">
-    <img class="lazy" data-src="" alt="">
+    <img class="lazy" data-src="/images/java.png" alt="">
   </div>
    -->
 
@@ -234,7 +234,7 @@
               
             </div>
 
-            <h1 class="hero__title">[Java]  배열 reverseOrder 하는 방법</h1>
+            <h1 class="hero__title">Java - 배열 reverseOrder 하는 방법</h1>
             <a href="/about/" class="article__author-link"><span>By</span> GeonGuk</a>
 
             
@@ -255,7 +255,7 @@
     <div class="post__content">
       
         <!-- <div class="post__image">
-          <img class="lazy" data-src="" alt="">
+          <img class="lazy" data-src="/images/java.png" alt="">
         </div> -->
       
 
@@ -270,36 +270,34 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-      <blockquote>
-  <p>Java 배열을 reverOrder정렬 하는 방법
-```java
-//기본 정렬
-private void arraySort(){
-  int[] intArray = new int[]{5,4,2,1,3};</p>
-</blockquote>
+      <p>Java 배열을 reverOrder정렬 하는 방법</p>
 
-<p>//순차 정렬
-  Arrays.sort(intArray);
-  System.out.println(Arrays.toString(intArray)); // [1,2,3,4,5]</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//기본 정렬</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">arraySort</span><span class="o">(){</span>
+  <span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">5</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">3</span><span class="o">};</span>
 
-<p>// reverse 정렬
-  Arrays.sort(intArray, Collections.reverseOrder()); //컴파일 에러
-  System.out.println(Arrays.toString(intArray));
-}</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-알고리즘 문제를 풀다가, int[] 배열을 reverse 정렬해야하는 상황이 있었는데, 당연히 10번라인 처럼 코딩하면 될줄 알았는데, 다음과 같이 컴파일 에러가 발생했다.
+  <span class="c1">//순차 정렬</span>
+  <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">intArray</span><span class="o">);</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray</span><span class="o">));</span> <span class="c1">// [1,2,3,4,5]</span>
 
-![](/images/reverseOrder.png)
+  <span class="c1">// reverse 정렬</span>
+  <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">intArray</span><span class="o">,</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">reverseOrder</span><span class="o">());</span> <span class="c1">//컴파일 에러</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
-인텔리J의 도움을 받아서 해석해보니, sort 메서드의 첫번째 인자가 T[] 이걸 필요로 하고, 발견된건 int[] 타입이라서 그런다고 한다. 해결책을 찾아보니
+<p>알고리즘 문제를 풀다가, int[] 배열을 reverse 정렬해야하는 상황이 있었는데, 당연히 10번라인 처럼 코딩하면 될줄 알았는데, 다음과 같이 컴파일 에러가 발생했다.</p>
 
-int[] -&gt; Integer[] 로 변환 시키면, 해당 함수를 사용할 수 있다.
+<p><img src="/images/reverseOrder.png" alt="" /></p>
 
-```java
-Integer integerArray = Arrays.stream(intArray).boxed().toArray(Integer::new);
+<p>인텔리J의 도움을 받아서 해석해보니, sort 메서드의 첫번째 인자가 T[] 이걸 필요로 하고, 발견된건 int[] 타입이라서 그런다고 한다. 해결책을 찾아보니</p>
 
-Arrays.sort(integerArray, Collections.reverseOrder());
-System.out.println(Arrays.toString(intArray));  [5,4,3,2,1]
+<p>int[] -&gt; Integer[] 로 변환 시키면, 해당 함수를 사용할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">integerArray</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">intArray</span><span class="o">).</span><span class="na">boxed</span><span class="o">().</span><span class="na">toArray</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+
+<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">integerArray</span><span class="o">,</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">reverseOrder</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray</span><span class="o">));</span>  <span class="o">[</span><span class="mi">5</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="o">]</span>
 </code></pre></div></div>
 
     </div>
@@ -313,18 +311,18 @@ System.out.println(Arrays.toString(intArray));  [5,4,3,2,1]
     </li>
 
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=[Java]%20%20%EB%B0%B0%EC%97%B4%20reverseOrder%20%ED%95%98%EB%8A%94%20%EB%B0%A9%EB%B2%95&url=https://umanking.github.io/2019/07/31/java-array-reverse-order"
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=Java%20-%20%EB%B0%B0%EC%97%B4%20reverseOrder%20%ED%95%98%EB%8A%94%20%EB%B0%A9%EB%B2%95&url=https://umanking.github.io/2019/07/31/java-array-reverse-order"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://umanking.github.io/2019/07/31/java-array-reverse-order&title=[Java]%20%20%EB%B0%B0%EC%97%B4%20reverseOrder%20%ED%95%98%EB%8A%94%20%EB%B0%A9%EB%B2%95&summary=&source=GeonGuk"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://umanking.github.io/2019/07/31/java-array-reverse-order&title=Java%20-%20%EB%B0%B0%EC%97%B4%20reverseOrder%20%ED%95%98%EB%8A%94%20%EB%B0%A9%EB%B2%95&summary=&source=GeonGuk"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=https://umanking.github.io/2019/07/31/java-array-reverse-order&amp;media=https://umanking.github.io&amp;description=[Java]%20%20%EB%B0%B0%EC%97%B4%20reverseOrder%20%ED%95%98%EB%8A%94%20%EB%B0%A9%EB%B2%95"
+      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=https://umanking.github.io/2019/07/31/java-array-reverse-order&amp;media=https://umanking.github.io/images/java.png&amp;description=Java%20-%20%EB%B0%B0%EC%97%B4%20reverseOrder%20%ED%95%98%EB%8A%94%20%EB%B0%A9%EB%B2%95"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;" title="Share on Pinterest"
       rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
     </li>
@@ -335,7 +333,7 @@ System.out.println(Arrays.toString(intArray));  [5,4,3,2,1]
   
   <a class="post__prev" href="/2019/07/26/spring-handlerMethodArgumentResolver">
     <div class="prev__image">
-      <img class="lazy" data-src="" alt="[Java]  배열 reverseOrder 하는 방법">
+      <img class="lazy" data-src="" alt="Java - 배열 reverseOrder 하는 방법">
     </div>
     <div class="prev__box">
       <span class="post__nav post__nav__prev">Older post</span>
@@ -345,13 +343,13 @@ System.out.println(Arrays.toString(intArray));  [5,4,3,2,1]
   
 
   
-  <a class="post__next" href="/2019/12/11/jackson-null-property">
+  <a class="post__next" href="/2019/08/25/java-reflection">
     <div class="next__box">
       <span class="post__nav post__nav__next">Newer post</span>
-      <h2 class="post__nav__title">Jackson, null 필드 무시하기</h2>
+      <h2 class="post__nav__title">[Java] Reflection 예제</h2>
     </div>
     <div class="next__image">
-      <img class="lazy" data-src="" alt="[Java]  배열 reverseOrder 하는 방법">
+      <img class="lazy" data-src="/images/java.png" alt="Java - 배열 reverseOrder 하는 방법">
     </div>
   </a>
   
@@ -429,14 +427,14 @@ System.out.println(Arrays.toString(intArray));  [5,4,3,2,1]
     <div class="recent-posts">
       
       <a class="recent-posts__image" href="/2021/06/25/java-file-system">
-        <img class="lazy" data-src="/images/java.png" alt="[Java]File System(BufferedWriter, BufferedReader, Files)">
+        <img class="lazy" data-src="/images/java.png" alt="Java - 파일 입출력(BufferedWriter, BufferedReader, Files)">
       </a>
       
       <div class="recent-posts__content">
         <div class="recent-posts__date">
           <time class="timeago" datetime="2021-06-25T17:13:00+09:00">Jun 25, 2021</time>
         </div>
-        <h4 class="recent-posts__title"><a href="/2021/06/25/java-file-system">[Java]File System(BufferedWriter, BufferedReader, Files)</a></h4>
+        <h4 class="recent-posts__title"><a href="/2021/06/25/java-file-system">Java - 파일 입출력(BufferedWriter, BufferedReader, Files)</a></h4>
       </div>
     </div>
     

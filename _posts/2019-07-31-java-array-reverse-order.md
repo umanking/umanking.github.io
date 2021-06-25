@@ -1,12 +1,13 @@
 ---
 layout: post
-title: "[Java]  배열 reverseOrder 하는 방법"
+title: "Java - 배열 reverseOrder 하는 방법"
 date: 2019-07-31 12:28:33
 categories: [java]
 tags: [java]
+image: '/images/java.png'
 ---
+Java 배열을 reverOrder정렬 하는 방법
 
-> Java 배열을 reverOrder정렬 하는 방법
 ```java
 //기본 정렬
 private void arraySort(){

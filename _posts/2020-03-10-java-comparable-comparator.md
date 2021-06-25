@@ -4,6 +4,7 @@ title: Java Comparable vs Compartor 사용방법
 date: 2020-03-10 08:18 +0900
 categories: [java]
 tags: [java]
+image: '/images/java.png'
 ---
 
 ## 학습 목표
