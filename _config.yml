@@ -17,7 +17,7 @@ author:
 #-------------------------------
 # Hero Settings
 hero:
-  hero__title: Hi, I'm <span class="hero__name">GeonGuk</span>
+  hero__title: Hi, I'm <span class="hero__name">GeonGuk</span>.
   hero__job: Backend Developer💻
   hero__description: Java, Spring Lover💚
   hero__button__text: Read about my past~
