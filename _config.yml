@@ -87,6 +87,7 @@ permalink: /:year/:month/:day/:title
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-feed
   - jekyll/tagging
 
 paginate: 9
