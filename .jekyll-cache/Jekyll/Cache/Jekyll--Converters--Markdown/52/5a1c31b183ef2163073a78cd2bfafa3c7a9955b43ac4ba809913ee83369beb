@@ -1,0 +1,53 @@
+I"X<h2 id="문제점">문제점</h2>
+
+<p>실무에서 AssertJ로 테스트케이스를 작성하는데, 모든 필드값들이 일치하는지 비교하는 코드를 작성한다. 한두개의 필드라면 상관이 없는데, 필드값이 많은 경우에 <code class="language-plaintext highlighter-rouge">빼먹는 경우도 생기고</code>, 무엇보다도 <code class="language-plaintext highlighter-rouge">동일한 형태의 코드 중복</code>이 발생한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Account</span> <span class="n">actual</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">,</span> <span class="mi">32</span><span class="o">);</span>
+  <span class="nc">Account</span> <span class="n">expected</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">,</span> <span class="mi">32</span><span class="o">);</span>  
+  
+  <span class="c1">// 모든 필드를 비교해야 한다</span>
+  <span class="n">assertThat</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">isEuqualTo</span><span class="o">(</span><span class="n">expected</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+  <span class="n">assertThat</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getAge</span><span class="o">()).</span><span class="na">isEuqualTo</span><span class="o">(</span><span class="n">expected</span><span class="o">.</span><span class="na">getAge</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="해결책">해결책</h2>
+
+<p>혹시나 하는 마음에 찾아봤는데, 있었다. <code class="language-plaintext highlighter-rouge">usingRecursiveComparision()</code> 해당 메서드를 이용하면 재귀적으로 객체의 필드값 항목들을 비교한다.  여기서 추가적으로 Id값이 존재하는 객체인경우에, 해당 필드값은 무시하고 싶은 경우가 있는데 이경우에는 <code class="language-plaintext highlighter-rouge">ignoreFields(String... fieldsToIgnore)</code>에 해당 필드값을 추가할 수 있다.</p>
+
+<blockquote>
+  <ul>
+    <li>무시하고 싶은 필드를 직접 추가할 수도 있고  ignoringFields(String… fieldsToIgnore)</li>
+    <li>무시하고 싶은 필드를 정규표현식으로  ignoreFieldsMatchingRegexes(String… regexes)</li>
+    <li>무시하고 싶은 필드를 타입으로 ignoringFieldsOfTypes(Class… typesToIgnore)</li>
+  </ul>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Account</span> <span class="n">actual</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">(</span><span class="mi">1L</span><span class="o">,</span> <span class="s">"andrew"</span><span class="o">,</span> <span class="mi">32</span><span class="o">);</span>
+  <span class="nc">Account</span> <span class="n">expected</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">(</span><span class="mi">2L</span><span class="o">,</span> <span class="s">"andrew"</span><span class="o">,</span> <span class="mi">32</span><span class="o">);</span>  
+  
+  <span class="n">assertThat</span><span class="o">(</span><span class="n">actual</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">usingRecursiveComparison</span><span class="o">(</span><span class="s">"id"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">isEuqualTo</span><span class="o">(</span><span class="n">expected</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="맺음말">맺음말</h2>
+
+<ul>
+  <li>시간나면 AssertJ 문서보면서 어떤 메서드들이 있는지 살펴보는게 좋을것 같다.
+    <ul>
+      <li>Iterable and array</li>
+      <li>Field by field recursive comparison</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+  <li>https://assertj.github.io/doc/#assertj-core-group-filtering</li>
+</ul>
+:ET

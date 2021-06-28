@@ -8,8 +8,6 @@ package.json
 ## Jekyll stuff
 /_site/
 _site/
-_posts/
-_pages/
 _draft/
 .sass-cache/
 .jekyll-metadata

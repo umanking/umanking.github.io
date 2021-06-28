@@ -1,0 +1,105 @@
+I"u%<blockquote>
+  <p>도메인 클래스 컨버터에 대해서 알아보자.</p>
+</blockquote>
+
+<p>도메인 클래스 컨버터는 Spring Data Jpa를 사용하게 되면 Common 프로젝트에 있는 클래스 인데, 간단하게, id-&gt; 엔티티 타입으로 변환 해주거나, 엔티티 -&gt; id 로 변환해 주는 컨버터를 제공해준다. 예제를 통해서 동작하는 지 살펴보자.
+<!-- more --></p>
+<h2 id="예제-코드">예제 코드</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Data</span>
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Post</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>간단한 id, Title만 있는 Post 엔티티를 정의한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PostRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Post</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>JpaRepository를 상속받는 레포지토리를 만든다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PostController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">PostRepository</span> <span class="n">postRepository</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/post/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getPost</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Post</span><span class="o">&gt;</span> <span class="n">byId</span> <span class="o">=</span> <span class="n">postRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="nc">Post</span> <span class="n">post</span> <span class="o">=</span> <span class="n">byId</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">post</span><span class="o">.</span><span class="na">getTitle</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>/post/{id} 로 요청이 왔을때, DB에서 id로 post데이터를 조회해서, title 을 return해 주는 코드</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@RunWith</span><span class="o">(</span><span class="nc">SpringRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@AutoConfigureMockMvc</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PostControllerTest</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">PostRepository</span> <span class="n">postRepository</span><span class="o">;</span>
+    <span class="nd">@Autowired</span>
+    <span class="nc">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getPost</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">Post</span> <span class="n">post</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Post</span><span class="o">();</span>
+        <span class="n">post</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"jpa"</span><span class="o">);</span>
+        <span class="n">postRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">post</span><span class="o">);</span>
+
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/post/"</span> <span class="o">+</span> <span class="n">post</span><span class="o">.</span><span class="na">getId</span><span class="o">()))</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">content</span><span class="o">().</span><span class="na">string</span><span class="o">(</span><span class="s">"jpa"</span><span class="o">));</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>해당 컨트롤러에 맞는 테스트 케이스를 작성한다. Post 하나를 만들고 저장한 후에, /post/{id} 로 요청했을 때 응답 상태와 응답 컨텐츠의 타이틀이 저장했던 것과 일치하는지를 테스트 한다.</p>
+
+<p>여기 까지는 성공한다.</p>
+
+<h2 id="도메인-클래스-컨버터">도메인 클래스 컨버터</h2>
+
+<p>이제 도메인 클래스 컨버터를 살펴보자.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DomainClassConverter</span><span class="o">&lt;</span><span class="no">T</span> <span class="kd">extends</span> <span class="nc">ConversionService</span> <span class="o">&amp;</span> <span class="nc">ConverterRegistry</span><span class="o">&gt;</span>
+        <span class="kd">implements</span> <span class="nc">ConditionalGenericConverter</span><span class="o">,</span> <span class="nc">ApplicationContextAware</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="no">T</span> <span class="n">conversionService</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Repositories</span> <span class="n">repositories</span> <span class="o">=</span> <span class="nc">Repositories</span><span class="o">.</span><span class="na">NONE</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">ToEntityConverter</span><span class="o">&gt;</span> <span class="n">toEntityConverter</span> <span class="o">=</span> <span class="nc">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">ToIdConverter</span><span class="o">&gt;</span> <span class="n">toIdConverter</span> <span class="o">=</span> <span class="nc">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+<span class="o">...</span>
+
+</code></pre></div></div>
+
+<p>여기에서 ToEntityConverter와 ToIdConverter 클래스가 위에 컨트롤러에서 작성했던 역활과 동일한 일을 한다. 그렇기 때문에 아까전의 컨트롤러 코드에서 다음과 같이 바꿀 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span><span class="c1">// 생략</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/post/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getPost</span><span class="o">(</span><span class="nd">@PathVariable</span><span class="o">(</span><span class="s">"id"</span><span class="o">)</span> <span class="nc">Post</span> <span class="n">post</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">post</span><span class="o">.</span><span class="na">getTitle</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>id를 받아서 -&gt; Post엔티티로 바꿔주는 컨버터가 실행되기 때문에, 이렇게 만들어도 테스트케이스를 돌려도 성공한다.</p>
+
+<blockquote>
+  <p>주의: @PathVariable에 프로퍼티로 “id”를 꼭 명시해줘야 한다.</p>
+</blockquote>
+:ET

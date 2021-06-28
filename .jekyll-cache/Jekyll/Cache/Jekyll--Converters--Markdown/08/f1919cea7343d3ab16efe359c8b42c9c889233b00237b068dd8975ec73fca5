@@ -1,0 +1,115 @@
+I"{1<blockquote>
+  <p>JpaRepository의 구현체 SimpleJpaRepository에서 save()메서드가 내부적으로 어떻게 동작하는지 알아보자.
+<!-- more --></p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">SimpleJpaRepository</code>의 save() 메서드</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="o">&lt;</span><span class="no">S</span> <span class="kd">extends</span> <span class="no">T</span><span class="o">&gt;</span> <span class="no">S</span> <span class="nf">save</span><span class="o">(</span><span class="no">S</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">entityInformation</span><span class="o">.</span><span class="na">isNew</span><span class="o">(</span><span class="n">entity</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">entity</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">em</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>entityInformation에서 새로운 entity이면 <code class="language-plaintext highlighter-rouge">persist()</code> 를 그게 아니면 <code class="language-plaintext highlighter-rouge">merge()</code>를 호출한다.<br />
+merge는 한번 persist 상태였다가 detached 된 상태에서 그 다음 persist 상태가 될 때, merge 한다고 한다.</p>
+
+<h2 id="테스트">테스트</h2>
+
+<p>실제 Post 엔티티를 만들고, 테스트를 해보자</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Data</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Post</span><span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+
+    <span class="nd">@OneToMany</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Comment</span><span class="o">&gt;</span> <span class="n">comments</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nc">Post</span> <span class="nf">publish</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">registerEvent</span><span class="o">(</span><span class="k">new</span> <span class="nc">Event</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// PostRepository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PostRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Post</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveAndMergeTest</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 1</span>
+        <span class="nc">Post</span> <span class="n">post</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Post</span><span class="o">();</span>
+        <span class="n">post</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"jpa"</span><span class="o">);</span>
+        <span class="nc">Post</span> <span class="n">savedPost</span> <span class="o">=</span> <span class="n">postRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">post</span><span class="o">);</span> <span class="c1">// persist</span>
+
+        <span class="c1">// 2</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">entityManager</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">post</span><span class="o">)).</span><span class="na">isTrue</span><span class="o">();</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">entityManager</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">savedPost</span><span class="o">)).</span><span class="na">isTrue</span><span class="o">();</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">post</span> <span class="o">==</span> <span class="n">savedPost</span><span class="o">);</span>
+
+        <span class="c1">// 3</span>
+        <span class="nc">Post</span> <span class="n">post2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Post</span><span class="o">();</span>
+        <span class="n">post2</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">post</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+        <span class="n">post2</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"hibernate"</span><span class="o">);</span>
+        <span class="nc">Post</span> <span class="n">updatedPost</span> <span class="o">=</span> <span class="n">postRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">post2</span><span class="o">);</span><span class="c1">// merge</span>
+
+        <span class="c1">// 4</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">entityManager</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">post2</span><span class="o">)).</span><span class="na">isFalse</span><span class="o">();</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">entityManager</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">updatedPost</span><span class="o">)).</span><span class="na">isTrue</span><span class="o">();</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">post2</span> <span class="o">==</span> <span class="n">updatedPost</span><span class="o">);</span>
+
+        <span class="n">postRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="c1">// 1</span>
+        <span class="nc">Post</span> <span class="n">post</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Post</span><span class="o">();</span>
+        <span class="n">post</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"jpa"</span><span class="o">);</span>
+        <span class="nc">Post</span> <span class="n">savedPost</span> <span class="o">=</span> <span class="n">postRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">post</span><span class="o">);</span> <span class="c1">// persist</span>
+</code></pre></div></div>
+
+<p>처음에 post 객체를 만들고 save()를 하게 되면 내부적으로 persist()를 호출한다. 그 이유는 Post엔티티에서 @Id 어노테이션을 붙인 id를 통해서 엔티티의 상태를 관리한다. 여기에서는 당연히 처음 객체를 만들었으므로 persist 상태가 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="c1">// 2</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">entityManager</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">post</span><span class="o">)).</span><span class="na">isTrue</span><span class="o">();</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">entityManager</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">savedPost</span><span class="o">)).</span><span class="na">isTrue</span><span class="o">();</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">post</span> <span class="o">==</span> <span class="n">savedPost</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>2번째 테스트 케이스는 entityManager를 통해서 앞에서 저장한 post엔티티가 포함되어있는지를 확인하는 코드다. 마지막 동일성을 비교하는 코드는 save()메서드의 반환된 결과와 파라미터에 넘어간 객체의 동일성을 보장한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        // 3
+        Post post2 = new Post();
+        post2.setId(post.getId());
+        post2.setTitle("hibernate");
+        Post updatedPost = postRepository.save(post2);// merge
+</code></pre></div></div>
+
+<p>이번에는 id를 새롭게 생성하는 게 아니라, 기존의 post.getId()를 통해서 가지고 온다. 그렇기 때문에 save()를 호출하게 되면, persist()가 아닌 merge()를 호출하게 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="c1">// 4</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">entityManager</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">post2</span><span class="o">)).</span><span class="na">isFalse</span><span class="o">();</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">entityManager</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">updatedPost</span><span class="o">)).</span><span class="na">isTrue</span><span class="o">();</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">post2</span> <span class="o">==</span> <span class="n">updatedPost</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>여기서 중요한 것이. 파라미터로 넘긴 post2객체는 entityManger에 존재하지 않는 것이다. return 된 결과만을 entittyManager가 관리한다. 객체를 새로 post2로 만들었어도, save()메서드는 하이버네이트에서 id를 통해서 엔티티의 상태를 관리하기 때문에, 여기에서는 엔티티의 id가 이전에 만들어둔 값을 가지고 와서 넣어준다.</p>
+
+<h2 id="정리">정리</h2>
+
+<p>persist()를 호출하는 경우에는 리턴한 객체 필드를 사용하지 않아도 된다.<br />
+merge()를 호출하는 경우에는 <strong>반드시</strong> 리턴된 결과를 통해서 다음 작업을 진행해야지, entityManager가 관리하는 상태를 추적할 수 있다.</p>
+
+<p>결론, 왠만하면 persist(), merge()를 매번 코딩할 때마다 구분하기 힘드니 무조건 반환받고 그 값을 통해서 코딩하자!</p>
+:ET

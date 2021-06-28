@@ -1,0 +1,59 @@
+I"�<h2 id="들어가며">들어가며</h2>
+
+<p><a href="/jpa-1-n-mapping">이전 시간</a>에는 연관관계 매핑의 기초 다대일 매핑하는 방법과 연관관계 주인에 대해서 알아보았다. <strong><u>이번에는 양방향 매핑을 할때, 객체 관점에서 어떻게 처리할지?를 고민해보자.</u></strong>
+<!-- more --></p>
+
+<p>예제는 지난시간에 했던, Member (다) : Team(일) 의 관계를 생각해보자!</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"TEAM_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span><span class="o">=</span><span class="s">"team"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>다음과 같이 team.getMembers() 컬랙션을 가지고 와서, 저장한 member를 add하면 어떻게 될까?</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+<span class="n">member</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">);</span>
+<span class="n">member</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="mi">32</span><span class="o">);</span>
+<span class="n">memberRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+
+<span class="nc">Team</span> <span class="n">team</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Team</span><span class="o">();</span>
+<span class="n">team</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"teamA"</span><span class="o">);</span>
+<span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+<span class="n">teamRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">team</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">memberRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">member</span><span class="o">.</span><span class="na">getId</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>다음과 같이 team에 null 값이 나온다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Optional[Member(id=1, name=andrew, age=32, team=null)]
+</code></pre></div></div>
+
+<p>왜 이런 현상이 나올까?</p>
+
+<blockquote>
+  <p>연관관계의 주인은 Member.team이다. 즉, Team.members(연관관계의 주인이 아닌)에 값을 저장 하면 안된다.</p>
+</blockquote>
+
+<h2 id="어떻게-하나">어떻게 하나?</h2>
+
+<p>정답은 연관관계의 주인쪽에만 값을 저장하냐? 안하냐? 이런 여부를 묻고 따지지 말고, 객체 관점에서 양쪽 방향에 모두 값을 입력해 주는 것이 실수를 미연에 방지할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTeam</span><span class="o">(</span><span class="nc">Team</span> <span class="n">team</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 기존의 team과 member의 관계를 끊는다.</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">remove</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="n">team</span><span class="o">;</span>  <span class="c1">// member -&gt; team </span>
+    <span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">);</span> <span class="c1">// team -&gt; member</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+:ET

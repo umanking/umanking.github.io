@@ -1,0 +1,76 @@
+I"�<p>빈 순환 참조 예외가 난 경우, 어떻게 해결하는 지 알아 보자.
+빈 순환 참조라는 것은 생성자를 통해서 빈을 주입했을 때, Bean A -&gt; Bean B -&gt; Bean A … 계속해서 순환 참조하는 것을 말한다.</p>
+
+<h2 id="빈-순환-참조가-발생하는-상황">빈 순환 참조가 발생하는 상황</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CircularA</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">CircularB</span> <span class="n">circularB</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">CircularA</span><span class="o">(</span><span class="nc">CircularB</span> <span class="n">circularB</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">circularB</span> <span class="o">=</span> <span class="n">circularB</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CircularB</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">CircularA</span> <span class="n">circularA</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">CircularB</span><span class="o">(</span><span class="nc">CircularA</span> <span class="n">circularA</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">circularA</span> <span class="o">=</span> <span class="n">circularA</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>각각 @Component를 통해서 빈으로 등록시킨다. 상대방 빈을 생성자를 통해서 주입받는다. CircularA 컴포넌트는 빈으로 등록될 때CircularB를 참조하고 있고, CircularB 컴포넌트도 빈으로 등록할 때 Circular A를 참조한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="nd">@RunWith</span><span class="o">(</span><span class="nc">SpringRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CircularTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// just spring context load</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>애플리케이션을 띄우거나, 아무것도 작성되지 않은 테스트 케이스를 돌리게되면 다음과 같은 예외가 발생한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>**************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+┌─────┐
+|  circularA defined in file [/Users/andrew/workspace/spring-boot-practice/target/classes/com/example/demo/spring/circular/CircularA.class]
+↑     ↓
+|  circularB defined in file [/Users/andrew/workspace/spring-boot-practice/target/classes/com/example/demo/spring/circular/CircularB.class]
+└─────┘
+</code></pre></div></div>
+
+<p>순환참조가 발생했고, 어떤 빈에서 순환 참조가 일어나는지 알려준다.</p>
+
+<h2 id="해결-방법-1-lazy">해결 방법 1. @Lazy</h2>
+
+<p>여러 가지 해결 방법이 있지만, 기본적인 원리는 서로 빈이 생성되는 시기를 늦추거나 조율해서 동시에 참조하는게 아니라, 하나의 빈이 생성이 완료 된 후, 동작을 하게끔 만들어 주는게 키포인트!</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CircularA</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">CircularB</span> <span class="n">circularB</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">CircularA</span><span class="o">(</span><span class="nd">@Lazy</span> <span class="nc">CircularB</span> <span class="n">circularB</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">circularB</span> <span class="o">=</span> <span class="n">circularB</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>사실 여러 개의 블로그를 봤지만, <strong>결국 빈 순환 참조가 난다는 것은 모델링 설계가 잘못되었음을 알려주는 것이라고 했다.</strong> 그렇기 때문에 위에 방법들은 궁극적인 해결책 보다는 가벼운 임시 조치! 아니면 @Autowired, @Inject 어노테이션을 사용하는 것 뿐</p>
+:ET

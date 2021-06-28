@@ -1,0 +1,130 @@
+I"-<blockquote>
+  <p>오늘은 Jackson 어노테이션에 대해서 알아보도록 하겠습니다.</p>
+</blockquote>
+
+<p>다음과 같이 스프링 부트를 사용하면 <code class="language-plaintext highlighter-rouge">spring-boot-starter-web</code>의존성에 <code class="language-plaintext highlighter-rouge">jackson-databind</code>라이브러리가 추가 되어 있다.</p>
+
+<h2 id="account-도메인">Account 도메인</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Getter</span>
+<span class="nd">@Setter</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Account</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">age</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="objectmapper-기본적인-사용">ObjectMapper 기본적인 사용</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">();</span>
+  <span class="n">account</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
+  <span class="n">account</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">);</span>
+  <span class="n">account</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="s">"32"</span><span class="o">);</span>
+
+  <span class="nc">String</span> <span class="n">accountString</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+  <span class="n">console</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">accountString</span><span class="o">);</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>결과 값</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span><span class="s">"id"</span><span class="o">:</span><span class="mi">1</span><span class="o">,</span><span class="s">"name"</span><span class="o">:</span><span class="s">"andrew"</span><span class="o">,</span><span class="s">"age"</span><span class="o">:</span> <span class="s">"32"</span><span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="1-jsonproperty">1. @JsonProperty</h2>
+
+<p><strong>Json 프로퍼티명을 선언한 필드명과 달리 내 마음대로 바꾸고 싶을 때 사용합니다.</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">"userName"</span><span class="o">)</span> <span class="c1">// Json 응답을 name이 아닌 userName으로 만들어 주고 싶을 때</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">age</span><span class="o">;</span>
+
+</code></pre></div></div>
+
+<p>결과 값</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span><span class="s">"id"</span><span class="o">:</span><span class="mi">1</span><span class="o">,</span><span class="s">"userName"</span><span class="o">:</span><span class="s">"andrew"</span><span class="o">,</span><span class="s">"age"</span><span class="o">:</span> <span class="s">"32"</span><span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="2-jsonignore">2. @JsonIgnore</h2>
+
+<p>해당 어노테이션은 도메인의 특정 필드를 무시하고 싶을 때 사용합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@JsonIgnore</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">age</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>이렇게 테스트를 하면 원래 기대하던 Password 프로퍼티값이 보이지 않게 됩니다.</p>
+
+<h2 id="3-jsonpropertyorder">3. @JsonPropertyOrder</h2>
+
+<p>내려주는 json의 프로퍼티의 순서를 지정하고 싶을 때</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Getter</span>
+<span class="nd">@Setter</span>
+<span class="nd">@JsonPropertyOrder</span><span class="o">({</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"age"</span><span class="o">,</span> <span class="s">"name"</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Account</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">age</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="4-jsonrawvalue">4. @JsonRawValue</h2>
+
+<p>json String값을 넘겼을 때, Json형식으로 Raw한 형태로 변환시켜 준다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Getter</span>
+<span class="nd">@Setter</span>
+<span class="nd">@JsonPropertyOrder</span><span class="o">({</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"age"</span><span class="o">,</span> <span class="s">"name"</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Account</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">age</span><span class="o">;</span>
+
+  <span class="nd">@JsonRawValue</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">type</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>type은 Account가 어디를 통해서 접속했는지를 판단해주는 필드 입니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">objectTest</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">JsonProcessingException</span> <span class="o">{</span>
+
+      <span class="nc">Account</span> <span class="n">account</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Account</span><span class="o">();</span>
+      <span class="n">account</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
+      <span class="n">account</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">);</span>
+      <span class="n">account</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="s">"32"</span><span class="o">);</span>
+      <span class="n">account</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">"1234"</span><span class="o">);</span>
+
+      <span class="n">account</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">"{\"device\":\"mobile\"}"</span><span class="o">);</span>
+      <span class="nc">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+
+      <span class="nc">Assert</span><span class="o">.</span><span class="na">assertThat</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">containsString</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">));</span>
+      <span class="nc">Assert</span><span class="o">.</span><span class="na">assertThat</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">containsString</span><span class="o">(</span><span class="s">"Name"</span><span class="o">));</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<p>만약에 @JsonRawValue를 사용하지 않았다면 결과는 다음과 같습니다</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span><span class="s">"id"</span><span class="o">:</span><span class="mi">1</span><span class="o">,</span><span class="s">"Name"</span><span class="o">:</span><span class="s">"andrew"</span><span class="o">,</span><span class="s">"type"</span><span class="o">:</span><span class="s">"{\"device\":\"mobile\"}"</span><span class="o">}</span>
+</code></pre></div></div>
+
+<p>우리가 원하지 않는 이스케이프 문자까지 다 포함되어서 나오는 것을 확인할 수 있습니다. <code class="language-plaintext highlighter-rouge">@JsonRawValue</code> 를 넣고 다시 실행하면</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span><span class="s">"id"</span><span class="o">:</span><span class="mi">1</span><span class="o">,</span><span class="s">"Name"</span><span class="o">:</span><span class="s">"andrew"</span><span class="o">,</span><span class="s">"type"</span><span class="o">:{</span><span class="s">"device"</span><span class="o">:</span><span class="s">"mobile"</span><span class="o">}}</span>
+</code></pre></div></div>
+
+<h3 id="정리">정리</h3>
+
+<p>오늘은 실무에서 API 스펙에 따라서 결과를 만들어 내는 Json(Jackson)의 기본적인 사용법을 알아 봤습니다. <a href="https://www.baeldung.com/jackson-annotations">jackson 어노테이션 예제 </a> 를 참고 했으며, 분량이 많은 관계로, 다음 2편에서 더 정리하도록 하겠습니다.</p>
+:ET
