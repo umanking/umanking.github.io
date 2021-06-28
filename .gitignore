@@ -9,7 +9,8 @@ package.json
 /_site/
 _site/
 _posts/
-_payges/
+_pages/
+_draft/
 .sass-cache/
 .jekyll-metadata
 .jekyll
