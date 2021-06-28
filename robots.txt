@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://umanking.github.io/rss2.xml
-Sitemap: https://umanking.github.io/sitemap.xml
+Sitemap: http://umanking.github.io/sitemap.xml
