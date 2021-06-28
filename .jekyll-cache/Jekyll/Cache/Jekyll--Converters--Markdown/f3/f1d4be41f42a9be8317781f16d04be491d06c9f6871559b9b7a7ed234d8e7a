@@ -1,0 +1,140 @@
+I"(3<p>오늘은 Spring, JPA, H2를 이용한 RESTful API를 만들겠습니다.<br />
+도메인은 유저들 가입하고, 조회하고, 수정,삭제하는 Account 입니다.
+<!-- more --></p>
+<h2 id="1-요구사항-분석-account-api">1. 요구사항 분석 (Account API)</h2>
+
+<ul>
+  <li>Account 생성 - POST /api/account/</li>
+  <li>Account 목록 - GET /api/account/</li>
+  <li>Account 조회 - GET /api/account/{id}</li>
+  <li>Account 수정 - PUT /api/account/{id}</li>
+  <li>Account 삭제 - DELETE /api/account/{id}</li>
+</ul>
+
+<h2 id="2-의존성-추가">2. 의존성 추가</h2>
+
+<p>pom.xml 파일에 web, lombok외에 spring-data-jpa, h2 모듈을 추가했습니다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.2.2.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.4.197<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h2 id="3-applicationproperties-설정">3. application.properties 설정</h2>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">create-drop</span>
+<span class="py">spring.jpa.show-sql</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.jpa.properties.hibernate.format_sql</span><span class="p">=</span><span class="s">true</span>
+
+<span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+</code></pre></div></div>
+
+<h2 id="4-accountrepsotiroy-추가">4. AccountRepsotiroy 추가</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">AccountRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>JpaRepository 인터페이스를 상속받는 AccountRepository를 만들어 줍니다.</p>
+
+<blockquote>
+  <p>JpaRepository는 인터페이스로 구현체는 SimpleJpaRepository 입니다. 이 말인 즉슨, 기본 CRUD는 이미 구현을 해 놨습니다. 그렇기 때문에 기본 엔티티에 대한 CRUD는 따로 만들어주지 않아도 됩니다.</p>
+</blockquote>
+
+<h2 id="5-accountcontroller-추가">5. AccountController 추가</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api"</span><span class="o">)</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AccountApiController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">AccountRepository</span> <span class="n">accountRepository</span><span class="o">;</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/account"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;?&gt;</span> <span class="n">saveAccount</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Account</span> <span class="n">account</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Account</span> <span class="n">savedAccount</span> <span class="o">=</span> <span class="n">accountRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">savedAccount</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Aggregate root</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/account"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Account</span><span class="o">&gt;</span> <span class="nf">all</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">accountRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Single item</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/account/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Account</span> <span class="nf">getAccount</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">accountRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">IllegalArgumentException</span><span class="o">(</span><span class="s">"illegal argument :"</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateAccount</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Account</span> <span class="n">newAccount</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">accountRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">account</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="n">account</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">newAccount</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                    <span class="n">account</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">newAccount</span><span class="o">.</span><span class="na">getPassword</span><span class="o">());</span>
+                    <span class="k">return</span> <span class="n">accountRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+                <span class="o">})</span>
+                <span class="o">.</span><span class="na">orElseGet</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="n">newAccount</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+                    <span class="k">return</span> <span class="n">accountRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">newAccount</span><span class="o">);</span>
+                <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteAccount</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">accountRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">@RestController</code> : <code class="language-plaintext highlighter-rouge">@Controller</code> + <code class="language-plaintext highlighter-rouge">@ResponseBody</code> 입니다. 기존의 @Controller는 return 값을 ViewResolverName을 통해서 View단의 이름이랑 매핑했습니다. 하지만, RESTful API는 응답형태를 (보통은 Json) 으로 내보내야 하기 때문에 간편하게 @RestController를 통해서 API관련 코드를 작성할 수 있습니다. 이름에서도 AccountApiController라고 지었습니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">@AllArgsConstructor</code>: 롬복의 애노테이션으로, 모든 필드에 대한 클래스 생성자를 자동으로 해줍니다. 이것을 사용하는 이유는 보통은 <code class="language-plaintext highlighter-rouge">@Autowired</code> 를 통해서 AccountRepository 빈을 주입 받아서 사용하는데, 스프링에서는, IntelliJ에서도 Field Injection은 추천하지 않습니다. 여러 가지 이유가 있지만 Circular dependencies(빈 순환 참조) 이슈가 발생할 수 있기 때문입니다. 나중에 자세한 포스팅은 따로 하겠습니다. 그런 이유에서 필드 주입이 아닌, 생성자 주입을 통해서 빈을 사용합니다. 롬복은 그것을 조금 더 쉽게 만들어 줍니다.</p>
+  </li>
+  <li>
+    <p>POST Account 는 @RequestBody를 메서드 파라미터에 붙여주고, save()메서드를 호출합니다. 보통은 저장한 엔티티 그 자체를 return 받아서 ResponseEntity의 body에 담아서 응답을 합니다.</p>
+  </li>
+</ul>
+
+<h2 id="6-postman-api-테스트">6. PostMan API 테스트</h2>
+
+<p><img src="/assets/images/post.png" alt="" /></p>
+
+<p>PostMan으로 POST요청을 날리면 Status 200 과 저장에 성공한 Account정보를 Body에 담아서 보내줍니다.
+요청을 보낼때는 Id에 값을 따로 입력하지 않습니다. 자동으로 @GeneratedValue 를 통해서 자동증감으로 값을 할당해 줍니다. 반면에 ResponseBody에는 해당 Id값이 1로 할당되어 돌아오는 것을 확인했습니다.</p>
+
+<h2 id="정리">정리</h2>
+
+<p>지금까지 Spring, JPA, H2 셋팅을 통한, 간단한 RESTful API를 만드는 방법에 대해서 알아봤습니다.</p>
+:ET

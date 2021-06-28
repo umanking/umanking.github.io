@@ -1,0 +1,237 @@
+I"�I<blockquote>
+  <p>멤버(Member)와 사물함(Locker) 1:1 매핑 상황을 살펴보고, cascade 옵션이 어떤 상황에서 쓰이는지 알아보자.</p>
+  <h1 id="예제코드">예제코드</h1>
+</blockquote>
+
+<h3 id="member-locker-엔티티">Member, Locker 엔티티</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Data</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"MEMBER"</span><span class="o">)</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"NAME"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"AGE"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="nd">@OneToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"LOCKER_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Locker</span> <span class="n">locker</span><span class="o">;</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Data</span>
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Locker</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"NAME"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Member -&gt; Locker 단방향 1:1 매핑에 대해서 살펴보자.</p>
+
+<p>중요한 것은, <code class="language-plaintext highlighter-rouge">@OneToOne</code> 과 <code class="language-plaintext highlighter-rouge">@JoinColumn</code>을 사용해서 관계 매핑을 했고, 참조하는(방향성을 가지는) Locker를 해당 멤버 필드의 Type으로 지정했다. 명시적으로 <code class="language-plaintext highlighter-rouge">@JoinColumn</code>의 <code class="language-plaintext highlighter-rouge">name 프로퍼티</code>를 참조하는 LOCKER_ID로 설정했다.</p>
+
+<h3 id="테스트-케이스">테스트 케이스</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">단방향테스트_Memmber_Locker_SaveTest</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="c1">//given</span>
+        <span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+        <span class="n">member</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">);</span>
+        <span class="n">member</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="mi">32</span><span class="o">);</span>
+
+
+        <span class="nc">Locker</span> <span class="n">locker</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Locker</span><span class="o">();</span>
+        <span class="n">locker</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"1번 사물함"</span><span class="o">);</span>
+
+        <span class="n">member</span><span class="o">.</span><span class="na">setLocker</span><span class="o">(</span><span class="n">locker</span><span class="o">);</span>
+
+        <span class="n">memberRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+        <span class="n">lockerRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">locker</span><span class="o">);</span>
+
+        <span class="c1">//when</span>
+        <span class="nc">Member</span> <span class="n">existMember</span> <span class="o">=</span> <span class="n">memberRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">member</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">get</span><span class="o">();</span>
+
+        <span class="c1">//then</span>
+        <span class="n">assertEquals</span><span class="o">(</span><span class="n">existMember</span><span class="o">.</span><span class="na">getLocker</span><span class="o">().</span><span class="na">getName</span><span class="o">(),</span> <span class="s">"1번 사물함"</span><span class="o">);</span>
+
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Member, Locker 객체를 만들고 저장 한후에, member.getLocker().getName() 으로 객체를 탐색하는 테스트 케이스.<br />
+<strong>이 테스트 케이스는 실패 한다.</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">`save the transient instance before flushing`</span> <span class="p">:</span> <span class="nx">com</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">demo</span><span class="p">.</span><span class="nx">spring</span><span class="p">.</span><span class="nx">jpa</span><span class="p">.</span><span class="nx">member</span><span class="p">.</span><span class="nx">Member</span><span class="p">.</span><span class="nx">locker</span> <span class="o">-&gt;</span> <span class="nx">com</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">demo</span><span class="p">.</span><span class="nx">spring</span><span class="p">.</span><span class="nx">jpa</span><span class="p">.</span><span class="nx">locker</span><span class="p">.</span><span class="nx">Locker</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>다음과 같은 exception이 발생한다. flusing 하기 전에 transient 인스턴스를 save하라!</p>
+
+<p>테스트 코드를 다시 살펴보면, locker 객체를 저장하기 전에, 객체 생성만 하고, member의 setLocker의 인자로 넘기는 것을 알 수 있다.</p>
+
+<p>즉, locker가 save()를 통해서 db에 저장 되기도 전에, memberRepository.save()를 호출 하니 문제가 발생한 것이다. (자세히 완벽히 이해 못함)</p>
+
+<blockquote>
+  <p>DB에 플러쉬 되는 시점</p>
+
+  <ul>
+    <li>@Transational 메소드가 종료 되는 시점</li>
+    <li>강제로 PersistContext를 통해서 persist()</li>
+  </ul>
+</blockquote>
+
+<p>위와 같은 문제가 발생했을 때, 2가지 방법이 있다.</p>
+
+<h3 id="해결방법-1-프로그래밍적으로">해결방법 1. 프로그래밍적으로</h3>
+
+<p>논리적 흐름이 맞지 않기 때문에, locker를 먼저 저장하고, member를 저장하도록 로직을 수정하면 테스트 케이스가 성공한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">...</span>
+    <span class="n">lockerRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">locker</span><span class="o">);</span>
+    <span class="n">memberRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+
+</code></pre></div></div>
+
+<p>하지만 매번 로직을 작성할 때마다 고려해야 하기 때문에 그리 쉬운 방법은 아니다.<br />
+나중에 양방향 관계에서는 <strong>편의 메소드</strong> 라는 것을 통해서 실수 할 수 있는 부분을 줄여 주기는 한다.</p>
+
+<h3 id="해결방법-2-cascade-옵션을-주는-것">해결방법 2. cascade 옵션을 주는 것</h3>
+
+<p><code class="language-plaintext highlighter-rouge">@OneToOne</code>에 <code class="language-plaintext highlighter-rouge">cascade = CascadeType.ALL</code> 옵션을 줌으로써 해결 할 수 있다.<br />
+이 casecade는 전파되는 속성을 나타낸다. 즉, member가 save()를 할 때, 연관관계에 있는 locker도 저장함으로써 위와 같은 문제를 해결 할 수 있다. 처음 테스트 케이스는 그대로 두고, Member 엔티티에서 해당 옵션만을 주면 테스트는 성공한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">...</span>
+    <span class="nd">@OneToOne</span><span class="o">(</span><span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"LOCKER_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Locker</span> <span class="n">locker</span><span class="o">;</span>
+
+</code></pre></div></div>
+
+<h3 id="-여기서-갑자기-궁금해진-점">🤔 여기서 갑자기 궁금해진 점</h3>
+
+<p>그럼 casecade옵션으로 연관 엔티티도 저장된다고 했는데, 테스트 케이스에서 locker의 객체를 저장하는 <code class="language-plaintext highlighter-rouge">lockerRepository.save(locker);</code> 을 주석 처리하고 테스트 케이스를 돌리면 어떻게 될까요?</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hibernate:
+    insert
+    into
+        locker
+        (name, locker_id)
+    values
+        (?, ?)
+Hibernate:
+    insert
+    into
+        member
+        (age, locker_id, name, member_id)
+    values
+        (?, ?, ?, ?)
+</code></pre></div></div>
+
+<p>놀랍게도(?), 당연하게도 결과는 성공한다. locker insert 쿼리문과 member insert 쿼리문 동시에 두개가 날라감</p>
+
+<p>정리: casecade 옵션을 활용하면, 등록, 삭제 시에 불필요한 save() 메소드를 하지 않아도 참조하는 쪽의 하나의 엔티티만 저장/삭제 해도 같이 반영된다. <strong>(특히, 연관관계의 DB 데이터를 지울 때, 데이터베이스의 정합성을 고려하면 좋음)</strong></p>
+
+<h2 id="이번엔-양방향-관계로-설정">이번엔 양방향 관계로 설정!!</h2>
+
+<p>위에는 단방향 관계 였으니, 이번에는 양방향 관계 설정을 마무리 해보자 💪</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Data</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"MEMBER"</span><span class="o">)</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"MEMBER_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"NAME"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"AGE"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="nd">@OneToOne</span><span class="o">(</span><span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"LOCKER_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Locker</span> <span class="n">locker</span><span class="o">;</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Member 엔티티는 변함이 없음</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Data</span>
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Locker</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"LOCKER_ID"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"NAME"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="c1">// 이 부분이 추가됨</span>
+    <span class="nd">@OneToOne</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"locker"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Member</span> <span class="n">member</span><span class="o">;</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Locker 엔티티에서는 역시 1:1 연관관계 어노테이션인 <code class="language-plaintext highlighter-rouge">@OneToOne</code>을 선언해줌.</p>
+
+<p>중요한 것은 <code class="language-plaintext highlighter-rouge">외래키의 관리</code>가 남아 있어서<br />
+mappedBy 속성을 통해서 마무리 지었다.</p>
+
+<p>이번에 테스트 케이스는 양방향 관계가 잘 매핑되었는지를 확인한다.</p>
+
+<ul>
+  <li>member -&gt; getLocker()</li>
+  <li>locker -&gt; getMember()</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">양방향관계_테스트</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="c1">//given</span>
+        <span class="nc">Member</span> <span class="n">member</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Member</span><span class="o">();</span>
+        <span class="n">member</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"andrew"</span><span class="o">);</span>
+        <span class="n">member</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span><span class="mi">32</span><span class="o">);</span>
+
+        <span class="nc">Locker</span> <span class="n">locker</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Locker</span><span class="o">();</span>
+        <span class="n">locker</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"1번 사물함"</span><span class="o">);</span>
+        <span class="n">member</span><span class="o">.</span><span class="na">setLocker</span><span class="o">(</span><span class="n">locker</span><span class="o">);</span>
+
+
+        <span class="n">memberRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">member</span><span class="o">);</span>
+
+        <span class="c1">//when</span>
+        <span class="nc">Member</span> <span class="n">exsitMember</span> <span class="o">=</span> <span class="n">memberRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">member</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">get</span><span class="o">();</span>
+        <span class="nc">Locker</span> <span class="n">existLocker</span> <span class="o">=</span> <span class="n">lockerRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">locker</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">get</span><span class="o">();</span>
+
+        <span class="c1">//then</span>
+        <span class="n">assertEquals</span><span class="o">(</span><span class="n">exsitMember</span><span class="o">.</span><span class="na">getLocker</span><span class="o">().</span><span class="na">getName</span><span class="o">(),</span> <span class="s">"1번 사물함"</span><span class="o">);</span>
+        <span class="n">assertEquals</span><span class="o">(</span><span class="n">existLocker</span><span class="o">.</span><span class="na">getMember</span><span class="o">().</span><span class="na">getName</span><span class="o">(),</span> <span class="s">"andrew"</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>테스트 성공!</p>
+:ET

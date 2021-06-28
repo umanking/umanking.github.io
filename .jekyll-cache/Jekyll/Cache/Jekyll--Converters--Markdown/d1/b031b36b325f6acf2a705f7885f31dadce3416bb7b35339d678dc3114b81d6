@@ -1,0 +1,84 @@
+I"�<p>테스트 위생이란? 테스트 대상 코드 베이스뿐 아니라 <strong><u>테스트 코드도 깔끔하게 유지하며</u></strong> 유지보수 하고 개선해야 함을 의미한다.</p>
+
+<h2 id="1-테스트-이름짓기">1. 테스트 이름짓기</h2>
+
+<ul>
+  <li>테스트를 만들려면 먼저 이름을 정해야한다.</li>
+  <li>테스트 이름을 지을 때는 가독성, 유지보수성, 실행할 수 있는 문서의 역할을 고려한다.</li>
+  <li>테스트 이름은 개념이 아니라, 동작을 묘사해야 한다.</li>
+  <li>안티패턴이 존재함
+    <ul>
+      <li>test1처럼 말도 안되는 테스트 이름은 최악의 안티패턴</li>
+      <li>file, document 처럼 개념이나 명사로 테스트 이름을 결정하는 것도 안티패턴</li>
+      <li>메서드명을 그대로 사용하는 것도 안티패턴</li>
+    </ul>
+  </li>
+  <li>모범 규칙
+    <ul>
+      <li>도메인용어사용: 문제 도메인을 설명하거나 응용프로그램에서 문제를 지칭할때 사용하는 용어를 테스트 이름에 사용한다.</li>
+      <li>자연어 사용: 모든 테스트 이름은 일반 문장처럼 쉽게 읽을 수 있어야 한다.</li>
+      <li>서술적: 코드는 한 번 구현하면 여러 번 읽게 된다. 나중에 쉽게 읽을 수 있도록 애초에 시간을 들여 서술적인 좋은 이름을 붙이자.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2-구현이-아닌-동작">2. 구현이 아닌 동작</h2>
+
+<ul>
+  <li>클래스, 컴포넌트, 시스템 테스트를 구현할 때는 대상의 공개 동작(public behavior)만 테스트한다.</li>
+  <li>테스트는 객체의 내부 상태나 설계는 고려하지 않고 오직 공개 API메서드만 이용해 테스트를 수행해야 한다.
+    <ul>
+      <li>세부 구현에 의존한 테스트는 구현이 바뀌면 결과가 실패로 바뀐다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-중복배제">3. 중복배제</h2>
+
+<ul>
+  <li>많은 개발자가 응요프로그램 코드에는 중복 코드를 사용하지 않으려 애쓰지만, 테스트 코드의 중복 코드는 크게 신경쓰지 않는다.</li>
+</ul>
+
+<h2 id="4-오류-상황-테스트">4. 오류 상황 테스트</h2>
+
+<p>테스트를 개발하면서 가장 흔히 저지르는 실수 중 하나는 응용프로그램의 가장 아름답고, 중요하며 잘 동작하도록 예상된 경로만 검증하는 것이다. 다음과 같이 file을 import 하는 시스템에서 오류처리 테스트 케이스 이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// junit4</span>
+<span class="nd">@Test</span><span class="o">(</span><span class="n">expected</span> <span class="o">=</span> <span class="nc">FilenotFoundException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldNotImportMissingFile</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+  <span class="n">system</span><span class="o">.</span><span class="na">importFile</span><span class="o">(</span><span class="s">"sample.txt"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Test</span><span class="o">(</span><span class="n">expected</span> <span class="o">=</span> <span class="nc">UnknownFileTypeException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldNotImportUnkownFile</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+  <span class="n">system</span><span class="o">.</span><span class="na">importFile</span><span class="o">(</span><span class="no">RESOURCES</span> <span class="o">+</span> <span class="s">"unknown.txt"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// junit 5</span>
+<span class="kt">void</span> <span class="nf">shouldNotImportMissingFile</span><span class="o">()</span><span class="k">throw</span> <span class="nc">Exception</span> <span class="o">{</span>
+	<span class="nc">Assertions</span><span class="o">.</span><span class="na">assertThrows</span><span class="o">(</span><span class="nc">FilenotFoundException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> 
+                          <span class="o">()-&gt;</span>  <span class="n">system</span><span class="o">.</span><span class="na">importFile</span><span class="o">(</span><span class="s">"sample.txt"</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="5-상수">5. 상수</h2>
+
+<p>자바에서는 C++ 처럼 const키워드는 없지만 대신 static final 키워로 상수를 표현한다. 테스트에서는 프로그램을 어떻게 사용해야 하는지 예를 포함하므로 많은 상수를 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">RESOURCES</span> <span class="o">=</span> <span class="s">"scr"</span> <span class="o">+</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s">"test"</span> <span class="o">+</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s">"resources"</span> <span class="o">+</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span><span class="o">;</span> 
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LETTER</span> <span class="o">=</span> <span class="no">RESOURCES</span> <span class="o">+</span> <span class="s">"patient.letter"</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">REPORTER</span> <span class="o">=</span> <span class="no">RESOURCES</span> <span class="o">+</span> <span class="s">"patient.reporter"</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">XRAY</span> <span class="o">=</span> <span class="no">RESOURCES</span> <span class="o">+</span> <span class="s">"xray.jpg"</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h2 id="6-comment">6. Comment🤔</h2>
+
+<ul>
+  <li>테스트 커버리지를 100%를 만드는 것보다는, 의미있는 테스트와 문서로써의 역할을 하는 테스트 케이스를 만드는 것이 좋다고 생각함</li>
+  <li>프로젝트를 시작할때 소스에 대한 구현 방법을 토의하지만 어떻게 테스트할지에 대해서는 구체적인 논의가 부족한듯. 이름을 어떻게 짓고,  Test suite는 어떻게 구성하고 등등 생각해볼것들이 많은것 같다.</li>
+</ul>
+
+<blockquote>
+  <p>출처: http://www.yes24.com/Product/goods/42773957</p>
+</blockquote>
+:ET

@@ -1,0 +1,92 @@
+I"�"<blockquote>
+  <p>일반 적으로 스프링 설정파일인 <code class="language-plaintext highlighter-rouge">application.properties</code> 에서 값들을 <code class="language-plaintext highlighter-rouge">@Value</code> 를 통해서 가져올 수 있다. 하지만 여전히 개별 값들을 일일히 매핑해야 되고, 혹여나 하드 코딩으로 제대로 된 값들을 가져 올 수 있다. 또한, 값을 제대로 가져왔는 지 아닌지 Runtime외에는 알 길이 없다. 이런 문제들을 해결 해 줄 수 있는 방법에 대해서 알아보자!</p>
+  <h2 id="예제">예제</h2>
+</blockquote>
+
+<p>한 개인에 대한 정보를 담고 있는 <code class="language-plaintext highlighter-rouge">application.properties</code> 를 살펴보자</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">andrew.name</span><span class="p">=</span><span class="s">andrew</span>
+<span class="py">andrew.age</span><span class="p">=</span><span class="s">${random.int(20,40)} //랜덤한 값으로 설정됨</span>
+<span class="py">andrew.fullName</span><span class="p">=</span><span class="s">${andrew.name} Han //문자열을 추가해도 됨</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">andrew</code> 라는 prefix로 설정하고, <code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">age</code>, <code class="language-plaintext highlighter-rouge">fullName</code> 속성의 값을 설정했다. 실제 코드에서 사용할 때는 다음과 같다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Value</span><span class="o">(</span><span class="s">"${andrew.name}"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+<span class="nd">@Value</span><span class="o">(</span><span class="s">"${andrew.age}"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+<span class="nd">@Value</span><span class="o">(</span><span class="s">"${andrew.fullName}"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">String</span> <span class="n">fullName</span><span class="o">;</span>
+<span class="c1">// 생략</span>
+</code></pre></div></div>
+
+<p>여기에서는 의미없는 andrew라는 prefix를 사용했지만, datasource의 url, user-name 등등 다양한 값들이 필요할 수 있다.</p>
+
+<h2 id="실제-외부-클래스로-빼는-방법">실제 외부 클래스로 빼는 방법</h2>
+
+<p>관리할 property를 정의할 class를 만들고, 해당 클래스가 빈으로 등록될 수 있도록 <code class="language-plaintext highlighter-rouge">@Component</code> 와<code class="language-plaintext highlighter-rouge">@ConfigurationProperties</code> 어노테이션을 클래스 레벨에 붙였다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ConfigurationProperties</span><span class="o">(</span><span class="n">prefix</span> <span class="o">=</span> <span class="s">"andrew"</span><span class="o">)</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AndrewConfiguration</span> <span class="o">{</span>
+
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">fullName</span><span class="o">;</span>
+
+  	<span class="c1">// getter, setter</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이렇게만 설정하면 <strong>Spring Boot Configuration Annotaition Processor not found in classpath</strong> 와 같은 문구가 뜬다. 관련된 링크를 클릭하면 Configuration Anotation Processor를 찾을 수 없다고 나온다.
+다음과 같이 어노테이션 프로세서를 <code class="language-plaintext highlighter-rouge">pom.xml</code> 에 추가한다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  	<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+  	<span class="nt">&lt;artifactId&gt;</span>spring-boot-configuration-processor<span class="nt">&lt;/artifactId&gt;</span>
+  	<span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h2 id="실제-적용">실제 적용</h2>
+
+<p>이제 기존의 <code class="language-plaintext highlighter-rouge">@Value(${andrew.name})</code> 이런 코드들 대신, 해당 <code class="language-plaintext highlighter-rouge">AndrewConfiguration</code> 빈을 주입받아서 getter를 통해서 접근할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Runner</span> <span class="kd">implements</span> <span class="nc">ApplicationRunner</span> <span class="o">{</span>
+
+	 <span class="c1">// 불필요한 코드</span>
+   <span class="cm">/* @Value("${andrew.name}")
+    private String name;
+
+    @Value("${andrew.age}")
+    private int age;
+
+    @Value("${andrew.fullName}")
+    private String fullName;*/</span>
+
+    <span class="c1">// 빈으로 주입 받았다.</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">AndrewConfiguration</span> <span class="n">andrew</span><span class="o">;</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="nc">ApplicationArguments</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"========================================="</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"name: "</span> <span class="o">+</span> <span class="n">andrew</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"age: "</span> <span class="o">+</span> <span class="n">andrew</span><span class="o">.</span><span class="na">getAge</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"fullName: "</span> <span class="o">+</span> <span class="n">andrew</span><span class="o">.</span><span class="na">getFullName</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"========================================="</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이렇게 해당 값을 <code class="language-plaintext highlighter-rouge">@Value</code> 어노테이션으로 하드 코딩해서 가져오는 게 아니라, 클래스로 관리 하기 때문에 휴먼 에러를 줄여주고, 특히나 여러 군데서 사용하게 되었을 때 캡슐화의 장점이 살아난다. 관리 포인트가 해당 클래스 하나만 관리 하면 되기 때문이다. 또한, <code class="language-plaintext highlighter-rouge">andrew.lastName</code> 이라는 property를 새롭게 추가하는 경우에도 AndrewConfiguration클래스에서 필드 하나만 추가하면 된다.</p>
+
+<h2 id="정리">정리</h2>
+
+<p><code class="language-plaintext highlighter-rouge">application.properties</code>에서 관리하는 값들이 많을 때, 기존의 <code class="language-plaintext highlighter-rouge">@Value</code> 가 아닌, 클래스로 properties에 속성을 정의해서 빈으로 등록하고 사용하는 방법에 대해서 알아보았다.</p>
+:ET

@@ -1,0 +1,80 @@
+I"/<p>Thymleaf를 통한 Item 목록을 화면에 렌더링 하는 방법에 대해서 알아보자.<br />
+<a href="https://en.wikipedia.org/wiki/Thymeleaf">thymleaf</a>는 template view 엔진으로써 Spring MVC에서 모델에 담은 데이터 정보를 View단에 렌더링(뿌리는) 역할을 한다.</p>
+
+<h2 id="1-item-클래스-정의">1. Item 클래스 정의</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Data</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Item</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">price</span><span class="o">;</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="2-mvc-controller-작성">2. Mvc Controller 작성</h2>
+
+<p>REST API를 작성하는 컨트롤러와 다른 점은 <code class="language-plaintext highlighter-rouge">@Controller</code> 와 메서드 선언부에 <code class="language-plaintext highlighter-rouge">@ResponseBody</code> 가 없다. 이런 경우에 스프링에서는 ViewNameResolver 라는 놈이 return하는 <code class="language-plaintext highlighter-rouge">item_list</code>를 <code class="language-plaintext highlighter-rouge">item_list.html</code> 파일로 매핑해서 해당 화면에 대한 정보를 렌더링한다. 렌더링할 때 model정보에 <code class="language-plaintext highlighter-rouge">items</code> 라는 이름으로 해당 목록정보를 담았다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Item</span><span class="o">&gt;</span> <span class="no">ITEMS</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+            <span class="k">new</span> <span class="nf">Item</span><span class="o">(</span><span class="s">"Chair"</span><span class="o">,</span> <span class="mi">30</span><span class="o">),</span>
+            <span class="k">new</span> <span class="nf">Item</span><span class="o">(</span><span class="s">"Lug"</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
+            <span class="k">new</span> <span class="nf">Item</span><span class="o">(</span><span class="s">"Desk"</span><span class="o">,</span> <span class="mi">50</span><span class="o">)</span>
+        <span class="o">);</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/item"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">findItem</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"items"</span><span class="o">,</span> <span class="no">ITEMS</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"item_list"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="3-item_listhtml-작성">3. item_list.html 작성</h2>
+
+<p>해당 파일은 <code class="language-plaintext highlighter-rouge">src/main/resources/templates/</code> 디렉토리 하위에 <code class="language-plaintext highlighter-rouge">item_list.html</code>파일을 위치시켜야 합니다.
+물론 이 path정보를 변경할 수 있지만, 기본 default path가 SpringBoot를 통해서 이루어 지므로 딱히 수정할 것은 없습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="c">&lt;!-- 반드시 네임태그를 달아줍니다. --&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Item List<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Item List<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;table&gt;</span>
+      <span class="nt">&lt;thead&gt;</span>
+        <span class="nt">&lt;th&gt;</span>아이템<span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span>가격<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;/thead&gt;</span>
+      <span class="nt">&lt;tbody&gt;</span>
+        <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"item:${items}"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${item.name}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${item.price}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;/tr&gt;</span>
+      <span class="nt">&lt;/tbody&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>thymleaf 네임태그 달기</li>
+  <li>th:each 구문 사용: 컨트롤러에서 넘긴 첫번째 파라미터 <code class="language-plaintext highlighter-rouge">model.addAttribute("items", xxx)</code> <code class="language-plaintext highlighter-rouge">items</code>가 바로 <code class="language-plaintext highlighter-rouge">${items}</code>이 부분에 들어오게 됩니다.</li>
+</ul>
+
+<h2 id="4결과확인">4.결과확인</h2>
+
+<p>프로젝트를 실행하고 <code class="language-plaintext highlighter-rouge">localhost:8080/item</code>를 호출하면 Model에 담은 데이터 정보가 화면에 제대로 뿌려진다.</p>
+
+<h2 id="정리s">정리s</h2>
+
+<p>오늘은 간단한 thymleaf를 통한 아이템을 화면에 뿌리는 방법에 대해서 알아보았습니다. 이 외에도 자주 사용하는 thymeleaf 태그(?)들과 html내 파일에서 자바스크립트를 활용한 이벤트들을 다루는 방법은 추후에 포스팅 하도록 하겠습니다.</p>
+:ET
