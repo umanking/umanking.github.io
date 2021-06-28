@@ -1,0 +1,30 @@
+I"�<p>로컬에서 리모트 서버로 파일을 복사하는 SCP에 대해서 알아보자.</p>
+
+<h2 id="로컬-to-리모트-서버로-파일-복사하기">{로컬} to {리모트 서버}로 파일 복사하기</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 기본 사용법</span>
+<span class="nv">$ </span>scp <span class="o">[</span>옵션][현재경로] <span class="o">[</span>리모트계정]@[리모트IP]:[리모트 디렉토리]
+
+<span class="c"># 예제) 현재폴더 to AWS의 /home/centos 경로로 파일을 복사</span>
+<span class="nv">$ </span>scp <span class="nt">-i</span> ~/aws_key.pem <span class="nt">-r</span> ./ centos@123.123.123.88:/home/centos/ 
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-r </code> 옵션은 하위 폴더까지 복사
+<img src="https://user-images.githubusercontent.com/28615416/123628018-a22ef580-d84d-11eb-92f8-677e26ff865c.png" alt="ScreenShot" />
+    <blockquote>
+      <p>scp 옵션이 더 궁금하다면 
+$ man  scp로 메뉴얼 문서를 읽자!</p>
+    </blockquote>
+  </li>
+  <li>AWS Pem KEY가 존재한다면 <code class="language-plaintext highlighter-rouge">-i</code>옵션으로 pem파일 키 위치를 지정해준다.</li>
+</ul>
+
+<h2 id="리모트-서버-to-로컬로-파일-복사하기">{리모트 서버} to {로컬}로 파일 복사하기</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>scp <span class="o">[</span>옵션][리모트 계정]@[리모트 서버주소]:[디렉토리] <span class="o">[</span>로컬 디렉토리]
+<span class="c"># 예제) 리모터서버의 /home/centos하위의 모든 경로를 현재 로컬 디렉토리로 복사하기</span>
+<span class="nv">$ </span>scp <span class="nt">-r</span> centos@123.123.123.88:/home/centos ./
+</code></pre></div></div>
+
+:ET

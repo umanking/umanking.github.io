@@ -15,7 +15,7 @@ div.highlight {
 
   .highlighter-rouge & {
     color: #A9B7C6;
-    background: #2d2d2d;
+    background: rgb(1, 22, 39);
     // letter-spacing: -0.2px;
     line-height: 1.7;
     border-radius: 18px;
@@ -23,7 +23,7 @@ div.highlight {
   }
 
   .c {
-    color: #999;
+    color: #998;
     font-style: italic
   }
 
@@ -36,13 +36,13 @@ div.highlight {
   // new키워드
   // Error
   .k {
-    color: #cc99cd;
-    // font-weight: bold;
+    color: rgb(255, 167, 196);
+    // font-weight: bold
   }
 
   // Keyword
   .o {
-    // color: #ccc
+    color: rgb(199, 146, 234);
   }
 
   // Operator
@@ -59,8 +59,8 @@ div.highlight {
 
   // Comment.Preproc
   .c1 {
-    color: #999;
-    // font-style: italic
+    color: rgb(128, 147, 147);
+    font-style: italic
   }
 
   // Comment.Single
@@ -141,7 +141,7 @@ div.highlight {
 
   // Keyword.Constant
   .kd {
-    color:#cc99cd
+    color:rgb(255, 167, 196)
     // font-weight: bold
   }
 
@@ -170,16 +170,16 @@ div.highlight {
   // 변수값
   // Literal.Number
   .s {
-    color: #7ec699
+    color: rgb(173, 219, 103)
   }
 
   .n {
-    color: #ccc
+    color: white
   }
-  // 함수
   // Literal.String
   .na {
-    color: #f08d49
+    
+    color: rgb(130, 170, 255)
   }
 
   // Name.Attribute
@@ -189,17 +189,17 @@ div.highlight {
 
   // Name.Builtin
   .nc {
-    color: #f8c555
+    color: rgb(255, 203, 139)
   }
 
   .nd {
-    color: #ccc;
+    color: rgb(199, 146, 234);
     // font-weight: 700;
   }
 
   // Name.Class
   .no {
-    color: #ccc;
+    color: white;
   }
 
   // Name.Constant
@@ -217,7 +217,7 @@ div.highlight {
   //메서드명, const
   // Name.Exception
   .nf {
-    color: #f08d49
+    color: rgb(130, 170, 255)
     // color: rgb(255, 203, 139)
     // font-weight: bold
   }
@@ -234,7 +234,7 @@ div.highlight {
 
   // Name.Tag
   .nv {
-    color: #ccc
+    color: #008080
   }
 
   // Name.Variable
