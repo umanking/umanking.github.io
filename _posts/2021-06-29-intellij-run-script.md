@@ -21,7 +21,7 @@ image: 'https://pbs.twimg.com/profile_images/1206618215767584769/zl48EuhC_400x40
   - `$ export PATH=~/jetbrains:$PATH` 
   -  `$ source ~/.zshrc` 로 적용한다.
 
-![ScreenShot](https://user-images.githubusercontent.com/28615416/123739315-67769d00-d8e1-11eb-849c-796bafba0476.png)
+![스크린샷 2021-06-29 오후 9 37 45](https://user-images.githubusercontent.com/28615416/123798595-4aae8980-d922-11eb-88d4-4f177a3daa90.png)
 - 실제 sample 프로젝트 폴더로 이동한 후에, `idea .`를 누르면 intellij 프로그램이 실행된다. 
 - 실제 idea 스크립트가 어떻게 형성되었는지 확인할려면 
   - ~/jetbrains 폴더에 가서 확인하자.
