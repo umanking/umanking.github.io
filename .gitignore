@@ -12,5 +12,6 @@ _draft/
 .sass-cache/
 .jekyll-metadata
 .jekyll
+.jekyll-cache
 Gemfile
 Gemfile.lock
