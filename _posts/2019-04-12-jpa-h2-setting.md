@@ -3,7 +3,7 @@ layout: post
 title: "SpringBoot, JPA, H2 database 셋팅"
 date: 2019-04-12 09:05:02
 categories: [jpa]
-#tags: [jpa]
+tags: [jpa]
 ---
 
 ## 목표

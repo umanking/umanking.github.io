@@ -4,7 +4,7 @@ title: "[Spring] DispatcherServlet에 대해서 알아보자"
 date: 2019-04-21 12:30:30
  
 categories: [spring]
-#tags: [spring]
+tags: [spring]
 ---
 
 > DispatcherSevlet의 기본전략과 여러가지 유형에 대해서 알아보자.

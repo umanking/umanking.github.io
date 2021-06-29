@@ -3,7 +3,7 @@ layout: post
 title: "[JPA] 연관관계 매핑 (연관관계 편의 메서드)"
 date: 2020-10-26 22:25 +0900
 categories: [jpa]
-#tags: [jpa]
+tags: [jpa]
 ---
 
 ## 들어가며

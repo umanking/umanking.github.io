@@ -3,7 +3,7 @@ layout: post
 title: "[JPA] 도메인 클래스 컨버터란?"
 date: 2019-04-12 09:04:25
 categories: [jpa]
-#tags: [jpa]
+tags: [jpa]
 ---
 
 > 도메인 클래스 컨버터에 대해서 알아보자.

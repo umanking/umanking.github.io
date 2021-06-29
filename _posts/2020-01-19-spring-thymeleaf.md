@@ -3,7 +3,7 @@ layout: post
 title: "Thymeleaf Collection 정보 화면에 렌더링하기"
 date: 2020-01-19 14:20 +0900
  
-#tags: [spring, thymeleaf]
+tags: [spring, thymeleaf]
 ---
 
 Thymleaf를 통한 Item 목록을 화면에 렌더링 하는 방법에 대해서 알아보자.  

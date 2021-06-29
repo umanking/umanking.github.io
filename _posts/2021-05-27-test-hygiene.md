@@ -3,7 +3,7 @@ layout: post
 title: 테스트 위생(test hygiene), 테스트를 깔끔하게 유지하는 방법
 date: 2021-05-27 12:27:53
 category: [test]
-#tags: [test]
+tags: [test]
 ---
 
 

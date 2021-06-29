@@ -4,7 +4,7 @@ title: SpringBoot RabbitMQ 연동하기
 date: 2020-11-25 08:45:09
 image: 'https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png'
 categories: [spring]
-#tags: [spring]
+tags: [spring]
 ---
 
 이번시간에는 오픈소스 메세지 브로커인 RabbitMQ를 로컬에 설치하고, Spring Boot 프로젝트를 이용해서 간단하게 메세지를 전송하고, Listening 하는 샘플 프로젝트를 만들어보도록 하겠습니다.!!
