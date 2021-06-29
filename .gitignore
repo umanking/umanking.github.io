@@ -6,8 +6,8 @@ node_modules
 package.json
 
 ## Jekyll stuff
-# /_site/
-# _site/
+/_site/
+_site/
 _draft/
 .sass-cache/
 .jekyll-metadata
