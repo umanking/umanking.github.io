@@ -2,6 +2,7 @@
 layout: post
 title: '리눅스 SCP 파일복사'
 tags: [linux]
+image: 'https://i.pinimg.com/originals/c7/b8/11/c7b8113247fecd83bd9b5ed5bd3f34d5.png'
 date: 2021-06-28 20:37 +0900
 ---
 로컬에서 리모트 서버로 파일을 복사하는 SCP에 대해서 알아보자.

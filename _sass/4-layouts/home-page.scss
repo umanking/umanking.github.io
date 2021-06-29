@@ -92,14 +92,28 @@
     .article__tag {
       color: $text-color-alt;
 
+      display: inline-block;
+      line-height: 1;
+      vertical-align: baseline;
+      margin: 0 .14285714em;
+      background-color: #e8e8e8;
+      background-image: none;
+      padding: .5833em .833em;
+      color: rgba(0, 0, 0, .6);
+      text-transform: none;
+      font-weight: 700;
+      border: 0 solid transparent;
+      border-radius: .28571429rem;
+      transition: background .1s ease;
+
       &:hover {
         color: $text-color;
       }
 
       &::after {
-        content: ",";
+        // content: ",";
         display: inline-block;
-        margin: 0 2px;
+        // margin: 0 2px;
       }
 
       &:last-child {
