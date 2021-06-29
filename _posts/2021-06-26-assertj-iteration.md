@@ -2,7 +2,7 @@
 layout: post
 title:  AssertJ 자주 사용하는 것들 
 date: 2021-06-26 12:21 +0900
-#tags: [assertj]
+tags: [assertj]
 image: '/images/assert.png'
 ---
 

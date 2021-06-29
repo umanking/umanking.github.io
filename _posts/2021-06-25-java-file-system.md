@@ -2,7 +2,7 @@
 layout: post
 title: "Java - 파일 입출력(BufferedWriter, BufferedReader, Files)"
 date: 2021-06-25 17:13 +0900
-#tags: [java]
+tags: [java]
 image: '/images/java.png'
 ---
 

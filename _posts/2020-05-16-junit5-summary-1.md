@@ -3,7 +3,7 @@ layout: post
 title: "Junit5 정리"
 date: 2020-05-16 11:27 +0900
 categories: [spring]
-#tags: [spring, junit5]
+tags: [spring, junit5]
 ---
 
 > 해당 포스팅은 인프런의 백기선님 강의를 요약한 내용입니다. 더 자세한 내용은 Junit Reference를 참고하세용!

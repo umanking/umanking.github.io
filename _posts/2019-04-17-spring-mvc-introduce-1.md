@@ -4,7 +4,7 @@ title: "[Spring] MVC 만들어 보기"
 date: 2019-04-17 09:21:01
  
 categories: [spring]
-#tags: [spring]
+tags: [spring]
 ---
 
 > Spring MVC 에 대해서 알아보자

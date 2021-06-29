@@ -4,7 +4,7 @@ title: "[Spring] application.properties값 → 클래스로 관리하는 방법"
 date: 2019-04-13 22:04:37
  
 categories: [spring]
-#tags: [spring]
+tags: [spring]
 ---
 
 > 일반 적으로 스프링 설정파일인 `application.properties` 에서 값들을 `@Value` 를 통해서 가져올 수 있다. 하지만 여전히 개별 값들을 일일히 매핑해야 되고, 혹여나 하드 코딩으로 제대로 된 값들을 가져 올 수 있다. 또한, 값을 제대로 가져왔는 지 아닌지 Runtime외에는 알 길이 없다. 이런 문제들을 해결 해 줄 수 있는 방법에 대해서 알아보자!

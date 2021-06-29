@@ -4,7 +4,7 @@ title: "[Spring] Spring Data Common 프로젝트 살펴보기"
 date: 2019-04-12 09:03:09
  
 categories: [spring]
-#tags: [spring]
+tags: [spring]
 ---
 
 > Spring Data는 여러 가지 프로젝트로 되어 있다. 그중에서 Common 프로젝트에 대해서 알아보자.

@@ -3,7 +3,7 @@ layout: post
 title: "[JPA] 쿼리메서드(Lookup 전략)"
 date: 2019-04-12 09:07:40
 categories: [jpa]
-#tags: [jpa]
+tags: [jpa]
 ---
 
 > JPA에서 쿼리 메서드를 정의하는 방법에 대해서 알아보자.

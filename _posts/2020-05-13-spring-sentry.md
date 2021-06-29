@@ -4,7 +4,7 @@ title: 스프링에서 sentry 적용하기
 date: 2020-05-13 08:47 +0900
  
 categories: [spring]
-#tags: [spring]
+tags: [spring]
 ---
 
 스프링 부트 프로젝트 sentry 적용

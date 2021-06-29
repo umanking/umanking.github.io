@@ -4,7 +4,7 @@ title: "[Spring] 메세지 컨버터"
 date: 2019-04-13 22:07:05
  
 categories: [spring]
-#tags: [spring]
+tags: [spring]
 ---
 
 > spring web mvc의 HttpMessageConverter에 대해서 알아보자!

@@ -3,7 +3,7 @@ layout: post
 title: "[JPA]@Transactional를 통한 Optimization"
 date: 2019-04-12 09:09:13
 categories: [jpa]
-#tags: [jpa]
+tags: [jpa]
 ---
 
 Spring Data Jpa에서 제공하는 `JpaRepository`의 구현체인 `SimpleJpaReposity`의 `@Transactional`을 어떻게 사용하는지 살펴보고, 실제 우리 서비스에서 어떻게 적용하면 좋을지에 대해서 생각해보자.
