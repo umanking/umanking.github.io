@@ -1,15 +1,16 @@
 <div class="article col col-4 col-d-6 col-t-12">
   <div class="article__inner">
+    <a href="{{ post.url | prepend: site.baseurl }}">
     {% if post.image %}
       <div class="image-wrap">
-        <a class="article__image" href="{{post.url | prepend: site.baseurl}}">
+        <span class="article__image">
           <img class="lazy" data-src="{{site.baseurl}}{{post.image}}" alt="{{post.title}}">
-        </a>
+        </span>
       </div>
     {% endif %}
     <div class="article__content">
       <h2 class="article__title">
-        <a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a>
+        {{post.title}}
       </h2>
       <p class="article__excerpt">
         {% if post.description %}{{ post.description }}{% else %}{{ post.content | strip_html | truncate: 125 }}{% endif %}
@@ -26,5 +27,6 @@
         {% endif %}
       </div>
     </div>
+    </a>
   </div>
 </div>

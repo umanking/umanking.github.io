@@ -135,6 +135,7 @@
     padding: 25px;
     margin-bottom: 30px;
     background: $background-color-alt;
+    border: 1px solid rgba(0, 0, 0, .08);
     box-shadow: 0px 0px 20px rgba(0,0,0,0.05);
     transition: transform .2s;
 
@@ -229,6 +230,7 @@
 /* Comments */
 .post__comments {
   padding: 40px;
+  border: 1px solid rgba(0, 0, 0, .08);
   box-shadow: 0px 0px 20px rgba(0,0,0,0.05);
   background: $background-color-alt;
 
