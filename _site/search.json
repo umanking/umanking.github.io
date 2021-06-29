@@ -1,0 +1,561 @@
+[
+  
+    {
+      "title"    : "IntelliJ 커맨드 명령어(idea .)으로 실행하기 ",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2021/06/29/intellij-run-script'> <img src='https://pbs.twimg.com/profile_images/1206618215767584769/zl48EuhC_400x400.jpg' alt='IntelliJ 커맨드 명령어(idea .)으로 실행하기 '> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/29/intellij-run-script'>IntelliJ 커맨드 명령어(idea .)으로 실행하기 </a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-29T13:50:00+09:00'>29 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/intellij' class='article__tag'>intellij</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "intellij",
+      "url"      : "/2021/06/29/intellij-run-script",
+      "date"     : "2021-06-29 13:50:00 +0900"
+    } ,
+  
+    {
+      "title"    : "리눅스 SCP 파일복사",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2021/06/28/linux-scp-file-copy'> <img src='https://i.pinimg.com/originals/c7/b8/11/c7b8113247fecd83bd9b5ed5bd3f34d5.png' alt='리눅스 SCP 파일복사'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/28/linux-scp-file-copy'>리눅스 SCP 파일복사</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-28T20:37:00+09:00'>28 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/linux' class='article__tag'>linux</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "linux",
+      "url"      : "/2021/06/28/linux-scp-file-copy",
+      "date"     : "2021-06-28 20:37:00 +0900"
+    } ,
+  
+    {
+      "title"    : "AssertJ 자주 사용하는 것들",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2021/06/26/assertj-iteration'> <img src='/images/assert.png' alt='AssertJ 자주 사용하는 것들'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/26/assertj-iteration'>AssertJ 자주 사용하는 것들</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-26T12:21:00+09:00'>26 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/assertj' class='article__tag'>assertj</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "assertj",
+      "url"      : "/2021/06/26/assertj-iteration",
+      "date"     : "2021-06-26 12:21:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Java - 파일 입출력(BufferedWriter, BufferedReader, Files)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2021/06/25/java-file-system'> <img src='/images/java.png' alt='Java - 파일 입출력(BufferedWriter, BufferedReader, Files)'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/25/java-file-system'>Java - 파일 입출력(BufferedWriter, BufferedReader, Files)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-25T17:13:00+09:00'>25 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/java' class='article__tag'>java</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "java",
+      "url"      : "/2021/06/25/java-file-system",
+      "date"     : "2021-06-25 17:13:00 +0900"
+    } ,
+  
+    {
+      "title"    : "JPA - 값 타입(6)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/20/jpa-summary-value-type'>JPA - 값 타입(6)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-20T17:04:00+09:00'>20 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  <a href='/tag/orm' class='article__tag'>orm</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa and orm",
+      "url"      : "/2021/06/20/jpa-summary-value-type",
+      "date"     : "2021-06-20 17:04:00 +0900"
+    } ,
+  
+    {
+      "title"    : "JPA - 프록시와 연관관계(5)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/20/jpa-summary-proxy'>JPA - 프록시와 연관관계(5)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-20T16:22:00+09:00'>20 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  <a href='/tag/orm' class='article__tag'>orm</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa and orm",
+      "url"      : "/2021/06/20/jpa-summary-proxy",
+      "date"     : "2021-06-20 16:22:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Junit5 - 기본 사용법",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/19/junit5-best-usage'>Junit5 - 기본 사용법</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-19T17:37:00+09:00'>19 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/junit5' class='article__tag'>junit5</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "junit5",
+      "url"      : "/2021/06/19/junit5-best-usage",
+      "date"     : "2021-06-19 17:37:00 +0900"
+    } ,
+  
+    {
+      "title"    : "JPA - 다양한 연관관계 매핑(4)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/19/jpa-summary-advanced-releation-mapping'>JPA - 다양한 연관관계 매핑(4)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-19T17:21:00+09:00'>19 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  <a href='/tag/orm' class='article__tag'>orm</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa and orm",
+      "url"      : "/2021/06/19/jpa-summary-advanced-releation-mapping",
+      "date"     : "2021-06-19 17:21:00 +0900"
+    } ,
+  
+    {
+      "title"    : "JPA - 연관관계 매핑(기초)(3)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/19/jpa-summary-basic-releation-mapping'>JPA - 연관관계 매핑(기초)(3)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-19T17:20:00+09:00'>19 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  <a href='/tag/orm' class='article__tag'>orm</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa and orm",
+      "url"      : "/2021/06/19/jpa-summary-basic-releation-mapping",
+      "date"     : "2021-06-19 17:20:00 +0900"
+    } ,
+  
+    {
+      "title"    : "JPA - 엔티티 매핑(2)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/19/jpa-summary-entity-mapping'>JPA - 엔티티 매핑(2)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-19T17:19:00+09:00'>19 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  <a href='/tag/orm' class='article__tag'>orm</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa and orm",
+      "url"      : "/2021/06/19/jpa-summary-entity-mapping",
+      "date"     : "2021-06-19 17:19:00 +0900"
+    } ,
+  
+    {
+      "title"    : "JPA - 영속성 관리(1)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/19/jpa-summary-persistence-context'>JPA - 영속성 관리(1)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-19T17:10:00+09:00'>19 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  <a href='/tag/orm' class='article__tag'>orm</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa and orm",
+      "url"      : "/2021/06/19/jpa-summary-persistence-context",
+      "date"     : "2021-06-19 17:10:00 +0900"
+    } ,
+  
+    {
+      "title"    : "[AserrtJ] 필드값 재귀적으로 테스트 하는 방법",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/06/11/assertj-field-recursive-comparision'>[AserrtJ] 필드값 재귀적으로 테스트 하는 방법</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-06-11T19:51:04+09:00'>11 Jun 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/assertj' class='article__tag'>assertj</a>  <a href='/tag/junit5' class='article__tag'>junit5</a>  </div>  </div> </div> </div> </div>",
+      "category" : "test",
+      "tags"     : "assertj and junit5",
+      "url"      : "/2021/06/11/assertj-field-recursive-comparision",
+      "date"     : "2021-06-11 19:51:04 +0900"
+    } ,
+  
+    {
+      "title"    : "테스트 위생(test hygiene), 테스트를 깔끔하게 유지하는 방법",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2021/05/27/test-hygiene'>테스트 위생(test hygiene), 테스트를 깔끔하게 유지하는 방법</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2021-05-27T21:27:53+09:00'>27 May 2021</time></span>  <div class='article-tags__box'>  <a href='/tag/test' class='article__tag'>test</a>  </div>  </div> </div> </div> </div>",
+      "category" : "test",
+      "tags"     : "test",
+      "url"      : "/2021/05/27/test-hygiene",
+      "date"     : "2021-05-27 21:27:53 +0900"
+    } ,
+  
+    {
+      "title"    : "SpringBoot RabbitMQ 연동하기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2020/11/25/spring-rabbitmq-tutorial'> <img src='https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png' alt='SpringBoot RabbitMQ 연동하기'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/11/25/spring-rabbitmq-tutorial'>SpringBoot RabbitMQ 연동하기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-11-25T17:45:09+09:00'>25 Nov 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2020/11/25/spring-rabbitmq-tutorial",
+      "date"     : "2020-11-25 17:45:09 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring Cloud] spring cloud config 간단 예제",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/10/28/spring-cloud-config-example'>[Spring Cloud] spring cloud config 간단 예제</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-10-28T09:41:00+09:00'>28 Oct 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring cloud' class='article__tag'>spring cloud</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring cloud",
+      "url"      : "/2020/10/28/spring-cloud-config-example",
+      "date"     : "2020-10-28 09:41:00 +0900"
+    } ,
+  
+    {
+      "title"    : "개발자 컴퓨터 환경 세팅",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2020/10/28/setting-mac'> <img src='https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' alt='개발자 컴퓨터 환경 세팅'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/10/28/setting-mac'>개발자 컴퓨터 환경 세팅</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-10-28T09:41:00+09:00'>28 Oct 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/setting' class='article__tag'>setting</a>  <a href='/tag/tip' class='article__tag'>tip</a>  </div>  </div> </div> </div> </div>",
+      "category" : "mac",
+      "tags"     : "setting and tip",
+      "url"      : "/2020/10/28/setting-mac",
+      "date"     : "2020-10-28 09:41:00 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] 연관관계 매핑 (연관관계 편의 메서드)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/10/26/jpa-mapping-2'>[JPA] 연관관계 매핑 (연관관계 편의 메서드)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-10-26T22:25:00+09:00'>26 Oct 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2020/10/26/jpa-mapping-2",
+      "date"     : "2020-10-26 22:25:00 +0900"
+    } ,
+  
+    {
+      "title"    : "CompletableFuture 사용방법",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2020/10/15/java-completable-future'> <img src='/images/java.png' alt='CompletableFuture 사용방법'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/10/15/java-completable-future'>CompletableFuture 사용방법</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-10-15T21:07:00+09:00'>15 Oct 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/java' class='article__tag'>java</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "java",
+      "url"      : "/2020/10/15/java-completable-future",
+      "date"     : "2020-10-15 21:07:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Junit5 정리",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/05/16/junit5-summary-1'>Junit5 정리</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-05-16T11:27:00+09:00'>16 May 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  <a href='/tag/junit5' class='article__tag'>junit5</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring and junit5",
+      "url"      : "/2020/05/16/junit5-summary-1",
+      "date"     : "2020-05-16 11:27:00 +0900"
+    } ,
+  
+    {
+      "title"    : "스프링에서 sentry 적용하기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/05/13/spring-sentry'>스프링에서 sentry 적용하기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-05-13T08:47:00+09:00'>13 May 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2020/05/13/spring-sentry",
+      "date"     : "2020-05-13 08:47:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Java8 새로운 날짜와 시간 API 정리",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2020/05/09/java-date-time'> <img src='/images/java.png' alt='Java8 새로운 날짜와 시간 API 정리'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/05/09/java-date-time'>Java8 새로운 날짜와 시간 API 정리</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-05-09T12:19:00+09:00'>09 May 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/java' class='article__tag'>java</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "java",
+      "url"      : "/2020/05/09/java-date-time",
+      "date"     : "2020-05-09 12:19:00 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] 빈 주입하는 방법 &amp;&amp; Best Practice ",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/05/05/spring-bean-injection'>[Spring] 빈 주입하는 방법 && Best Practice </a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-05-05T17:01:00+09:00'>05 May 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2020/05/05/spring-bean-injection",
+      "date"     : "2020-05-05 17:01:00 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] 엔티티 설계시 주의사항들",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/05/05/jpa-entity-design'>[JPA] 엔티티 설계시 주의사항들</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-05-05T15:36:00+09:00'>05 May 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2020/05/05/jpa-entity-design",
+      "date"     : "2020-05-05 15:36:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Modern Java in Action #2. 동작파라미터화 코드 전달하기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2020/05/04/modern-java-in-action-2'> <img src='/images/java.png' alt='Modern Java in Action #2. 동작파라미터화 코드 전달하기'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/05/04/modern-java-in-action-2'>Modern Java in Action #2. 동작파라미터화 코드 전달하기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-05-04T15:21:00+09:00'>04 May 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/java' class='article__tag'>java</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "java",
+      "url"      : "/2020/05/04/modern-java-in-action-2",
+      "date"     : "2020-05-04 15:21:00 +0900"
+    } ,
+  
+    {
+      "title"    : "2020년 상반기 회고",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/05/02/first-review'>2020년 상반기 회고</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-05-02T12:16:00+09:00'>02 May 2020</time></span>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/2020/05/02/first-review",
+      "date"     : "2020-05-02 12:16:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Java Comparable vs Compartor 사용방법",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2020/03/10/java-comparable-comparator'> <img src='/images/java.png' alt='Java Comparable vs Compartor 사용방법'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/03/10/java-comparable-comparator'>Java Comparable vs Compartor 사용방법</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-03-10T08:18:00+09:00'>10 Mar 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/java' class='article__tag'>java</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "java",
+      "url"      : "/2020/03/10/java-comparable-comparator",
+      "date"     : "2020-03-10 08:18:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Thymeleaf 실무에서 자주 사용하는 것들",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/01/19/spring-thymleaf-example'>Thymeleaf 실무에서 자주 사용하는 것들</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-01-19T15:59:00+09:00'>19 Jan 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  <a href='/tag/thymeleaf' class='article__tag'>thymeleaf</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring and thymeleaf",
+      "url"      : "/2020/01/19/spring-thymleaf-example",
+      "date"     : "2020-01-19 15:59:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Thymeleaf Collection 정보 화면에 렌더링하기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/01/19/spring-thymeleaf'>Thymeleaf Collection 정보 화면에 렌더링하기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-01-19T14:20:00+09:00'>19 Jan 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  <a href='/tag/thymeleaf' class='article__tag'>thymeleaf</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring and thymeleaf",
+      "url"      : "/2020/01/19/spring-thymeleaf",
+      "date"     : "2020-01-19 14:20:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Spring, JPA를 이용한 REST API 만들기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/01/18/spring-rest-api'>Spring, JPA를 이용한 REST API 만들기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-01-18T10:33:00+09:00'>18 Jan 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2020/01/18/spring-rest-api",
+      "date"     : "2020-01-18 10:33:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Garbage Collection - #2부 GC에 대한 설명",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/01/09/garbage-collector-2'>Garbage Collection - #2부 GC에 대한 설명</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-01-09T20:22:00+09:00'>09 Jan 2020</time></span>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/2020/01/09/garbage-collector-2",
+      "date"     : "2020-01-09 20:22:00 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] MultipartFile을 이용한 파일 업로드",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2020/01/02/spring-fileupload'>[Spring] MultipartFile을 이용한 파일 업로드</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2020-01-02T23:42:00+09:00'>02 Jan 2020</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2020/01/02/spring-fileupload",
+      "date"     : "2020-01-02 23:42:00 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] 모델 검증(validation)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/12/12/spring-validation'>[Spring] 모델 검증(validation)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-12-12T21:19:00+09:00'>12 Dec 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/12/12/spring-validation",
+      "date"     : "2019-12-12 21:19:00 +0900"
+    } ,
+  
+    {
+      "title"    : "Jackson, null 필드 무시하기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/12/11/jackson-null-property'>Jackson, null 필드 무시하기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-12-11T22:25:00+09:00'>11 Dec 2019</time></span>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/2019/12/11/jackson-null-property",
+      "date"     : "2019-12-11 22:25:00 +0900"
+    } ,
+  
+    {
+      "title"    : "[Java] Reflection 예제",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2019/08/25/java-reflection'> <img src='/images/java.png' alt='[Java] Reflection 예제'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/08/25/java-reflection'>[Java] Reflection 예제</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-08-25T08:36:46+09:00'>25 Aug 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/java' class='article__tag'>java</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "java",
+      "url"      : "/2019/08/25/java-reflection",
+      "date"     : "2019-08-25 08:36:46 +0900"
+    } ,
+  
+    {
+      "title"    : "Java - 배열 reverseOrder 하는 방법",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='image-wrap'> <a class='article__image' href='/2019/07/31/java-array-reverse-order'> <img src='/images/java.png' alt='Java - 배열 reverseOrder 하는 방법'> </a> </div>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/07/31/java-array-reverse-order'>Java - 배열 reverseOrder 하는 방법</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-07-31T21:28:33+09:00'>31 Jul 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/java' class='article__tag'>java</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "java",
+      "url"      : "/2019/07/31/java-array-reverse-order",
+      "date"     : "2019-07-31 21:28:33 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring]HandlerMethodArgumentResolver 인터페이스",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/07/26/spring-handlerMethodArgumentResolver'>[Spring]HandlerMethodArgumentResolver 인터페이스</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-07-26T04:08:12+09:00'>26 Jul 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/07/26/spring-handlerMethodArgumentResolver",
+      "date"     : "2019-07-26 04:08:12 +0900"
+    } ,
+  
+    {
+      "title"    : "Jackson 어노테이션 사용",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/05/15/spring-jackson'>Jackson 어노테이션 사용</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-05-15T07:30:23+09:00'>15 May 2019</time></span>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/2019/05/15/spring-jackson",
+      "date"     : "2019-05-15 07:30:23 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] DispatcherServlet에 대해서 알아보자",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/21/spring-mvc-dispatcher-servlet'>[Spring] DispatcherServlet에 대해서 알아보자</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-21T21:30:30+09:00'>21 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/21/spring-mvc-dispatcher-servlet",
+      "date"     : "2019-04-21 21:30:30 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] MVC 만들어 보기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/17/spring-mvc-introduce-1'>[Spring] MVC 만들어 보기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-17T18:21:01+09:00'>17 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/17/spring-mvc-introduce-1",
+      "date"     : "2019-04-17 18:21:01 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] 메세지 컨버터",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/14/spring-mvc-messageconverter'>[Spring] 메세지 컨버터</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-14T07:07:05+09:00'>14 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/14/spring-mvc-messageconverter",
+      "date"     : "2019-04-14 07:07:05 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] MVC 살펴보기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/14/spring-mvc-introduce'>[Spring] MVC 살펴보기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-14T07:05:39+09:00'>14 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/14/spring-mvc-introduce",
+      "date"     : "2019-04-14 07:05:39 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] application.properties값 → 클래스로 관리하는 방법",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/14/spring-configuration-properties'>[Spring] application.properties값 → 클래스로 관리하는 방법</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-14T07:04:37+09:00'>14 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/14/spring-configuration-properties",
+      "date"     : "2019-04-14 07:04:37 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] Profile 설정하기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/14/spring-profile'>[Spring] Profile 설정하기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-14T07:02:17+09:00'>14 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/14/spring-profile",
+      "date"     : "2019-04-14 07:02:17 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] SpringApplication를 통한 코딩",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/spring-springapplication'>[Spring] SpringApplication를 통한 코딩</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:11:51+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/12/spring-springapplication",
+      "date"     : "2019-04-12 18:11:51 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] 스프링 부트 특징 3가지",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/spring-concept'>[Spring] 스프링 부트 특징 3가지</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:11:26+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/12/spring-concept",
+      "date"     : "2019-04-12 18:11:26 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] @SpringBootAppllication 설명",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/spring-application'>[Spring] @SpringBootAppllication 설명</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:11:00+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/12/spring-application",
+      "date"     : "2019-04-12 18:11:00 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] bean circular dependencies (빈 순환 참조)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/spring-circulation-issue'>[Spring] bean circular dependencies (빈 순환 참조)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:10:25+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/12/spring-circulation-issue",
+      "date"     : "2019-04-12 18:10:25 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring]Bean에 대해서 알아보자",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/spring-bean'>[Spring]Bean에 대해서 알아보자</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:09:47+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/12/spring-bean",
+      "date"     : "2019-04-12 18:09:47 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] Audit 사용하기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-audit'>[JPA] Audit 사용하기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:09:31+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-audit",
+      "date"     : "2019-04-12 18:09:31 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA]@Transactional를 통한 Optimization",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-transactional'>[JPA]@Transactional를 통한 Optimization</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:09:13+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-transactional",
+      "date"     : "2019-04-12 18:09:13 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] 엔티티 일부 데이터만 조회하는 Projection",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-projection'>[JPA] 엔티티 일부 데이터만 조회하는 Projection</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:08:56+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-projection",
+      "date"     : "2019-04-12 18:08:56 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] save()메서드로 살펴보는 persist와 merge 개념",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-persist-merge'>[JPA] save()메서드로 살펴보는 persist와 merge 개념</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:08:33+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-persist-merge",
+      "date"     : "2019-04-12 18:08:33 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] 쿼리메서드(Lookup 전략)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-query-method-lookup-stratege'>[JPA] 쿼리메서드(Lookup 전략)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:07:40+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-query-method-lookup-stratege",
+      "date"     : "2019-04-12 18:07:40 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] QueryDSL 설정방법",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-querydsl'>[JPA] QueryDSL 설정방법</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:06:09+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-querydsl",
+      "date"     : "2019-04-12 18:06:09 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] null 처리",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-null'>[JPA] null 처리</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:05:47+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-null",
+      "date"     : "2019-04-12 18:05:47 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] 연관관계 매핑 기초(다대일, 연관관계 주인)",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-1-n-mapping'>[JPA] 연관관계 매핑 기초(다대일, 연관관계 주인)</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:05:25+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-1-n-mapping",
+      "date"     : "2019-04-12 18:05:25 +0900"
+    } ,
+  
+    {
+      "title"    : "SpringBoot, JPA, H2 database 셋팅",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-h2-setting'>SpringBoot, JPA, H2 database 셋팅</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:05:02+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-h2-setting",
+      "date"     : "2019-04-12 18:05:02 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] proxy, fetch 전략",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-proxy'>[JPA] proxy, fetch 전략</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:04:42+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-proxy",
+      "date"     : "2019-04-12 18:04:42 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] 도메인 클래스 컨버터란?",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-domain-class-converter'>[JPA] 도메인 클래스 컨버터란?</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:04:25+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-domain-class-converter",
+      "date"     : "2019-04-12 18:04:25 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] Custom Repository 만들기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-custom-repository'>[JPA] Custom Repository 만들기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:03:41+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-custom-repository",
+      "date"     : "2019-04-12 18:03:41 +0900"
+    } ,
+  
+    {
+      "title"    : "[Spring] Spring Data Common 프로젝트 살펴보기",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/spring-data-common'>[Spring] Spring Data Common 프로젝트 살펴보기</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:03:09+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/spring' class='article__tag'>spring</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "spring",
+      "url"      : "/2019/04/12/spring-data-common",
+      "date"     : "2019-04-12 18:03:09 +0900"
+    } ,
+  
+    {
+      "title"    : "[JPA] Casecade 옵션",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'>  <div class='article__content'> <h2 class='article__title'> <a href='/2019/04/12/jpa-cascade'>[JPA] Casecade 옵션</a> </h2>  <div class='article__meta'> <a href='/about/' class='article__author-link'>andrew</a> <span class='article__date'><time datetime='2019-04-12T18:01:48+09:00'>12 Apr 2019</time></span>  <div class='article-tags__box'>  <a href='/tag/jpa' class='article__tag'>jpa</a>  </div>  </div> </div> </div> </div>",
+      "category" : "",
+      "tags"     : "jpa",
+      "url"      : "/2019/04/12/jpa-cascade",
+      "date"     : "2019-04-12 18:01:48 +0900"
+    } 
+  
+]
