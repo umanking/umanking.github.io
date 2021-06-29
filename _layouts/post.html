@@ -14,16 +14,13 @@ layout: default
           <img class="lazy" data-src="{{site.baseurl}}{{page.image}}" alt="">
         </div> -->
       {% endif %}
-
-    
       {% include google-adsense.html %}
       {{ content }}
+      {% include google-adsense.html %}
     </div>
 
     {% include share.html %}
-
     {% include post-navigation.html %}
-
     {% if site.disqus-identifier %} {% include disqus-comments.html %} {% endif %}
 
   </article>
