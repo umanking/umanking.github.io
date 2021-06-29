@@ -3,7 +3,7 @@ layout: post
 title: "[JPA] 연관관계 매핑 기초(다대일, 연관관계 주인)"
 date: 2019-04-12 09:05:25
 categories: [jpa]
-tags: [jpa]
+#tags: [jpa]
 ---
 
 ## 들어가며

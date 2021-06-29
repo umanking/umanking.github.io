@@ -3,7 +3,7 @@ layout: post
 title: "[JPA] 엔티티 일부 데이터만 조회하는 Projection"
 date: 2019-04-12 09:08:56
 categories: [jpa]
-tags: [jpa]
+#tags: [jpa]
 ---
 
 > JPA를 사용해서 엔티티의 일부 데이터만 가져오는 Projection에 대해서 알아보자.

@@ -2,7 +2,7 @@
 layout: post
 title: JPA - 엔티티 매핑(2)
 date: 2021-06-19 17:19 +0900
-tags: [jpa, orm]
+#tags: [jpa, orm]
 ---
 > 본 글은, [자바 ORM 표준 JPA 프로그래밍(김영한님)](http://www.yes24.com/Product/Goods/19040233) 책을 요약 정리한 포스팅입니다.
 

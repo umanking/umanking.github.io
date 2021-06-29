@@ -2,7 +2,7 @@
 layout: post
 title: "Modern Java in Action #2. 동작파라미터화 코드 전달하기"
 date: 2020-05-04 15:21 +0900
-tags: [java]
+#tags: [java]
 image: '/images/java.png'
 ---
 
