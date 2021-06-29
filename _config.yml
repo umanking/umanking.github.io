@@ -11,7 +11,7 @@ blog-theme: light # By default, Atega theme uses a 'light' color scheme, to chan
 #-------------------------------
 # Author Settings
 author:
-  name: Andrew
+  name: andrew
   image: "/images/01.jpg"
 
 #-------------------------------
@@ -19,7 +19,7 @@ author:
 hero:
   hero__title: Hi, I'm <span class="hero__name">Andrew</span>.
   hero__job: Backend Developer
-  hero__description: Java, Spring, IntelliJ...
+  hero__description: Java, Spring, IntelliJ
   hero__button__text: Read about my past~
   hero__button__link: "/about"
   hero__image: "/images/01.jpg"
@@ -45,12 +45,12 @@ contact:
 # Example of adding a new link to the footer - {icon: "ion-logo-facebook", link: "https://facebook.com"}
 # Other icons can be found at https://ionicons.com/v4/
 social:
-  - { icon: "ion-logo-twitter", link: "https://twitter.com" }
+  # - { icon: "ion-logo-twitter", link: "https://twitter.com" }
   - { icon: "ion-logo-github", link: "https://github.com/umanking" }
-  - { icon: "ion-logo-youtube", link: "https://youtube.com" }
-  - { icon: "ion-logo-pinterest", link: "https://pinterest.com" }
-  - { icon: "ion-logo-codepen", link: "https://codepen.io" }
-  - { icon: "ion-logo-vimeo", link: "https://vimeo.com/" }
+  # - { icon: "ion-logo-youtube", link: "https://youtube.com" }
+  # - { icon: "ion-logo-pinterest", link: "https://pinterest.com" }
+  # - { icon: "ion-logo-codepen", link: "https://codepen.io" }
+  # - { icon: "ion-logo-vimeo", link: "https://vimeo.com/" }
 
 #-------------------------------
 # Comment Section (Disqus)
