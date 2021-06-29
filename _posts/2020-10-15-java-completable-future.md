@@ -3,7 +3,7 @@ layout: post
 title: "CompletableFuture 사용방법"
 date: 2020-10-15 21:07 +0900
 categories: [java]
-tags: [java]
+#tags: [java]
 image: '/images/java.png'
 ---
 

@@ -4,7 +4,7 @@ title: "[Spring] SpringApplication를 통한 코딩"
 date: 2019-04-12 09:11:51
  
 categories: [spring]
-tags: [spring]
+#tags: [spring]
 ---
 
 ## SpringBoot - SpringApplication ( applicationContext 등록 이전의 이벤트 Listener 등록 하기)

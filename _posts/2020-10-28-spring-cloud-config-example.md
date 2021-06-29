@@ -3,7 +3,7 @@ layout: post
 title: "[Spring Cloud] spring cloud config 간단 예제"
 date: 2020-10-28 09:41 +0900
  
-tags: [spring cloud]
+#tags: [spring cloud]
 ---
 
 MSA 시스템 특성상 여러개의 프로젝트를 관리하고 띄우다 보면, configuration 정보가 이곳저곳에 흩어져 있다보니까, 변경사항을 한눈에 파악하기가 힘들다. 

@@ -4,7 +4,7 @@ title: "[Spring] 스프링 부트 특징 3가지"
 date: 2019-04-12 09:11:26
  
 categories: [spring]
-tags: [spring]
+#tags: [spring]
 ---
 
 ## 스프링 부트의 특징

@@ -2,7 +2,7 @@
 layout: post
 title: "[AserrtJ] 필드값 재귀적으로 테스트 하는 방법"
 date: 2021-06-11 10:51:04
-tags: [assertj, junit5]
+#tags: [assertj, junit5]
 category: test 
 ---
 

@@ -4,7 +4,7 @@ title: "Spring, JPA를 이용한 REST API 만들기"
 date: 2020-01-18 10:33 +0900
  
 categories: [spring]
-tags: [spring]
+#tags: [spring]
 ---
 
 오늘은 Spring, JPA, H2를 이용한 RESTful API를 만들겠습니다.  

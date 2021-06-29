@@ -3,7 +3,7 @@ layout: post
 title: "[JPA] Casecade 옵션"
 date: 2019-04-12 09:01:48
 categories: [jpa]
-tags: [jpa]
+#tags: [jpa]
 ---
 
 > 멤버(Member)와 사물함(Locker) 1:1 매핑 상황을 살펴보고, cascade 옵션이 어떤 상황에서 쓰이는지 알아보자.

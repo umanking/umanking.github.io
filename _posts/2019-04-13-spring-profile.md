@@ -4,7 +4,7 @@ title: "[Spring] Profile 설정하기"
 date: 2019-04-13 22:02:17
 categories: [spring]
  
-tags: [spring]
+#tags: [spring]
 ---
 
 > 스프링부트에서 각 stage마다 profile 설정을 알아보자
