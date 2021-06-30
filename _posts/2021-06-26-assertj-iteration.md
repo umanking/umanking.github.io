@@ -11,9 +11,9 @@ image: '/images/assert.png'
 
 자세한 사용법, 예제는 [AssertJ Guide 문서](https://assertj.github.io/doc/#assertj-core-assertions-guide) 를 확인하자!
 
-## Iteration
+## 1. Iteration
 
-### 컬렉션안에 값이 포함(contain)되어 있는지
+### 1.1. 컬렉션안에 값이 포함(contain)되어 있는지
 
 ```java
 List<String> list = List.of("1", "1", "2", "3");
@@ -34,7 +34,7 @@ assertThat(list).containsAnyOf("2");
 
 
 
-### User객체, Dummy데이터 생성
+### 1.2. User객체, Dummy데이터 생성
 
 간단한 User 객체를 만들고, dummy 데이터를 넣어준다.
 
@@ -73,7 +73,7 @@ protected User andrew() {
 
 ```
 
-### 조건들을 만족하는지(satisfy)
+### 1.3. 조건들을 만족하는지(satisfy)
 
 ```java
 List<User> users = getUsers();
@@ -99,7 +99,7 @@ assertThat(users).noneSatisfy(user -> {
 
 
 
-### Match 여부 
+### 1.4. Match 여부 
 
 ```java
 // Predicate를 파라미터로 받는다.
@@ -108,7 +108,7 @@ assertThat(users).allMatch(user -> user.getName().length() > 0);
 
 - allMatch, anyMatch 를 메서드 체이닝 형태로 이어 나갈 수 있다. 
 
-### Element 탐색
+### 1.5. Element 탐색
 
 ```java
 List<User> users = getUsers();
@@ -124,7 +124,7 @@ assertThat(users).last().isEqualTo(sam());
 
 
 
-### Filter 테스트
+### 1.6. Filter 테스트
 
 ```java
 // Filtering - Predicate
@@ -156,7 +156,7 @@ assertThat(users).filteredOnNull("name").isEmpty();
 
 
 
-### Extracting single value
+### 1.7. Extracting single value
 
 ```java
 List<User> users = getUsers();
@@ -186,7 +186,7 @@ assertThat(users)
 - extracting()메서드의 파라미터로 `필드명`을 입력해도 되고, `메서드 레퍼런스로`도 표현 가능하다. 
 - map()으로 변환해서 포함되어있는지 확인도 가능하다. 
 
-### Extracting multiple value
+### 1.8. Extracting multiple value
 
 ```java
 assertThat(users).extracting("name", "age")
@@ -207,10 +207,10 @@ assertThat(users).extracting(User::getName, User::getAge)
 
 
 
-## 정리
+## 2. 정리
 
 - 오늘은 테스트케이스를 작성할때 왕왕쓰이는 AssertJ의 Iteration 섹션을 알아봤다.
 - 대충 이런게 있지 않을까 ? 찾아보면 웬만한건 있는듯 하다. 
 
-## 참고
+## 3. 참고
 - https://assertj.github.io/doc/#assertj-core-group-contains

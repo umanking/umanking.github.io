@@ -5,7 +5,7 @@ date: 2021-06-30 21:37 +0900
 image: 'https://pbs.twimg.com/profile_images/1206618215767584769/zl48EuhC_400x400.jpg'
 tags: ['intellij']
 ---
-## IntelliJ column selection 모드 
+## 1. IntelliJ column selection 모드 
 
 외부 모듈을 연동할때 `ErrorCode`나 `은행 코드` 와 같은 값을 매핑할 일이 많은데, 
 
@@ -13,7 +13,7 @@ IntelliJ에서 제공하는 Column Selection Mode를 통해서 쉽게 작업을 
 
 
 
-## 사용방법
+## 2. 사용방법
 
 1. 단축키: ⌘ + ⇧ + 8  
 
@@ -26,7 +26,7 @@ IntelliJ에서 제공하는 Column Selection Mode를 통해서 쉽게 작업을 
 
 
 
-## 실제 사용해보자!
+## 3. 실제 사용해보자!
 
 1. 다음과 같이 에러코드를 정의한 문서가 있다. 
    <img width="541" alt="스크린샷 2021-06-30 오후 9 12 12" src="https://user-images.githubusercontent.com/28615416/123959511-384b5300-d9e9-11eb-8511-c1bd375aa420.png">
