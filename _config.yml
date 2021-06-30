@@ -83,7 +83,7 @@ google-analytics: UA-130245279-5 # Add your identifier. For example UA-99631805-
 markdown: kramdown
 highlighter: rouge
 
-permalink: /:year/:month/:day/:title
+permalink: /:year/:month/:day/:title/
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
