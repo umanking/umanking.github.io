@@ -91,5 +91,5 @@ String result = Files.lines(path)
 
 - lines메서드는 파일의 모든 라인들을 읽어서 ->  Stream<String> 으로 리턴한다.
 
-## 참조 
+## 5. 참조 
 - https://www.baeldung.com/reading-file-in-java

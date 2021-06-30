@@ -5,7 +5,7 @@ date: 2021-06-29 13:50 +0900
 tags: [intellij]
 image: 'https://pbs.twimg.com/profile_images/1206618215767584769/zl48EuhC_400x400.jpg'
 ---
-## IntelliJ 커맨드 명령어(idea .)으로 실행하기 
+## 1. IntelliJ 커맨드 명령어(idea .)으로 실행하기 
 
 ![ScreenShot 1](https://user-images.githubusercontent.com/28615416/123738448-c5a28080-d8df-11eb-8a57-a602923b549f.png)
 
