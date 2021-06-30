@@ -17,8 +17,8 @@ author:
 #-------------------------------
 # Hero Settings
 hero:
-  hero__title: 안녕하세요! 백엔드 개발자 <span class="hero__name">앤드류</span> 입니다.
-  hero__job:
+  hero__title: 안녕하세요!
+  hero__job: 백엔드 개발자 <span class="hero__name">앤드류</span> 입니다.
   hero__description: Java, Spring, Database, IntelliJ Lover
   hero__button__text: Read about my past~
   hero__button__link: "/about"
