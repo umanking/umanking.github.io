@@ -144,32 +144,32 @@ public Step step1() {
 ### 3.3. Reader, Processor, Writer구성
 
 ```java
-    @Bean
-    public FlatFileItemReader<Person> reader() {
-        return new FlatFileItemReaderBuilder<Person>()
-            .name("personItemReader")
-            .resource(new ClassPathResource("sample.csv"))
-            .delimited()
-            .names(new String[]{"firstName", "lastName"})
-            .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
-                setTargetType(Person.class);
-            }})
-            .build();
-    }
+@Bean
+public FlatFileItemReader<Person> reader() {
+    return new FlatFileItemReaderBuilder<Person>()
+        .name("personItemReader")
+        .resource(new ClassPathResource("sample.csv"))
+        .delimited()
+        .names(new String[]{"firstName", "lastName"})
+        .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
+            setTargetType(Person.class);
+        }})
+        .build();
+}
 
-    @Bean
-    public ItemProcessor<Person, Person> processor() {
-        return new PersonItemProcessor();
-    }
+@Bean
+public ItemProcessor<Person, Person> processor() {
+    return new PersonItemProcessor();
+}
 
-    @Bean
-    public ItemWriter<Person> writer() {
-        return new JdbcBatchItemWriterBuilder<Person>()
-            .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-            .sql("INSERT INTO people (first_name, last_name) VALUES (:firstName, :lastName)")
-            .dataSource(dataSource)
-            .build();
-    }
+@Bean
+public ItemWriter<Person> writer() {
+    return new JdbcBatchItemWriterBuilder<Person>()
+        .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
+        .sql("INSERT INTO people (first_name, last_name) VALUES (:firstName, :lastName)")
+        .dataSource(dataSource)
+        .build();
+}
 ```
 
 - Reader는 ItemReader를 구현한 FlatFileItemReader 구현체를 사용한다. 

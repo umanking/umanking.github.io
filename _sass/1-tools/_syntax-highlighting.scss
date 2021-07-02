@@ -4,6 +4,7 @@
 
 div.highlight {
   margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 .highlight {
@@ -14,7 +15,9 @@ div.highlight {
   }
 
   .highlighter-rouge & {
-    color: #A9B7C6;
+    
+    // color: #A9B7C6;
+    color: #CCC;
     background: #2d2d2d;
     // letter-spacing: -0.2px;
     line-height: 1.7;
@@ -229,7 +232,7 @@ div.highlight {
 
   // Name.Namespace
   .nt {
-    // color: #000080
+    color: #f08d49
   }
 
   // Name.Tag
