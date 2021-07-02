@@ -14,7 +14,7 @@ layout: default
           <img class="lazy" data-src="{{site.baseurl}}{{page.image}}" alt="">
         </div> -->
       {% endif %}
-      {{ content }}
+      {{ content | toc }}
     </div>
 
     {% include share.html %}

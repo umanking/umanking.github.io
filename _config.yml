@@ -89,6 +89,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll/tagging
+  - jekyll-toc
 
 paginate: 9
 paginate_path: "/page/:num"
