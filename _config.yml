@@ -112,3 +112,11 @@ tag_permalink_style: /:title
 sass:
   sass_dir: _sass
   style: compressed
+
+jekyll_compose:
+  default_front_matter:
+    posts:
+      image: ""
+      tags: []
+      published: false
+      toc: true
