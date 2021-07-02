@@ -12,32 +12,36 @@ toc: true
 자세한 내용은 [문서](https://docs.spring.io/spring-batch/docs/current/reference/html/domain.html#domainLanguageOfBatch)를 참고하자!
 
 ![https://docs.spring.io/spring-batch/docs/current/reference/html/images/spring-batch-reference-model.png](https://docs.spring.io/spring-batch/docs/current/reference/html/images/spring-batch-reference-model.png)
-
-
+*Spring Batch 아키텍쳐*
+- JobLauncher: Job를 실행시켜주는 역할
+- JobRepository: Job,Step의 메타데이터를 저장해 주는 저장소 역할
 - `Job`: Spring Batch모듈에서 실행하는 하나의 실행단위? 
 - `Step`: Job의 하위에 여러개의 Step으로 구성된다.  (1:N의 관계) 
-- 각 Step은 `Reader`,`Processor`,` Writer`로 구성된다. (각각 1:1로 관계)
-  - Reader 는 ItemReader 인터페이스로 추상화 되어서 제공한다.
-  - Processor는 ItemProcessor 인터페이스로 추상화 되어서 제공한다.
-  - Writer는 ItemWriter 인터페이스로 추상화 되어서 제공한다.
+- 각 Step은 `ItemReader`,`ItemProcessor`,`Item Writer`로 구성된다. (각각 1:1로 관계)
+  - ItemReader: 해당 배치가 실행하기 위해서 읽어들이는 역할
+  - ItemProcessor: ItemReader에서 읽어들인 내용을 변환하는 역할 
+  - ItemWriter: ItemProcessor에서 변환된 내용을 쓰는 역할
+- ItemReader, ItemWriter는 추상화된 형태로 제공되고, 다양한 구현체들이 존재한다. 자세한 내용은 [문서](https://docs.spring.io/spring-batch/docs/4.3.x/reference/html/appendix.html#listOfReadersAndWriters)를 참고
 - ExecutionContext
 - JopRepository:...
 - JobLauncher:…. 
 
-> Processor는 필수는 아니지만, Reader와 Writer는 필수 ! 
+> Step을 구성할때 ItemReader와 ItemWriter는 필수 이지만 ItemProcessors는 필수는 아님!
 
 
 ## 3. 예제 
-**예제 코드는 [여기](https://github.com/umanking/my-workspace/tree/master/spring-batch)에서 확인!!!!**
-- resource/sample.csv 파일을 읽어서  (Reader)
-- 이름을 대문자로 변경한다.  (Processor)
-- Person 테이블에 저장한다. (Writer)
+예제 코드는 [여기](https://github.com/umanking/my-workspace/tree/master/spring-batch)에서 확인!!!!
+
+다음과 같이 간단한 **배치 프로그램**을 만들어 보자. 
+- resource/sample.csv 파일을 읽어서  (ItemReader)
+- 이름을 대문자로 변경한다.  (ItemProcessor)
+- Person 테이블에 저장한다. (ItemWriter)
 
 
 
 ### 3.1. 환경 구성 
 
-Spring batch,  hsqldb  라이브러리 추가 
+starter-batch, hsqldb 모듈 추가
 
 ```xml
 <dependency>
@@ -54,7 +58,7 @@ Spring batch,  hsqldb  라이브러리 추가
 
 
 
-`resource/sample.csv`  해당 위치에 해당 파일을 생성한다.
+`resource/sample.csv`  resource하위에 sample.csv파일을 생성한다.
 
 ```
 andrew,han
@@ -64,7 +68,7 @@ andy,kim
 
 
 
-`resource/schema-all.sql` 를 만들어서 people이라는 테이블을 만든다. 
+`resource/schema-all.sql` resource 하위에 schema-all.sql 파일을 생성한다.
 
 ```sql
 DROP TABLE people IF EXISTS;
@@ -104,7 +108,7 @@ public class BatchConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
 ```
 
-- @EnableBatchProcessing 어노테이션을 입력한다.
+- `@EnableBatchProcessing` 어노테이션을 입력한다.
 - BatchConfiguration을 구성한다. `JobBuilderFactory` 와 `StepBuilderFactory` 를 빈으로 주입한다.
 
 
@@ -167,37 +171,33 @@ public ItemWriter<Person> writer() {
 ```
 
 - Reader는 ItemReader를 구현한 FlatFileItemReader 구현체를 사용한다. 
-
   - 리소스 경로로 `sample.csv` 파일을 불러온다. 
   - 각각 필드들을 firstName과 lastName으로 `Person` 이라는 객체와 매핑한다. 
-
 - Processors는 PersonItemProcessor 클래스를 하나 만들어서, 읽어들인 Person 객체를 -> 대문자로 변환하는 작업을 수행한다.
-
-  ```java
-  // ItemProcessor<I,O>를 구현한다.
-  public class PersonItemProcessor implements ItemProcessor<Person, Person> {
-      @Override
-      public Person process(Person person) {
-        	// 대문자로 변경
-          final String firstName = person.getFirstName().toUpperCase();
-          final String lastName = person.getLastName().toUpperCase();
-        
-          final Person transformedPerson = new Person(firstName, lastName);
-          return transformedPerson;
-  
-      }
-  }
-  ```
-
 - Writer는 JdbcBatchItemWriter 구현체로 사용했다.
 
+```java
+// ItemProcessor<I,O>를 구현한다.
+public class PersonItemProcessor implements ItemProcessor<Person, Person> {
+    @Override
+    public Person process(Person person) {
+        // 대문자로 변경
+        String firstName = person.getFirstName().toUpperCase();
+        String lastName = person.getLastName().toUpperCase();
+      
+        Person transformedPerson = new Person(firstName, lastName);
+        return transformedPerson;
+
+    }
+}
+```
 
 
 ### 3.4. 다양하게 구성가능 
 
 - 지금 예제는 file을 읽고, DB에 쓰지만, DB를 읽고 DB에 쓰는 등 다양한 구현체들이 존재한다. 
 
-  > 자세한 내용은 [문서](https://docs.spring.io/spring-batch/docs/current/reference/html/readersAndWriters.html#readersAndWriters)를 참고
+  > 자세한 내용은 [문서](https://docs.spring.io/spring-batch/docs/current/reference/html/readersAndWriters.html#readersAndWriters)를 참고 하자
 
   - FlatFile
   - JSON
@@ -238,10 +238,12 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 }
 ```
 
-이렇게 JobCompletionNotificationListner를 하나 만들어 주고, JdbcTemplate을 통해서 `SELECT` 쿼리로 결과를 죄회해서 로깅을 한다. 
-넘어온 `jobExecution`의 getStatus를 통해서 BatchStatue는 다음과 같이 여러가지 상태값이 존재한다.  
-Job이 완전히 끝난 이후에 동작하도록 코드를 짰다.
+이렇게 JobCompletionNotificationListner를 하나 만들어 주고, JdbcTemplate을 통해서 `SELECT` 쿼리로 결과를 조회해서 로깅을 한다. 
+넘어온 `jobExecution`의 getStatus를 통해서 `BatchStatue` 를 알 수 있다. 
 
+위의코드에서는 `BatchStatus.COMPLETE`완료된 상태일때, 동작하는 if문을 넣었다. 
+
+`BatchStatue`는 다음과 같이 여러가지 상태값이 Enum으로 존재한다.
 
 ![스크린샷 2021-07-02 오후 6 31 58](https://user-images.githubusercontent.com/28615416/124254211-cba89380-db63-11eb-891e-98dc559e66bd.png)
 
@@ -250,6 +252,7 @@ Job이 완전히 끝난 이후에 동작하도록 코드를 짰다.
 
 ```java
 @Bean
+// Listner를 파라미터로 받는다.
 public Job importUserJob(JobCompletionNotificationListener listener) {
   return jobBuilderFactory.get("importUserJob")
     .incrementer(new RunIdIncrementer())
@@ -260,7 +263,8 @@ public Job importUserJob(JobCompletionNotificationListener listener) {
 }
 ```
 
-처음에 구성한 Job의 파라미터를 넘겨서 해당 listner를 등록했다.
+처음에 구성한 Job의 `파라미터`를 넘겨서 해당 `listner를 등록`했다.
+
 실제 프로젝트를 구동하면, schema를 initializing 하면서 batch가 동작한다.
 사실 여러가지 실험해볼 수 있는 재밌는 프로젝트인데, 시간적으로 여유가 없어서 많이 공부는 못했다. 차차 조금씩 build up해서 하나씩 포스팅해봐야지!!! 
 

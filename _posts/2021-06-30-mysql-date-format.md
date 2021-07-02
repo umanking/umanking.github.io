@@ -16,5 +16,9 @@ image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
 
 ```sql
 SELECT DATE_FORMAT(date, '%Y-%m-%d'); #2021-06-30
+
+#실제 다음과 같이 사용한다. 
+#21년 1월 1일 이후로 가입한 유저수를 구하는 쿼리
+SELECT count(*) FROM account WHERE DATE_FORMAT(joined_date, '%Y-%m-%d') >= '2021-01-01'
 ```
 
