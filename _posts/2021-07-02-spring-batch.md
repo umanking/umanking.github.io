@@ -9,11 +9,9 @@ toc: true
 ## 1. Spring Batch 프로젝트 
 
 ## 2. 구성요소
-
-> 자세한 내용은 [https://docs.spring.io/spring-batch/docs/current/reference/html/domain.html#domainLanguageOfBatch](https://docs.spring.io/spring-batch/docs/current/reference/html/domain.html#domainLanguageOfBatch)
+자세한 내용은 [문서](https://docs.spring.io/spring-batch/docs/current/reference/html/domain.html#domainLanguageOfBatch)를 참고하자!
 
 ![https://docs.spring.io/spring-batch/docs/current/reference/html/images/spring-batch-reference-model.png](https://docs.spring.io/spring-batch/docs/current/reference/html/images/spring-batch-reference-model.png)
-
 
 
 - `Job`: Spring Batch모듈에서 실행하는 하나의 실행단위? 
@@ -30,8 +28,7 @@ toc: true
 
 
 ## 3. 예제 
-소스는 아래에서 확인
-> [https://github.com/umanking/my-workspace/tree/master/spring-batch](https://github.com/umanking/my-workspace/tree/master/spring-batch)
+**예제 코드는 [여기](https://github.com/umanking/my-workspace/tree/master/spring-batch)에서 확인!!!!**
 - resource/sample.csv 파일을 읽어서  (Reader)
 - 이름을 대문자로 변경한다.  (Processor)
 - Person 테이블에 저장한다. (Writer)
@@ -108,7 +105,6 @@ public class BatchConfiguration {
 ```
 
 - @EnableBatchProcessing 어노테이션을 입력한다.
-
 - BatchConfiguration을 구성한다. `JobBuilderFactory` 와 `StepBuilderFactory` 를 빈으로 주입한다.
 
 
@@ -138,8 +134,6 @@ public Step step1() {
 - JobBuilderFactory를 통해서 flow()에 들어갈 Step을 넣어준다. 
 - StepBuilderFactory에서 chunck 사이즈를 지정한다. 
   - reader, proccessor, writer를 추가한다.  (아직은 해당 메서드를 만들지 않았기 때문에 컴파일이 되지 않는다. 다음에서 각 reader, processor, writer를 만들어보자)
-
-
 
 ### 3.3. Reader, Processor, Writer구성
 
