@@ -118,5 +118,4 @@ jekyll_compose:
     posts:
       image: ""
       tags: []
-      published: false
       toc: true
