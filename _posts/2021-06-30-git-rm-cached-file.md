@@ -16,9 +16,13 @@ image: 'https://temxi.com/minfo/logo/69/github-logo.png'
 $ git rm -r --cached .
 ```
 
-> Note  
-> $ git rm -r [file] 은 로컬&리모트 둘다 삭제 함  
-> $ git rm -r --cahed [file] 리모트만 삭제함(로컬 파일은 그대로 둠)
+### --cached 옵션이 없는 경우 vs --cached 옵션이 있는 경우 차이점
+```
+ $ git rm -r [file] 은 로컬 & 리모트 둘다 삭제 함  
+ $ git rm -r --cahed [file] 리모트만 삭제함(로컬 파일은 그대로 둠)
+ ```
 
 - `.gitignore`파일에 제외시킬 해당 파일/폴더 경로를 추가한다. 
-- `git add .` && `git commit -m “some message”` && `git push origin master`
+- `git add .`
+- `git commit -m “some message”` 
+- `git push origin master`
