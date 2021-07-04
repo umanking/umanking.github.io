@@ -2,6 +2,7 @@
 layout: post
 title: "2020년 상반기 회고"
 subtitle: "회고는 계속된다."
+tags: [retrospective]
 date: 2020-05-02 12:16 +0900
 ---
 
