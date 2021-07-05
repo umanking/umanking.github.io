@@ -13,5 +13,5 @@ _draft/
 .jekyll-metadata
 .jekyll
 .jekyll-cache/
-Gemfile
+# Gemfile
 Gemfile.lock
