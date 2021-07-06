@@ -18,7 +18,7 @@ author:
 # Hero Settings
 hero:
   hero__title: Hi! I'm <span class="hero__name">Andrew</span>
-  hero__job: BackEnd,
+  hero__job: BackEnd Developer
   hero__description: #Java, Spring, Database, IntelliJ Lover
   hero__button__text: Read about my past
   hero__button__link: "/about"
