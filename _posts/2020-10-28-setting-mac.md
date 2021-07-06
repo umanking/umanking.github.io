@@ -73,8 +73,8 @@ plugins=(
   zsh-autosuggestions
 )
 ```
- > 주의해야 할 사항은 `,` delimiter 를 [사용하지 말라고 권고합니다.](https://github.com/ohmyzsh/ohmyzsh/issues/7728)
- `source ~/.zshrc`를 적용하면 끝
+ > 주의해야 할 사항은 `,` 콤마를 [사용하면 안된다.](https://github.com/ohmyzsh/ohmyzsh/issues/7728)
+ `source ~/.zshrc`를 적용하면 자동완성 플러그인 적용!
 
 
 ## 4. [키변환] 한/영키 > 오른쪽 command키로 변경하는 방법
