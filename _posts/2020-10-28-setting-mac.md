@@ -34,7 +34,7 @@ image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMj
 
 homebrew  & nodejs 설치
 
-```
+```shell
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 $ brew update
 $ brew install node
@@ -42,7 +42,7 @@ $ brew install node
 
 Zsh 설치
 
-```
+```shell
 $ brew install zsh
 $ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 $ chsh -s /bin/zsh
@@ -50,7 +50,7 @@ $ chsh -s /bin/zsh
 
 vim 설치
 
-```
+```shell
 $ brew install neovim
 $ brew tap caskroom/fonts
 $ brew cask install font-hack-nerd-font
@@ -59,22 +59,22 @@ $ curl -sLf https://spacevim.org/install.sh | bash
 
 ## 3. Zsh 플러그인 설치 
 
-autosuggesstion (자동완성)
+### 3.1. autosuggesstion (자동완성)
 
-```
+```shell
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 ```
+`~/.oh-my-zsh/custom/plugins`폴더하위에 zsh-autosuggestions 플러그인을 이동 시킨다.
 
-~/.oh-my-zsh/custom/plugins 폴더하위에 zsh-autosuggestions 플러그인을 이동시킵니다.`vi ~/.zshrc` 를 입력해서 다음과 같이 plugins 목록에 추가합니다.
-
-```
+`vi ~/.zshrc` 를 입력해서 다음과 같이 plugins 목록에 추가합니다.
+```shell
 plugins=(
   git
   zsh-autosuggestions
 )
 ```
-
- 주의해야 할 사항은 `,` delimiter 를 [사용하지 말라고 권고합니다.](https://github.com/ohmyzsh/ohmyzsh/issues/7728).`source ~/.zshrc`를 적용하고, 재 실행시키면 자동완성됩니다!
+ > 주의해야 할 사항은 `,` delimiter 를 [사용하지 말라고 권고합니다.](https://github.com/ohmyzsh/ohmyzsh/issues/7728)
+ `source ~/.zshrc`를 적용하면 끝
 
 
 ## 4. [키변환] 한/영키 > 오른쪽 command키로 변경하는 방법
@@ -92,17 +92,17 @@ plugins=(
 
 
 
-## 6. 회사 이메일 계정이랑, 개인 계정 함께 사용하기 
+## 6. Github 회사 계정, 개인 계정 함께 사용하기
 
-> IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 분리해서 사용한다.
-
-
+IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 분리해서 사용한다.
 - 회사 프로젝트 폴더: ~/IdeaProject 
 - 개인 프로젝트 폴더: ~/workspace 
 
-회사 컴퓨터에서 `vi ~/.gitcofing` 로 접속 해서 다음과 같이 추가한다. 
+### 6.1. 방법 
 
-```
+회사 컴퓨터이기 때문에 기본 설정은 회사 껄로 `vi ~/.gitcofing` 에서 다음을 추가한다. 
+```shell
+# .gitconfig 파일
 [user]
   email = andrew@회사도메인.com
   name = andrew
@@ -110,16 +110,18 @@ plugins=(
   path = .gitconfig-personal
 ```
 
-gitconfig default 설정은 회사걸로 하고, 내 개인 프로젝트는 `~/workspace`하위에 들어가는 경우에는 
-`.gitconfig-personal` 위치에 있는 정보를 사용한다는 뜻이다.
+`vi ~/.gitconfig-personal` 입력후 다음에 자신의 개인 계정을 추가한다. 
 
-`vi ~/.gitconfig-personal` 입력후 다음과 같이 개인 계정 관련 부분을 넣는다.
-
-```
+```shell
+#.gitconfig-personal
 [user]
   email = andrew@gmail.com
   name = andrew han
 ```
+
+### 6.2. 확인
+`~/workspace`프로젝트로 이동해서 `mkdir test` 폴더를 만들고 `git init`후에
+`git config user.name` 혹은 `git config user.email`을 입력해서 확인한다. 
 
 
 
