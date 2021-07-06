@@ -1,7 +1,7 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 앤드류의 기술블로그
+title: ANDREW BLOG
 logo: # You can add own logo. For example '/images/logo.png'.
 description: Java, Spring development blog
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -11,16 +11,16 @@ blog-theme: light # By default, Atega theme uses a 'light' color scheme, to chan
 #-------------------------------
 # Author Settings
 author:
-  name: andrew
+  name: Andrew
   image: "/images/01.jpg"
 
 #-------------------------------
 # Hero Settings
 hero:
-  hero__title: 안녕하세요!
-  hero__job: 백엔드 개발자 <span class="hero__name">앤드류</span> 입니다.
+  hero__title: Hi! I'm <span class="hero__name">Andrew</span>
+  hero__job: BackEnd,
   hero__description: #Java, Spring, Database, IntelliJ Lover
-  hero__button__text: Read about my past~
+  hero__button__text: Read about my past
   hero__button__link: "/about"
   hero__image: "/images/01.jpg"
 
@@ -91,7 +91,7 @@ plugins:
   - jekyll/tagging
   # - jekyll-toc
 
-paginate: 9
+paginate: 15
 paginate_path: "/page/:num"
 
 # Pages Path
