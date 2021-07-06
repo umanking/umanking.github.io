@@ -16,7 +16,7 @@ image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMj
   - [SourceTree](https://www.sourcetreeapp.com/)
   - [Iterms2(Zsh, Oh-my-zsh, dracular theme)](https://www.iterm2.com/downloads.html)
 
-### 1.2. 업무툴
+### 1.2. 생산성
   - [Alfred4](https://www.alfredapp.com/)
   - [Magnet](https://apps.apple.com/us/app/magnet/id441258766?mt=12)
   - [Spectacle](https://www.spectacleapp.com/)
@@ -32,7 +32,7 @@ image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMj
 
 ## 2. Zsh 설치
 
-homebrew  & nodejs 설치
+### 2.1. Homebrew  & nodejs 설치
 
 ```shell
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -40,7 +40,7 @@ $ brew update
 $ brew install node
 ```
 
-Zsh 설치
+### 2.2. Zsh 설치 
 
 ```shell
 $ brew install zsh
@@ -48,7 +48,7 @@ $ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh 
 $ chsh -s /bin/zsh
 ```
 
-vim 설치
+### 2.3. vim 설치
 
 ```shell
 $ brew install neovim
@@ -56,6 +56,9 @@ $ brew tap caskroom/fonts
 $ brew cask install font-hack-nerd-font
 $ curl -sLf https://spacevim.org/install.sh | bash
 ```
+
+### 2.4. vim color schema 적용
+- [여기에서 확인]({% post_url 2021-06-30-vim-color-scheme %})
 
 ## 3. Zsh 플러그인 설치 
 
