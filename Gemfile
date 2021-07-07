@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 gem "bundler"
 gem "jekyll"
-gem "jekyll-paginate"
 gem 'jekyll-tagging'
-gem "jekyll-sitemap"
+gem 'jekyll-sitemap'
+gem 'jekyll-paginate'
 gem "jekyll-feed"
 gem "jekyll-compose"
-gem 'jekyll-toc'
+# gem 'jekyll-toc'
+gem 'jekyll-seo-tag'

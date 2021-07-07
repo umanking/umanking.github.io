@@ -84,11 +84,14 @@ markdown: kramdown
 highlighter: rouge
 
 permalink: /:year/:month/:day/:title/
+
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-feed
   - jekyll/tagging
+  - jekyll-compose
+  - jekyll-seo-tag
   # - jekyll-toc
 
 paginate: 15
