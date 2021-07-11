@@ -1,7 +1,7 @@
 ---
 #-------------------------------
 # General Site Settings
-title: ANDREW BLOG
+title: 앤드류의 기술 블로그 
 logo: # You can add own logo. For example '/images/logo.png'.
 description: Java, Spring development blog
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -81,7 +81,14 @@ google-analytics: UA-130245279-5 # Add your identifier. For example UA-99631805-
 #-------------------------------
 # Build Settings
 markdown: kramdown
-highlighter: rouge
+# highlighter: rouge
+kramdown:
+  # input: GFM
+  highlighter: rouge
+  # header_offset: 2
+  syntax_highlighter_opts:
+    block:
+        line_numbers: false
 
 permalink: /:year/:month/:day/:title/
 
