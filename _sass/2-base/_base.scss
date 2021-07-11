@@ -146,6 +146,7 @@ blockquote {
   // border-left:5px solid #ffe564;
   // background: rgba(255,229,100,0.3);
   padding: 1rem 1rem 1rem 2rem;
+  word-break: break-word;
 
   &::before {
     // content: '\201C';
