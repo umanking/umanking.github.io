@@ -30,7 +30,7 @@ public class HelloController {
 
 ## 2. Dockerfile 만들기 
 
-> Dockerfile은 인프라스트럭쳐의 프로비저닝(서버 환경 셋팅)이라고 생각하면 된다. docker build`라는 명령어를 통해서 Docker가 Dockerfile을 읽어서 자동으로 도커 이미지를 빌드한다.
+> Dockerfile은 인프라스트럭쳐의 프로비저닝(서버 환경 셋팅)이라고 생각하면 된다. `docker build`라는 명령어를 통해서 Docker가 Dockerfile을 읽어서 자동으로 도커 이미지를 빌드한다.
 
 
 
