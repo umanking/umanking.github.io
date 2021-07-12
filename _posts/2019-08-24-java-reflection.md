@@ -5,6 +5,7 @@ date: 2019-08-24 23:36:46
 categories: [java]
 tags: [java, reflection, di-framework]
 image: '/images/java.png'
+description: Java에서 Reflection 사용하는 방법과 간단한 DI framework 만들기
 ---
 
 
