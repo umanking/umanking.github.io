@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /tag/
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /archives/
 
 Sitemap: http://umanking.github.io/sitemap.xml
