@@ -4,5 +4,6 @@ Disallow: /tag/
 Disallow: /tags/
 Disallow: /categories/
 Disallow: /archives/
+Disallow: /page/
 
 Sitemap: http://umanking.github.io/sitemap.xml
