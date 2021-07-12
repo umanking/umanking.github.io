@@ -1,19 +1,31 @@
 ---
 layout: post
-title: "Java8 새로운 날짜와 시간 API 정리"
+title: "Java8 LocalDateTime API 사용법"
 date: 2020-05-09 12:19 +0900
 categories: [java]
-tags: [java]
+tags: [java, localdatetime]
 image: '/images/java.png'
+
 ---
 
-> - 자바의 날짜, 시간 관련된 히스토리, 8버전에서 추가된 새로운 날짜,시간 API 기본 사용법을 알아본다.
-> - 기간을 표현하는 Duration, Period알아본다.
-> - 날짜를 변경하고, 파싱, 포매팅을 알아본다.
-> - ZoneId (다양한 시간대)를 알아본다.
+> 해당 내용은 Java8 in action의 자바의 날짜,시간 파트를 요약했습니다. 
 
-<!-- more -->
-# 자바 날짜, 시간 History
+
+
+## 학습 목표
+
+- 자바의 날짜, 시간과 관련된 History(역사에) 대해서 알아본다.
+- Java 8버전에서 추가된 LocalDateTime 의 **기본 API 사용법**을 알아본다.
+
+- `기간`을 표현하는 Duration, Period알아본다.
+
+- 날짜를 변경하고, **Parsing, Formatting**에 대해서 알아본다.
+
+- **ZoneId** (다양한 시간대)를 알아본다.
+
+
+
+# 자바의  날짜, 시간 역사
 
 ## 자바 1.0 Date 클래스
 
@@ -46,10 +58,15 @@ DateFormat도 문제가 있다. 스레드에 안전하지 않다. 즉, 두 스�
 
 ## LocalDate와 LocalTime 사용
 
-LocalDate인스턴스는 시간을 제외한 날짜를 표현하는 불변객체다. 정적팩토리 메서드로 of로 LocalDate 인스턴스를 만들 수 있다.
+- LocalDate인스턴스는 시간을 제외한 날짜를 표현하는 불변객체이다. 
+- 정적팩토리 메서드로 `of`로 LocalDate 인스턴스를 만들 수 있다.
 
 ```java
+// 정적팩토리 메서드 of로 인스턴스를 만든다.
 LocalDate date = LocalDate.of(2017, 9, 21); // 2017-09-21
+
+
+// 각 항목들을 가져올 수 있다. 
 int year = date.getYear(); //2017
 Month month = date.getMonth(); // SEPTEMBER
 int dayOfMonth = date.getDayOfMonth();// 21
@@ -58,10 +75,11 @@ int len = date.lengthOfMonth(); // 30 (9월의 일 수)
 boolean leapYear = date.isLeapYear(); // false (윤년 이냐?)
 ```
 
-팩토리 메서드 now는 현재 날짜 정보를 표시한다.
+
 
 ```java
-LocalDate today = LocalDate.now();
+// 현재 날짜를 얻는다.
+LocalDate today = LocalDate.now(); 
 ```
 
 다른 방법으로 정보를 얻을 수 있다. get메서드에 TemporalField를 전달해서 정보를 얻는 방법도 있다.
@@ -151,7 +169,7 @@ java.time.temporal.UnsupportedTemporalTypeException: Unsupported field: DayOfMon
 
 Instant에서는 Duration과 Period 클래스를 함께 활용할 수 있다.
 
-##Duration과 Period 정의
+## Duration과 Period 정의
 
 지금까지 살펴본 모든 클래스는 Temporal 인터페이스를 구현하는데, **<u>Temporal 인터페이스는 특정 시간을 모델링하는 객체의 값을 어떻게 읽고 조작할지 정의한다.</u>** 지금까지 다양한 Temporal 인스턴스를 만드는 방법을 살펴봤다.
 
