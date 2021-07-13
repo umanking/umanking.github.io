@@ -131,3 +131,8 @@ jekyll_compose:
       tags: []
       toc: true
       description: 
+
+feed:
+  path: feed.xml
+  posts_limit: 20
+  tags: true
