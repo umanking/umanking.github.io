@@ -135,4 +135,4 @@ jekyll_compose:
 feed:
   path: feed.xml
   posts_limit: 20
-  tags: true
+  tags: false
