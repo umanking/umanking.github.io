@@ -43,14 +43,17 @@
   
   // border-bottom: 1px solid $heading-font-color;
   // border-bottom: 1px solid $brand-color;
-  color: #0687f0;
+  // color: #0687f0;
+  background-color: rgba(187,239,253,0.3);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
   text-decoration: none;
 
   &:hover {
     // color: $link-color-hover;
-    color: $brand-color;
+    // color: $brand-color;
+    background-color: #bbeffd;
     border-color: $brand-color;
-    border-bottom: 1px solid #0687f0;
+    border-bottom: 1px solid #1a1a1a;
   }
 }
 .page__content {

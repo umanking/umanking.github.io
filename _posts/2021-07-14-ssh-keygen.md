@@ -102,29 +102,6 @@ ssh-keygen을 통해서 SSH 키를 생성할 수 있다.
 
 ```shell
 $ ssh-keygen -t rsa
-Generating public/private rsa key pair.
-# 저장할 경로 없으면 기본 경로로 엔터
-Enter file in which to save the key (/Users/home/.ssh/id_rsa):
-# 그냥 엔터
-Enter passphrase (empty for no passphrase):
-# 그냥 엔터
-Enter same passphrase again:
-Your identification has been saved in /Users/home/.ssh/id_rsa.
-Your public key has been saved in /Users/home/.ssh/id_rsa.pub.
-The key fingerprint is:
-SHA256:Ur22RxkXhl5MYB0WCpcsOQDSMqDyp+mrF3Szg+F2Ci4 home@aaaaaa.local
-The key's randomart image is:
-+---[RSA 3072]----+
-|  .........o+BBo |
-| .  o..  .+++++. |
-|o    o  . .+o..  |
-|..o o  .   ..+   |
-| o.+.o. S o o    |
-|. =++  . . o     |
-|.oo+ .    . .    |
-|Eoo        .     |
-|ooo.             |
-+----[SHA256]-----+
 ```
 
 `-t`옵션으로 어떤 알고리즘을 적용할지를 선택한다. 
