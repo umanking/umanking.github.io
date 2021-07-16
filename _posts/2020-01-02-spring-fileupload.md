@@ -2,18 +2,18 @@
 layout: post
 title: "[Spring] MultipartFile을 이용한 파일 업로드"
 date: 2020-01-02 23:42 +0900
- 
 categories: [spring]
 tags: [spring]
+description: Spring multipartfile을 이용한 파일업로드 예제를 알아보자
 ---
 
-## 개요
+## 1. 개요
 
 - 스프링에서 제공하는 `MultipartFile` 이라는 인터페이스를 통해서 파일업로드 하는 방법에 대해서 알아보자.
 - 예제는 MVC(thymleafe)를 통한, 간단한 파일 업로드이고, 자신의 홈디렉토리에 저장하는 것을 구현한다.
 
 
-## 파일 업로드하는 FileService
+## 2. 파일 업로드하는 FileService
 
 ```java
 @Service
@@ -57,7 +57,7 @@ Paths.get() 메서드를 통해서 저장할 위치(copyOfLocation)을 지정한
 > stream will be at end of stream.
 > input stream으로 얻은 모든 bytes 들을 file로 copy한다.
 
-## FileController
+## 3. FileController
 
 ```java
 @Controller
@@ -82,7 +82,7 @@ public class FileController {
     }
 ```
 
-## upload.html 파일
+## 4. upload.html 파일
 
 ```html
 <!DOCTYPE html>
