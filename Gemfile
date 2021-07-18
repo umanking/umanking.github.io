@@ -6,5 +6,5 @@ gem 'jekyll-sitemap'
 gem 'jekyll-paginate'
 gem "jekyll-feed"
 gem "jekyll-compose"
-# gem 'jekyll-toc'
+gem 'jekyll-toc'
 gem 'jekyll-seo-tag'
