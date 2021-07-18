@@ -149,9 +149,9 @@ public FlatFileItemReader<Person> reader() {
         .resource(new ClassPathResource("sample.csv"))
         .delimited()
         .names(new String[]{"firstName", "lastName"})
-        .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
-            setTargetType(Person.class);
-        }})
+        .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {
+          setTargetType(Person.class)
+        })
         .build();
 }
 
