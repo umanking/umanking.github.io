@@ -169,8 +169,7 @@ public ObjectMapper objectMapper() {
 
 JavaTimeModule을 추가해주고 , DATE를 TimeStamp로 찍는 직렬화 기능을 disable로 추가해준다. 그리고 다시 요청을 보내면 성공한다. 
 
-모든 소스 코드는 [여기]()에서 확인 가능
-
+**소스 코드는 [여기](https://github.com/umanking/jackson-datetime-serialization)에서 확인 가능**
 
 ## 9. 정리 
 
