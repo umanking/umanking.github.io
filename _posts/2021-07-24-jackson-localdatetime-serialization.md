@@ -104,6 +104,8 @@ String 타입을 LocalDateTime 타입으로 변환할 수 없다고 한다.
 두번째 방법은 `String` 타입으로 받아서, Controller나 Service레이어에서 String to LocalDateTime으로 파싱해서 사용하는 방법이다.
 여기서는 첫번째 방법을 사용한다. 
 
+> 참고 [stack overflow](https://stackoverflow.com/questions/40274353/how-to-use-localdatetime-requestparam-in-spring-i-get-failed-to-convert-string)
+
 ```java
 @GetMapping("/event")
 public ResponseEntity<String> getParam(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime currentDate) {
