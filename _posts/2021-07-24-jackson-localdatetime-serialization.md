@@ -173,8 +173,8 @@ JavaTimeModule을 추가해주고 , DATE를 TimeStamp로 찍는 직렬화 기능
 
 ## 9. 정리 
 
-- 스프링 부트 2.5.3 v에서는 ObjectMapper 빈을 설정하지 않는다면, 기본 LocalDateTime으로 직렬화/역직렬화 문제없다.
+- `스프링 부트 2.5.3 버젼`에서는 ObjectMapper 빈을 설정하지 않는다면, 기본 LocalDateTime으로 직렬화/역직렬화 문제없다.
   - 스프링 부트가 기본으로 ObjectMapper에 어떤 항목들을 default값으로 셋팅하는지는 살펴봄직하다. 
-- @ReuquestParam을 LocalDateTime 형으로 역직렬화를 하고 싶다면 @DateTimeFormat 어노테이션을 활용하자
-- ObjectMapper를 빈으로 등록했다면 JavaTimeModule을 추가하는 설정을 따로 해줘야 한다. 
+- `@ReuquestParam`을 LocalDateTime 타입으로 역직렬화를 하고 싶다면 `@DateTimeFormat 어노테이션`을 사용하자
+- ObjectMapper를 빈으로 등록했다면 `JavaTimeModule`을 추가하는 설정을 따로 해줘야 한다. 
 
