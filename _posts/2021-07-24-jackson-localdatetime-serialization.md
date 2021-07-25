@@ -3,7 +3,7 @@ layout: post
 title: Jackson, LocalDateTime 직렬화, 역직렬화
 date: 2021-07-24 17:53 +0900
 image: 'https://i1.wp.com/blog.fossasia.org/wp-content/uploads/2018/08/serialize.png?fit=706%2C367&ssl=1'
-tags: [java, jackson, spring]
+tags: [jackson, java, spring]
 toc: true
 description: 스프링에서 자바 객체를 직렬화/역직렬화를 할때, 내부적으로 Jackson을 사용하는데, 자바8에 도입된 LocalDateTime 타입으로 직렬화, 역직렬화할때 이슈를 정리해보았다.
 ---
