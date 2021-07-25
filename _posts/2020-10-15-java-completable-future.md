@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CompletableFuture 사용방법"
+title: "[Java] CompletableFuture 사용 방법"
 date: 2020-10-15 21:07 +0900
 categories: [java]
 tags: [java]
@@ -11,9 +11,8 @@ Future 인터페이스는 java5부터 `java.util.concurrency` 패키지에서 �
 
 자바8부터 CompletableFuture 인터페이스가 소개되었고, Future 인터페이스를 구현함과 동시에 CompletionStage 인터페이스를 구현한다. CompletionStage는 비동기 연산 Step을 제공해서 계속 체이닝 형태로 조합이 가능하다. 
 
-<!-- more --> 
 
-## 기본적인 사용방법
+## 1. 기본적인 사용방법
 
 ```java
 CompletableFuture<String> cf = CompletableFuture.supplyAsync(() -> "Hello");
@@ -64,7 +63,7 @@ CompletableFuture.supplyAsync(() -> {
 
 
 
-### 다른 Executor 넘기기
+### 1.1. 다른 Executor 넘기기
 
 기본 제공해주는 ForkJoinPool의 commonPool 말고, 우리가 정의한 Executor를 넘길려면 각 메서드의 2번째 인자로 넘길수 있다. 
 
@@ -94,7 +93,7 @@ CompletableFuture.supplyAsync(() -> {
 
 
 
-## thenApply vs thenCompose
+## 2. thenApply vs thenCompose
 
 흔히 두개의 메서드를 헷갈리는데, 결국에는 CompletableFuture를 return하고, 파라미터로 Function<T,U> 타입을 받는다. 흔히, [thenApply는 스트림의 map에 비유하고, thenCompose는 flatMap에 비유한다.](https://stackoverflow.com/questions/43019126/completablefuture-thenapply-vs-thencompose) 아래 실제 CompletableFuture에 정의되어있는 메서드 2개를 살펴보자.
 
@@ -131,7 +130,7 @@ CompletableFuture.supplyAsync(() -> 1)
 
 
 
-## 에러 핸들링
+## 3. 에러 핸들링
 
 처음에 이야기했던 Future에서 에러를 핸들링 할수 없었던 문제를 CompletableFuture에서는 어떻게 해결했을까? 
 
