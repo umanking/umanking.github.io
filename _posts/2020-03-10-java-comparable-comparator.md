@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Java Comparable vs Compartor 사용방법
+title: "[Java] Comparable vs Compartor 사용 방법"
 date: 2020-03-10 08:18 +0900
 categories: [java]
 tags: [java]

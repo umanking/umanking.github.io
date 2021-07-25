@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Java8 LocalDateTime API 사용법"
+title: "[Java] LocalDateTime API 살펴보기"
 date: 2020-05-09 12:19 +0900
 categories: [java]
 tags: [java, localdatetime]
