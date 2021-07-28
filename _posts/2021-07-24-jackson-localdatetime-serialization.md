@@ -169,7 +169,7 @@ JavaTimeModule을 추가해주고 , DATE를 TimeStamp로 찍는 직렬화 기능
 
 **소스 코드는 [여기](https://github.com/umanking/jackson-datetime-serialization)에서 확인 가능**
 
-## 7. 정리 
+## 7. 정리
 
 - `스프링 부트 2.5.3 버젼`에서는 ObjectMapper 빈을 설정하지 않는다면, 기본 LocalDateTime으로 직렬화/역직렬화 문제없다.
   - 스프링 부트가 기본으로 ObjectMapper에 어떤 항목들을 default값으로 셋팅하는지는 살펴봄직하다. 
