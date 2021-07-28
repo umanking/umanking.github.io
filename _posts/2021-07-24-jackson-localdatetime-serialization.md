@@ -15,8 +15,7 @@ description: 스프링에서 자바 객체를 직렬화/역직렬화를 할때, 
 스프링에서 자바 객체를 직렬화/역직렬화를 할때, 내부적으로 Jackson을 사용하는데, 자바8에 도입된 LocalDateTime 타입으로 직렬화, 역직렬화할때 이슈가 있어서 정리해 보았다.
 
 
-
-## 2. 직렬화/역직렬화
+### 1.1. 직렬화/역직렬화
 
 먼저 직렬화, 역직렬화에 대해서 알아보자. 직렬화(Serialization), 역직렬화(Deserialization)으로 자바 객체를 JSON,XML,..다른 데이터 형식으로 변환하는 것을 `직렬화` 그 반대를 `역직렬화`라고 한다. 
 
@@ -24,7 +23,7 @@ description: 스프링에서 자바 객체를 직렬화/역직렬화를 할때, 
 
 
 
-## 3. 예제
+## 2. 상황
 
 다음과 같은 3가지 상황을 알아보자. 
 
@@ -32,9 +31,7 @@ description: 스프링에서 자바 객체를 직렬화/역직렬화를 할때, 
 - @RequestBody로 객체안의 필드의 타입이 LocalDateTime 인 상황 (역직렬화)
 - @ResponseBody로 객체를 리턴할때 객체안의 필드의 타입이 LocalDateTime 인 상황 (직렬화)
 
-
-
-## 4. 스펙 
+## 3. 예제 코드
 
 ```xml
 <dependency>
@@ -42,14 +39,9 @@ description: 스프링에서 자바 객체를 직렬화/역직렬화를 할때, 
   <artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 ```
-
 Spring Boot 버전 `2.5.3버전`에, `web` 모듈만 추가했을때, 스타터 종속성에 의하여 `jackson라이브러리`가 같이 추가된다. 
 
 ![스크린샷 2021-07-24 오후 5 45 33](https://user-images.githubusercontent.com/28615416/126863019-e2f01852-97ef-4362-9b7c-3b6e5ab15e7a.png)
-
-
-
-## 5. 예제 코드
 
 간단한 Event POJO를 만든다.
 
@@ -90,21 +82,25 @@ public Event getEvent() {
 그리고 3번재는 `@ResponseBody`를 통해서 Event객체를 Json형식으로 직렬화 하는 예제이다.  
 
 
-## 6. 실패하는 경우?
-위의 3가지 경우에서, 첫번째만 실패한다. 예외 메세지는 다음과 같다. 
+## 4. 실패하는 경우?
+위의 3가지 경우에서, `첫번째만 케이스만 실패한다.` 
+
+예외 메세지는 다음과 같다. 
 
 > Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.time.LocalDateTime'; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type [java.lang.String] to type [@org.springframework.web.bind.annotation.RequestParam java.time.LocalDateTime] for value '2021-07-24T00:00:00'; nested exception is java.lang.IllegalArgumentException: Parse attempt failed for value [2021-07-24T00:00:00]]
 
-String 타입을 LocalDateTime 타입으로 변환할 수 없다고 한다.
+말인 즉슨, String 타입을 LocalDateTime 타입으로 변환할 수 없다고 한다.
 
-## 7. 해결책
- 해결책에는 `2가지 방법`이 있다. 
+## 5. 해결책
+해당 예외에는 해결책에는 `두가지 방법`이 존재한다. 
 
 첫번째 방법은 `@DateTimeFormat` 어노테이션으로 해당 데이터 타입을 지정해주는 방법이고, 
-두번째 방법은 `String` 타입으로 받아서, Controller나 Service레이어에서 String to LocalDateTime으로 파싱해서 사용하는 방법이다.
-여기서는 첫번째 방법을 사용한다. 
 
-> 참고 [stack overflow](https://stackoverflow.com/questions/40274353/how-to-use-localdatetime-requestparam-in-spring-i-get-failed-to-convert-string)
+두번째 방법은 `String` 타입으로 받아서, Controller나 Service레이어에서 String to LocalDateTime으로 파싱해서 사용하는 방법이다.
+
+여기서 우리는 `첫번째 방법`을 사용한다. 
+
+> 해당 내용은 [Stack overflow](https://stackoverflow.com/questions/40274353/how-to-use-localdatetime-requestparam-in-spring-i-get-failed-to-convert-string) 에 있다.
 
 ```java
 @GetMapping("/event")
@@ -117,7 +113,7 @@ public ResponseEntity<String> getParam(@RequestParam @DateTimeFormat(pattern = "
 
 
 
-## 8. 문제는 objectmapper를 재정의 하는 순간
+## 6. 진짜 문제는 objectMapper를 재정의 하는 순간 ‼️‼️‼️
 
 다음과 같이 objectmapper를 보통 싱글턴 빈으로 만들어서 사용하는데, 아무런 설정없이 빈을 만드는 경우 위의 케이스를 다시 살펴 보자. 
 
@@ -173,7 +169,7 @@ JavaTimeModule을 추가해주고 , DATE를 TimeStamp로 찍는 직렬화 기능
 
 **소스 코드는 [여기](https://github.com/umanking/jackson-datetime-serialization)에서 확인 가능**
 
-## 9. 정리 
+## 7. 정리 
 
 - `스프링 부트 2.5.3 버젼`에서는 ObjectMapper 빈을 설정하지 않는다면, 기본 LocalDateTime으로 직렬화/역직렬화 문제없다.
   - 스프링 부트가 기본으로 ObjectMapper에 어떤 항목들을 default값으로 셋팅하는지는 살펴봄직하다. 
