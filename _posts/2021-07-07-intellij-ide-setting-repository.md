@@ -2,7 +2,7 @@
 layout: post
 title: IntelliJ IDE 셋팅 동기화(Github Repository를 이용)
 date: 2021-07-07 17:43 +0900
-image: 'https://pbs.twimg.com/profile_images/1206618215767584769/zl48EuhC_400x400.jpg'
+image: 'https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg'
 tags: [intellij, ide-setting]
 description: Intellij IDE 환경 셋팅을 Github Repository에 올려서 언제든지, IDE 환경을 동기화 시켜보자! 
 toc: true
