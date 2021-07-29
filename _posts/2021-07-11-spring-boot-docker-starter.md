@@ -7,11 +7,7 @@ tags: [spring, docker, dockerfile, spring-boot, intellij]
 toc: true
 description: SpringBoot프로젝트, Dockerfile을 만들어서 이미지를 생성하고 배포해보자!
 ---
-# Spring Boot, Dockerfile로 이미지 생성, 배포하기
-
 간단한 SpringBoot 프로젝트를 만들고, Dockerfile을 통해서 애플리케이션을 docker이미지 파일로 만들고, 실행해보고, docker hub에 remote로 푸시하는 방법에 대해서 알아보자 
-
-
 ## 1. Sample 프로젝트 만들기 
 
 `pom.xml`파일에 `spring-boot-starter-web` web모듈을 추가하고 루트로 요청이 왔을때 hello world 바디를 리턴하는 간단한 프로젝트를 만들어 보자!  

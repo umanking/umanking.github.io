@@ -8,8 +8,6 @@ toc: true
 description: 스프링에서 자바 객체를 직렬화/역직렬화를 할때, 내부적으로 Jackson을 사용하는데, 자바8에 도입된 LocalDateTime 타입으로 직렬화, 역직렬화할때 이슈를 정리해보았다.
 ---
 
-# Jackson, LocalDateTime의 직렬화,역직렬화
-
 ## 1. 들어가며 
 
 스프링에서 자바 객체를 직렬화/역직렬화를 할때, 내부적으로 Jackson을 사용하는데, 자바8에 도입된 LocalDateTime 타입으로 직렬화, 역직렬화할때 이슈가 있어서 정리해 보았다.
