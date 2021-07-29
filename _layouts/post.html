@@ -15,15 +15,18 @@ layout: default
         </div> -->
       {% endif %}
       {% include google-adsense.html %}
-      <div><h2>Table Of Contents</h2></div>
-      {% include toc.html html=content %}
+      <div class="post__toc">
+        {% include toc.html html=content %}
+      </div>
       {{ content }}
       {% include related-post.html %}
     </div>
 
     {% include share.html %}
     {% include post-navigation.html %}
-    {% if site.disqus-identifier %} {% include disqus-comments.html %} {% endif %}
+    
+
+    {% include comments/uttrance.html %}
 
   </article>
 </div>
