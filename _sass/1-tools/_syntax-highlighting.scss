@@ -379,3 +379,20 @@ div.highlight {
   background: #333e4c;
   color: white;
 }
+
+
+// div.highlight pre code[class*=language-]::before {
+//   content: attr(data-lang);
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   color: #fff;
+//   text-align: center;
+//   font-size: .65rem;
+//   font-weight: 500;
+//   letter-spacing: 1px;
+//   background: #6bc8b7;
+//   padding: 3px 10px 3px;
+//   text-transform: uppercase;
+//   border-radius: 0 0 0 5px;
+// }

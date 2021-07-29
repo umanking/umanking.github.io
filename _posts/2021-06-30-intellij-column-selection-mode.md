@@ -2,7 +2,7 @@
 layout: post
 title: IntelliJ Column Selection Mode 모드로 작업 쉽게 하기
 date: 2021-06-30 21:37 +0900
-image: 'https://pbs.twimg.com/profile_images/1206618215767584769/zl48EuhC_400x400.jpg'
+image: 'https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg'
 tags: ['intellij']
 toc: true
 ---

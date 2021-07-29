@@ -112,7 +112,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 ### 4.3. Docker Connect
 
 ![screnshot](https://user-images.githubusercontent.com/28615416/125189896-5f214900-e275-11eb-8d0c-4b42b57f6876.png)
-
+*Docker Connect 하는 방법*
 
 
 - Docker를 설정한 후에, 다음과 같이 Service 영역에서 Docker가 연결이 되었다. 
@@ -122,6 +122,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 ### 4.4. Docker Push Image
 
 ![스크린샷 2021-07-11 오후 5 51 03](https://user-images.githubusercontent.com/28615416/125188939-c1c41600-e270-11eb-99c5-444276945fec.png)
+*Docker 이미지 푸쉬하는 방법*
 
 - 로컬에서 다운 받았던 Docker 이미지들 목록이 나온다. 
 - 우리는 위에서 만들었던 `docker-example:0.0.1` 이미지를 `우클릭`  눌러서 `Create Container(컨테이너를 실행)`할 수도 있고, `Push Image..`를 통해서 내 개인 계정의 Docker Hub에 올릴수 있다. 
@@ -131,6 +132,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 
 
 ![스크린샷 2021-07-11 오후 5 54 59](https://user-images.githubusercontent.com/28615416/125189078-6b0b0c00-e271-11eb-83cc-24e884623681.png)
+*Push Image*
 
 - 다음과 같이 Push Image에 Repository 명과 Tag명을 입력한다. 
   - 그 전에 Docker Registry가 등록이 안되어있다면, 1번의 `New`버튼을 눌러서 Registry를 등록하자 (username, passwrod)
@@ -140,6 +142,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 ### 4.5. Docker Hub에서 확인
 
 ![스크린샷 2021-07-11 오후 3 42 38](https://user-images.githubusercontent.com/28615416/125189149-9d1c6e00-e271-11eb-85ac-a9241dd65b3f.png)
+*Docker Hub에서 확인*
 
 
 
