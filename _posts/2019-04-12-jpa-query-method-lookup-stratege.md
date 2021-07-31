@@ -9,7 +9,7 @@ tags: [jpa]
 > JPA에서 쿼리 메서드를 정의하는 방법에 대해서 알아보자.
 <!-- more -->
 
-# QueryLookup 전략
+## 1. QueryLookup 전략
 
 - `CREATE` 메서드 이름을 분석해서 만듬
 - `USE_DECLARED_QUERY` 미리 정의해둔 쿼리를 찾아서 사용
@@ -24,7 +24,7 @@ CREATE는 메서드 이름을 통해서 쿼리를 매핑해 준다. 예를 들�
 
 해당 QueryLookUp 전략은 `@EnableJpaRepository`에 `queryLookupStrategy` 프로퍼티를 통해서 변경할 수 있지만, 굳이 하지 않아도 된다. 관련 소스를 보는 것만으로 족함(예를 들면, @Query, @NamedQuery를 쿼리 메서드 위에 정의했을 때 우선순위가 어떻게 될까? )
 
-# 예제 코드
+## 2. 예제 코드
 
 ```java
 @Data
@@ -49,7 +49,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 title을 통해서 Post를 찾는 쿼리 메서드 작성
 
-## 테스트
+##  3. 테스트
 
 ```java
     @Test
@@ -82,6 +82,6 @@ Caused by: org.springframework.data.mapping.PropertyReferenceException: No prope
 쿼리 메서드만 잘 만들어 지는지 말고, 잘 동작하는지 테스트 코드 작성하고 테스트  
 성공! 😀
 
-## 참고
+## 4. 참고
 
 [JPA-QueryMethod](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details)

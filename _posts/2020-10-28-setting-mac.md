@@ -5,9 +5,14 @@ category: [mac]
 tags: [setting, tip, mac]
 date: 2020-10-28 09:41 +0900
 image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+description: 개발자 컴퓨터 환경 셋팅에 대해서 알아보자.
 ---
-## 1. 필수 설치 프로그램
-### 1.1. 개발도구
+## 1. 들어가며
+회사를 이직하거나, 새로운 환경에 놓여있을때 기본적으로 내가 추구하는? 방식을 사용하기 위해서 포스팅을 함
+기본 설치 프로그램, 유용한 플러그인, 설정방법들에 대해서 알아보자!! (계속 업데이트 예정)
+
+## 2. 필수 설치 프로그램
+### 2.1. 개발도구
   - [JetBrain toolbox](https://www.jetbrains.com/toolbox-app/)
   - [VsCode](https://code.visualstudio.com/download)
   - [PostMan](https://www.getpostman.com/downloads/)
@@ -16,7 +21,7 @@ image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMj
   - [SourceTree](https://www.sourcetreeapp.com/)
   - [Iterms2(Zsh, Oh-my-zsh, dracular theme)](https://www.iterm2.com/downloads.html)
 
-### 1.2. 생산성
+### 2.2. 생산성
   - [Alfred4](https://www.alfredapp.com/)
   - [Magnet](https://apps.apple.com/us/app/magnet/id441258766?mt=12)
   - [Spectacle](https://www.spectacleapp.com/)
@@ -30,9 +35,9 @@ image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMj
 
 
 
-## 2. Zsh 설치
+## 3. Zsh 설치
 
-### 2.1. Homebrew  & nodejs 설치
+### 3.1. Homebrew  & nodejs 설치
 
 ```shell
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -40,7 +45,7 @@ $ brew update
 $ brew install node
 ```
 
-### 2.2. Zsh 설치 
+### 3.2. Zsh 설치 
 
 ```shell
 $ brew install zsh
@@ -48,7 +53,7 @@ $ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh 
 $ chsh -s /bin/zsh
 ```
 
-### 2.3. vim 설치
+### 3.3. vim 설치
 
 ```shell
 $ brew install neovim
@@ -57,12 +62,12 @@ $ brew cask install font-hack-nerd-font
 $ curl -sLf https://spacevim.org/install.sh | bash
 ```
 
-### 2.4. vim color schema 적용
+### 3.4. vim color schema 적용
 - [여기에서 확인]({% post_url 2021-06-30-vim-color-scheme %})
 
-## 3. Zsh 플러그인 설치 
+## 4. Zsh 플러그인 설치 
 
-### 3.1. autosuggesstion (자동완성)
+### 4.1. autosuggesstion (자동완성)
 
 ```shell
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
@@ -80,14 +85,14 @@ plugins=(
  `source ~/.zshrc`를 적용하면 자동완성 플러그인 적용!
 
 
-## 4. [키변환] 한/영키 > 오른쪽 command키로 변경하는 방법
+## 5. [키변환] 한/영키 > 오른쪽 command키로 변경하는 방법
 
 1. [karabiner 설치](https://pqrs.org/osx/karabiner/)
 2. Simple modifications 탭에서 right_command - f18로 추가
 3. System Preference - Keyboard - 단축키 탭 - 입력소스 - 이전소스 입력을 (right command) 키로 변경
 
 
-## 5. github ssh키 등록
+## 6. github ssh키 등록
 
 - `ssh-keygen -t rsa` 를 통해서 ssh key를 만든다.
 - `cat ~/.ssh/id_psa.pub` 을 통해서 퍼블릭키를 복사한다.
@@ -95,13 +100,13 @@ plugins=(
 
 
 
-## 6. Github 회사 계정, 개인 계정 함께 사용하기
+## 7. Github 회사 계정, 개인 계정 함께 사용하기
 
 IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 분리해서 사용한다.
 - 회사 프로젝트 폴더: ~/IdeaProject 
 - 개인 프로젝트 폴더: ~/workspace 
 
-### 6.1. 방법 
+### 7.1. 방법 
 
 회사 컴퓨터이기 때문에 기본 설정은 회사 껄로 `vi ~/.gitcofing` 에서 다음을 추가한다. 
 ```shell
@@ -122,13 +127,13 @@ IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 �
   name = andrew han
 ```
 
-### 6.2. 확인
+### 7.2. 확인
 `~/workspace`프로젝트로 이동해서 `mkdir test` 폴더를 만들고 `git init`후에
 `git config user.name` 혹은 `git config user.email`을 입력해서 확인한다. 
 
 
 
-## 7. vscode `code .` 설치
+## 8. vscode `code .` 설치
 
 - vs code 실행
 - shell command: `install code` 설치
@@ -139,7 +144,7 @@ IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 �
 
 
 
-## 8. 플러그인 추천
+## 9. 플러그인 추천
 
 - Intellij Plugin 추천
   - [Lombok](https://plugins.jetbrains.com/plugin/6317-lombok)
