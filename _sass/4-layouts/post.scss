@@ -7,8 +7,7 @@
 }
 
 .post__content {
-  word-break: normal;
-  word-wrap: break-word;
+  
   .post__image {
     // height: 250px;
     width: 426px;
@@ -61,7 +60,8 @@
 // a tag
 .post__content a,
 .page__content a {
-  
+  word-break: normal;
+  word-wrap: break-word;
   // border-bottom: 1px solid $heading-font-color;
   // border-bottom: 1px solid $brand-color;
   // color: #0687f0;
