@@ -1,16 +1,12 @@
 ---
 layout: post
-title: "백엔드 개발자의 2021년 6개월(반기) 회고"
+title: "[회고] 2021년 상반기"
 date: 2021-07-04 15:28 +0900
-image: 'https://user-images.githubusercontent.com/28615416/124376370-ab064800-dce1-11eb-92eb-3c2452631de1.png'
-tags: [retrospective]
+image: 'https://user-images.githubusercontent.com/28615416/127739492-f817a13a-8dd0-4f5f-b57b-d8fbb0e9028e.png'
+tags: [retrospective, review]
 toc: true
+description: 2021년 상반기 회고를 합니다.
 ---
-# 백엔드 개발자의 2021년 6개월(반기) 회고
-
-#### 지난 회고
-- [2020년도의 회고]({% post_url 2020-05-02-first-review %})
-
 
 2021년의 6개월(반기)회고. 크게 `외부적인 변화`, `내부적인 변화`, `앞으로의 계획` 3개의 파트로 구성했다.
 
