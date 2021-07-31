@@ -60,11 +60,11 @@ public enum OrderType {
 ```java
 private static List<Order> orders() {
     return List.of(
-            new Order("후라이드 치킨", 17_000, OrderType.DELIVERY, "Andrew"),
-            new Order("양념 치킨", 18_000, OrderType.DELIVERY, "Andrew"),
-            new Order("피자", 18_000, OrderType.PICKUP, "Andrew"),
-            new Order("돈가스", 10_000, OrderType.PICKUP, "Andrew"),
-            new Order("모둠초밥", 13_000, OrderType.PRESENT, "Andrew")
+        new Order("후라이드 치킨", 17_000, OrderType.DELIVERY, "Andrew"),
+        new Order("양념 치킨", 18_000, OrderType.DELIVERY, "Andrew"),
+        new Order("피자", 18_000, OrderType.PICKUP, "Andrew"),
+        new Order("돈가스", 10_000, OrderType.PICKUP, "Andrew"),
+        new Order("모둠초밥", 13_000, OrderType.PRESENT, "Andrew")
     );
 }
 ```
@@ -74,9 +74,8 @@ private static List<Order> orders() {
 ### 3.1. 단일 키로 groupingBy
 
 ```java
-Map<OrderType, List<Order>> collect = orders
-.stream()
-.collect(groupingBy((Order::getOrderType)));
+Map<OrderType, List<Order>> collect = 
+  orders.stream().collect(groupingBy((Order::getOrderType)));
 ```
 
 OrderType으로 groupBy를 했고,  Map의 키값이 OrderType으로 된것을 확인할 수 있다. 
@@ -84,9 +83,8 @@ OrderType으로 groupBy를 했고,  Map의 키값이 OrderType으로 된것을 �
 ### 3.2. 복합 키로 groupingBy
 
 ```java
-Map<OrderTuple, List<Order>> collect1 = orders
-.stream()
-.collect(groupingBy(order -> new OrderTuple(order.getItemName(), order.getOrderType())));
+Map<OrderTuple, List<Order>> collect1 = 
+  orders.stream().collect(groupingBy(order -> new OrderTuple(order.getItemName(), order.getOrderType())));
 ```
 
 이번에는 OrderTuple이라는 복합 키를 가진 객체를 하나 만들고, OrderTuple로 groupBy를 했다. 
@@ -105,9 +103,8 @@ public class OrderTuple {
 ### 3.3. groupingBy 집계 변경 (toSet())
 
 ```java
-Map<OrderType, Set<Order>> collect2 = orders
-.stream()
-.collect(groupingBy(Order::getOrderType, toSet()));
+Map<OrderType, Set<Order>> collect2 = 
+  orders.stream().collect(groupingBy(Order::getOrderType, toSet()));
 ```
 
 groupingBy의 2번째 인자는 downStream(Collector)으로 집계방식을 변경할 수 있다. 
@@ -115,10 +112,8 @@ groupingBy의 2번째 인자는 downStream(Collector)으로 집계방식을 변�
 ### 3.4. groupingBy 안의 groupingBy(중첩, multiple fields)
 
 ```java
-Map<String, Map<OrderType, List<Order>>> collect3 = orders
-.stream()
-.collect(groupingBy(Order::getOrderBy, 
-  groupingBy(Order::getOrderType)));
+Map<String, Map<OrderType, List<Order>>> collect3 = 
+  orders.stream().collect(groupingBy(Order::getOrderBy, groupingBy(Order::getOrderType)));
 ```
 
 처음에 orderBy(주문자)를 통해서 groupingBy를 하고, 그 다음에 orderType(주문방식)을 통해서 한번더 groupingBy를 진행했다. 결과 의 타입을 보면 Map안에 키-밸류가 있고, 그 밸류값이 또하나의 Map으로 구성되어있다. 
@@ -128,10 +123,8 @@ Map<String, Map<OrderType, List<Order>>> collect3 = orders
 #### 3.5.1. sum 합계
 
 ```java
-Map<OrderType, Integer> collect4 = orders
-.stream()
-.collect(groupingBy(Order::getOrderType, 
-  summingInt(Order::getAmount)));
+Map<OrderType, Integer> collect4 = 
+  orders.stream().collect(groupingBy(Order::getOrderType, summingInt(Order::getAmount)));
 ```
 
 2번째 인자는 downStream으로 집계방식을 summingInt()메서드를 통해서 합계를 value값으로 얻어올 수 있다. 
@@ -139,10 +132,8 @@ Map<OrderType, Integer> collect4 = orders
 #### 3.5.2. average 평균 
 
 ```java
-Map<OrderType, Double> collect5 = orders
-.stream()
-.collect(groupingBy(Order::getOrderType, 
-  averagingDouble(Order::getAmount)));
+Map<OrderType, Double> collect5 = 
+  orders.stream().collect(groupingBy(Order::getOrderType, averagingDouble(Order::getAmount)));
 ```
 
 2번째 인자는 downStream으로 집계방식을 averagingDouble()메서드를 통해서 평균값을 얻어올 수 있다.
@@ -152,15 +143,11 @@ Map<OrderType, Double> collect5 = orders
 #### 3.5.3. maximum 최대값, minumum 최소값
 
 ```java
-Map<OrderType, Optional<Order>> collect6 = orders
-.stream()
-.collect(groupingBy(Order::getOrderType, 
-  maxBy(Comparator.comparingInt(Order::getAmount))));
+Map<OrderType, Optional<Order>> collect6 = 
+  orders.stream().collect(groupingBy(Order::getOrderType, maxBy(Comparator.comparingInt(Order::getAmount))));
 
-Map<OrderType, Optional<Order>> collect6 = orders
-.stream()
-.collect(groupingBy(Order::getOrderType, 
-  minBy(Comparator.comparingInt(Order::getAmount))));
+Map<OrderType, Optional<Order>> collect6 = 
+  orders.stream().collect(groupingBy(Order::getOrderType, minBy(Comparator.comparingInt(Order::getAmount))));
 ```
 
 OrderType으로 그룹핑을 하고, 주문가격이 가장 큰값(최소값) 으로 Value값을 얻어온다. 없을 수도 있기 때문에 Optional로 Wrapping 된 결과를 얻는다. 뭐 당연히 가격이 같은 값이 이었어도, Optional안에는 하나의 값만 들어가기 때문에, 내부적으로 제일 첫번재 데이터를 얻어온다.
@@ -170,10 +157,8 @@ maxBy(), minBy() 의 파라미터로는 Comparator 인터페이스를 받는다.
 #### 3.5.4. summary 정보
 
 ```java
-Map<OrderType, IntSummaryStatistics> collect7 = orders
-.stream()
-.collect(groupingBy(Order::getOrderType, 
-  summarizingInt(Order::getAmount)));
+Map<OrderType, IntSummaryStatistics> collect7 = 
+  orders.stream().collect(groupingBy(Order::getOrderType, summarizingInt(Order::getAmount)));
 ```
 
 역시나 2번째 인자 downStream으로 IntSummaryStatistics (통계정보)를 얻어올 수 있다. 통계 정보에는 다음과 같이 합계, min, max, count값들이 포함되어있다.
@@ -189,10 +174,8 @@ public class IntSummaryStatistics implements IntConsumer {
 ### 3.6. Map의 value값을 다른 타입으로 리턴하기 
 
 ```java
-Map<OrderType, String> collect8 = orders
-.stream()
-.collect(groupingBy(Order::getOrderType, 
-  mapping(Order::getItemName, joining(",", "[", "]"))));
+Map<OrderType, String> collect8 = 
+  orders.stream().collect(groupingBy(Order::getOrderType, mapping(Order::getItemName, joining(",", "[", "]"))));
 ```
 
 - 2번째 인자 downStream 집계 방식을 mapping() 메서드를 사용해서, value값을 String으로 리턴한다.
@@ -203,11 +186,8 @@ Map<OrderType, String> collect8 = orders
 ### 3.7. Map를 다른 타입으로 리턴하기
 
 ```java
-EnumMap<OrderType, List<Order>> collect9 = orders
-.stream()
-.collect(groupingBy(Order::getOrderType, 
-  () -> new EnumMap<>(OrderType.class), 
-  toList()));
+EnumMap<OrderType, List<Order>> collect9 = 
+  orders.stream().collect(groupingBy(Order::getOrderType, () -> new EnumMap<>(OrderType.class), toList()));
 ```
 
 마지막으로 위의 모든 예제는 Map타입으로 리턴을 하고, 대부분 groupingBy의 classfier, downStream 예제만 살펴봤다. 이번에는 mapFacotry를 통해서 Map타입이 아닌 EnumMap타입으로 리턴하는 예제를 살펴보자. 
