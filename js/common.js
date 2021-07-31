@@ -71,7 +71,8 @@ $(document).ready(function() {
     resultsContainer: document.getElementById("js-results-container"),
     json: "/search.json",
     searchResultTemplate: '{article}',
-    noResultsText: '<h3 class="no-results">No results found</h3>'
+    noResultsText: '<h3 class="no-results">No results found</h3>',
+    limit: 100
   });
 
   /* =======================
