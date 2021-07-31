@@ -7,7 +7,6 @@ tags: [jpa]
 ---
 
 > JpaRepository의 구현체 SimpleJpaRepository에서 save()메서드가 내부적으로 어떻게 동작하는지 알아보자.
-<!-- more -->
 
 `SimpleJpaRepository`의 save() 메서드
 
@@ -23,7 +22,7 @@ tags: [jpa]
     }
 ```
 
-entityInformation에서 새로운 entity이면 `persist()` 를 그게 아니면 `merge()`를 호출한다.  
+entityInformation에서 새로운 entity이면 `persist()` 를 그게 아니면 `merge()`를 호출한다. 
 merge는 한번 persist 상태였다가 detached 된 상태에서 그 다음 persist 상태가 될 때, merge 한다고 한다.
 
 ## 테스트
@@ -120,7 +119,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 여기서 중요한 것이. 파라미터로 넘긴 post2객체는 entityManger에 존재하지 않는 것이다. return 된 결과만을 entittyManager가 관리한다. 객체를 새로 post2로 만들었어도, save()메서드는 하이버네이트에서 id를 통해서 엔티티의 상태를 관리하기 때문에, 여기에서는 엔티티의 id가 이전에 만들어둔 값을 가지고 와서 넣어준다.
 
-## 정리
+## 2. 정리
 
 persist()를 호출하는 경우에는 리턴한 객체 필드를 사용하지 않아도 된다.  
 merge()를 호출하는 경우에는 **반드시** 리턴된 결과를 통해서 다음 작업을 진행해야지, entityManager가 관리하는 상태를 추적할 수 있다.

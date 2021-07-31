@@ -98,7 +98,7 @@ Hibernate:
         post1_.id=?
 ```
 
-## Open Projection, Close Projection
+## 1. Open Projection, Close Projection
 
 OpenProjection은 @Value (롬복꺼 아님)와 SpEL를 사용해서 target(여기서는 Comment entity)의 필드를 새롭게 가공한 값을 가져다가 사용할 수 있다. 하지만 전체 필드(그래서 Open Projection임) 에 대한 쿼리가 날아가기 때문에 최적화는 되지 않는다.
 
@@ -168,7 +168,7 @@ Hibernate:
 
 결과를 보면, 일단 쿼리가 전체 필드에 대해서 날아간다. 그리고 원했던 연산의 결과가 찍혔다. 그럼 기존의 Closed (제한적인) Projection을 하면서 연산할 수 있는 방법이 있지 않을까? 🤔
 
-### Java8 부터 도입된 default Method를 활용하는 것
+### 1.1. Java8 부터 도입된 default Method를 활용하는 것
 
 ```java
 public interface CommentSummary {
@@ -203,7 +203,7 @@ Hibernate:
 
 위의 결과와 다르게, 딱 3개의 필드를 조회하는 쿼리와, 아래에 연산 결과까지 완벽하다!
 
-## 다이나믹 프로젝션
+## 2. 다이나믹 프로젝션
 
 > 만약에 요구 사항이 CommentSummary 뿐만 아니라, CommentOnly(오직 코멘트만 찾는 쿼리를 날리도록 한다면)
 
@@ -228,7 +228,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
 ```
 
-## 정리
+## 3. 정리
 
 엔티티의 특정 데이터만을 조회하는(최적화) Projection에 대해서 알아봤다. 예제에서는 Interface를 통해서 Projection을 했지만 클래스기반(DTO)를 통해서도 할 수 있다. 클래스기반은 코드의 양이 많아진다.(롬복으로 줄일 수 있지만). 특정 쿼리에서 연산한 결과를 받을 수도 있었다. (Open Projection vs Closed Projection) Open은 말 그대로 target.field를 하기 때문에 target에 해당하는 엔티티 전체를 조회한다. 그래서 최적화는 무의미. 그래서 default 메서드를 통해서 대체 할 수 있었다.
 
