@@ -10,6 +10,8 @@ description: Java Stream의 groupingBy의 메서드를 살펴보고, 간단한 �
 
 
 ## 1. 들어가며 
+
+
 Java의 Stream를 이용한 선언적인 프로그래밍을 할 수 있다. 특히나 groupingBy 메서드를 통해서 데이터를 가공,집계하는데 많이 사용한다. groupingBy의 메서드를 살펴보고, 간단한 예제를 통해서 어떻게 사용하는지 살펴보자.
 
 
