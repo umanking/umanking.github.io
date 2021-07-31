@@ -1,15 +1,17 @@
 ---
 layout: post
-title: "SpringBoot, JPA, H2 database 셋팅"
+title: "SpringBoot, JPA, H2를 이용한 간단한API 작성"
 date: 2019-04-12 09:05:02
 categories: [jpa]
-tags: [jpa]
+tags: [spring,jpa,h2,junit]
+toc: true 
+description: SpringBoot와 JPA, H2를 이용한 간단한 API를 만들어보고, Junit 테스트 검증하는 것을 알아본다.
 ---
 
-## 목표
+## 1. 목표
 
 이번 시간에는 SpringBoot, JPA, H2(DB)를 통한 간단한 Member 엔티티를 만들고, Junit 테스트로 검증하는 샘플 프로젝트에 대해서 알아보도록 하겠습니다.
-## 의존성 추가
+## 2. 의존성 추가
 
 ```xml
 <dependency>
@@ -25,7 +27,7 @@ tags: [jpa]
 
 `spring-data-jpa` 와 `h2(인메모리)` 디펜던시를 추가합니다.
 
-## application.properties 추가
+## 3. application.properties 추가
 
 ```properties
 # H2 설정
@@ -41,7 +43,7 @@ spring.datasource.password=
 
 애플리케이션을 실행하고, `localhost:8080/h2` 주소로 접속하면, 인메모리 DB인 H2 데이터베이스를 사용할 수 있습니다. 물론 인메모리 이기 때문에 애플리케이션을 재 실행하면 데이터가 날라갑니다.(휘발성 ~ )
 
-## Member 엔티티
+## 4. Member 엔티티
 
 ```java
 @Data
@@ -67,7 +69,7 @@ public class Member {
 - `@Id`는 Persiscontext에서 식별할 수 있는 값을 나타낸다.(반드시 유니크 한 값)
 - `@GeneratedValue`는 Id가 생성되는 전략을 나타내는데, 기본 전략은 AUTO로 설정되어 있기 때문에 각각 다른 Database의 Id 생성 전략을 유연하게 대응 할 수 있다. 예를 들어 Oracle은 Sequence라는 개념이 들어가지만, Mysql, Mariadb에서는 그렇지 않다.
 
-## JpaRepository 를 상속 받는다.
+## 5. JpaRepository 를 상속 받는다.
 
 ```java
 @Repository
@@ -85,7 +87,7 @@ spring.jpa.properties.hibernate.format_sql=true
 
 추가적으로 `application.properties`에 쿼리가 날라갈 때, console에 formatting된 sql문을 보기 위해서 설정을 추가합니다.
 
-## 테스트 케이스 작성
+## 6. 테스트 케이스 작성
 
 ```java
 @RunWith(SpringRunner.class)
