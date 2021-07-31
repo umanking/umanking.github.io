@@ -2,7 +2,8 @@
 layout: post
 title: "[Spring] 빈 주입하는 방법 && Best Practice "
 date: 2020-05-05 17:01 +0900
- 
+image: '/images/spring.png'
+toc: true
 categories: [spring]
 tags: [spring]
 ---

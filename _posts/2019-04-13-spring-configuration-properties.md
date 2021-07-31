@@ -2,7 +2,8 @@
 layout: post
 title: "[Spring] application.properties값 → 클래스로 관리하는 방법"
 date: 2019-04-13 22:04:37
- 
+image: '/images/spring.png'
+toc: true
 categories: [spring]
 tags: [spring]
 ---

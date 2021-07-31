@@ -2,7 +2,8 @@
 layout: post
 title: 스프링에서 sentry 적용하기
 date: 2020-05-13 08:47 +0900
- 
+image: '/images/spring.png'
+toc: true
 categories: [spring]
 tags: [spring]
 ---

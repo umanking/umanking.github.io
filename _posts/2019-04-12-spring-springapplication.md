@@ -2,7 +2,8 @@
 layout: post
 title: "[Spring] SpringApplication를 통한 코딩"
 date: 2019-04-12 09:11:51
- 
+image: '/images/spring.png'
+toc: true
 categories: [spring]
 tags: [spring]
 ---

@@ -2,7 +2,8 @@
 layout: post
 title: "[Spring] bean circular dependencies (빈 순환 참조)"
 date: 2019-04-12 09:10:25
- 
+image: '/images/spring.png'
+toc: true
 categories: [spring]
 tags: [spring]
 ---

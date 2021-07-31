@@ -2,7 +2,8 @@
 layout: post
 title: "[Spring] Spring Data Common 프로젝트 살펴보기"
 date: 2019-04-12 09:03:09
- 
+image: '/images/spring.png'
+toc: true 
 categories: [spring]
 tags: [spring]
 ---
