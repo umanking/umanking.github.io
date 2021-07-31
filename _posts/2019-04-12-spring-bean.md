@@ -2,7 +2,8 @@
 layout: post
 title: "[Spring]Bean에 대해서 알아보자"
 date: 2019-04-12 09:09:47
- 
+image: '/images/spring.png'
+toc: true
 categories: [spring]
 tags: [spring]
 ---

@@ -3,7 +3,8 @@ layout: post
 title: "[Spring] Profile 설정하기"
 date: 2019-04-13 22:02:17
 categories: [spring]
- 
+image: '/images/spring.png'
+toc: true
 tags: [spring]
 ---
 

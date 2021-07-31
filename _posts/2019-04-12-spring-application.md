@@ -1,48 +1,49 @@
 ---
 layout: post
-title: "[Spring] @SpringBootAppllication 설명"
+title: "[Spring] @SpringBootAppllication 어노테이션에 대한 고찰"
 date: 2019-04-12 09:11:00
- 
+image: '/images/spring.png'
+toc: true
+description: "@SpringBootApplication 어노테이션에 대해서 알아보자."
 categories: [spring]
-tags: [spring]
+tags: [spring, spring-boot]
 ---
 
-> @SpringBootApplication 안에 들어있는 @ComponentScan, @EnableAutoConfiguration 을 알아보자.
+## 1. 들어가며
+Spring Boot 프로젝트를 만들게 되면, 가장 먼저 눈에 보이는게 Main Application 위에 붙어있는 `@SpringBootApplication` 어노테이션이다. 이 어노테이션이 어떤 역할들을 하는지 알아보자. 
 
-Spring Initializer를 통해서 만든 스프링 부트 프로젝트 Root Application 클래스 레벨에 `@SpringBootApplication` 이 붙어있다.
 
+
+## 예제 코드
 ```java
 @SpringBootApplication
 public class Application {
-
     public static void main(String[] args) {
-
         SpringApplication.run(Application.class, args);
     }
 }
-
 ```
+간단한 SpringBoot Application을 하나 만들었다. main 메서드 위에 @SpringBootApplication을 까보면 다음과 같이 크게 3가지의 어노테이션으로 구성되어 있다.
 
-@SpringBootApplication은 크게 3가지의 어노테이션으로 구성되어 있다.
+- `@SpringBootConfiguration`
+- `@ComponentScan`
+- `@EnableAutoConfiguration`
 
 ```java
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@SpringBootConfiguration
-@EnableAutoConfiguration
+@SpringBootConfiguration // 1
+@EnableAutoConfiguration // 2
 @ComponentScan(excludeFilters = {
         @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
         @Filter(type = FilterType.CUSTOM,
-                classes = AutoConfigurationExcludeFilter.class) })
+                classes = AutoConfigurationExcludeFilter.class) }) // 3
 public @interface SpringBootApplication {
   ... 생략
 ```
 
-- @SpringBootConfiguration
-- @ComponentScan
-- @EnableAutoConfiguration
 
 `@SpringBootConfiguration`은 `@Configuration` 이다.
 
@@ -65,7 +66,7 @@ org.springframework.boot.autoconfigure.webservices.client.WebServiceTemplateAuto
 1. 베이스 패키지 기반의 ComponentScan을 통해서 내가 정의한 컴포넌트(Repository, Controller, Service, Configuration, Component) 를 등록한다.
 2. @EnableAutoConfiguration을 통해서 spring.factories에 정의되어 있는 Configuration빈들을 등록한다.
 
-#### 조금더 살펴보자
+#### 1.0.1. 조금더 살펴보자
 
 ```java
 @Configuration

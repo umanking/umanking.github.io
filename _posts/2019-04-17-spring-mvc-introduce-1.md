@@ -2,7 +2,8 @@
 layout: post
 title: "[Spring] MVC 만들어 보기"
 date: 2019-04-17 09:21:01
- 
+image: '/images/spring.png'
+toc: true
 categories: [spring]
 tags: [spring]
 ---

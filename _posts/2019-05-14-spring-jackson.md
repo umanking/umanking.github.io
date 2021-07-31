@@ -2,6 +2,9 @@
 layout: post
 title: "Jackson 어노테이션 사용"
 date: 2019-05-14 22:30:23
+image: '/images/spring.png'
+toc: true
+tags: [jackson]
 ---
 
 > 오늘은 Jackson 어노테이션에 대해서 알아보도록 하겠습니다.

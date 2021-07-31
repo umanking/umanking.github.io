@@ -2,7 +2,8 @@
 layout: post
 title: "Thymeleaf 실무에서 자주 사용하는 것들"
 date: 2020-01-19 15:59 +0900
- 
+image: '/images/spring.png'
+toc: true
 tags: [spring, thymeleaf]
 ---
 

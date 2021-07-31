@@ -2,6 +2,8 @@
 layout: post
 title: "Spring, JPA를 이용한 REST API 만들기"
 date: 2020-01-18 10:33 +0900
+image: '/images/spring.png'
+toc: true
 categories: [spring]
 tags: [spring]
 description: SpringBoot, JPA, H2를 이용한 간단한 RestAPI를 만들어보자.

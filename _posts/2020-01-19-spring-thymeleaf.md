@@ -2,7 +2,8 @@
 layout: post
 title: "Thymeleaf Collection 정보 화면에 렌더링하기"
 date: 2020-01-19 14:20 +0900
- 
+image: '/images/spring.png'
+toc: true
 tags: [spring, thymeleaf]
 ---
 
