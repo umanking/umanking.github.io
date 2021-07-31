@@ -4,6 +4,7 @@ title: "SpringBoot, JPA, H2를 이용한 간단한API 작성"
 date: 2019-04-12 09:05:02
 categories: [jpa]
 tags: [spring,jpa,h2,junit]
+image: '/images/spring.png'
 toc: true 
 description: SpringBoot와 JPA, H2를 이용한 간단한 API를 만들어보고, Junit 테스트 검증하는 것을 알아본다.
 ---
