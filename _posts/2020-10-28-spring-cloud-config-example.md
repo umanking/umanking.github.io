@@ -2,15 +2,17 @@
 layout: post
 title: "[Spring Cloud] spring cloud config 간단 예제"
 date: 2020-10-28 09:41 +0900
- 
-tags: [spring cloud]
+toc: true
+description: spring cloud config 의 간단한 예제를 살펴보자.
+tags: [spring-cloud]
+image: 'https://lh3.googleusercontent.com/proxy/vp6-IkjoFSjoYPuX32vDEkgN4kGDmjylNXNQiOz-3l_LFL9hRTRy1Nmu8sxMovTLt7OEpgIgb3IQPGn-QWzgn5xkHKyXnll64fWWfCLCkh1OwW8Kj4USNGnfFjd3kq_TLVsFpvN0u7ZI7w'
 ---
 
-MSA 시스템 특성상 여러개의 프로젝트를 관리하고 띄우다 보면, configuration 정보가 이곳저곳에 흩어져 있다보니까, 변경사항을 한눈에 파악하기가 힘들다. 
-그래서 spring cloud config 라는 프로젝트가 나왔다. 
+## 1. 들어가며 
+MSA 시스템 특성상 여러개의 프로젝트를 관리하고 띄우다 보면, configuration 정보가 이곳저곳에 흩어져 있다보니까, 변경사항을 한눈에 파악하기가 힘들다. 그래서 Spring Cloud Config 라는 프로젝트가 나왔다. Spring Cloud Config 프로젝트를 통해서 간단한 예제를 살펴보자.
 
 
-## 1. 구성 요소
+## 2. 구성 요소
 
 구성요소는 다음과 같다.
 
@@ -19,9 +21,8 @@ MSA 시스템 특성상 여러개의 프로젝트를 관리하고 띄우다 보�
 - Config Client: url 에 Config Server 를 호출함으로써 정보를 읽어와서 사용할수 있다. 
 
 
-## 2. 예제
-
-### 2.1. Git Repository (중앙으로 관리할 파일을 설정)
+## 3. 예제 코드
+### 3.1. Git Repository (중앙으로 관리할 파일을 설정)
 
 ```
 cd ~
@@ -40,7 +41,7 @@ my:
 
 
 
-### 2.2. 서버 구성
+### 3.2. 서버 구성
 
 spring-cloud-config-server 프로젝트를 만들고 다음 dependancy 를 추가한다.
 
@@ -105,7 +106,7 @@ url 조회 규칙은 다음과 같다.url 로 조회하게 되면 다음과 같�
 
 
 
-### 2.3. 클라이언트 구성
+### 3.3. 클라이언트 구성
 
 Spring-cloud-config-client 프로젝트를 만든다. 다음과 같은 dependency를 추가한다.
 
@@ -168,7 +169,7 @@ greetingMessage 필드에 담긴 메세지는 처음 로컬에서 만든 파일�
 
 
 
-## 3. 정리
+## 4. 정리
 
 이번에는 MSA환경에서 각 프로젝트마다 필요한 config 정보를 한군데에서 관리하는 spring-cloud-config에 대해서 알아보았다. 
 
