@@ -4,18 +4,20 @@ title: "Junit5 정리"
 date: 2020-05-16 11:27 +0900
 categories: [spring]
 tags: [spring, junit5]
+toc: true 
+description: Junit5에 특징과 기본적인 사용법, 문법에 대해서 알아보자.
 ---
 
 > 해당 포스팅은 인프런의 백기선님 강의를 요약한 내용입니다. 더 자세한 내용은 Junit Reference를 참고하세용!
 
-## JUnit5 개요
+## 1. JUnit5 개요
 
 - junit platform : launcher 같은 역할
 - vintage: junit3,4 구현체
 - jupitor: junit5 구현체, 목성(주피터)이 행성의 5번째임
 
 
-## Junit5 의존성 추가
+## 2. Junit5 의존성 추가
 
 - Spring Boot 2.2.x 버전대 이상을 사용하면 JUnit5 모듈이 자동으로 들어간다.
 - Spring Boot를 사용하지 않는다면 다음과 같이 의존성을 추가한다.
@@ -31,13 +33,13 @@ tags: [spring, junit5]
 
 
 
-### @DisplayName
+### 2.1. @DisplayName
 
 `@DiaplayName("주문 성공 테스트")` 와 같은 형태로 junit 실행후 하단에 표시되는 report 에 한글로 표시된다. 더이상 메서드 이름을 한글로 작성하지 않아도 된다. (junit5) 부터는
 
 
 
-### assertEquals
+### 2.2. assertEquals
 
 ```java
 public static void assertEquals(Object expected, Object actual) {
@@ -56,7 +58,7 @@ public static void assertEquals(Object expected, Object actual) {
 > 그냥 문자열을 입력한 경우에는 매번 해당 연산을 수행한다.(실패하든, 성공하든 상관없이)
 > 하지만 Supplier<String> 으로 람다식으로 해서 넘기게 된다면, 실제 실패하는 경우(lazy evaluation)을 통해서 실행된다. 그래서 문자열이 모든 테스트에 존재하는 경우라면, Supplier를 사용하는 것이 효율적이다!!
 
-### assertAll
+### 2.3. assertAll
 
 보통 assertEquals()로 검증하는 코드가 여러개로 검증을 하고, 그 중에서 몇개가 실패하더라도 최초의 실패건 하나만 리포팅이 된다. 하지만 assertAll을 통해서 람다식으로(Executable) 모든 검증 코드를 넘기게 되면, 총 몇건이 실패 했는지 알 수 있다.
 
@@ -71,7 +73,7 @@ assertAll(
 
 ![](https://user-images.githubusercontent.com/28615416/82106522-8ad19d80-975c-11ea-937f-3d9d92324c4b.png)
 
-### assertThrows
+### 2.4. assertThrows
 
 ```java
 public Study(int limit) {
@@ -97,7 +99,7 @@ IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> 
 assertEquals("limit 은 0보다는 커야 합니다.", e.getMessage());
 ```
 
-### assertTimeout
+### 2.5. assertTimeout
 
 ```java
 assertTimeout(Duration.ofMillis(100), () -> {
@@ -112,9 +114,9 @@ assertTimeout(Duration.ofMillis(100), () -> {
 
 
 
-## 조건에 따른 테스트
+## 3. 조건에 따른 테스트
 
-#### programming 방법
+#### 3.0.1. programming 방법
 
 ```java
 assumeTrue(System.getenv().get("HOME").equals("/Users/andrew"));
@@ -137,7 +139,7 @@ assumingThat(System.getenv().get("TEST_ENV").equals("andrew"), () -> {
 
 assumingThat를 통해서 코드 블럭으로 지정할 수 있다.
 
-#### annotaion 기반
+#### 3.0.2. annotaion 기반
 
 ```java
 @Test
@@ -151,7 +153,7 @@ void test(){
 
 다음과 같이 어노테이션 기반으로도, 원하는 조건들을 설정할 수 있다.
 
-## Tag & Filtering
+## 4. Tag & Filtering
 
 @Tag 어노테이션으로 특정 테스트를 그루핑할 수 있다.
 
@@ -219,7 +221,7 @@ void study_test2() {
 
   설정후에 `mvn test` 혹은 production 환경에서 테스트 하고 싶다면 `mvn test -Pproduction` 입력
 
-## Custom Tag (Composed Annotation)
+## 5. Custom Tag (Composed Annotation)
 
 반복적으로 작성해야 하는 어노테이션같은 경우, composed (합성)을 통해서 커스텀한 태그를 제공할 수 있다. 위에서 살펴본 fast, slow 로 나눠지는 tag를 반복해서 작성해야 하는 불편함이 있다.
 
@@ -252,7 +254,7 @@ void study_test2() {
 }
 ```
 
-## ParameterizedTest (테스트 반복하기)
+## 6. ParameterizedTest (테스트 반복하기)
 
 파라미터로 넘긴값을 객체에 매핑해서 사용하려면 어떻게 해야 할까?
 
@@ -309,7 +311,7 @@ static class StudyAggregator implements ArgumentsAggregator {
 }
 ```
 
-## 테스트 순서
+## 7. 테스트 순서
 
 기본 Junit Test는 메서드 실행당 새로운 인스턴스를 만든다. Junit5 에서는 Class당 테스트 인스턴스를 만들 수 있도록 해당 기능을 제공한다. 다음과 같이 클래스 레벨에 작성할 수 있다.
 
@@ -325,7 +327,7 @@ static class StudyAggregator implements ArgumentsAggregator {
 
 > ❗️주의사항, `@Order` 애노테이션은 스프링에서 제공하는 것도 있다. 이것은 빈의 순서를 정의 하는 것이므로, 반드시 junit에서 제공하는 `@Order`어노테이션을 사용해야 한다!
 
-## JUnit 확장하기
+## 8. JUnit 확장하기
 
 - junit4 확장은 Runner, TestRule, MethodRule,..
 - junit5 확장은 ExtensionWith 단 하나만 존재함
@@ -406,7 +408,7 @@ class StudyTest {
 }
 ```
 
-## Junit4 -> Junit5 마이그레이션
+## 9. Junit4 -> Junit5 마이그레이션
 
 springboot 프로젝트 2.x.x 시작하게 되면 기본으로 junit5가 들어가고, junit-vintage-engine이 exlude 된다.
 

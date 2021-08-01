@@ -6,9 +6,12 @@ categories: [spring]
 image: '/images/spring.png'
 toc: true
 tags: [spring]
+description: 실제 프로젝트에서 dev, stage, production과 같은 개발하는 환경이 다르다. @Profile 어노테이션을 이용해서 다른 profile을 설정하는 방법에 대해서 알아보자.
 ---
 
-> 스프링부트에서 각 stage마다 profile 설정을 알아보자
+## 들어가며
+실제 프로젝트에서 dev, stage, production과 같은 개발하는 환경이 다르다. @Profile 어노테이션을 이용해서 다른 profile을 설정하는 방법에 대해서 알아보자.
+
 ### `@Profile` 애노테이션은 어디에 설정?
 
 - 빈으로 등록되어있는 클래스 레벨에 설정 가능

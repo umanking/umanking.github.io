@@ -5,9 +5,11 @@ date: 2020-03-10 08:18 +0900
 categories: [java]
 tags: [java]
 image: '/images/java.png'
+toc: true
+description: Java의 Comparabl과 Compartor에 대해서 알아보고, Lambda식으로 어떻게 간편하게 구현할 수 있는지 살펴보자.
 ---
 
-## 학습 목표
+## 1. 학습 목표
 - Java에서 제공하는 기본정렬은 어떤게 있나?
 - Java에서 정렬할때 사용하는 Comparable , Comparator에 대해서 알아보자. 
 - 각각의 차이는 무엇인지 알아보자. 
@@ -15,7 +17,7 @@ image: '/images/java.png'
 
 
 
-## Java에서 제공하는 기본 정렬
+## 2. Java에서 제공하는 기본 정렬
 
 Java에서 이미 정렬에 관한 메서드를 제공해 준다. Arrays.sort(), Collections.sort()와 같은 메서드를 제공한다.
 
@@ -40,7 +42,7 @@ public static void main(final String[] args) {
 
 > ✅ TODO:  Arrays.sort(), Collections.sort()의 내부 구현이 어떻게 되어 있는지는 추가로 학습
 
-## 객체 정렬
+## 3. 객체 정렬
 기본 문자열, 숫자가 아닌 `객체`에 관해서 특정 조건을 만족하는 정렬은 어떻게 해야할까? 
 다음과 같이 `이름`과 `나이` 속성을 갖는 `User`객체를 만들어보자.
 
@@ -78,7 +80,7 @@ Exception in thread "main" java.lang.ClassCastException: com.example.demo.compar
 	at com.example.demo.comparator.ComparableTest.main(ComparableTest.java:27)
 ```
 
-## 방법1 - Comparable 구현
+## 4. 방법1 - Comparable 구현
 
 다시 User클래스로 돌아가서, Comparable인터페이스를 구현한다.
 
@@ -109,7 +111,7 @@ public class User implements Comparable {
 age순으로 오름차순 정렬이 되었다.
 하지만, Comparable의 단점은 클래스당 하나의 compareTo 메서드를 오버라이딩 하기 때문에 특정 정렬 기준만을 충족시킨다. 다이나믹하게 여러 가지 비교자를 만들어서 주입할 수 는 없을까?
 
-## 방법2 - Comparator 구현
+## 5. 방법2 - Comparator 구현
 
 Comparator는 Functional Interface로 하나의 추상메서드를 가지고 있다. 그리고 익명 함수 이기도 하다. 결국 람다식으로 표현이 가능하며, 정렬을 할때, 2번째 인자로 해당 Comparator를 넘길 수 있다. 기존의 Comparable 인터페이스 구현 부를 삭제하고 다양한 Comparaotr를 만들어 보자.
 
@@ -162,7 +164,7 @@ public static void main(final String[] args) {
 
 나이순으로, 이름순으로 정렬됨을 확인 할 수 있다.
 
-## 더 생각해 볼 것
+## 6. 더 생각해 볼 것
 
 자주 사용하는 Comparator를 저렇게 클래스안에 넣는 것도 좋은 방법이고, 사실 사용하는 쪽에서 다음과 같이 넘겨줄 수 도 있다.
 

@@ -4,6 +4,8 @@ title: "[Java] 파일 입출력(BufferedWriter, BufferedReader, Files)"
 date: 2021-06-25 17:13 +0900
 tags: [java]
 image: '/images/java.png'
+toc: true
+description: Java의 파일 입출력 BuffedWriter, BufferedReader, Files 에 대해서 알아보자.
 ---
 
 Java에서 Directory를 만들고, 간단한 파일 쓰기, 읽기를 알아본다. 

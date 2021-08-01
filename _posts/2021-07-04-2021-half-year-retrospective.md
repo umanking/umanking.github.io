@@ -5,7 +5,7 @@ date: 2021-07-04 15:28 +0900
 image: 'https://user-images.githubusercontent.com/28615416/127739492-f817a13a-8dd0-4f5f-b57b-d8fbb0e9028e.png'
 tags: [retrospective, review]
 toc: true
-description: 2021년 상반기 회고를 합니다.
+description: 2021년 상반기 반기 회고를 합니다.
 ---
 
 2021년의 6개월(반기)회고. 크게 `외부적인 변화`, `내부적인 변화`, `앞으로의 계획` 3개의 파트로 구성했다.

@@ -5,6 +5,7 @@ date: 2020-01-19 14:20 +0900
 image: '/images/spring.png'
 toc: true
 tags: [spring, thymeleaf]
+description: Spring thymeleaf에서 Collection을 렌더링하는 방법에 대해서 알아보자
 ---
 
 Thymleaf를 통한 Item 목록을 화면에 렌더링 하는 방법에 대해서 알아보자.  
@@ -81,10 +82,10 @@ public class ItemController {
 - thymleaf 네임태그 달기
 - th:each 구문 사용: 컨트롤러에서 넘긴 첫번째 파라미터 `model.addAttribute("items", xxx)` `items`가 바로 `${items}`이 부분에 들어오게 됩니다.
 
-## 4.결과확인
+## 4. 4.결과확인
 
 프로젝트를 실행하고 `localhost:8080/item`를 호출하면 Model에 담은 데이터 정보가 화면에 제대로 뿌려진다.
 
-## 정리s
+## 5. 정리s
 
 오늘은 간단한 thymleaf를 통한 아이템을 화면에 뿌리는 방법에 대해서 알아보았습니다. 이 외에도 자주 사용하는 thymeleaf 태그(?)들과 html내 파일에서 자바스크립트를 활용한 이벤트들을 다루는 방법은 추후에 포스팅 하도록 하겠습니다.
