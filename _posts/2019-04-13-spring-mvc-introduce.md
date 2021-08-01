@@ -6,6 +6,7 @@ categories: [spring]
 image: '/images/spring.png'
 toc: true
 tags: [spring]
+description: spring web모듈을 추가하고, Spring MVC에 대해서 알아보자.
 ---
 
 > Spring Boot Web Mvc에 대해서 알아보자.

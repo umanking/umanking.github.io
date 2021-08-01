@@ -5,6 +5,7 @@ date: 2020-01-19 15:59 +0900
 image: '/images/spring.png'
 toc: true
 tags: [spring, thymeleaf]
+description: spring thymeleaf에서 기본적인 사용법, 문법에 대해서 알아보자.
 ---
 
 

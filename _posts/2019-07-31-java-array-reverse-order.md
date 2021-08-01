@@ -5,8 +5,9 @@ date: 2019-07-31 12:28:33
 categories: [java]
 tags: [java]
 image: '/images/java.png'
+description: Java 배열 reverseOrder 하는 방법에 대해서 알아보자
 ---
-## Java 배열을 reverOrder정렬 하는 방법
+## 1. Java 배열을 reverOrder정렬 하는 방법
 
 ```java
 //기본 정렬

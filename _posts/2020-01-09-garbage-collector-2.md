@@ -2,24 +2,27 @@
 layout: post
 title: "Garbage Collection - #2부 GC에 대한 설명"
 date: 2020-01-09 20:22 +0900
+toc: true
+tag: [gc, jvm]
+description: GC 에 대해서 알아보자
 ---
 
-## 목표
+## 1. 목표
 
 이전 시간에 [Garbage Collection - #1부 JVM HotSpot](https://umanking.github.io/java/java-garbage-collector/)에 대해서 알아보았습니다. 오늘은 Garbage Collection이 heap 영역에서 어떻게 이루어 지는 지 알아 보도록 하겠습니다.
 
-## Automatic Garbage Collection?
+## 2. Automatic Garbage Collection?
 
 Automatic(자동으로 동작하는) gc는 heap메모리를 바라보고, 어떤 객체가 사용되는지, 사용되지 않는지 판단하고, 사용하지 않는 객체는 삭제합니다. 객체를 사용한다는 의미는 객체에 대한 Reference참조를 가지고 있다는 뜻입니다. 반대로 사용하지 않는 다는 의미는 여러분의 프로그램에서 해당 객체를 더이상 참조하지 않는다라는 뜻입니다. 그래서 사용하지 않는 객체들을 통해서 메모리를 회수 할 수 있습니다.
 
-## Step 1: Marking
+## 3. Step 1: Marking
 
 이 단계는 `마킹`이라고 부릅니다. gc(garbege collector를 줄여서)가 어떤 메모리를 사용하는지 하지 않는지 판단합니다.
 ![](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/images/gcslides/Slide3.png)
 
 오렌지색깔이 참조되지 않은 객체들, 파란색은 참조된 객체들 입니다. 이러한 결정을 하기 위해서, 마킹 단계에서 모든 객체를 전체 스캔합니다. 모든 객체가 시스템상에서 전부 스캔해야 하기 때문에 이건 매우 시간 소모가 큰 프로세스 입니다.
 
-## Step 2: Noramal Deletion
+## 4. Step 2: Noramal Deletion
 
 일반적인 삭제는 참조되지 않은 객체들을 삭제 하고, 남은 빈 공간과 참조한 객체들에 대한 포인터를 남깁니다.
 이 포인터로 무엇을 할까요?
@@ -28,13 +31,13 @@ Automatic(자동으로 동작하는) gc는 heap메모리를 바라보고, 어떤
 
 메모리 할당자(allocator)라는 놈은 새로운 객체가 할당 될 수 있는 여유공간 블록에 대한 참조 값을 가지고 있습니다.
 
-## Step 2a: Deletion with Compacting
+## 5. Step 2a: Deletion with Compacting
 
 추가적으로 성능을 향상시키기 위해서, 남은 참조된 객체들도 압축할 수 있습니다. 참조된 객체를 함께 이동하면 새 메모리 할당이 훨씬 쉽고 빨라집니다.
 
 ![](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/images/gcslides/Slide4.png)
 
-## 왜 ? Generational Garbage Collection ?
+## 6. 왜 ? Generational Garbage Collection ?
 
 위에 언급했듯이, JVM상의 모든 객체에 대해서 mark하고 compact 하는 과정은 비효율적입니다. 점점 더 많은 객체가 메모리에 할당되고, 객체 목록이 커지면서 GC가 일어나는 시간이 점점 더 길어집니다. 그에 반해 응용 프로그램은 경험적 분석에 의하면 대부분의 객체는 수명이 짧습니다.
 
@@ -44,7 +47,7 @@ Automatic(자동으로 동작하는) gc는 heap메모리를 바라보고, 어떤
 
 보시는 것처럼, 시간이 지남에 따라 할당된 객체들이 남아있는게 점점 적어집니다. 사실, 대부분의 객체는 매우 짧은 수명주기를 가지고 있습니다. 특히나 그래프의 왼쪽의 큰 값을 통해서
 
-## JVM Generations
+## 7. JVM Generations
 
 객체 할당의 일련의 패턴을 통해서 배운 정보로 JVM의 퍼포먼스를 향상 시킬 수 있습니다. 그러므로 힙영역을 작은 부분으로 쪼개거나 genrations 해야 합니다. heap영역은 Young Generation, Old 또는 Tenured Generation, Permanent Generation 으로 나뉩니다.
 

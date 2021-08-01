@@ -7,7 +7,6 @@ tags: [jpa]
 ---
 
 > JPA에서 QueryDsl를 사용하는 방법에 대해서 알아보자. QueryDSL은 쿼리 domain specific language로 도메인에 맞게 쿼리를 프로그링 할 수 있다는 것이다.
-<!-- more -->
 
 ```java
 List<Person> persons = queryFactory.selectFrom(person)

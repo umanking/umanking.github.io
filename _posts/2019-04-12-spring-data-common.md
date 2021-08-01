@@ -6,6 +6,7 @@ image: '/images/spring.png'
 toc: true 
 categories: [spring]
 tags: [spring]
+description: Spring Data Common 프로젝트가 무엇이고, 여러가지 다양한 구현체들에 대해서 알아보자
 ---
 
 > Spring Data는 여러 가지 프로젝트로 되어 있다. 그중에서 Common 프로젝트에 대해서 알아보자.

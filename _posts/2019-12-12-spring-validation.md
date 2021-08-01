@@ -6,6 +6,7 @@ image: '/images/spring.png'
 toc: true
 categories: [spring]
 tags: [spring]
+description: 스프링 컨트롤러에서 받는 객체에대한 validation 하는 방법에 대해서 알아보자
 ---
 
 ## 1. Overview
@@ -13,7 +14,6 @@ tags: [spring]
 **Spring Boot를 통한 REST API 샘플예제를 통해서, 도메인 객체를 validation 하는 방법을 알아보자.**
 <u>기본 전제 조건은, 유저가 넘기는 모든 데이터는 신뢰할수 없다.</u> 그렇기 때문에 모든 데이터를 반드시 검증해야 한다.
 대게 validation은 Post요청시, @RequestBody에 담길 객체에 대해서 검증하는게 일반적이다.
-<!-- more -->
 ## 2. User Domain
 
 ```java

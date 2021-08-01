@@ -5,6 +5,7 @@ date: 2021-06-30 21:37 +0900
 image: 'https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg'
 tags: ['intellij']
 toc: true
+description: IntelliJ에서 컬럼 Selection 모드에 대해서 알아보고, 단축키를 통해서 작업을 쉽게 하는 방법을 알아보자.
 ---
 ## 1. IntelliJ column selection 모드 
 

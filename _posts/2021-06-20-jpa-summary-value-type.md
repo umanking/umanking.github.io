@@ -3,6 +3,8 @@ layout: post
 title: JPA - 값 타입(6)
 date: 2021-06-20 17:04 +0900
 tags: [jpa, orm]
+toc: true
+description: JPA의 값타입에 대해서 알아보자. 
 ---
 > 본 글은, [자바 ORM 표준 JPA 프로그래밍(김영한님)](http://www.yes24.com/Product/Goods/19040233) 책을 요약 정리한 포스팅입니다.
 

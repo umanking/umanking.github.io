@@ -6,7 +6,7 @@ categories: [spring]
 tags: [spring]
 image: '/images/spring.png'
 toc: true
-description: Spring multipartfile을 이용한 파일업로드 예제를 알아보자
+description: Spring MultiPartFile 인터페이스를 이용한 파일 업로드 하는 방법을 알아보자.
 ---
 
 ## 1. 개요

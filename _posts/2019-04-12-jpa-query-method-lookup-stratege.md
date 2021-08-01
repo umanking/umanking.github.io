@@ -7,7 +7,6 @@ tags: [jpa]
 ---
 
 > JPA에서 쿼리 메서드를 정의하는 방법에 대해서 알아보자.
-<!-- more -->
 
 ## 1. QueryLookup 전략
 

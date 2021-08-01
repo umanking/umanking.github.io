@@ -6,15 +6,10 @@ image: '/images/spring.png'
 toc: true
 categories: [spring]
 tags: [spring]
+description: Bean(빈)이란 무엇인가, Bean의 라이프사이클, Bean을 등록하는 방법에 대해서 알아보자
 ---
 
-
-
-모든 블로그의 github 소스는 [여기]() 에서 확인합니다.
-
-
-
-## 학습목표 
+## 1. 학습목표 
 
 - Bean이란 무엇인가? 
 - Bean의 라이프 사이클
@@ -23,7 +18,7 @@ tags: [spring]
 
 
 
-## Bean 이란? 
+## 2. Bean 이란? 
 
 빈(Bean)이란 스프링이 생명주기를 관리하는 객체이다. 왜 Beans라는 이름을 붙였을까? 
 
@@ -42,7 +37,7 @@ tags: [spring]
 
 
 
-## Bean을 등록하는 방법
+## 3. Bean을 등록하는 방법
 
 - `@Bean` 어노테이션을 통해서 Bean으로 등록한다. 
 
@@ -83,12 +78,12 @@ Hello world
 
 콘솔창에 다음과 같이 찍힌다.
 
-## 2\. 빈 생성 전처리/후처리 하는 방법
+## 4. 2\. 빈 생성 전처리/후처리 하는 방법
 
 1. JSR-250 어노테이션 (@PostConstruct, @PreDestroy ... ) 사용
 2. @Bean의 프로퍼티로 (initMethodName, destroyMethodName) 사용
 
-### JSR-250 어노테이션 사용
+### 4.1. JSR-250 어노테이션 사용
 
 JSR-250 어노테이션을 사용하면 쉽게 빈을 생성, 폐기 시점을 알 수 있다.
 
@@ -120,7 +115,7 @@ Post Init bean
 Pre Destroy bean
 ```
 
-### @Bean 프로퍼티 initMethodName / destroyMethodName 를 통한 방법
+### 4.2. @Bean 프로퍼티 initMethodName / destroyMethodName 를 통한 방법
 
 ```java
 public class Foo {
@@ -158,7 +153,7 @@ public class AppConfig {
 
 빈을 등록하면서 해당 빈의 어트리뷰트에 위에서 작성했던 메서드명을 넘긴다. 인텔리J에는 해당 메서드의 리턴 타입에 따라서 메서드명을 자동으로 띄워준다.
 
-### JSR-250 과 @Bean 프로퍼티를 동시에 사용하면 우선순위는 어떻게 될까?
+### 4.3. JSR-250 과 @Bean 프로퍼티를 동시에 사용하면 우선순위는 어떻게 될까?
 
 ```
 PostConstruct Init bean  // JSR-250
@@ -171,7 +166,7 @@ PreDestroy bean // JSR-250
 
 
 
-## 맺음말
+## 5. 맺음말
 
 - 스프링에서 무심코 사용했던 Bean들에 대해서 알아봤다. 
 - 왜 기본 Bean 스코프가 싱글턴인가? prototype으로 매 요청마다 생겼을 때 어떤 일들이 벌어질까?

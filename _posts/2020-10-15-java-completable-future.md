@@ -5,6 +5,7 @@ date: 2020-10-15 21:07 +0900
 categories: [java]
 tags: [java]
 image: '/images/java.png'
+description: Java 에서 CompletableFuture가 어떻게 사용할 수 있고, 어떤식으로 발전해 왔는지 알아보자.
 ---
 
 Future 인터페이스는 java5부터 `java.util.concurrency` 패키지에서 비동기의 결과값을 받는 용도로 사용했다. 하지만 **비동기의 결과값을 조합**하거나, **error를 핸들링할 수가 없었다.**

@@ -6,12 +6,12 @@ categories: [jpa]
 tags: [jpa]
 ---
 
-## 들어가며
+## 1. 들어가며
+JPA에서 양방향 연관관계를 매핑할때, 객체관점에서 `편의 메서드`를 작성하는 방법에 대해서 알아보자.
+ **이번에는 양방향 매핑을 할때, 객체 관점에서 어떻게 처리할지?를 고민해보자.**
 
-[이전 시간](/jpa-1-n-mapping)에는 연관관계 매핑의 기초 다대일 매핑하는 방법과 연관관계 주인에 대해서 알아보았다. **<u>이번에는 양방향 매핑을 할때, 객체 관점에서 어떻게 처리할지?를 고민해보자.</u>**
-<!-- more --> 
-
-예제는 지난시간에 했던, Member (다) : Team(일) 의 관계를 생각해보자! 
+## 2. 예제 코드
+Member (N) : Team(1) 의 관계를 생각해보자
 
 ```java
 public class Member {
@@ -24,8 +24,6 @@ public class Team {
     private List<Member> members = new ArrayList<>();
 }
 ```
-
-
 
 다음과 같이 team.getMembers() 컬랙션을 가지고 와서, 저장한 member를 add하면 어떻게 될까?
 
@@ -45,7 +43,7 @@ System.out.println(memberRepository.findById(member.getId()));
 
 다음과 같이 team에 null 값이 나온다.
 
-```
+```java
 Optional[Member(id=1, name=andrew, age=32, team=null)]
 ```
 
@@ -55,7 +53,7 @@ Optional[Member(id=1, name=andrew, age=32, team=null)]
 
 
 
-## 어떻게 하나?
+## 3. 어떻게 하나?
 
 정답은 연관관계의 주인쪽에만 값을 저장하냐? 안하냐? 이런 여부를 묻고 따지지 말고, 객체 관점에서 양쪽 방향에 모두 값을 입력해 주는 것이 실수를 미연에 방지할 수 있다. 
 

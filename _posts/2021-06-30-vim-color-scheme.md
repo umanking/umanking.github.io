@@ -2,8 +2,9 @@
 layout: post
 title: vim color 스키마 적용하기 
 date: 2021-06-30 21:03 +0900
-tags: [tip, vim]
+tags: [tip, vim, iterms, theme]
 image: 'https://download.logo.wine/logo/Vim_(text_editor)/Vim_(text_editor)-Logo.wine.png'
+description: iterms의 vim color shcema를 적용하는 방법을 알아보자.
 ---
 
 ## 1. vim color 스키마 적용하기 

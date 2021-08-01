@@ -5,6 +5,7 @@ date: 2021-07-05 20:04 +0900
 image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
 tags: [mysql]
 toc: true
+description: MySQL에서 중복 데이터를 삽입하는 3가지 방법에 대해서 알아보자.
 ---
 
 ## 1. MySQL 중복데이터 관리방법 
