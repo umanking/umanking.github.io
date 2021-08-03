@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jackson, LocalDateTime 직렬화, 역직렬화
+title: Jackson, LocalDateTime Serialization, Deserialization 이슈
 date: 2021-07-24 17:53 +0900
 image: 'https://i1.wp.com/blog.fossasia.org/wp-content/uploads/2018/08/serialize.png?fit=706%2C367&ssl=1'
 tags: [jackson, java, spring]
