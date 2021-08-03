@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Spring-Batch 프로젝트 간단예제
+title: Spring Batch 프로젝트 살펴보기
 date: 2021-07-02 17:58 +0900
 tags: [spring-batch]
-image: 'https://docs.spring.io/spring-batch/docs/current/reference/html/images/spring-batch-reference-model.png'
+image: 'https://blog.kakaocdn.net/dn/OkEs9/btq66VktYuY/Yr3TzVnyJpyuS8fNB5BTYK/img.png'
 toc: true
 description: Spring Batch 프로젝트의 구성요소와 간단한 샘플 프로젝트를 통해서 알아보자
 ---
