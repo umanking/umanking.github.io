@@ -5,6 +5,7 @@ date: 2020-05-16 11:27 +0900
 categories: [spring]
 tags: [spring, junit5]
 toc: true 
+image: '/images/junit5.png'
 description: Junit5에 특징과 기본적인 사용법, 문법에 대해서 알아보자.
 ---
 
