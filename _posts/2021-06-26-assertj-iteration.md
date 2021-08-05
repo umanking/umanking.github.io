@@ -4,6 +4,8 @@ title:  AssertJ 자주 사용하는 것들
 date: 2021-06-26 12:21 +0900
 tags: [assertj]
 image: '/images/assert.png'
+toc: true
+description: AssertJ에서 자주 사용하는 기본 문법들에 대해서 알아보자.
 ---
 
 테스트 케이스 작성할때, 많이 사용하는 AssertJ에 대해서 알아보자.
