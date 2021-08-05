@@ -31,9 +31,9 @@ docker 로 설치하기
 ```shell
 $ docker run -d --hostname localhost --name my-rabbitmq  -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```
-
-- localhost:15672
-- guest/guest
+2개의 포트 바인딩을 하는데 5672는 `AMQP 포트`이고, 15672는 `웹관리 콘솔`포트 이다.
+- 웹관리 콘솔 url: localhost:15672
+- default 로그인 접속정보: guest/guest
 
 
 
