@@ -58,6 +58,6 @@ public class JacksonConfiguration {
 }
 ```
 
-## Ref
+## 참조
 
-- [practical jackson configuration](stubbornjava.com/posts/practical-jackson-objectmapper-configuration)
+- [practical jackson configuration](https://stubbornjava.com/posts/practical-jackson-objectmapper-configuration)
