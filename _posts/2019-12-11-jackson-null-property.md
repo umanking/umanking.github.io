@@ -2,11 +2,14 @@
 layout: post
 title: Jackson, null 필드 무시하기
 date: 2019-12-11 22:25 +0900
+toc: true 
+description: jackson에서 null값인 필드를 보여주지 않도록 지역적, 전역적으로 설정하는 방법에 대해서 알아보자
 ---
 
-백단에서 데이터를 프론트 단에 넘길 때, 객체에 대한 property값이 널인 경우까지 넘어 간다.
+## 들어가며 
+API를 만들때,백단에서 프론트단에 데이터를ㄹ 넘길 때, 객체 필드값이 null인 경우에 해당 필드를 보여주지 않아야 하는 경우가 있다. 이 경우에서 지역적으로 혹은 전역적으로 설정하는 방법에 대해서 알아보자!
 
-## 예제 코드
+## 1. 예제 코드
 
 ```java
 public class Account {
@@ -31,7 +34,7 @@ public void create_account_null_test(){
 {"name":null,"age":32}
 ```
 
-## 1. 지역적으로 처리
+## 2. 지역적으로 처리
 
 ```java
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -43,7 +46,7 @@ public class Account {
 }
 ```
 
-## 2. 전역적으로 설정하는 방법
+## 3. 전역적으로 설정하는 방법
 
 ```java
 @Configuration
@@ -58,6 +61,6 @@ public class JacksonConfiguration {
 }
 ```
 
-## 참조
+## 4. 참조
 
 - [practical jackson configuration](https://stubbornjava.com/posts/practical-jackson-objectmapper-configuration)
