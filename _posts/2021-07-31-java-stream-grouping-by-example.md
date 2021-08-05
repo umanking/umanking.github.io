@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Java] stream groupingBy 예제"
+title: "[Java] Stream 데이터 groupingBy 예제"
 date: 2021-07-31 17:27 +0900
 image: '/images/java.png'
 tags: [java, stream, groupingby]
