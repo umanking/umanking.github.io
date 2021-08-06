@@ -9,10 +9,10 @@ tags: [spring]
 description: 실제 프로젝트에서 dev, stage, production과 같은 개발하는 환경이 다르다. @Profile 어노테이션을 이용해서 다른 profile을 설정하는 방법에 대해서 알아보자.
 ---
 
-## 들어가며
+## 1. 들어가며
 실제 프로젝트에서 dev, stage, production과 같은 개발하는 환경이 다르다. @Profile 어노테이션을 이용해서 다른 profile을 설정하는 방법에 대해서 알아보자.
 
-### `@Profile` 애노테이션은 어디에 설정?
+### 1.1. `@Profile` 애노테이션은 어디에 설정?
 
 - 빈으로 등록되어있는 클래스 레벨에 설정 가능
 - @Configuration, @Component
@@ -77,7 +77,7 @@ Action:
 Consider defining a bean of type 'java.lang.String' in your configuration.
 ```
 
-### 프로파일 활성화
+### 1.2. 프로파일 활성화
 
 1. application.properties의 propertiy값을 변경하는 방법
 
@@ -93,18 +93,18 @@ hello prod
 
 2. 패키징을 하고난 jar 파일을 실행할 때 arg로 넘겨서 실행하는 방법
 
-```
+```shell
 $ mvn clean package -DskipTests
 $ java -jar target/*.jar --spring.profiles.active=prod
 ```
 
 이 경우에 application.properties의 spring.profiles.active=test로 해놓고 패키징을 해도, [Java] jar를 통해서arg로 넘기는 경우 오버라이딩이 되서, prod 프로파일이 적용됨을 알 수 있다.
 
-### 프로파일용 프로퍼티를 분리하기
+### 1.3. 프로파일용 프로퍼티를 분리하기
 
 application-{stage}.properties 형식의 프로파일용 프로퍼티를 분리할 수 있다.
 
-### 프로파일 Include
+### 1.4. 프로파일 Include
 
 ```properties
 # application.properties 파일
@@ -113,7 +113,7 @@ spring.profile.include = realdb
 
 이런 식으로 작성하게 되면, application-realdb.properties 정보를 포함하는 application.properties 파일이 만들어 진다.
 
-### Best Practice 는 무엇?
+### 1.5. Best Practice 는 무엇?
 
 - application-common.properties
 - application-test.properties
@@ -123,6 +123,6 @@ spring.profile.include = realdb
 
 이런식으로 properties파일을 각 스테이징 별로 나누고, 공통으로 사용하는 app에 대한 정보나, 외부 라이브러리 연동하는 app-key같은 정보를 적용할 수 있다. 또한, 각 stage별로 common의 properties 파일을 includ하여서 공통인 정보를 포함하게 할 수 있다.
 
-## 정리
+## 2. 정리
 
 profile은 각 Stage환경에 따라 구성해야 하는 빈설정, 정보들이 상이하게 다른 경우에 적용할 수 있다. 각 스테이징환경에 맞는 Configuration파일을 구성, profile을 실행할 때는 spring.profiles.actives 옵션을 통해서 설정했다. 각 스테이징 별 정보들이 많을 때는 프로파일용 프로퍼티를 각각 만들어서 분리했다.
