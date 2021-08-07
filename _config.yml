@@ -98,7 +98,7 @@ permalink: /:year/:month/:day/:title/
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-feed
+  # - jekyll-feed
   - jekyll/tagging
   - jekyll-compose
   - jekyll-seo-tag
@@ -134,7 +134,7 @@ jekyll_compose:
       toc: true
       description: 
 
-feed:
-  path: feed.xml
-  posts_limit: 30
-  tags: false
+# feed:
+  # path: feed.xml
+  # posts_limit: 50
+  # tags: true
