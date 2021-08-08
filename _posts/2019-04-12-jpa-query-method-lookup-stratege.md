@@ -4,6 +4,7 @@ title: "[JPA] 쿼리메서드(Lookup 전략)"
 date: 2019-04-12 09:07:40
 categories: [jpa]
 tags: [jpa]
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
 ---
 
 > JPA에서 쿼리 메서드를 정의하는 방법에 대해서 알아보자.

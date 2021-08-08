@@ -3,6 +3,7 @@ layout: post
 title: IntelliJ 커맨드 명령어(idea .)으로 실행하기 
 date: 2021-06-29 13:50 +0900
 tags: [intellij]
+categories: [intellij]
 image: 'https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg'
 ---
 ## 1. IntelliJ 커맨드 명령어(idea .)으로 실행하기 

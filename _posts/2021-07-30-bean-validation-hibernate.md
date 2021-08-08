@@ -4,6 +4,7 @@ title: Bean Validation 이슈 (Object Graph)
 date: 2021-07-30 14:25 +0900
 image: 'https://www.popit.kr/wp-content/uploads/2018/01/image2017-12-21_10-5-23.png'
 tags: [bean-validation, hibernate, object-graph]
+categories: [spring]
 toc: true
 description: API관련 작업을 하다가, @RequestBody로 매핑된 객체의 필드값을 validaiton하기 위해서 @Valid 어노테이션(JSR-303) 을 적용했지만, 제대로 적용이 되지 않았다. 이에 대한 해결책을 알아보자. 
 ---

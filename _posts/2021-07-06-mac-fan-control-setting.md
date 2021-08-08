@@ -4,6 +4,7 @@ title: Mac Fan control 하기(feat, 뜨거운 맥북 식히기)
 date: 2021-07-06 14:32 +0900
 image: 'https://cdn.dribbble.com/users/69146/screenshots/994781/fan.png'
 tags: [tip, mac]
+categories: [mac]
 toc: true
 ---
 

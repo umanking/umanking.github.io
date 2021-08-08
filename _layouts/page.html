@@ -2,10 +2,10 @@
 layout: default
 ---
 
-{% include hero.html %}
 
 <!-- begin page -->
-<div class="container">
+<div class="container" style="padding-top: 80px;">
+  {% include side-menu.html %}
   <article class="page animate">
     <div class="page__content">
       {{ content | remove: '<p>' | remove: '</p>'}}

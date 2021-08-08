@@ -4,6 +4,8 @@ title: "[JPA] 연관관계 매핑 기초(다대일, 연관관계 주인)"
 date: 2019-04-12 09:05:25
 categories: [jpa]
 tags: [jpa]
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
 ---
 
 ## 들어가며

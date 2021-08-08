@@ -4,6 +4,7 @@ title: Google Style Guide, IntelliJ에 적용하기
 date: 2021-07-06 13:20 +0900
 image: 'https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg'
 tags: [styleguide, intellij, tip]
+categories: [intellij]
 toc: true
 ---
 ## 1. Google Style Guide, IntelliJ에 적용하기

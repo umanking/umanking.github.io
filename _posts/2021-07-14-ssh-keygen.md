@@ -4,6 +4,7 @@ title: SSH 키 생성하고, 원격서버에 접속하는 방법
 date: 2021-07-14 23:13 +0900
 image: 'https://www.abobwhite.com/content/images/2019/06/ssh.jpg'
 tags: [ssh, git, ssh-keygen]
+categories: [ssh]
 toc: true
 description: SSH 키생성하고, 원격서버에 접속하는 방법, 공개키 인증 방식에 대해서도 알아본다.
 ---

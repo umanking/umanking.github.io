@@ -3,6 +3,8 @@ layout: post
 title: JPA - 다양한 연관관계 매핑(4)
 date: 2021-06-19 17:21 +0900
 tags: [jpa, orm]
+categories: [jpa]
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
 ---
 > 본 글은, [자바 ORM 표준 JPA 프로그래밍(김영한님)](http://www.yes24.com/Product/Goods/19040233) 책을 요약 정리한 포스팅입니다.
 

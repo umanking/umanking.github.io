@@ -4,6 +4,8 @@ title: "[JPA] save()메서드로 살펴보는 persist와 merge 개념"
 date: 2019-04-12 09:08:33
 categories: [jpa]
 tags: [jpa]
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
 ---
 
 > JpaRepository의 구현체 SimpleJpaRepository에서 save()메서드가 내부적으로 어떻게 동작하는지 알아보자.

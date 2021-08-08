@@ -4,6 +4,7 @@ title: Mac에서 커스텀하게 단축키 지정하는 방법
 date: 2021-07-03 08:38 +0900
 image: 'https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
 tags: [tip, mac]
+categories: [mac]
 toc: true
 description: Mac에서 자신만의 커스텀한 단축키를 지정하는 방법을 알아보자.
 ---

@@ -4,6 +4,7 @@ title: IntelliJ, Gradle프로젝트 실행시 느리다면
 date: 2021-07-07 17:38 +0900
 image: 'https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg'
 tags: [intellij, gradle]
+categories: [intellij]
 toc: true
 ---
 ## 1. Gradle 프로젝트에서 실행시 느리게 실행된다면? 

@@ -3,6 +3,7 @@ layout: post
 title: Junit5 - 기본 사용법
 date: 2021-06-19 17:37 +0900
 tags: [junit5]
+categories: [junit5]
 toc: true
 image: '/images/junit5.png'
 description: 자주 사용하는 Junit5 사용 예제

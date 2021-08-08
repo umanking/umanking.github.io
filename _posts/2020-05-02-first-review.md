@@ -2,6 +2,7 @@
 layout: post
 title: "[회고] 2020년 상반기"
 subtitle: "회고는 계속된다."
+categories: [review]
 tags: [retrospective, review]
 image: 'https://user-images.githubusercontent.com/28615416/127739492-f817a13a-8dd0-4f5f-b57b-d8fbb0e9028e.png'
 date: 2020-05-02 12:16 +0900

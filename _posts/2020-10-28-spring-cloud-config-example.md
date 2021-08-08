@@ -5,6 +5,7 @@ date: 2020-10-28 09:41 +0900
 toc: true
 description: spring cloud config 의 간단한 예제를 살펴보자.
 tags: [spring-cloud]
+categories: [spring-cloud]
 image: 'https://lh3.googleusercontent.com/proxy/vp6-IkjoFSjoYPuX32vDEkgN4kGDmjylNXNQiOz-3l_LFL9hRTRy1Nmu8sxMovTLt7OEpgIgb3IQPGn-QWzgn5xkHKyXnll64fWWfCLCkh1OwW8Kj4USNGnfFjd3kq_TLVsFpvN0u7ZI7w'
 ---
 

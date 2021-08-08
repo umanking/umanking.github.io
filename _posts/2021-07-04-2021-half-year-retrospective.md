@@ -4,6 +4,7 @@ title: "[회고] 2021년 상반기"
 date: 2021-07-04 15:28 +0900
 image: 'https://user-images.githubusercontent.com/28615416/127739492-f817a13a-8dd0-4f5f-b57b-d8fbb0e9028e.png'
 tags: [retrospective, review]
+categories: [review]
 toc: true
 description: 2021년 상반기 반기 회고를 합니다.
 ---

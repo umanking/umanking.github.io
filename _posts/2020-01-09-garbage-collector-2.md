@@ -4,6 +4,7 @@ title: "Garbage Collection - #2부 GC에 대한 설명"
 date: 2020-01-09 20:22 +0900
 toc: true
 tag: [gc, jvm]
+categories: [jvm]
 description: GC 에 대해서 알아보자
 ---
 
