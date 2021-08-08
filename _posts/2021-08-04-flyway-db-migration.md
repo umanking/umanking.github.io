@@ -2,8 +2,9 @@
 layout: post
 title: Flyway (db migration) 예제
 date: 2021-08-04 15:42 +0900
-image: 'http://www.popit.kr/wp-content/uploads/2016/11/flyway-logo-tm.png'
+image: 'https://digital.ai/sites/default/files/pictures/styles/maxwidth_300/public/pt_logos/flyway.png?itok=B976zlaq'
 tags: [flyway, db-migration]
+categories: [flyway]
 toc: true
 description: DB migration 툴인 flyway에 대한 사용방법을 알아보자.
 ---

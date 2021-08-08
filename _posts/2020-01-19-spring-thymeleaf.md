@@ -5,6 +5,7 @@ date: 2020-01-19 14:20 +0900
 image: '/images/spring.png'
 toc: true
 tags: [spring, thymeleaf]
+categories: [spring]
 description: Spring thymeleaf에서 Collection을 렌더링하는 방법에 대해서 알아보자
 ---
 

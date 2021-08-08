@@ -3,10 +3,10 @@ layout: post
 title: "[AserrtJ] 필드값 재귀적으로 테스트 하는 방법"
 date: 2021-06-11 10:51:04
 tags: [assertj, junit5]
+categories: [junit5]
 toc: true
 image: '/images/junit5.png'
 description: AssertJ의 필드값을 재귀적으로 비교해서 테스트 하는 방법에 대해서 알아보자
-category: test 
 ---
 
 ## 1. 문제점

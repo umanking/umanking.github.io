@@ -3,12 +3,12 @@ layout: post
 title: SpringBoot CommandLineRunner, ApplicationRunner 초기화 방법
 date: 2021-08-06 12:04 +0900
 image: '/images/spring.png'
-tags: [spring, applicationrunner]
+tags: [spring]
+categories: [spring]
 toc: true
-description: Spring Boot를 시작할때, 초기화하는 용도로 ApplicationRunner, CommandLineRunner를 사용하는데, 어떻게 사용하는지, 둘의 차이점은 무엇인지, SpringApplication.java 소스코드를 통해서 알아보자. 
+description: ApplicationRunner,CommandLineRunner를 애플리케이션 구동시 사용하는 방법에 대해서 알아보자
 ---
 ## 1. 들어가며
-
 Spring Boot를 시작할때, 초기화하는 용도로 ApplicationRunner, CommandLineRunner를 사용하는데, 어떻게 사용하는지, 둘의 차이점은 무엇인지, 실제 스프링에서 어떻게 구현했는지, 소스코드를 통해서 알아보자. 
 
 

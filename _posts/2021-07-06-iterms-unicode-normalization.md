@@ -4,6 +4,7 @@ title: iterms 한글깨짐 문제
 date: 2021-07-06 13:58 +0900
 image: 'https://iterm2.com/img/logo2x.jpg'
 tags: [iterms, tip]
+categories: [iterms]
 toc: true
 description: iterms에서 Shell 창에서 한글깨짐 문제에 대해서 알아보자 .
 ---

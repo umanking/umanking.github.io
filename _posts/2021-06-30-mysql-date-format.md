@@ -3,6 +3,7 @@ layout: post
 title: MySQL 날짜 포맷팅 DATE_FORMAT
 date: 2021-06-30 22:20 +0900
 tags: [mysql]
+categories: [mysql]
 image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
 description: MySQL에서 DATE 날짜 포맷팅 하는 DATE_FORMAT 함수에 대해서 알아보자.
 ---

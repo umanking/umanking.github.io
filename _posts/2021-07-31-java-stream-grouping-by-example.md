@@ -4,6 +4,7 @@ title: "[Java] Stream 데이터 groupingBy 예제"
 date: 2021-07-31 17:27 +0900
 image: '/images/java.png'
 tags: [java, stream, groupingby]
+categories: [java]
 toc: true
 description: Java Stream의 groupingBy의 메서드를 살펴보고, 간단한 예제를 통해서 어떻게 사용하는지 살펴보자.
 ---

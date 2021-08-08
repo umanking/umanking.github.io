@@ -4,6 +4,7 @@ title: MySQL 인덱스 종류, 내부 동작
 date: 2021-07-18 14:56 +0900
 image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
 tags: [mysql, index]
+categories: [mysql]
 toc: true
 description: MySQL의 인덱스 종류와 내부 동작, 클러스터형 인덱스와 보조 인덱스에 대해서 알아보자.
 ---

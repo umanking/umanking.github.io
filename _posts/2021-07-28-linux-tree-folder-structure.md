@@ -2,7 +2,8 @@
 layout: post
 title: 리눅스 Tree 명령어로 폴더 구조 보기
 date: 2021-07-28 12:09 +0900
-image: 'https://i.pinimg.com/originals/c7/b8/11/c7b8113247fecd83bd9b5ed5bd3f34d5.png'
+image: 'https://blog.kakaocdn.net/dn/bEUX6s/btqAavSzerd/Q8tjjThKJ82PS4HrBFp5Sk/img.png'
+categories: [linux]
 tags: ['linux', 'tree']
 toc: true
 description: 리눅스 tree명령어를 통해서 폴더구조 보기

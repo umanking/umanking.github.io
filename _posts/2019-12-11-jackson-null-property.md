@@ -3,6 +3,8 @@ layout: post
 title: Jackson, null 필드 무시하기
 date: 2019-12-11 22:25 +0900
 toc: true 
+tags: [jackson]
+categories: [jackson]
 description: jackson에서 null값인 필드를 보여주지 않도록 지역적, 전역적으로 설정하는 방법에 대해서 알아보자
 ---
 

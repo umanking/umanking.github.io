@@ -4,6 +4,7 @@ title: "[JPA] 엔티티 설계시 주의사항들"
 date: 2020-05-05 15:36 +0900
 categories: [jpa]
 tags: [jpa]
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
 toc: true 
 description: JPA에서 엔티티 설계시 주의사항들에 대한 요약본입니다.
 ---

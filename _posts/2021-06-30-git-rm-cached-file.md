@@ -3,6 +3,7 @@ layout: post
 title: Github에 잘못올라간 파일 삭제후 .gitignore에 추가하기
 date: 2021-06-30 21:58 +0900
 tags: [git]
+categories: [git]
 image: 'https://temxi.com/minfo/logo/69/github-logo.png'
 ---
 ## Github에 잘못올라간 파일 삭제후 .gitignore에 추가하기

@@ -2,7 +2,8 @@
 layout: post
 title: 리눅스 파일,폴더 권한 관리(feat. chmod)
 date: 2021-07-15 17:09 +0900
-image: 'https://i.pinimg.com/originals/c7/b8/11/c7b8113247fecd83bd9b5ed5bd3f34d5.png'
+image: 'https://blog.kakaocdn.net/dn/bEUX6s/btqAavSzerd/Q8tjjThKJ82PS4HrBFp5Sk/img.png'
+categories: [linux]
 tags: [linux, chmod]
 toc: true
 description: 리눅스의 파일,폴더 권한 설정과 chmod를 명령어를 이용한 파일 권한 주는 방법에 대해서 알아본다.

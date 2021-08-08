@@ -5,6 +5,7 @@ date: 2019-05-14 22:30:23
 image: '/images/spring.png'
 toc: true
 tags: [jackson]
+categories: [jackson]
 ---
 
 > 오늘은 Jackson 어노테이션에 대해서 알아보도록 하겠습니다.

@@ -4,6 +4,8 @@ title: "[JPA] Custom Repository 만들기"
 date: 2019-04-12 09:03:41
 categories: [jpa]
 tags: [jpa]
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
+image: 'https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png'
 ---
 
 기존의 JpaRepository를 상속받아서 기본적인 CRUD 기능을 사용할 수 있지만, 내가 1)커스텀하게 만들어서 사용하고 싶은 경우와 이미 JpaReposptry에서 제공하는 메서드를 새롭게 2)오버라이딩해서 사용할 수 있는 경우에 대해서 알아보자 .
