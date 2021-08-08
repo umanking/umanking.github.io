@@ -3,7 +3,7 @@
 # General Site Settings
 title: 앤드류의 기술블로그
 logo: # You can add own logo. For example '/images/logo.png'.
-description: Java, Spring, MySQL, Backend Dev Blog
+description: Java, Spring, MySQL Backend Blog
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://umanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
@@ -12,7 +12,7 @@ locale: "ko-KR"
 #-------------------------------
 # Author Settings
 author:
-  name: 앤드류
+  name: Andrew
   image: "/images/01.jpg"
 
 #-------------------------------
@@ -129,9 +129,10 @@ sass:
 jekyll_compose:
   default_front_matter:
     posts:
-      image: ""
-      tags: []
       toc: true
+      tags: []
+      categories: []
+      image: ""
       description: 
 
 # feed:
