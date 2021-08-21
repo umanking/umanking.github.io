@@ -1,6 +1,6 @@
 ---
 layout: post
-title: change-shell
+title: shell 변경 방법(ft, bash테마 설치하기)
 date: 2021-08-21 12:33 +0900
 toc: true
 tags: [shell]
