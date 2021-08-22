@@ -88,7 +88,7 @@ markdown: kramdown
 kramdown:
   # input: GFM
   highlighter: rouge
-  # header_offset: 2
+  header_offset: 2
   syntax_highlighter_opts:
     block:
         line_numbers: false
