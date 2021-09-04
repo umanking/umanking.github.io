@@ -46,6 +46,7 @@
   margin-bottom: 10px;
   font-size: 22px;
   line-height: 32px;
+  word-break: break-all;
 
   a {
     &:hover {
@@ -59,6 +60,7 @@
   line-height: 24px;
   font-weight: 500;
   margin-bottom: 20px;
+  word-break: break-all;
   color: $text-color-alt;
 }
 
