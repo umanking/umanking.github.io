@@ -6,9 +6,6 @@ layout: default
 
 <!-- begin post -->
 <div class="container">
-
-  {% include side-menu.html %}
-
   <article class="post animate">
     <div class="post__content">
       {% if page.path contains '_posts' %}
@@ -30,5 +27,7 @@ layout: default
     {% include post-navigation.html %}
     {% include comments/uttrance.html %}
   </article>
+
+  {% include side-menu.html %}
 </div>
 <!-- end post -->

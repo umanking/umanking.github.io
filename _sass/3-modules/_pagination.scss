@@ -15,6 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 }
 
 .pagination__list {
@@ -43,6 +44,9 @@
 
 .pagination__next,
 .pagination__prev {
+  display: flex;
+  align-items: center;
+
   i {
     font-size: 13px;
   }

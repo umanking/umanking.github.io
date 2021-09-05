@@ -35,6 +35,10 @@
       max-width: 850px;
       position: relative;
 
+      .row {
+        width: 100%;
+      }
+
       .hero__inner {
         flex-direction: row;
       }

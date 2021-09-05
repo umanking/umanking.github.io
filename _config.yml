@@ -1,7 +1,7 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 앤드류의 기술블로그
+title: ANDREW'S DEV
 logo: # You can add own logo. For example '/images/logo.png'.
 description: Java, Spring, MySQL Backend Blog
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -19,7 +19,7 @@ author:
 # Hero Settings
 hero:
   hero__title: Hi! I'm <span class="hero__name">Andrew</span>
-  hero__job: BackEnd Developer
+  hero__job: Backend Developer
   hero__description: #Java, Spring, Database, IntelliJ Lover
   hero__button__text: Read about my past
   hero__button__link: "/about"
@@ -88,7 +88,7 @@ markdown: kramdown
 kramdown:
   # input: GFM
   highlighter: rouge
-  header_offset: 2
+  # header_offset: 2
   syntax_highlighter_opts:
     block:
         line_numbers: false
