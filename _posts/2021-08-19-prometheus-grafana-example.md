@@ -6,9 +6,8 @@ toc: true
 tags: [prometheus, grafana]
 categories: [prometheus, grafana]
 image: 'https://aptira.com/wp-content/uploads/2019/05/aptira_grafana_prometheus_training.png'
-description: 설명...
+description: 
 ---
-
 ## 1. 들어가며 
 Prometheus,Grafan를 Docker로 띄워보고, nodejs exporter를 통해서 모니터링 대쉬보드를 만들어 보는걸 살펴보자. 
 

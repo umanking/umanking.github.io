@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tag
+title: TAG
 permalink: /tags/
 # image: '/images/01.jpg'
 ---

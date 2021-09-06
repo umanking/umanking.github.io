@@ -1,8 +1,7 @@
 /* Post + Page */
 
 
-.aside__menu{ 
-  flex: 0 0 180px;
+.aside__menu{  
   @media only screen and (max-width: 1300px) {
     display: none;
   }
@@ -11,9 +10,10 @@
     padding-top: 20px;
   }
 
+  float: right;
   border-left: 0.5px solid #eee;
   padding-left: 15px;
-  // font-size: 15px;
+  font-size: 15px;
   .asie__category a {
     word-break: normal;
     word-wrap: break-word;
@@ -120,7 +120,6 @@
 
 .image-box {
   margin: 40px 0;
-  border: solid 3px
   // text-align: center;
 }
 
