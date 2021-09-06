@@ -135,6 +135,8 @@ jekyll_compose:
       categories: []
       image: ""
       description: 
+      sitemap: true
+      published: true 
 
 # feed:
   # path: feed.xml
