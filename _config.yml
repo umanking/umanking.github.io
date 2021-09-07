@@ -1,7 +1,7 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 앤드류의 기술블로그
+title: Andrew's Dev
 logo: # You can add own logo. For example '/images/logo.png'.
 description: Java, Spring, MySQL Backend Blog
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -88,7 +88,6 @@ markdown: kramdown
 kramdown:
   # input: GFM
   highlighter: rouge
-  header_offset: 2
   syntax_highlighter_opts:
     block:
         line_numbers: false
@@ -135,8 +134,6 @@ jekyll_compose:
       categories: []
       image: ""
       description: 
-      sitemap: true
-      published: true 
 
 # feed:
   # path: feed.xml
