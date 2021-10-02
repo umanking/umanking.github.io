@@ -79,7 +79,8 @@ gallery:
 
 #-------------------------------
 # Google Analytics
-google-analytics: G-YQEVSKEF43 # Add your identifier. For example UA-99631805-1.
+google-analytics: UA-130245279-5
+ # Add your identifier. For example UA-99631805-1.
 
 #-------------------------------
 # Build Settings
