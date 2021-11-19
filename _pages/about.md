@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: page
 title: About
 permalink: /about/
@@ -34,4 +34,4 @@ I'm Andrew
     <img src="http://image.yes24.com/goods/65551284/XL">
   </div>
   <em>Gallery / <a href="http://www.yes24.com/" target="_blank">Yes24</a></em>
-</div>
+</div> -->

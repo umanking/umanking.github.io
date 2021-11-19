@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: page
 title: Tags
 permalink: /tags/
@@ -12,4 +12,4 @@ permalink: /tags/
         ({{ tag | last | size }}),
     </a>
 </span>
-{% endfor %}
+{% endfor %} -->

@@ -4,7 +4,6 @@
 
 div.highlight {
   margin-bottom: 20px;
-  // margin-left: 10px;
 }
 
 .highlight {
@@ -15,18 +14,16 @@ div.highlight {
   }
 
   .highlighter-rouge & {
-    
-    // color: #A9B7C6;
-    color: #CCC;
-    background: #2d2d2d;
-    // letter-spacing: -0.2px;
+    color: #A9B7C6;
+    background: rgb(1, 22, 39);
+    letter-spacing: -0.2px;
     line-height: 1.7;
-    border-radius: 5px;
+    border-radius: 4px;
     border: 1px solid #222;
   }
 
   .c {
-    color: #999;
+    color: #998;
     font-style: italic
   }
 
@@ -39,13 +36,13 @@ div.highlight {
   // new키워드
   // Error
   .k {
-    color: #cc99cd;
-    // font-weight: bold;
+    color: rgb(255, 167, 196);
+    // font-weight: bold
   }
 
   // Keyword
   .o {
-    // color: #ccc
+    color: rgb(199, 146, 234);
   }
 
   // Operator
@@ -62,8 +59,8 @@ div.highlight {
 
   // Comment.Preproc
   .c1 {
-    color: #999;
-    // font-style: italic
+    color: rgb(128, 147, 147);
+    font-style: italic
   }
 
   // Comment.Single
@@ -144,7 +141,7 @@ div.highlight {
 
   // Keyword.Constant
   .kd {
-    color:#cc99cd
+    color:rgb(255, 167, 196)
     // font-weight: bold
   }
 
@@ -173,36 +170,36 @@ div.highlight {
   // 변수값
   // Literal.Number
   .s {
-    color: #7ec699
+    color: rgb(173, 219, 103)
   }
 
   .n {
-    color: #ccc
+    color: white
   }
-  // 함수
   // Literal.String
   .na {
-    color: #f08d49
+    
+    color: rgb(130, 170, 255)
   }
 
   // Name.Attribute
   .nb {
-    color: #ccc;
+    color: #0086B3
   }
 
   // Name.Builtin
   .nc {
-    color: #f8c555
+    color: rgb(255, 203, 139)
   }
 
   .nd {
-    color: #ccc;
+    color: rgb(199, 146, 234);
     // font-weight: 700;
   }
 
   // Name.Class
   .no {
-    color: #ccc;
+    color: white;
   }
 
   // Name.Constant
@@ -220,7 +217,7 @@ div.highlight {
   //메서드명, const
   // Name.Exception
   .nf {
-    color: #f08d49
+    color: rgb(130, 170, 255)
     // color: rgb(255, 203, 139)
     // font-weight: bold
   }
@@ -232,12 +229,12 @@ div.highlight {
 
   // Name.Namespace
   .nt {
-    color: #f08d49
+    // color: #000080
   }
 
   // Name.Tag
   .nv {
-    color: #f08d49
+    color: #008080
   }
 
   // Name.Variable
@@ -262,7 +259,7 @@ div.highlight {
 
   // Literal.Number.Hex
   .mi {
-    color: #A9B7C6
+    color: rgb(247, 140, 108)
   }
 
   // Literal.Number.Integer
@@ -272,32 +269,32 @@ div.highlight {
 
   // Literal.Number.Oct
   .sb {
-    color: #ccc
+    color: #d14
   }
 
   // Literal.String.Backtick
   .sc {
-    color: #ccc
+    color: #d14
   }
 
   // Literal.String.Char
   .sd {
-    color: #ccc
+    color: #d14
   }
 
   // Literal.String.Doc
   .s2 {
-    color: #ccc
+    color: #d14
   }
 
   // Literal.String.Double
   .se {
-    color: #ccc
+    color: #d14
   }
 
   // Literal.String.Escape
   .sh {
-    color: #ccc
+    color: #d14
   }
 
   // Literal.String.Heredoc
@@ -317,7 +314,7 @@ div.highlight {
 
   // Literal.String.Regex
   .s1 {
-    color: #f08d49
+    color: #d14
   }
 
   // Literal.String.Single
@@ -353,52 +350,15 @@ div.highlight {
   // Literal.Number.Integer.Long
 }
 
-// 기본 회색
-// :not(pre)>code[class*=language-] {
-//   position: relative;
-//   top: -2px;
-//   margin: 0 2px;
-//   padding: 1px 5px;
-//   border: 1px solid #A9B7C6;
-//   border-radius: 4px;
-//   font-size: 14px;
-//   font-weight: 600;
-//   background: #e7eaef;
-// }
-
-
-// 껌댕이 javable
 :not(pre)>code[class*=language-] {
   position: relative;
   top: -2px;
   margin: 0 2px;
   padding: 1px 5px;
+  background: #e7eaef;
+  border: 1px solid #A9B7C6;
   border-radius: 4px;
-  font-size: 14px;
+  // color: #576371;
+  font-size: 15px;
   font-weight: 600;
-
-  // 기존의 방식
-  // background: #333e4c;
-  // color: white;
-
-  // github 스타일
-  background: #AFB8C166;
-  color: #24292F;
 }
-
-
-// div.highlight pre code[class*=language-]::before {
-//   content: attr(data-lang);
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   color: #fff;
-//   text-align: center;
-//   font-size: .65rem;
-//   font-weight: 500;
-//   letter-spacing: 1px;
-//   background: #6bc8b7;
-//   padding: 3px 10px 3px;
-//   text-transform: uppercase;
-//   border-radius: 0 0 0 5px;
-// }

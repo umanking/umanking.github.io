@@ -1,7 +1,7 @@
 ---
 #-------------------------------
 # General Site Settings
-title: Andrew's Dev
+title: 앤드류의 개발블로그
 logo: # You can add own logo. For example '/images/logo.png'.
 description: Java, Spring, MySQL Backend Blog
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -52,7 +52,7 @@ social:
   # - { icon: "ion-logo-pinterest", link: "https://pinterest.com" }
   # - { icon: "ion-logo-codepen", link: "https://codepen.io" }
   # - { icon: "ion-logo-vimeo", link: "https://vimeo.com/" }
-  - { icon: "ion-logo-linkedin", link: "https://www.linkedin.com/in/umanking/" }
+  # - { icon: "ion-logo-linkedin", link: "https://www.linkedin.com/in/umanking/" }
 
 
 #-------------------------------

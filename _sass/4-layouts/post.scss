@@ -96,16 +96,18 @@
   // border-bottom: 1px solid $heading-font-color;
   // border-bottom: 1px solid $brand-color;
   // color: #0687f0;
-  background-color: rgba(187,239,253,0.3);
+  // background-color: rgba(187,239,253,0.3);
+  color: #0969da;
   // border-bottom: 1px solid rgba(0,0,0,0.2);
   text-decoration: none;
 
   &:hover {
     // color: $link-color-hover;
     // color: $brand-color;
-    background-color: #bbeffd;
+    // background-color: #bbeffd;
     border-color: $brand-color;
-    border-bottom: 1px solid #1a1a1a;
+    text-decoration: underline;
+    // border-bottom: 1px solid #1a1a1a;
   }
 }
 .page__content {
@@ -190,6 +192,7 @@
 .post__navigation {
   display: flex;
   justify-content: space-between;
+  margin-top: 30px;
   margin-bottom: 20px;
 
   .post__prev, .post__next {
