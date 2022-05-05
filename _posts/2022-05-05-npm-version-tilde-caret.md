@@ -5,7 +5,7 @@ date: 2022-05-05 11:27 +0900
 toc: true
 tags: [npm]
 categories: [npm]
-image: 'https://hyegyeong310.github.io/blog/assets/images/npm.png'
+image: 'https://heropy.blog/css/images/vendor_icons/npm.png'
 description: package.json의 version을 명시하는 방법과 틸드와 캐럿에 대해서 알아보자
 ---
 
