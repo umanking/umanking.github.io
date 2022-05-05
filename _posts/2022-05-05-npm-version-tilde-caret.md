@@ -11,7 +11,7 @@ description: package.json의 version을 명시하는 방법과 틸드와 캐럿�
 
 ## Semantic Versioning
 
-1.2.3와 같은 버전은 `MAJOR.MINOR.PATH` 의 형태로 구성되고, 이는 [Semantic Versioning](https://semver.org/)이라고 부른다. 
+1.2.3와 같은 버전은 `MAJOR.MINOR.PATH` 의 형태로 구성되고, 이는 [Semantic Versioning](https://semver.org/) 간단하게 줄여서 semver이라고 부른다. 
 
 1. MAJOR version when you make incompatible API changes,
 2. MINOR version when you add functionality in a backwards compatible manner, and
