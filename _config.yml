@@ -52,7 +52,7 @@ social:
   # - { icon: "ion-logo-pinterest", link: "https://pinterest.com" }
   - { icon: "ion-logo-codepen", link: "https://codepen.io" }
   # - { icon: "ion-logo-vimeo", link: "https://vimeo.com/" }
-  - { icon: "ion-logo-linkedin", link: "https://www.linkedin.com//" }
+  - { icon: "ion-logo-linkedin", link: "https://www.linkedin.com/" }
 
 
 #-------------------------------
