@@ -5,4 +5,4 @@ permalink: /about/
 image: '/images/01.jpg'
 ---
 
-아직까지 개발하며 살고 있습니다
+- 아직까지 개발하고 있습니다. 

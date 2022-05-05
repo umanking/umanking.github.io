@@ -144,11 +144,11 @@ blockquote {
   // background: rgba(0, 0, 0, .04);
   border-left: 5px solid #ddd;
   // border-left: 5px solid #ffe564;
-  // background: rgb(248, 249, 250);
+  background: rgb(248, 249, 250);
   // background: rgba(255,229,100,0.3);
   // border-left:5px solid #ffe564;
   // background: rgba(255,229,100,0.3);
-  padding: 1rem 1rem 1rem 2rem;
+  padding: 1rem 1rem 1rem 1rem;
   word-break: break-word;
 
   &::before {
