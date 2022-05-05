@@ -5,7 +5,7 @@ date: 2021-08-19 20:46 +0900
 toc: true
 tags: [prometheus, grafana]
 categories: [prometheus, grafana]
-image: 'https://aptira.com/wp-content/uploads/2019/05/aptira_grafana_prometheus_training.png'
+image: https://aptira.com/wp-content/uploads/2019/05/aptira_grafana_prometheus_training.png
 description: 
 ---
 ## 1. 들어가며 
