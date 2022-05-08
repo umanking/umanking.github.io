@@ -1,9 +1,9 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 앤드류의 개발블로그
+title: 디지털 노마드, 경제적 자유를 꿈꾸며🙋‍♂️
 logo: # You can add own logo. For example '/images/logo.png'.
-description: backend tech blog
+description: backend dev blog
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://umanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
