@@ -1,7 +1,7 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 디지털 노마드, 경제적 자유를 꿈꾸며🙋‍♂️
+title: Digital Nomad
 logo: # You can add own logo. For example '/images/logo.png'.
 description: backend dev blog
 baseurl: "" # the subpath of your site, e.g. /blog
