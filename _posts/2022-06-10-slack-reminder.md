@@ -6,7 +6,7 @@ toc: true
 tags: [slack, tip]
 categories: [slack]
 image: 'https://support.docswave.com/hc/article_attachments/4407227005465/Slack_RGB.png'
-description: 
+description: slack remind 명령어로 remind 알림 받기 
 ---
 ## slack remind 기능 사용하기
 
