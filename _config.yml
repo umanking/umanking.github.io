@@ -1,7 +1,7 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 앤드류's 개발 블로그
+title: Andrew's 개발 블로그
 logo: # You can add own logo. For example '/images/logo.png'.
 description: 백엔드 개발에 관련된 것들을 다루고 있습니다.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -12,7 +12,7 @@ locale: "ko-KR"
 #-------------------------------
 # Author Settings
 author:
-  name: 앤드류
+  name: andrew
   image: "/images/01.jpg"
 
 #-------------------------------
