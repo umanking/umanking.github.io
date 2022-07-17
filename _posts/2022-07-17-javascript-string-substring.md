@@ -6,7 +6,7 @@ toc: true
 tags: [javascript]
 categories: [javascript]
 image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png
-description: 
+description: Javascript - 문자열 자르기(split, substr, substring, slice)
 ---
 
 Javascript 문자열 자르기는 `split()`, `substr()`, `substring()`, `slice()`를 사용할 수 있습니다.
