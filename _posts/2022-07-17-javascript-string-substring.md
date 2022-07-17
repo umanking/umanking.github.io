@@ -12,14 +12,14 @@ description: Javascript - 문자열 자르기(split, substr, substring, slice)
 Javascript 문자열 자르기는 `split()`, `substr()`, `substring()`, `slice()`를 사용할 수 있습니다.
 각 함수들이 어떻게 사용되는지 알아보도록 하겠습니다.
 
-- [1. split(): 구분자(seperator)로 문자열 분리하여 배열로 리턴](#1-split-구분자seperator로-문자열-분리하여-배열로-리턴)
-  - [1.1. 구분자로만 인자 전달한 경우](#11-구분자로만-인자-전달한-경우)
-  - [1.2. 구분자와 limit을 전달한 경우](#12-구분자와-limit을-전달한-경우)
-  - [1.3. 구분자와 limit을 전달하지 않는 경우](#13-구분자와-limit을-전달하지-않는-경우)
-- [2. substr(): 특정 index에서 원하는 길이만큼 잘라서 문자열로 리턴](#2-substr-특정-index에서-원하는-길이만큼-잘라서-문자열로-리턴)
-  - [2.1. start가 음수일때](#21-start가-음수일때)
-- [3. substring(): 시작 index에서 끝 index전까지 문자열 잘라서 리턴](#3-substring-시작-index에서-끝-index전까지-문자열-잘라서-리턴)
-- [4. slice(): substring과 비슷하지만 살짝 다른 메서드](#4-slice-substring과-비슷하지만-살짝-다른-메서드)
+1. [1. split(): 구분자(seperator)로 문자열 분리하여 배열로 리턴](#1-split-구분자seperator로-문자열-분리하여-배열로-리턴)
+   1. [1.1. 구분자로만 인자 전달한 경우](#11-구분자로만-인자-전달한-경우)
+   2. [1.2. 구분자와 limit을 전달한 경우](#12-구분자와-limit을-전달한-경우)
+   3. [1.3. 구분자와 limit을 전달하지 않는 경우](#13-구분자와-limit을-전달하지-않는-경우)
+2. [2. substr(): 특정 index에서 원하는 길이만큼 잘라서 문자열로 리턴](#2-substr-특정-index에서-원하는-길이만큼-잘라서-문자열로-리턴)
+   1. [2.1. start가 음수일때](#21-start가-음수일때)
+3. [3. substring(): 시작 index에서 끝 index전까지 문자열 잘라서 리턴](#3-substring-시작-index에서-끝-index전까지-문자열-잘라서-리턴)
+4. [4. slice(): substring과 비슷하지만 살짝 다른 메서드](#4-slice-substring과-비슷하지만-살짝-다른-메서드)
 
 ## 1. split(): 구분자(seperator)로 문자열 분리하여 배열로 리턴
 

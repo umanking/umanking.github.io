@@ -9,6 +9,7 @@ image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/im
 description: Javascript - 문자열 포함여부 (indexOf, includes, startsWith, endsWith)
 ---
 # Javascript - 문자열 포함여부 (indexOf, includes, startsWith, endsWith)
+
   - [1. String.indexOf(): 문자열에 어떤 문자열이 포함되어있는지 확인](#1-stringindexof-문자열에-어떤-문자열이-포함되어있는지-확인)
   - [2. String.includes(): 문자열에 어떤 문자열이 포함되어 있는지 확인](#2-stringincludes-문자열에-어떤-문자열이-포함되어-있는지-확인)
   - [3. String.startsWith(), String.endsWith(): 문자열이 어떤 문자열로 시작하거나 끝나는지 확인](#3-stringstartswith-stringendswith-문자열이-어떤-문자열로-시작하거나-끝나는지-확인)
