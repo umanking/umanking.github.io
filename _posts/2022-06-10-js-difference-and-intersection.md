@@ -3,8 +3,10 @@ layout: post
 title: Javascript 차집합, 교집합, 배타논리적 합
 date: 2022-06-10 15:37 +0900
 toc: true
-tags: [js]
-categories: [js]
+tags:
+- Javascript
+categories:
+- Javascript
 image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png
 description: Javascript 차집합, 교집합, 배타논리적 합
 ---

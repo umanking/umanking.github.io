@@ -5,7 +5,7 @@ date: 2022-06-23 12:34 +0900
 toc: true
 tags: [datastructure]
 categories: []
-image: ''
+image: https://images.velog.io/images/wupajw/post/4a7c55b1-fc4c-4479-af0e-e3d90d32ed0e/Untitled.png
 description: 해시함수, 해시 충돌과 해시 충돌을 해결하는 방법인 open addresssing과 chaining에 대해서 알아보도록 하겠습니다.
 ---
 
