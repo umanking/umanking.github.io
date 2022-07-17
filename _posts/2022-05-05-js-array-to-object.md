@@ -3,8 +3,10 @@ layout: post
 title: Javascript Array to Object (ft, reduce)
 date: 2022-05-05 09:49 +0900
 toc: true
-tags: [js]
-categories: [js]
+tags:
+- Javascript
+categories:
+- Javascript
 image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png
 description: javascript array to object reduce를 사용해서 배열을 객체로 변환하는 방법
 ---

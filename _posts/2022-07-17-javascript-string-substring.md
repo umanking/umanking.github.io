@@ -3,8 +3,10 @@ layout: post
 title: Javascript - 문자열 자르기(split, substr, substring, slice)
 date: 2022-07-17 14:32 +0900
 toc: true
-tags: [javascript]
-categories: [javascript]
+tags:
+- Javascript
+categories:
+- Javascript
 image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png
 description: Javascript - 문자열 자르기(split, substr, substring, slice)
 ---

@@ -3,8 +3,10 @@ layout: post
 title: Javascript - 문자열 포함여부 (indexOf, includes, startsWith, endsWith)
 date: 2022-07-17 14:52 +0900
 toc: true
-tags: [javascript]
-categories: [javascript]
+tags:
+- Javascript
+categories:
+- Javascript
 image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png
 description: Javascript - 문자열 포함여부 (indexOf, includes, startsWith, endsWith)
 ---
