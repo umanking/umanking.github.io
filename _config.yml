@@ -130,11 +130,10 @@ jekyll_compose:
   auto_open: true
   default_front_matter:
     posts:
-      toc: true
-      tags: []
-      categories: []
-      image: ""
       description: 
+      image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png
+      tags: [Javascript]
+      categories: [Javascript]
 
 # feed:
   # path: feed.xml
