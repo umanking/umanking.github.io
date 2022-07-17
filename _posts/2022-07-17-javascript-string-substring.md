@@ -9,6 +9,9 @@ image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/im
 description: 
 ---
 
+Javascript 문자열 자르기는 `split()`, `substr()`, `substring()`, `slice()`를 사용할 수 있습니다.
+각 함수들이 어떻게 사용되는지 알아보도록 하겠습니다.
+
 - [1. split(): 구분자(seperator)로 문자열 분리하여 배열로 리턴](#1-split-구분자seperator로-문자열-분리하여-배열로-리턴)
   - [1.1. 구분자로만 인자 전달한 경우](#11-구분자로만-인자-전달한-경우)
   - [1.2. 구분자와 limit을 전달한 경우](#12-구분자와-limit을-전달한-경우)
