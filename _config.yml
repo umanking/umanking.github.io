@@ -1,9 +1,9 @@
 ---
 #-------------------------------
 # General Site Settings
-title: Andrew's Blog
+title: 개발 저장소
 logo: # You can add own logo. For example '/images/logo.png'.
-description: 백엔드 개발에 관련된 것들을 다루고 있습니다.
+description: 주로 백엔드 기술를 다루고 있습니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://umanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
@@ -131,9 +131,8 @@ jekyll_compose:
   default_front_matter:
     posts:
       description: 
-      image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png
-      tags: [Javascript]
-      categories: [Javascript]
+      image:
+      tags:
 
 # feed:
   # path: feed.xml
