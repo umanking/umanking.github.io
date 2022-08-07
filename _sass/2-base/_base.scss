@@ -133,8 +133,8 @@ h6 {
 
 blockquote {
   position: relative;
-  margin-top: 20px;
-  margin-left: 10px;
+  margin: 32px 0;
+  // margin-left: 10px;
   padding: 5px 15px;
   font-weight: 500;
   font-size: 16px;
@@ -142,9 +142,9 @@ blockquote {
   color: #333e4c;
   // font-style: italic;
   // background: rgba(0, 0, 0, .04);
-  border-left: 5px solid #ddd;
+  border-left: 7px solid #20c997;
   // border-left: 5px solid #ffe564;
-  background: rgb(248, 249, 250);
+  background: #F8F9FA;
   // background: rgba(255,229,100,0.3);
   // border-left:5px solid #ffe564;
   // background: rgba(255,229,100,0.3);
