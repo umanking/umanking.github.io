@@ -2,7 +2,7 @@
 layout: post
 title: Spring Boot, Dockerfile로 이미지 생성, 배포하기
 date: 2021-07-11 18:18 +0900
-image: 'https://pbs.twimg.com/profile_images/1273307847103635465/lfVWBmiW_400x400.png'
+image: https://images.velog.io/images/secho/post/74c883a3-2b3f-483e-b572-b64a11ba7927/lfVWBmiW_400x400.png
 tags: [spring, docker, dockerfile, spring-boot, intellij]
 categories: [spring, docker]
 toc: true
