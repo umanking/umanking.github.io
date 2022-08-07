@@ -56,33 +56,38 @@ docker exec -it mysql bash
 ```sh
 root@32f08c0def9e:/# vi /etc/mysql/my.cnf
 ```
+- 컨테이너로 접속한다.
+- vi /etc/mysq/my.cnf 파일을 수정한다.
 
-- etc/mysql하위의 my.cnf 파일을 수정한다.
 
 - 다음과 같은 내용을 추가한다.
 
-  - ```sh
-    [client]
-    default-character-set = utf8
-    
-    [mysqld]
-    init_connect = "SET collation_connection = utf8_general_ci"
-    init_connect = "SET NAMES utf8"
-    character-set-server = utf8
-    collation-server = utf8_general_ci
-    
-    [mysql]
-    default-character-set = utf8
-    ```
+```sh
+[client]
+default-character-set = utf8
+
+[mysqld]
+init_connect = "SET collation_connection = utf8_general_ci"
+init_connect = "SET NAMES utf8"
+character-set-server = utf8
+collation-server = utf8_general_ci
+
+[mysql]
+default-character-set = utf8
+```
 
     
 
-> docker container에서 vim설치가 안되어있다면 다음 명령어를 통해서 vim을 설치한다.
+> 참고로, docker container에서 vim설치가 안되어있다면 다음 명령어를 통해서 vim을 설치한다.
 >
 > $ apt-get update 
 >
 > $ apt-get install vim
 
+
+
+
+mysql에 직접 접속해서 character_set을 확인하면  utf8로 변경된것을 확인할 수 있다.
 
 
 ```sh
@@ -120,8 +125,7 @@ mysql> show variables like 'c%';
 24 rows in set (0.03 sec)
 ```
 
-- mysql에 직접 접속해서 character_set을 확인하면  utf8로 변경된것을 확인할 수 있다.
-- `docker restart mysql`를 통해서 재시작한다
+`docker restart mysql`를 통해서 재시작한다
 
 
 
