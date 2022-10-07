@@ -3,7 +3,7 @@
 # General Site Settings
 title: 개발 저장소
 logo: # You can add own logo. For example '/images/logo.png'.
-description: 주로 백엔드 기술를 다루고 있습니다.
+description: java, spring, node, javascript를 다루고 기초적이고 실용적인 것들에 대해서 논의하는 것을 좋아합니다. 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://umanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
@@ -47,10 +47,10 @@ contact:
 # Other icons can be found at https://ionicons.com/v4/
 social:
   - { icon: "ion-logo-twitter", link: "https://twitter.com" }
-  # - { icon: "ion-logo-github", link: "https://github.com" }
-  # - { icon: "ion-logo-youtube", link: "https://youtube.com" }
+  - { icon: "ion-logo-github", link: "https://github.com" }
+  - { icon: "ion-logo-youtube", link: "https://youtube.com" }
   # - { icon: "ion-logo-pinterest", link: "https://pinterest.com" }
-  # - { icon: "ion-logo-codepen", link: "https://codepen.io" }
+  - { icon: "ion-logo-codepen", link: "https://codepen.io" }
   # - { icon: "ion-logo-vimeo", link: "https://vimeo.com/" }
   - { icon: "ion-logo-linkedin", link: "https://www.linkedin.com/" }
 
