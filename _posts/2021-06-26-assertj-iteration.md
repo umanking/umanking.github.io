@@ -3,7 +3,7 @@ layout: post
 title:  AssertJ 자주 사용하는 것들 
 date: 2021-06-26 12:21 +0900
 tags: [assertj]
-categories: [assertj]
+categories: [spring]
 image: '/images/assert.png'
 toc: true
 description: AssertJ에서 자주 사용하는 기본 문법들에 대해서 알아보자.
