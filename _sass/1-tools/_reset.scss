@@ -35,4 +35,13 @@ li > {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  border: 1px rgb(233, 233, 231) solid;
+  width: 100%;
+}
+th {
+  background: rgb(247, 246, 243);
+}
+th, td {
+  border: 1px solid rgb(233, 233, 231);
+  padding: 10px;
 }
