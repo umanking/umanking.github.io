@@ -4,7 +4,7 @@ title: shell script 기초
 date: 2022-10-09 12:39 +0900
 description: shell script 기초 문법, 배열, 입출력, 함수, if else, 조건식에 대해서 알아본다.
 image: 
-tags: 
+tags: shell
 ---
 # shell script 기초
 
