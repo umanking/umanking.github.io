@@ -48,9 +48,9 @@ contact:
 social:
   - { icon: "ion-logo-twitter", link: "https://twitter.com" }
   - { icon: "ion-logo-github", link: "https://github.com" }
-  - { icon: "ion-logo-youtube", link: "https://youtube.com" }
+  # - { icon: "ion-logo-youtube", link: "https://youtube.com" }
   # - { icon: "ion-logo-pinterest", link: "https://pinterest.com" }
-  - { icon: "ion-logo-codepen", link: "https://codepen.io" }
+  # - { icon: "ion-logo-codepen", link: "https://codepen.io" }
   # - { icon: "ion-logo-vimeo", link: "https://vimeo.com/" }
   - { icon: "ion-logo-linkedin", link: "https://www.linkedin.com/" }
 
