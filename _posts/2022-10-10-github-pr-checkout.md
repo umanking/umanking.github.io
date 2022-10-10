@@ -3,7 +3,7 @@ layout: post
 title: github(gh) cli를 통해 pull request 빠르게 체크아웃 하기
 date: 2022-10-10 15:20 +0900
 description: 
-image: 
+image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
 tags: tip
 ---
 
@@ -51,10 +51,6 @@ $ gh alias set co --shell 'id="$(gh pr list -L100 | fzf | cut -f1)"; [ -n "$id" 
 
 
 
-
 ## 3. 실행 결과
 
-<script id="asciicast-spfBD4Yk1FAsWX8bxU4Gvmxst" src="https://asciinema.org/a/spfBD4Yk1FAsWX8bxU4Gvmxst.js" data-autoplay="true" data-loop="true" async></script>- [1. 사전 작업](#1-사전-작업)
-- [1. 사전 작업](#1-사전-작업)
-- [2. alias를 지정한다.](#2-alias를-지정한다)
-- [3. 실행 결과](#3-실행-결과)
+<script id="asciicast-spfBD4Yk1FAsWX8bxU4Gvmxst" src="https://asciinema.org/a/spfBD4Yk1FAsWX8bxU4Gvmxst.js" data-autoplay="true" data-loop="true" async></script>
