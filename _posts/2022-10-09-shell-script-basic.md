@@ -6,6 +6,7 @@ description: shell script 기초 문법, 배열, 입출력, 함수, if else, 조
 image: 
 tags: shell
 ---
+
 # shell script 기초
 요즘 업무를 진행하다 보니, shell을 쓰는 경우가 있는데 문법을 한번 제대로 공부하고 넘어가면 좋을 것 같아서 자주 사용하는 정도로 정리했습니다. 
 
