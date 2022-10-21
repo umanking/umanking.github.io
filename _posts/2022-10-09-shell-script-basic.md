@@ -3,7 +3,7 @@ layout: post
 title: shell script 기초
 date: 2022-10-09 12:39 +0900
 description: shell script 기초 문법, 배열, 입출력, 함수, if else, 조건식에 대해서 알아본다.
-image: 
+image: https://w7.pngwing.com/pngs/48/567/png-transparent-bash-shell-script-command-line-interface-z-shell-shell-rectangle-logo-commandline-interface.png
 tags: shell
 ---
 

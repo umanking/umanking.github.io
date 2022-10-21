@@ -5,7 +5,7 @@ date: 2021-08-15 13:11 +0900
 toc: true
 tags: [git]
 categories: [git]
-image: 'https://temxi.com/minfo/logo/69/github-logo.png'
+image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
 description: github push 명령어가 제대로 동작하지 않는 이슈, personal access token 기반으로 인증이 변경됨
 ---
 ## 1. 들어가며
