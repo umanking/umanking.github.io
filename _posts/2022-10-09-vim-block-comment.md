@@ -3,7 +3,7 @@ layout: post
 title: vim 여러줄 주석 다는 방법
 date: 2022-10-09 14:19 +0900
 description: vim multiline 주석(comment) 다는 방법
-image: 
+image: 'https://download.logo.wine/logo/Vim_(text_editor)/Vim_(text_editor)-Logo.wine.png'
 tags: vim
 ---
 
