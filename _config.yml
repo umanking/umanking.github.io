@@ -1,9 +1,9 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 개발 저장소
+title: Andrew's Blog
 logo: # You can add own logo. For example '/images/logo.png'.
-description: java, spring, node, javascript를 다루고 기초적이고 실용적인 것들에 대해서 논의하는 것을 좋아합니다. 
+description: Tech, Investment, Motivation
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://umanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
@@ -46,14 +46,13 @@ contact:
 # Example of adding a new link to the footer - {icon: "ion-logo-facebook", link: "https://facebook.com"}
 # Other icons can be found at https://ionicons.com/v4/
 social:
-  - { icon: "ion-logo-twitter", link: "https://twitter.com" }
-  - { icon: "ion-logo-github", link: "https://github.com" }
+  # - { icon: "ion-logo-twitter", link: "https://twitter.com" }
+  # - { icon: "ion-logo-github", link: "https://github.com" }
   # - { icon: "ion-logo-youtube", link: "https://youtube.com" }
   # - { icon: "ion-logo-pinterest", link: "https://pinterest.com" }
   # - { icon: "ion-logo-codepen", link: "https://codepen.io" }
   # - { icon: "ion-logo-vimeo", link: "https://vimeo.com/" }
-  - { icon: "ion-logo-linkedin", link: "https://www.linkedin.com/" }
-
+  # - { icon: "ion-logo-linkedin", link: "https://www.linkedin.com/" }
 
 #-------------------------------
 # Comment Section (Disqus)
@@ -79,8 +78,9 @@ gallery:
 
 #-------------------------------
 # Google Analytics
-google-analytics: UA-130245279-5
- # Add your identifier. For example UA-99631805-1.
+google-analytics:
+  UA-130245279-5
+  # Add your identifier. For example UA-99631805-1.
 
 #-------------------------------
 # Build Settings
@@ -91,7 +91,7 @@ kramdown:
   highlighter: rouge
   syntax_highlighter_opts:
     block:
-        line_numbers: false
+      line_numbers: false
 
 permalink: /:year/:month/:day/:title/
 
@@ -130,11 +130,10 @@ jekyll_compose:
   auto_open: true
   default_front_matter:
     posts:
-      description: 
+      description:
       image:
       tags:
-
 # feed:
-  # path: feed.xml
-  # posts_limit: 50
-  # tags: true
+# path: feed.xml
+# posts_limit: 50
+# tags: true
