@@ -1,9 +1,9 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 나의 기술 블로그
+title: CodeNexus
 logo: # You can add own logo. For example '/images/logo.png'.
-description: backEnd tech blog
+description: Software Engineering Tech Blog
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://umanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 blog-theme: light # By default, Atega theme uses a 'light' color scheme, to change the color scheme to dark use 'dark' value (_includes/color-scheme)
