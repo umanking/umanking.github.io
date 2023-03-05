@@ -1,7 +1,7 @@
 ---
 #-------------------------------
 # General Site Settings
-title: 기술 블로그
+title: 나의 기술 블로그
 logo: # You can add own logo. For example '/images/logo.png'.
 description: backEnd tech blog
 baseurl: "" # the subpath of your site, e.g. /blog
