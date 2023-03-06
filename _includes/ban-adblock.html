@@ -1,0 +1,17 @@
+<script type="text/javascript">
+  var adblock = false;
+  var testAd = document.createElement('div');
+  testAd.innerHTML = '&nbsp;';
+  testAd.className = 'adsbox';
+  document.body.appendChild(testAd);
+  window.setTimeout(function() {
+    if (testAd.offsetHeight === 0) {
+      adblock = true;
+    }
+    testAd.remove();
+    if (adblock) {
+        console.log('adblock 차단 해제 해주세요')
+        alert('adblock 차단 해제 해주세요')
+    }
+  }, 100);
+</script>
