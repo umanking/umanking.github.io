@@ -2,7 +2,7 @@
 #-------------------------------
 # General Site Settings
 title: CodeNexus
-logo: # You can add own logo. For example '/images/logo.png'.
+# logo: '/images/codenexus-logo.png' # You can add own logo. For example '/images/logo.png'.
 description: Software Engineering Tech Blog
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://umanking.github.io" # the base hostname & protocol for your site, e.g. http://example.com
