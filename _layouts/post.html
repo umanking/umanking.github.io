@@ -7,7 +7,6 @@ layout: default
 <!-- begin post -->
 <div class="container">
 
-  {% include side-menu.html %}
 
   <article class="post animate">
     <div class="post__content">
@@ -16,7 +15,6 @@ layout: default
           <img class="lazy" data-src="{{site.baseurl}}{{page.image}}" alt="">
         </div> -->
       {% endif %}
-      {% include google-adsense.html %}
       <!-- {% if post.toc == true %}
       <div class="post__toc">
         <h3 style="color: #333333;">Table of contents</h3>
@@ -24,13 +22,11 @@ layout: default
       </div>
       {% endif %} -->
       {{ content }}
-      {% include google-adsense-feed.html %}
       
       {% include related-post.html %}
     </div>
     {% include share.html %}
     {% include post-navigation.html %}
-    {% include google-adsense2.html %}
     {% include comments/uttrance.html %}
   </article>
 </div>
