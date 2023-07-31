@@ -130,8 +130,7 @@ jekyll_compose:
   auto_open: true
   default_front_matter:
     posts:
-      description:
-      image:
+      image: https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png
       tags:
 # feed:
 # path: feed.xml
