@@ -3,7 +3,7 @@ layout: post
 title: Node.js에서 Socket.IO를 활용한 실시간 웹 소켓 통신 이해하기
 date: 2023-08-04 21:52 +0900
 image: https://miro.medium.com/v2/resize:fit:1400/0*K91yVP0ewgIiJVz_.png
-tags: 
+tags: [nodejs, socket]
 ---
 # 제목: Node.js에서 Socket.IO를 활용한 실시간 웹 소켓 통신 이해하기
 
