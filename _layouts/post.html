@@ -10,6 +10,8 @@ layout: default
 
   <article class="post animate">
     <div class="post__content">
+      {% include google-adsense.html %}
+      {% include google-adsense-infeed.html %}
       {% if page.path contains '_posts' %}
         <!-- <div class="post__image">
           <img class="lazy" data-src="{{site.baseurl}}{{page.image}}" alt="">
@@ -23,6 +25,7 @@ layout: default
       {% endif %} -->
       {{ content }}
       
+      {% include google-adsense2.html %}
       {% include related-post.html %}
     </div>
     {% include share.html %}
