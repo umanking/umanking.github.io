@@ -20,7 +20,15 @@ const { title, description, canonical, noindex = false } = Astro.props;
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="naver-site-verification" content="46d4c4d3f1013de17dee96a763e94028323e4b00" />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/pretendard/PretendardVariable.subset.0.woff2" crossorigin />
+    {/*
+      preload 대상은 146편 본문의 문자 빈도를 실측해서 고른 것이다.
+      subset.90(48.3%) + 91(20.5%) + 89(14.8%) = 본문 한글의 약 84%.
+      Pretendard의 dynamic subset은 코드포인트 내림차순이라 흔히 쓰는 음절이
+      뒤쪽 번호에 몰려 있다. subset.0은 CJK 호환 한자로 사용률이 0%였다.
+    */}
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/pretendard/PretendardVariable.subset.90.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/pretendard/PretendardVariable.subset.91.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/pretendard/PretendardVariable.subset.89.woff2" crossorigin />
     <link rel="stylesheet" href="/fonts/pretendard/pretendard.css" />
   </head>
   <body>
