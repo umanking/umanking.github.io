@@ -9,7 +9,7 @@
   "scripts": {
     "test": "vitest run",
     "dev": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "build": "astro build && node scripts/pagefind-ignore-noindex.mjs && pagefind --site dist --root-selector main",
     "preview": "astro preview",
     "classify": "node --experimental-strip-types scripts/classify-posts.mjs"
   },

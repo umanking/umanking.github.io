@@ -1,0 +1,52 @@
+---
+import Base from "../layouts/Base.astro";
+import { absolute } from "../lib/seo";
+---
+
+<Base
+  title="검색 | CodeNexus"
+  description="CodeNexus의 모든 글을 검색합니다. Spring, JPA, JavaScript, MySQL 등 주제와 키워드로 찾아보세요."
+  canonical={absolute("/search/")}
+  noindex
+>
+  {/* 검색 페이지 자체는 Pagefind 인덱스에도 들어가지 않아야 한다(제목·플레이스홀더가
+     검색 결과에 섞이는 것을 막는다). */}
+  <div data-pagefind-ignore>
+    <h1>검색</h1>
+    <div id="search"></div>
+  </div>
+
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(location.search);
+      new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        showImages: false,
+        translations: {
+          placeholder: "검색어를 입력하세요",
+          zero_results: "'[SEARCH_TERM]'에 대한 결과가 없습니다",
+          many_results: "'[SEARCH_TERM]' 검색 결과 [COUNT]건",
+          one_result: "'[SEARCH_TERM]' 검색 결과 1건",
+        },
+      });
+      const q = params.get("q");
+      if (q) {
+        const input = document.querySelector("#search input");
+        if (input) {
+          input.value = q;
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+      }
+    });
+  </script>
+
+  <style>
+    /* pagefind-ui가 비동기로 초기화되기 전까지 자리를 확보해 CLS를 막는다 */
+    #search {
+      min-height: 4rem;
+    }
+  </style>
+</Base>
