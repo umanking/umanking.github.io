@@ -28,12 +28,14 @@
   "private": true,
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@resvg/resvg-js": "^2.6.2",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.3.1",
     "pagefind": "^1.5.2",
     "playwright": "^1.62.1",
     "rehype-mermaid": "^3.0.0",
     "rehype-parse": "^9.0.1",
+    "satori": "^0.33.4",
     "typescript": "^6.0.3",
     "vitest": "^3.2.7"
   },
