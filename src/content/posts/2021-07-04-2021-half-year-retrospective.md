@@ -3,10 +3,10 @@ title: '[회고] 2021년 상반기'
 description: 2021년 상반기 반기 회고를 합니다.
 date: '2021-07-04T15:28:00+09:00'
 permalink: /2021/07/04/2021-half-year-retrospective/
-section: backend
-hub: spring
-type: reference
-level: 중급
+section: infra
+hub: tools
+type: news
+level: 심화
 tags:
   - retrospective
   - review

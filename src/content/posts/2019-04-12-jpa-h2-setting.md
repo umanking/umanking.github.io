@@ -6,12 +6,13 @@ permalink: /2019/04/12/jpa-h2-setting/
 section: backend
 hub: spring
 type: reference
-level: 중급
+level: 입문
 tags:
-  - spring
-  - jpa
   - h2
+  - jpa
   - junit
+  - spring
+  - springboot
 image: /images/spring.png
 ---
 

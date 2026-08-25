@@ -3,9 +3,9 @@ title: mackup 오픈소스 (mac환경설정 sync맞추기)
 description: mackup오픈소를 활용해서 mac 환경 설정 sync 맞추기
 date: '2021-08-13T18:57:00+09:00'
 permalink: /2021/08/13/mackup-backup-sync-profiles/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: tutorial
 level: 중급
 tags:
   - mac

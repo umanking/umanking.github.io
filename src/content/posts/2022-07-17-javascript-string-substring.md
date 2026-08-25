@@ -3,8 +3,8 @@ title: 'Javascript - 문자열 자르기(split, substr, substring, slice)'
 description: 'Javascript - 문자열 자르기(split, substr, substring, slice)'
 date: '2022-07-17T14:32:00+09:00'
 permalink: /2022/07/17/javascript-string-substring/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:

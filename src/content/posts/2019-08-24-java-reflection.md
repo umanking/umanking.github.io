@@ -4,13 +4,13 @@ description: Java에서 Reflection 사용하는 방법과 간단한 DI framework
 date: '2019-08-24T00:00:00+09:00'
 permalink: /2019/08/24/java-reflection/
 section: backend
-hub: spring
-type: reference
-level: 중급
+hub: java
+type: deepdive
+level: 입문
 tags:
+  - di-framework
   - java
   - reflection
-  - di-framework
 image: /images/java.png
 ---
 

@@ -5,9 +5,10 @@ date: '2021-07-02T17:58:00+09:00'
 permalink: /2021/07/02/spring-batch/
 section: backend
 hub: spring
-type: reference
-level: 중급
+type: deepdive
+level: 심화
 tags:
+  - spring
   - spring-batch
 image: 'https://blog.kakaocdn.net/dn/OkEs9/btq66VktYuY/Yr3TzVnyJpyuS8fNB5BTYK/img.png'
 ---

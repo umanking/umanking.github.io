@@ -5,9 +5,9 @@ description: >-
   ARM에 대해 비교하고자 합니다. 둘의 차이점은 무엇이며, 어떻게 다른지 살펴보겠습니다.
 date: '2023-03-05T09:53:00+09:00'
 permalink: /2023/03/05/processor-architecture-x86-arm/
-section: backend
-hub: spring
-type: reference
+section: architecture
+hub: system-design
+type: deepdive
 level: 중급
 tags:
   - arm

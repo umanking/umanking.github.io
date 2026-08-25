@@ -5,13 +5,13 @@ description: >-
   SoundCloud사에서 처음 개발을 했다.
 date: '2021-08-19T20:46:00+09:00'
 permalink: /2021/08/19/prometheus-grafana-example/
-section: backend
-hub: spring
+section: infra
+hub: observability
 type: reference
 level: 중급
 tags:
-  - prometheus
   - grafana
+  - prometheus
 image: >-
   https://aptira.com/wp-content/uploads/2019/05/aptira_grafana_prometheus_training.png
 ---

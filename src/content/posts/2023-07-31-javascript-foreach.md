@@ -5,11 +5,12 @@ description: >-
   배열의 모든 요소를 반복하며, 각 요소에 대해 지정된 함수를 실행할 수 있습니다.
 date: '2023-07-31T14:30:00+09:00'
 permalink: /2023/07/31/javascript-foreach/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: javascript
+type: tutorial
 level: 중급
 tags:
+  - javascript
   - js
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
 ---

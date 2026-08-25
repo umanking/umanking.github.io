@@ -5,10 +5,10 @@ description: >-
   as a game changing solution, revolutionizing the way businesse
 date: '2023-08-15T21:01:00+09:00'
 permalink: /2023/08/15/mysql-heatwave/
-section: backend
-hub: spring
-type: reference
-level: 중급
+section: data
+hub: mysql
+type: deepdive
+level: 심화
 tags:
   - mysql
 image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'

@@ -4,9 +4,9 @@ description: '본 글은, 자바 ORM 표준 JPA 프로그래밍(김영한님) �
 date: '2021-06-19T17:21:00+09:00'
 permalink: /2021/06/19/jpa-summary-advanced-releation-mapping/
 section: backend
-hub: spring
+hub: jpa
 type: reference
-level: 중급
+level: 심화
 tags:
   - jpa
   - orm

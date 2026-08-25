@@ -5,13 +5,13 @@ description: >-
   PECI에 따라 를 클릭한 후에 조금 더 낮은 온도 범위에서 Fan이 동작하도록 변경하자.
 date: '2021-07-06T14:32:00+09:00'
 permalink: /2021/07/06/mac-fan-control-setting/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: deepdive
 level: 중급
 tags:
-  - tip
   - mac
+  - tip
 image: 'https://cdn.dribbble.com/users/69146/screenshots/994781/fan.png'
 ---
 

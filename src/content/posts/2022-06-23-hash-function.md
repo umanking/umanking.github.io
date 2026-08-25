@@ -4,8 +4,8 @@ description: '해시함수, 해시 충돌과 해시 충돌을 해결하는 방�
 date: '2022-06-23T12:34:00+09:00'
 permalink: /2022/06/23/hash-function/
 section: backend
-hub: spring
-type: reference
+hub: java
+type: deepdive
 level: 중급
 tags:
   - datastructure

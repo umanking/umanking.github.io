@@ -5,13 +5,14 @@ description: >-
   메서드를 사용하여 배열을 정렬할 수 있습니다.
 date: '2023-07-31T14:22:00+09:00'
 permalink: /2023/07/31/javascript-array-sort/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:
-  - js
   - array
+  - javascript
+  - js
   - sort
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
 ---

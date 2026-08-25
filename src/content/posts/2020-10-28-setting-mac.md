@@ -3,14 +3,14 @@ title: 개발자 컴퓨터 환경 세팅
 description: 개발자 컴퓨터 환경 셋팅에 대해서 알아보자.
 date: '2020-10-28T09:41:00+09:00'
 permalink: /2020/10/28/setting-mac/
-section: backend
-hub: spring
+section: infra
+hub: tools
 type: reference
 level: 중급
 tags:
+  - mac
   - setting
   - tip
-  - mac
 image: >-
   https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80
 ---

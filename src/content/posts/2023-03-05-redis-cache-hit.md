@@ -3,11 +3,12 @@ title: 'Redis Cache Hit: 데이터 처리를 빠르게 하는 방법!'
 description: 'Redis Cache는 매우 빠른 속도로 데이터를 처리할 수 있어, 많은 기업들이 Redis Cache를 도입해 성능을 향상시키고 있습니다.'
 date: '2023-03-05T10:21:00+09:00'
 permalink: /2023/03/05/redis-cache-hit/
-section: backend
-hub: spring
-type: reference
+section: data
+hub: redis
+type: tutorial
 level: 중급
 tags:
+  - cache
   - redis
 image: 'https://dwglogo.com/wp-content/uploads/2017/12/1100px_Redis_Logo_01.png'
 ---

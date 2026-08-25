@@ -4,7 +4,7 @@ description: 'Java 에서 CompletableFuture가 어떻게 사용할 수 있고, �
 date: '2020-10-15T21:07:00+09:00'
 permalink: /2020/10/15/java-completable-future/
 section: backend
-hub: spring
+hub: java
 type: reference
 level: 중급
 tags:

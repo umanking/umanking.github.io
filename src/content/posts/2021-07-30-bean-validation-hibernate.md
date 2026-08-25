@@ -7,7 +7,7 @@ date: '2021-07-30T14:25:00+09:00'
 permalink: /2021/07/30/bean-validation-hibernate/
 section: backend
 hub: spring
-type: reference
+type: troubleshooting
 level: 중급
 tags:
   - bean-validation

@@ -3,11 +3,12 @@ title: Javascript 에서 array 중복을 제거하는 방법
 description: javascript 에서 array 중복을 제거하는 방법(remove duplicate value javascript)
 date: '2022-10-21T18:30:00+09:00'
 permalink: /2022/10/21/js-remove-duplicate-value/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: javascript
+type: tutorial
 level: 중급
 tags:
+  - javascript
   - js
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
 ---

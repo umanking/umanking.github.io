@@ -3,9 +3,9 @@ title: IntelliJ Column Selection Mode 모드로 작업 쉽게 하기
 description: 'IntelliJ에서 컬럼 Selection 모드에 대해서 알아보고, 단축키를 통해서 작업을 쉽게 하는 방법을 알아보자.'
 date: '2021-06-30T21:37:00+09:00'
 permalink: /2021/06/30/intellij-column-selection-mode/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: deepdive
 level: 중급
 tags:
   - intellij

@@ -6,8 +6,8 @@ description: >-
 date: '2020-01-09T20:22:00+09:00'
 permalink: /2020/01/09/garbage-collector-2/
 section: backend
-hub: spring
-type: reference
+hub: java
+type: deepdive
 level: 중급
 tags:
   - jvm

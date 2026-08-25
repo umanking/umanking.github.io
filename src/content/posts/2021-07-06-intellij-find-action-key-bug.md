@@ -3,9 +3,9 @@ title: 'IntelliJ, Find Action 단축키 버그'
 description: intellij에서 find action에서 발생하는 단축키 버그를 해결하는 방법에 대해서 알아보자.
 date: '2021-07-06T15:56:00+09:00'
 permalink: /2021/07/06/intellij-find-action-key-bug/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: troubleshooting
 level: 중급
 tags:
   - intellij

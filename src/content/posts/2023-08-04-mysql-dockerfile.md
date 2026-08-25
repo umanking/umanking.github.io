@@ -5,14 +5,14 @@ description: >-
   기술로서, 애플리케이션과 모든 종속성을 컨테이너로 패키징하여 빠르고 효율적인 배포를 가능하게 합니다.
 date: '2023-08-04T22:05:00+09:00'
 permalink: /2023/08/04/mysql-dockerfile/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: docker
+type: tutorial
 level: 중급
 tags:
-  - mysql
-  - dockerfile
   - docker
+  - dockerfile
+  - mysql
 image: 'https://logos-world.net/wp-content/uploads/2021/02/Docker-Logo.png'
 ---
 ## 소개

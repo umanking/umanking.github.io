@@ -6,8 +6,8 @@ description: >-
 date: '2021-05-27T00:00:00+09:00'
 permalink: /2021/05/27/test-hygiene/
 section: backend
-hub: spring
-type: reference
+hub: testing
+type: tutorial
 level: 중급
 tags:
   - test

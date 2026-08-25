@@ -3,17 +3,17 @@ title: 'Python for Loop: A Comprehensive Guide for Beginners'
 description: 프로그래밍의 핵심은 반복적인 작업을 자동화하는 것입니다. 파이썬의 For 루프는 이러한 작업을 더욱 쉽게 처리할 수 있는 강력한 도구입니다.
 date: '2023-08-15T20:38:00+09:00'
 permalink: /2023/08/15/python-for-loop/
-section: backend
-hub: spring
+section: infra
+hub: tools
 type: reference
 level: 중급
 tags:
-  - p
-  - 'y'
-  - t
   - h
-  - o
   - 'n'
+  - o
+  - p
+  - t
+  - 'y'
 image: >-
   https://images.velog.io/images/suzieep/post/a137794d-1f46-4af8-ac58-954d4dc0696f/logo-python.png
 ---

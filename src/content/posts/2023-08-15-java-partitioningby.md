@@ -6,8 +6,8 @@ description: >-
 date: '2023-08-15T21:15:00+09:00'
 permalink: /2023/08/15/java-partitioningby/
 section: backend
-hub: spring
-type: reference
+hub: java
+type: tutorial
 level: 중급
 tags:
   - java

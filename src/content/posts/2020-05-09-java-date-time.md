@@ -6,9 +6,9 @@ description: >-
 date: '2020-05-09T12:19:00+09:00'
 permalink: /2020/05/09/java-date-time/
 section: backend
-hub: spring
-type: reference
-level: 중급
+hub: java
+type: deepdive
+level: 심화
 tags:
   - java
   - localdatetime

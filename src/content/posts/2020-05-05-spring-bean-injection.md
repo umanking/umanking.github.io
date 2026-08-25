@@ -5,7 +5,7 @@ date: '2020-05-05T17:01:00+09:00'
 permalink: /2020/05/05/spring-bean-injection/
 section: backend
 hub: spring
-type: reference
+type: tutorial
 level: 중급
 tags:
   - spring

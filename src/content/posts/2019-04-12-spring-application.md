@@ -5,7 +5,7 @@ date: '2019-04-12T00:00:00+09:00'
 permalink: /2019/04/12/spring-application/
 section: backend
 hub: spring
-type: reference
+type: deepdive
 level: 중급
 tags:
   - spring

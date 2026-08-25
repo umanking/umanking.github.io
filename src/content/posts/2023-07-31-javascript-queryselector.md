@@ -5,11 +5,12 @@ description: >-
   요소를 선택하는 데 사용되는 메서드입니다.
 date: '2023-07-31T14:31:00+09:00'
 permalink: /2023/07/31/javascript-queryselector/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: javascript
+type: tutorial
 level: 중급
 tags:
+  - javascript
   - js
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
 ---

@@ -3,8 +3,8 @@ title: 'MySQL 중복데이터 관리방법 (INSERT IGNORE, ON DUPLICATE KEY UPDA
 description: MySQL에서 중복 데이터를 삽입하는 3가지 방법에 대해서 알아보자.
 date: '2021-07-05T20:04:00+09:00'
 permalink: /2021/07/05/mysql-duplicate-record/
-section: backend
-hub: spring
+section: data
+hub: mysql
 type: reference
 level: 중급
 tags:

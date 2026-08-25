@@ -3,13 +3,14 @@ title: Flyway (db migration) 예제
 description: DB migration 툴인 flyway에 대한 사용방법을 알아보자.
 date: '2021-08-04T15:42:00+09:00'
 permalink: /2021/08/04/flyway-db-migration/
-section: backend
-hub: spring
-type: reference
+section: data
+hub: modeling
+type: tutorial
 level: 중급
 tags:
-  - flyway
   - db-migration
+  - flyway
+  - migration
 image: >-
   https://digital.ai/sites/default/files/pictures/styles/maxwidth_300/public/pt_logos/flyway.png?itok=B976zlaq
 ---

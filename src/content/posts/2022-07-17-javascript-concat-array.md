@@ -3,8 +3,8 @@ title: 'Javascript - 배열 합치기(concat, spread 연산자, push)'
 description: 'Javascript - 배열 합치기(concat, spread 연산자, push)'
 date: '2022-07-17T15:04:00+09:00'
 permalink: /2022/07/17/javascript-concat-array/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:

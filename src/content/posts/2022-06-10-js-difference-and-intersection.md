@@ -3,8 +3,8 @@ title: 'Javascript 차집합, 교집합, 배타논리적 합'
 description: 'Javascript 차집합, 교집합, 배타논리적 합'
 date: '2022-06-10T15:37:00+09:00'
 permalink: /2022/06/10/js-difference-and-intersection/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:

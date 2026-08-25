@@ -5,11 +5,12 @@ description: >-
   사용하면 기존 배열의 각 요소를 변형하여 새로운 배열을 만들 수 있습니다.
 date: '2023-07-31T14:27:00+09:00'
 permalink: /2023/07/31/javascript-map/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:
+  - javascript
   - js
   - map
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'

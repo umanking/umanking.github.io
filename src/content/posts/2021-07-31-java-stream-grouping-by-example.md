@@ -4,13 +4,13 @@ description: 'Java Stream의 groupingBy의 메서드를 살펴보고, 간단한 
 date: '2021-07-31T17:27:00+09:00'
 permalink: /2021/07/31/java-stream-grouping-by-example/
 section: backend
-hub: spring
-type: reference
+hub: java
+type: tutorial
 level: 중급
 tags:
+  - groupingby
   - java
   - stream
-  - groupingby
 image: /images/java.png
 ---
 

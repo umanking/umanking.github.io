@@ -4,7 +4,7 @@ description: 'Java의 파일 입출력 BuffedWriter, BufferedReader, Files 에 �
 date: '2021-06-25T17:13:00+09:00'
 permalink: /2021/06/25/java-file-system/
 section: backend
-hub: spring
+hub: java
 type: reference
 level: 중급
 tags:

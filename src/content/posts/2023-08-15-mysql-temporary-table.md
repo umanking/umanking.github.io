@@ -5,8 +5,8 @@ description: >-
   most popular choices.
 date: '2023-08-15T21:05:00+09:00'
 permalink: /2023/08/15/mysql-temporary-table/
-section: backend
-hub: spring
+section: data
+hub: mysql
 type: reference
 level: 중급
 tags:

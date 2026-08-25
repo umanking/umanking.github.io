@@ -3,12 +3,13 @@ title: AWS Lambda nodejs 16 version upgrade
 description: AWS Lambda Nodejs 16 버전 업그레이드 작업
 date: '2022-05-26T22:00:00+09:00'
 permalink: /2022/05/26/aws-lambda-node-version/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: aws
+type: deepdive
 level: 중급
 tags:
   - aws
+  - lambda
 image: >-
   https://images.velog.io/images/jeffyoun/post/58ab53ee-c62a-44c1-863b-9431608de91d/1_H5SUqUJhRRG2gbgCXV2ghQ.png
 ---

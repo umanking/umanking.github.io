@@ -5,13 +5,13 @@ description: >-
   필수적입니다.
 date: '2023-07-31T14:34:00+09:00'
 permalink: /2023/07/31/javascript-settimeout/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:
-  - js
   - javascript
+  - js
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
 ---
 ## **소개**

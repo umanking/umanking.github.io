@@ -5,9 +5,9 @@ description: >-
   보면서 앞으로를 계획하기 위해서 글을 작성한다. Next Step에서 DDD 교육을 들었다.
 date: '2020-05-02T12:16:00+09:00'
 permalink: /2020/05/02/first-review/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: news
 level: 중급
 tags:
   - retrospective

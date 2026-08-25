@@ -5,9 +5,9 @@ description: >-
   Subtract의 기능과 활용법을 살펴보며, 어떻게 사용하는지 배워보겠습니다.
 date: '2023-08-15T20:43:00+09:00'
 permalink: /2023/08/15/dayjs-subtract/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: javascript
+type: tutorial
 level: 중급
 tags:
   - dayjs

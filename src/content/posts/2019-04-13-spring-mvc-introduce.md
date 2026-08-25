@@ -5,8 +5,8 @@ date: '2019-04-13T00:00:00+09:00'
 permalink: /2019/04/13/spring-mvc-introduce/
 section: backend
 hub: spring
-type: reference
-level: 중급
+type: deepdive
+level: 심화
 tags:
   - spring
 image: /images/spring.png

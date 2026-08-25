@@ -11,8 +11,8 @@ type: reference
 level: 중급
 tags:
   - spring
-  - webflux
   - test
+  - webflux
 image: >-
   https://velog.velcdn.com/images/nowod_it/post/ed1b5a5a-f075-48e6-b5b7-01e76e3c003d/image.png
 ---

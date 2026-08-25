@@ -5,12 +5,12 @@ date: '2023-08-04T21:58:00+09:00'
 permalink: /2023/08/04/spring-boot-mongodb/
 section: backend
 hub: spring
-type: reference
+type: tutorial
 level: 중급
 tags:
-  - springboot
-  - spring
   - mongodb
+  - spring
+  - springboot
 image: 'https://miro.medium.com/v2/resize:fit:399/0*arJ82E5eU-0jnT4J.jpg'
 ---
 ## 소개

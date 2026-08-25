@@ -4,7 +4,7 @@ description: AssertJ에서 자주 사용하는 기본 문법들에 대해서 알
 date: '2021-06-26T12:21:00+09:00'
 permalink: /2021/06/26/assertj-iteration/
 section: backend
-hub: spring
+hub: testing
 type: reference
 level: 중급
 tags:

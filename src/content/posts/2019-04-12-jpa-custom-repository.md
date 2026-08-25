@@ -6,8 +6,8 @@ description: >-
 date: '2019-04-12T00:00:00+09:00'
 permalink: /2019/04/12/jpa-custom-repository/
 section: backend
-hub: spring
-type: reference
+hub: jpa
+type: tutorial
 level: 중급
 tags:
   - jpa

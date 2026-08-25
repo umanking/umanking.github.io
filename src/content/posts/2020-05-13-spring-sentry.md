@@ -5,7 +5,7 @@ date: '2020-05-13T08:47:00+09:00'
 permalink: /2020/05/12/spring-sentry/
 section: backend
 hub: spring
-type: reference
+type: troubleshooting
 level: 중급
 tags:
   - spring

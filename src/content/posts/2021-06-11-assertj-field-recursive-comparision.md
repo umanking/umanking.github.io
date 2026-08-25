@@ -4,8 +4,8 @@ description: AssertJ의 필드값을 재귀적으로 비교해서 테스트 하�
 date: '2021-06-11T00:00:00+09:00'
 permalink: /2021/06/11/assertj-field-recursive-comparision/
 section: backend
-hub: spring
-type: reference
+hub: testing
+type: tutorial
 level: 중급
 tags:
   - assertj

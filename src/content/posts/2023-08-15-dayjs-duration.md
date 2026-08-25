@@ -3,8 +3,8 @@ title: 'Dayjs Duration: 시간 간격 다루기'
 description: 시간은 현대 사회에서 가장 귀중한 자원 중 하나입니다. 시간 간격을 다루는 것은 다양한 상황에서 중요한 역할을 합니다.
 date: '2023-08-15T20:50:00+09:00'
 permalink: /2023/08/15/dayjs-duration/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:

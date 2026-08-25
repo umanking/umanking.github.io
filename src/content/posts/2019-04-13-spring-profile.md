@@ -7,7 +7,7 @@ date: '2019-04-13T00:00:00+09:00'
 permalink: /2019/04/13/spring-profile/
 section: backend
 hub: spring
-type: reference
+type: tutorial
 level: 중급
 tags:
   - spring

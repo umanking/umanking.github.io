@@ -3,8 +3,8 @@ title: npm package.json의 verison과 틸드tilde(~)와 캐럿caret(^)
 description: package.json의 version을 명시하는 방법과 틸드와 캐럿에 대해서 알아보자
 date: '2022-05-05T11:27:00+09:00'
 permalink: /2022/05/05/npm-version-tilde-caret/
-section: backend
-hub: spring
+section: web
+hub: nodejs
 type: reference
 level: 중급
 tags:

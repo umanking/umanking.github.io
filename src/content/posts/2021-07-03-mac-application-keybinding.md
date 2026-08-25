@@ -3,13 +3,13 @@ title: Mac에서 커스텀하게 단축키 지정하는 방법
 description: Mac에서 자신만의 커스텀한 단축키를 지정하는 방법을 알아보자.
 date: '2021-07-03T08:38:00+09:00'
 permalink: /2021/07/02/mac-application-keybinding/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: tutorial
 level: 중급
 tags:
-  - tip
   - mac
+  - tip
 image: >-
   https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80
 ---

@@ -5,11 +5,13 @@ description: >-
   단순화할 수 있습니다.
 date: '2023-03-06T20:00:00+09:00'
 permalink: /2023/03/06/github-action-starter/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: cicd
+type: tutorial
 level: 중급
 tags:
+  - cd
+  - ci
   - github
 image: 'https://miro.medium.com/max/1075/1*VtWbCHhIw6MMMXCil7lZ0g.png'
 ---

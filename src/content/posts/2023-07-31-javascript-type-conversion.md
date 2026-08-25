@@ -5,11 +5,12 @@ description: >-
   타입이 결정됩니다. 이러한 특성으로 인해 JavaScript에서는 형변환이 자주 발생합니다.
 date: '2023-07-31T14:38:00+09:00'
 permalink: /2023/07/31/javascript-type-conversion/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:
+  - javascript
   - js
   - type-conversion
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'

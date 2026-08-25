@@ -4,7 +4,7 @@ description: 'Java의 Comparabl과 Compartor에 대해서 알아보고, Lambda�
 date: '2020-03-10T08:18:00+09:00'
 permalink: /2020/03/09/java-comparable-comparator/
 section: backend
-hub: spring
+hub: java
 type: reference
 level: 중급
 tags:

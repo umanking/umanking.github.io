@@ -3,13 +3,13 @@ title: vim color 스키마 적용하기
 description: iterms의 vim color shcema를 적용하는 방법을 알아보자.
 date: '2021-06-30T21:03:00+09:00'
 permalink: /2021/06/30/vim-color-scheme/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: tutorial
 level: 중급
 tags:
-  - vim
   - iterms
+  - vim
 image: >-
   https://download.logo.wine/logo/Vim_(text_editor)/Vim_(text_editor)-Logo.wine.png
 ---

@@ -3,9 +3,9 @@ title: slack remind 기능 사용하기
 description: slack remind 명령어로 remind 알림 받기
 date: '2022-06-10T14:49:00+09:00'
 permalink: /2022/06/10/slack-reminder/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: deepdive
 level: 중급
 tags:
   - slack

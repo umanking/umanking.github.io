@@ -3,13 +3,13 @@ title: 'SSH 키 생성하고, 원격서버에 접속하는 방법'
 description: 'SSH 키생성하고, 원격서버에 접속하는 방법, 공개키 인증 방식에 대해서도 알아본다.'
 date: '2021-07-14T23:13:00+09:00'
 permalink: /2021/07/14/ssh-keygen/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: tutorial
 level: 중급
 tags:
-  - ssh
   - git
+  - ssh
   - ssh-keygen
 image: 'https://www.abobwhite.com/content/images/2019/06/ssh.jpg'
 ---

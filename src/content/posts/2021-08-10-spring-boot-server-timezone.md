@@ -5,7 +5,7 @@ date: '2021-08-10T14:04:00+09:00'
 permalink: /2021/08/10/spring-boot-server-timezone/
 section: backend
 hub: spring
-type: reference
+type: tutorial
 level: 중급
 tags:
   - spring

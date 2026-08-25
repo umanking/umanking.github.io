@@ -5,10 +5,10 @@ description: >-
   Redis를 사용할 때 주의해야 할 사항을 살펴보겠습니다.
 date: '2023-03-05T10:09:00+09:00'
 permalink: /2023/03/05/caution-when-operation-redis/
-section: backend
-hub: spring
-type: reference
-level: 중급
+section: data
+hub: redis
+type: troubleshooting
+level: 심화
 tags:
   - redis
 image: 'https://dwglogo.com/wp-content/uploads/2017/12/1100px_Redis_Logo_01.png'

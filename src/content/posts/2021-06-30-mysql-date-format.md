@@ -3,8 +3,8 @@ title: MySQL 날짜 포맷팅 DATE_FORMAT
 description: MySQL에서 DATE 날짜 포맷팅 하는 DATE_FORMAT 함수에 대해서 알아보자.
 date: '2021-06-30T22:20:00+09:00'
 permalink: /2021/06/30/mysql-date-format/
-section: backend
-hub: spring
+section: data
+hub: mysql
 type: reference
 level: 중급
 tags:

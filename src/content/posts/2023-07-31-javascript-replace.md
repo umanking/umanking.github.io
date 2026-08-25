@@ -5,11 +5,12 @@ description: >-
   메서드입니다. 이를 통해 문자열 내에서 원하는 부분을 변경하거나 제거하는 작업을 할 수 있습니다.
 date: '2023-07-31T14:41:00+09:00'
 permalink: /2023/07/31/javascript-replace/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: javascript
+type: tutorial
 level: 중급
 tags:
+  - javascript
   - js
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
 ---

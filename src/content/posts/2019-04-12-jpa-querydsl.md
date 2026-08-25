@@ -6,11 +6,12 @@ description: >-
 date: '2019-04-12T00:00:00+09:00'
 permalink: /2019/04/12/jpa-querydsl/
 section: backend
-hub: spring
-type: reference
-level: 중급
+hub: jpa
+type: tutorial
+level: 심화
 tags:
   - jpa
+  - querydsl
 image: >-
   https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png
 ---

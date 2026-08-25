@@ -3,9 +3,9 @@ title: iterms 한글깨짐 문제
 description: iterms에서 Shell 창에서 한글깨짐 문제에 대해서 알아보자 .
 date: '2021-07-06T13:58:00+09:00'
 permalink: /2021/07/06/iterms-unicode-normalization/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: troubleshooting
 level: 중급
 tags:
   - iterms

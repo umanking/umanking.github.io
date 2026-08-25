@@ -3,14 +3,14 @@ title: 'feedly(rss)로 알림받기(feat, chrome)'
 description: 'Feedly에 대해서 알아보고, 구글 크롬 익스텐션을 통해서 자신이 구독한 글들을 받아볼 수 있는 설정에 대해서 알아보자.'
 date: '2021-07-30T15:29:00+09:00'
 permalink: /2021/07/30/feedly-notificaiton-guide/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: deepdive
 level: 중급
 tags:
+  - chrome-extension
   - feedly
   - rss
-  - chrome-extension
   - tip
 image: >-
   https://is4-ssl.mzstatic.com/image/thumb/Purple114/v4/30/34/02/30340262-7832-1c60-2ad0-e743d167eb80/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/1200x630wa.png

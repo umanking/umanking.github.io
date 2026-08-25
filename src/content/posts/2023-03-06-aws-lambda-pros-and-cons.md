@@ -5,12 +5,13 @@ description: >-
   관리에 대한 걱정을 덜어줍니다. 그러나 AWS Lambda는 실제 운영 환경에서 제한 사항이 있습니다.
 date: '2023-03-06T20:11:00+09:00'
 permalink: /2023/03/06/aws-lambda-pros-and-cons/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: aws
+type: deepdive
 level: 중급
 tags:
   - aws
+  - lambda
 image: >-
   https://images.velog.io/images/jeffyoun/post/58ab53ee-c62a-44c1-863b-9431608de91d/1_H5SUqUJhRRG2gbgCXV2ghQ.png
 ---

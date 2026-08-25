@@ -3,8 +3,8 @@ title: vscode debugging 셋팅 방법
 description: vscode debugging 셋팅 하는 방법
 date: '2022-05-05T15:18:00+09:00'
 permalink: /2022/05/05/vscode-debugging/
-section: backend
-hub: spring
+section: infra
+hub: tools
 type: reference
 level: 중급
 tags:

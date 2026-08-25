@@ -5,12 +5,13 @@ description: >-
   제공합니다.
 date: '2023-03-08T19:25:00+09:00'
 permalink: /2023/03/08/nestjs-basic-concept/
-section: backend
-hub: spring
+section: web
+hub: nodejs
 type: reference
-level: 중급
+level: 심화
 tags:
   - nestjs
+  - node
 image: >-
   https://cdn.dribbble.com/users/808903/screenshots/3831862/dribbble_szablon__1_1.png
 ---

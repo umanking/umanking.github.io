@@ -5,7 +5,7 @@ date: '2020-01-18T10:33:00+09:00'
 permalink: /2020/01/18/spring-rest-api/
 section: backend
 hub: spring
-type: reference
+type: tutorial
 level: 중급
 tags:
   - spring

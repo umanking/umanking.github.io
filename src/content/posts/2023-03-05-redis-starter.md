@@ -3,10 +3,10 @@ title: Redis 시작하는 방법
 description: 이번 포스트에서는 Redis를 시작하는 방법에 대해 다루겠습니다.
 date: '2023-03-05T10:36:00+09:00'
 permalink: /2023/03/05/redis-starter/
-section: backend
-hub: spring
-type: reference
-level: 중급
+section: data
+hub: redis
+type: tutorial
+level: 입문
 tags:
   - redis
 image: 'https://dwglogo.com/wp-content/uploads/2017/12/1100px_Redis_Logo_01.png'

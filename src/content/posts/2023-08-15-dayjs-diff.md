@@ -5,9 +5,9 @@ description: >-
   간편하게 계산하고 다룰 수 있는 강력한 도구입니다.
 date: '2023-08-15T20:48:00+09:00'
 permalink: /2023/08/15/dayjs-diff/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: javascript
+type: deepdive
 level: 중급
 tags:
   - dayjs

@@ -6,9 +6,9 @@ description: >-
 date: '2019-04-12T00:00:00+09:00'
 permalink: /2019/04/12/jpa-1-n-mapping/
 section: backend
-hub: spring
+hub: jpa
 type: reference
-level: 중급
+level: 입문
 tags:
   - jpa
 image: >-

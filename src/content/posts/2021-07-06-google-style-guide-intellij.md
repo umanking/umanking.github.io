@@ -5,13 +5,13 @@ description: >-
   CodeStyle Java 메뉴를 선택하고, 위에서 받은 intellij java google style.
 date: '2021-07-06T13:20:00+09:00'
 permalink: /2021/07/06/google-style-guide-intellij/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: tutorial
 level: 중급
 tags:
-  - styleguide
   - intellij
+  - styleguide
   - tip
 image: >-
   https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg

@@ -5,9 +5,9 @@ description: >-
   프로세스는 shell 이기 때문에 결과가 다음과 같이 나온다.
 date: '2021-08-21T12:33:00+09:00'
 permalink: /2021/08/21/change-shell/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: tutorial
 level: 중급
 tags:
   - shell

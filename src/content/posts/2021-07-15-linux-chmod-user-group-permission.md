@@ -3,13 +3,14 @@ title: '리눅스 파일,폴더 권한 관리(feat. chmod)'
 description: '리눅스의 파일,폴더 권한 설정과 chmod를 명령어를 이용한 파일 권한 주는 방법에 대해서 알아본다.'
 date: '2021-07-15T17:09:00+09:00'
 permalink: /2021/07/15/linux-chmod-user-group-permission/
-section: backend
-hub: spring
+section: infra
+hub: tools
 type: reference
 level: 중급
 tags:
-  - linux
   - chmod
+  - linux
+  - 리눅스
 image: 'https://blog.kakaocdn.net/dn/bEUX6s/btqAavSzerd/Q8tjjThKJ82PS4HrBFp5Sk/img.png'
 ---
 리눅스는 멀티 유저 시스템이기 때문에, 파일과 폴더에 관한 권한 관리가 필요하다. 

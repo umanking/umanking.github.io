@@ -3,9 +3,9 @@ title: Docker M1 MySQL 설치
 description: local에서 docker를 이용해서 mysql 를 셋팅하는 방법에 대해서 알아보자.
 date: '2022-08-06T14:07:00+09:00'
 permalink: /2022/08/06/docker-mysql-m1/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: docker
+type: tutorial
 level: 중급
 tags:
   - docker

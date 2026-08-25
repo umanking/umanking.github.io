@@ -3,15 +3,16 @@ title: shell script 기초
 description: 'shell script 기초 문법, 배열, 입출력, 함수, if else, 조건식에 대해서 알아본다.'
 date: '2022-10-09T12:39:00+09:00'
 permalink: /2022/10/09/shell-script-basic/
-section: backend
-hub: spring
+section: infra
+hub: tools
 type: reference
-level: 중급
+level: 입문
 tags:
-  - s
-  - h
   - e
+  - h
   - l
+  - s
+  - shell
 image: >-
   https://w7.pngwing.com/pngs/48/567/png-transparent-bash-shell-script-command-line-interface-z-shell-shell-rectangle-logo-commandline-interface.png
 ---

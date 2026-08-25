@@ -5,13 +5,13 @@ description: >-
   예제를 소개하겠습니다.
 date: '2023-04-07T16:14:00+09:00'
 permalink: /2023/04/07/lodash-best-usage/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: javascript
+type: tutorial
 level: 중급
 tags:
-  - lodash
   - js
+  - lodash
 image: >-
   https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Lodash.svg/1200px-Lodash.svg.png
 ---

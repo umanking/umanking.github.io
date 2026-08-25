@@ -3,13 +3,13 @@ title: 'MySQL 인덱스 종류, 내부 동작'
 description: 'MySQL의 인덱스 종류와 내부 동작, 클러스터형 인덱스와 보조 인덱스에 대해서 알아보자.'
 date: '2021-07-18T14:56:00+09:00'
 permalink: /2021/07/18/mysql-index/
-section: backend
-hub: spring
-type: reference
-level: 중급
+section: data
+hub: mysql
+type: deepdive
+level: 심화
 tags:
-  - mysql
   - index
+  - mysql
 image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
 ---
 

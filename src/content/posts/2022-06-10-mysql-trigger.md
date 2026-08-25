@@ -5,8 +5,8 @@ description: >-
   AFTER에 어떤 동작을 추가할 수 있는 것을 의미한다.
 date: '2022-06-10T15:15:00+09:00'
 permalink: /2022/06/10/mysql-trigger/
-section: backend
-hub: spring
+section: data
+hub: mysql
 type: reference
 level: 중급
 tags:

@@ -4,7 +4,7 @@ description: 자주 사용하는 Junit5 사용 예제
 date: '2021-06-19T17:37:00+09:00'
 permalink: /2021/06/19/junit5-best-usage/
 section: backend
-hub: spring
+hub: testing
 type: reference
 level: 중급
 tags:

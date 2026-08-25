@@ -5,9 +5,10 @@ date: '2020-10-28T09:41:00+09:00'
 permalink: /2020/10/28/spring-cloud-config-example/
 section: backend
 hub: spring
-type: reference
+type: tutorial
 level: 중급
 tags:
+  - spring
   - spring-cloud
 image: >-
   https://lh3.googleusercontent.com/proxy/vp6-IkjoFSjoYPuX32vDEkgN4kGDmjylNXNQiOz-3l_LFL9hRTRy1Nmu8sxMovTLt7OEpgIgb3IQPGn-QWzgn5xkHKyXnll64fWWfCLCkh1OwW8Kj4USNGnfFjd3kq_TLVsFpvN0u7ZI7w

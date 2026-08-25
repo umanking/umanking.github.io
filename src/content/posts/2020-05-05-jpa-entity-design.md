@@ -4,9 +4,9 @@ description: JPA에서 엔티티 설계시 주의사항들에 대한 요약본�
 date: '2020-05-05T15:36:00+09:00'
 permalink: /2020/05/05/jpa-entity-design/
 section: backend
-hub: spring
-type: reference
-level: 중급
+hub: jpa
+type: troubleshooting
+level: 심화
 tags:
   - jpa
 image: >-

@@ -5,8 +5,8 @@ description: >-
   해당 파일/폴더 경로를 추가한다. git add .
 date: '2021-06-30T21:58:00+09:00'
 permalink: /2021/06/30/git-rm-cached-file/
-section: backend
-hub: spring
+section: infra
+hub: tools
 type: reference
 level: 중급
 tags:

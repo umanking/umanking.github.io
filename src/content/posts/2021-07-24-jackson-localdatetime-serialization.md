@@ -7,7 +7,7 @@ date: '2021-07-24T17:53:00+09:00'
 permalink: /2021/07/24/jackson-localdatetime-serialization/
 section: backend
 hub: spring
-type: reference
+type: troubleshooting
 level: 중급
 tags:
   - jackson

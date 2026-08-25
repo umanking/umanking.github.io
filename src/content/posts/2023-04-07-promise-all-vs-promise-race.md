@@ -5,14 +5,14 @@ description: >-
   작업을 다루는 데에 유용합니다. 이 둘의 차이점은 다음과 같습니다
 date: '2023-04-07T17:03:00+09:00'
 permalink: /2023/04/07/promise-all-vs-promise-race/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: javascript
+type: deepdive
 level: 중급
 tags:
+  - async
   - js
   - promise
-  - async
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
 ---
 

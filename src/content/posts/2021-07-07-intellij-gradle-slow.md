@@ -5,13 +5,13 @@ description: >-
   Default설정이 Gradle 로 되어있다. 이것을 모두다 IntelliJ 로 모두 변경한다.
 date: '2021-07-07T17:38:00+09:00'
 permalink: /2021/07/07/intellij-gradle-slow/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: deepdive
 level: 중급
 tags:
-  - intellij
   - gradle
+  - intellij
 image: >-
   https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg
 ---

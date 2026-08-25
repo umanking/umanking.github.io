@@ -3,8 +3,8 @@ title: 'Javascript - 문자열 포함여부 (indexOf, includes, startsWith, ends
 description: 'Javascript - 문자열 포함여부 (indexOf, includes, startsWith, endsWith)'
 date: '2022-07-17T14:52:00+09:00'
 permalink: /2022/07/17/javascript-string-example/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
 level: 중급
 tags:

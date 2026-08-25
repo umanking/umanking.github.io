@@ -5,14 +5,14 @@ description: >-
   따기 때문에 ( feature/XXXX 123 ) 내가 작업하는 PR이 어떤 브랜치인지 확인 하기 위해서는 git
 date: '2022-10-10T15:20:00+09:00'
 permalink: /2022/10/10/github-pr-checkout/
-section: backend
-hub: spring
+section: infra
+hub: tools
 type: reference
 level: 중급
 tags:
-  - t
   - i
   - p
+  - t
 image: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
 ---
 여러개의 프로젝트 PR를 동시에 진행하면, 해당 브랜치로 checkout를 해야 하는데 브랜치 명이 아무래도 Jira 티켓명으로 브랜치를 따기 때문에 (`feature/XXXX-123`) 내가 작업하는 PR이 어떤 브랜치인지 확인 하기 위해서는 github 사이트에 들어가서 직접 브랜치를 copy해서 checkout하는 번거로움이 있었습니다.

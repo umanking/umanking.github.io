@@ -4,9 +4,9 @@ description: Modern Java in action의 동작파라미터화 코드를 전달하�
 date: '2020-05-04T15:21:00+09:00'
 permalink: /2020/05/04/modern-java-in-action-2/
 section: backend
-hub: spring
+hub: java
 type: reference
-level: 중급
+level: 심화
 tags:
   - java
 image: /images/java.png

@@ -10,7 +10,8 @@
     "test": "vitest run",
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "classify": "node --experimental-strip-types scripts/classify-posts.mjs"
   },
   "repository": {
     "type": "git",
@@ -26,9 +27,11 @@
   "type": "module",
   "private": true,
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.3.1",
     "pagefind": "^1.5.2",
+    "typescript": "^6.0.3",
     "vitest": "^3.2.7"
   },
   "dependencies": {

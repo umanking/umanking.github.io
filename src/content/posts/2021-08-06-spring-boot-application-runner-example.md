@@ -9,6 +9,7 @@ type: reference
 level: 중급
 tags:
   - spring
+  - springboot
 image: /images/spring.png
 ---
 ## 1. 들어가며

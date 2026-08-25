@@ -4,8 +4,8 @@ description: JpaRepository의 구현체 SimpleJpaRepository에서 save()메서�
 date: '2019-04-12T00:00:00+09:00'
 permalink: /2019/04/12/jpa-persist-merge/
 section: backend
-hub: spring
-type: reference
+hub: jpa
+type: deepdive
 level: 중급
 tags:
   - jpa

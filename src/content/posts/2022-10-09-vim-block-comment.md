@@ -3,14 +3,15 @@ title: vim 여러줄 주석 다는 방법
 description: vim multiline 주석(comment) 다는 방법
 date: '2022-10-09T14:19:00+09:00'
 permalink: /2022/10/09/vim-block-comment/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: deepdive
 level: 중급
 tags:
-  - v
   - i
   - m
+  - v
+  - vim
 image: >-
   https://download.logo.wine/logo/Vim_(text_editor)/Vim_(text_editor)-Logo.wine.png
 ---

@@ -7,10 +7,11 @@ date: '2020-11-25T00:00:00+09:00'
 permalink: /2020/11/25/spring-rabbitmq-tutorial/
 section: backend
 hub: spring
-type: reference
+type: tutorial
 level: 중급
 tags:
   - spring
+  - springboot
 image: 'https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png'
 ---
 

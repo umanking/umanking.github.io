@@ -5,11 +5,12 @@ description: >-
   요청, 파일 로딩, 데이터베이스 쿼리 등과 같이 시간이 오래 걸리는 작업을 말합니다.
 date: '2023-08-04T21:25:00+09:00'
 permalink: /2023/08/04/js-promise/
-section: backend
-hub: spring
+section: web
+hub: javascript
 type: reference
-level: 중급
+level: 심화
 tags:
+  - javascript
   - js
   - promise
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'

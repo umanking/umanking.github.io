@@ -5,11 +5,12 @@ description: >-
   서버 사이에 지속적으로 연결을 유지하며, 실시간으로 데이터를 주고받는데 사용됩니다. 이 글에서는 Socket.
 date: '2023-08-04T21:52:00+09:00'
 permalink: /2023/08/04/nodejs-socket-io/
-section: backend
-hub: spring
+section: web
+hub: nodejs
 type: reference
 level: 중급
 tags:
+  - node
   - nodejs
   - socket
 image: 'https://miro.medium.com/v2/resize:fit:1400/0*K91yVP0ewgIiJVz_.png'

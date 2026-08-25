@@ -8,11 +8,11 @@ hub: spring
 type: reference
 level: 중급
 tags:
-  - spring
   - docker
   - dockerfile
-  - spring-boot
   - intellij
+  - spring
+  - spring-boot
 image: >-
   https://images.velog.io/images/secho/post/74c883a3-2b3f-483e-b572-b64a11ba7927/lfVWBmiW_400x400.png
 ---

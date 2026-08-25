@@ -6,7 +6,7 @@ description: >-
 date: '2020-10-26T22:25:00+09:00'
 permalink: /2020/10/26/jpa-mapping-2/
 section: backend
-hub: spring
+hub: jpa
 type: reference
 level: 중급
 tags:

@@ -5,11 +5,12 @@ description: >-
   앱은 사용자들이 실시간으로 채팅 메시지를 주고받을 수 있는 기능을 제공하는 웹 애플리케이션입니다. Node.
 date: '2023-08-04T21:53:00+09:00'
 permalink: /2023/08/04/nodejs-socket-io-chat-app/
-section: backend
-hub: spring
-type: reference
+section: web
+hub: nodejs
+type: tutorial
 level: 중급
 tags:
+  - node
   - nodejs
   - socket
 image: 'https://miro.medium.com/v2/resize:fit:1400/0*K91yVP0ewgIiJVz_.png'

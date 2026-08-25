@@ -4,7 +4,7 @@ description: 'jackson에서 null값인 필드를 보여주지 않도록 지역�
 date: '2019-12-11T22:25:00+09:00'
 permalink: /2019/12/11/jackson-null-property/
 section: backend
-hub: spring
+hub: java
 type: reference
 level: 중급
 tags:

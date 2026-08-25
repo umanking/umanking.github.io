@@ -4,12 +4,12 @@ description: 'Junit5에 특징과 기본적인 사용법, 문법에 대해서 �
 date: '2020-05-16T11:27:00+09:00'
 permalink: /2020/05/16/junit5-summary-1/
 section: backend
-hub: spring
+hub: testing
 type: reference
-level: 중급
+level: 심화
 tags:
-  - spring
   - junit5
+  - spring
 image: /images/junit5.png
 ---
 

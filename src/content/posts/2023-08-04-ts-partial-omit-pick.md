@@ -5,8 +5,8 @@ description: >-
   Omit, Pick은 TypeScript에서 제공하는 유용한 타입 유틸리티입니다.
 date: '2023-08-04T21:32:00+09:00'
 permalink: /2023/08/04/ts-partial-omit-pick/
-section: backend
-hub: spring
+section: web
+hub: typescript
 type: reference
 level: 중급
 tags:

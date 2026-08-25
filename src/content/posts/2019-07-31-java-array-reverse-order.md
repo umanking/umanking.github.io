@@ -6,8 +6,8 @@ description: >-
 date: '2019-07-31T00:00:00+09:00'
 permalink: /2019/07/31/java-array-reverse-order/
 section: backend
-hub: spring
-type: reference
+hub: java
+type: tutorial
 level: 중급
 tags:
   - java

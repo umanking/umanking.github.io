@@ -5,8 +5,8 @@ description: >-
   프로그램이다. Toolbox에서 설치된 IntelliJ의 Setting을 클릭한다.
 date: '2021-06-29T13:50:00+09:00'
 permalink: /2021/06/29/intellij-run-script/
-section: backend
-hub: spring
+section: infra
+hub: tools
 type: reference
 level: 중급
 tags:

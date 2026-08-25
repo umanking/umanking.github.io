@@ -3,9 +3,9 @@ title: github personal access token 이슈
 description: 'github push 명령어가 제대로 동작하지 않는 이슈, personal access token 기반으로 인증이 변경됨'
 date: '2021-08-15T13:11:00+09:00'
 permalink: /2021/08/15/github-personal-access-token/
-section: backend
-hub: spring
-type: reference
+section: infra
+hub: tools
+type: troubleshooting
 level: 중급
 tags:
   - git

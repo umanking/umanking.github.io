@@ -4,12 +4,13 @@ description: '본 글은, 자바 ORM 표준 JPA 프로그래밍(김영한님) �
 date: '2021-06-19T17:10:00+09:00'
 permalink: /2021/06/19/jpa-summary-persistence-context/
 section: backend
-hub: spring
+hub: jpa
 type: reference
 level: 중급
 tags:
   - jpa
   - orm
+  - 영속성
 image: >-
   https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png
 ---
