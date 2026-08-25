@@ -3,7 +3,6 @@
 .bundle
 .sass-cache
 node_modules
-package.json
 
 ## Jekyll stuff
 /_site/
@@ -15,3 +14,8 @@ _draft/
 .jekyll-cache/
 # Gemfile
 Gemfile.lock
+
+## Astro
+dist/
+.astro/
+node_modules/

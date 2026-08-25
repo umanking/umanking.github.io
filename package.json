@@ -7,7 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview"
   },
   "repository": {
     "type": "git",
@@ -21,8 +24,14 @@
   },
   "homepage": "https://github.com/umanking/umanking.github.io#readme",
   "type": "module",
-  "private": "true",
+  "private": true,
   "devDependencies": {
+    "pagefind": "^1.5.2",
     "vitest": "^3.2.7"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^7.0.8",
+    "@astrojs/rss": "^4.0.19",
+    "astro": "^7.2.6"
   }
 }
