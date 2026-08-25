@@ -26,7 +26,7 @@
 {/* aria-pressed는 "현재 다크 모드인가"를 반영해 스크린리더가 버튼에서
    현재 테마 상태를 알 수 있게 한다. 2KB 인라인 스크립트 예산 때문에
    압축된 형태로 쓴다. */}
-<script is:inline>(function(){var b=document.getElementById("theme-toggle");if(!b)return;var r=document.documentElement;function d(){var c=r.getAttribute("data-theme");return c?c=="dark":matchMedia("(prefers-color-scheme: dark)").matches}b.setAttribute("aria-pressed",""+d());b.onclick=function(){var n=d()?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("theme",n)}catch(e){}b.setAttribute("aria-pressed",n=="dark")}})();</script>
+<script is:inline>(()=>{var b=document.getElementById("theme-toggle");if(!b)return;var r=document.documentElement,d=()=>{var c=r.getAttribute("data-theme");return c?c=="dark":matchMedia("(prefers-color-scheme: dark)").matches};b.setAttribute("aria-pressed",""+d());b.onclick=()=>{var n=d()?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("theme",n)}catch(e){}b.setAttribute("aria-pressed",n=="dark")}})();</script>
 
 <style>
   .topbar {

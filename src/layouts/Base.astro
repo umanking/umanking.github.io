@@ -65,8 +65,8 @@ const resolvedRightRail = rightRail ?? {
        코드블록 복사(성공 시 aria-live로 스크린리더에도 알림) /
        댓글 위젯 클릭 시 지연 로드. */}
     <script is:inline>try{var t=localStorage.getItem("theme");if(t=="light"||t=="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-    <script is:inline>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-copy]");if(!b)return;var c=b.closest(".codeblock"),p=c.querySelector("pre"),s=c.querySelector("[data-copy-status]");if(!p||!navigator.clipboard)return;navigator.clipboard.writeText(p.innerText).then(function(){b.setAttribute("data-copied","");b.textContent="복사됨";if(s)s.textContent="복사됨";setTimeout(function(){b.removeAttribute("data-copied");b.textContent="복사";if(s)s.textContent=""},1500)})});</script>
-    <script is:inline>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-load-comments]");if(!b)return;var w=b.closest(".comments__widget");if(!w)return;var s=document.createElement("script");s.src="https://utteranc.es/client.js";s.setAttribute("repo","umanking/umanking.github.io");s.setAttribute("issue-term","pathname");s.setAttribute("theme","preferred-color-scheme");s.setAttribute("crossorigin","anonymous");s.async=true;w.innerHTML="";w.appendChild(s)});</script>
+    <script is:inline>document.addEventListener("click",e=>{var b=e.target.closest?.("[data-copy]");if(!b)return;var c=b.closest(".codeblock"),p=c.querySelector("pre"),s=c.querySelector("[data-copy-status]");if(!p||!navigator.clipboard)return;navigator.clipboard.writeText(p.innerText).then(()=>{b.setAttribute("data-copied","");b.textContent="복사됨";if(s)s.textContent="복사됨";setTimeout(()=>{b.removeAttribute("data-copied");b.textContent="복사";if(s)s.textContent=""},1500)})});</script>
+    <script is:inline>document.addEventListener("click",e=>{var b=e.target.closest?.("[data-load-comments]");if(!b)return;var w=b.closest(".comments__widget");if(!w)return;var s=document.createElement("script");s.src="https://utteranc.es/client.js";s.setAttribute("repo","umanking/umanking.github.io");s.setAttribute("issue-term","pathname");s.setAttribute("theme","preferred-color-scheme");s.setAttribute("crossorigin","anonymous");s.async=true;w.innerHTML="";w.appendChild(s)});</script>
     {/*
       preload 대상은 146편 본문의 문자 빈도를 실측해서 고른 것이다.
       subset.90(48.3%) + 91(20.5%) + 89(14.8%) = 본문 한글의 약 84%.
@@ -100,7 +100,7 @@ const resolvedRightRail = rightRail ?? {
     {/* 슬롯마다 push({}) 스크립트를 반복하면 인라인 JS 예산을 금방 넘긴다.
        페이지에 광고가 몇 개든 이 스크립트 하나로 전부 처리한다. */}
     {hasAds && (
-      <script is:inline>document.querySelectorAll("ins.adsbygoogle").forEach(function(){(adsbygoogle=window.adsbygoogle||[]).push({})})</script>
+      <script is:inline>document.querySelectorAll("ins.adsbygoogle").forEach(()=>(adsbygoogle=window.adsbygoogle||[]).push({}))</script>
     )}
   </body>
 </html>
