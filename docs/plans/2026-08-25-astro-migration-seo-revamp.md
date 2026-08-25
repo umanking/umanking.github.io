@@ -6,7 +6,7 @@
 
 **Architecture:** 기존 `_posts/*.md`를 `src/content/posts/`로 옮기고 프론트매터를 정규화한다. **URL은 파일명에서 유추하지 않고 라이브 사이트맵을 정본으로 삼아 명시적 `permalink` 필드로 고정**한다(§Global Constraints의 URL 규칙 참조). 라우팅은 `src/pages/[...permalink].astro` 단일 라우트가 담당하고, URL 동일성 테스트가 빌드 게이트 역할을 한다. 분류는 `section`(7개 고정) → `hub`(자유 확장) 2단이며, 허브 노출은 글 수에 연동해 빌드 타임에 자동 결정된다.
 
-**Tech Stack:** Astro 7.2.6, TypeScript, Content Collections, Shiki, `@astrojs/sitemap` 3.7.3, `@astrojs/rss` 4.0.19, `@astrojs/mdx` 7.0.8, Pagefind 1.5.2, satori 0.33.4, Vitest, GitHub Actions
+**Tech Stack:** Astro 7.2.6, TypeScript, Content Collections, Shiki, `@astrojs/rss` 4.0.19, `@astrojs/mdx` 7.0.8, Pagefind 1.5.2, satori 0.33.4, Vitest, GitHub Actions
 
 **Spec:** `docs/specs/2026-08-25-blog-seo-revamp-design.md`
 
@@ -331,7 +331,7 @@ git commit -m "feat: URL 정본 확보 및 동일성 게이트 테스트 추가
 
 ```bash
 npm install astro@^7.2.6
-npm install @astrojs/sitemap@^3.7.3 @astrojs/rss@^4.0.19 @astrojs/mdx@^7.0.8
+npm install @astrojs/rss@^4.0.19 @astrojs/mdx@^7.0.8
 npm install --save-dev pagefind@^1.5.2
 npm pkg set scripts.dev="astro dev"
 npm pkg set scripts.build="astro build && pagefind --site dist"
@@ -359,14 +359,16 @@ sed -i '' '/^package.json$/d' .gitignore
 
 ```js
 import { defineConfig } from "astro/config";
-import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   site: "https://umanking.github.io",
   trailingSlash: "always",
   build: { format: "directory" },
-  integrations: [mdx(), sitemap()],
+  // @astrojs/sitemap은 쓰지 않는다. 이 플러그인은 항상 `<filenameBase>-index.xml`을
+  // 만들어 기존 경로 /sitemap.xml 을 재현할 수 없고, 스펙 5.7이 요구하는
+  // "lastmod = git 커밋 시각"도 지원하지 않는다. Task 12에서 직접 구현한다.
+  integrations: [mdx()],
   markdown: {
     shikiConfig: { themes: { light: "github-light", dark: "github-dark" }, wrap: true },
   },
@@ -801,18 +803,10 @@ import matter from "gray-matter";
 
 const DIR = "src/content/posts";
 
-// taxonomy.ts를 그대로 읽기 위해 키워드를 여기서 재선언하지 않고 파싱한다.
-const taxSrc = readFileSync("src/data/taxonomy.ts", "utf8");
-const SECTIONS = [];
-for (const secM of taxSrc.matchAll(/\{\s*id:\s*"([a-z-]+)",\s*label:\s*"([^"]+)",\s*description:\s*"[^"]*",\s*hubs:\s*\[([\s\S]*?)\n\s{4}\],\s*\}/g)) {
-  const [, id, label, hubsSrc] = secM;
-  const hubs = [...hubsSrc.matchAll(/\{\s*id:\s*"([a-z-]+)",[\s\S]*?keywords:\s*\[([^\]]*)\]/g)].map((h) => ({
-    id: h[1],
-    keywords: [...h[2].matchAll(/"([^"]+)"/g)].map((k) => k[1]),
-  }));
-  SECTIONS.push({ id, label, hubs });
-}
-if (SECTIONS.length !== 7) throw new Error(`섹션 파싱 실패: ${SECTIONS.length}개`);
+// taxonomy.ts를 직접 import한다. 정규식 파싱은 포맷 변경에 취약하다.
+// Node 22의 타입 스트리핑을 쓰므로 실행 시 --experimental-strip-types가 필요하다.
+const { SECTIONS } = await import("../src/data/taxonomy.ts");
+if (SECTIONS.length !== 7) throw new Error(`섹션 로드 실패: ${SECTIONS.length}개`);
 
 /** 유형 추정 — 제목의 어미와 본문 특징으로 판정 */
 function guessType(title, body) {
@@ -897,10 +891,16 @@ console.log(`저신뢰(수동 검수 필요): ${report.length}편 → classifica
 - [ ] **Step 2: 스크립트 실행**
 
 ```bash
-node scripts/classify-posts.mjs
+node --experimental-strip-types scripts/classify-posts.mjs
 ```
 
-기대: `분류 완료: 146편` + 저신뢰 건수 출력.
+기대: `분류 완료: 146편` + 저신뢰 건수 출력. 타입 스트리핑 경고가 stderr에 나오는 것은 정상이다.
+
+편의를 위해 npm 스크립트로 등록해 둔다:
+
+```bash
+npm pkg set scripts.classify="node --experimental-strip-types scripts/classify-posts.mjs"
+```
 
 - [ ] **Step 3: 분류 분포 확인**
 
@@ -913,7 +913,7 @@ echo "=== 난이도별 ==="; grep -h "^level:" src/content/posts/*.md | sort | u
 
 기대 근사치 (스펙 §6.2 기준): `backend` 60~70편, `web` 25~35편, `infra` 25~35편, `data` 12~18편. `architecture`/`ai`/`news`는 0에 가까워야 정상이다.
 
-크게 벗어나면 `taxonomy.ts`의 `keywords`를 조정하고 Step 2부터 다시 실행한다.
+크게 벗어나면 `taxonomy.ts`의 `keywords`를 조정하고 `npm run classify`로 다시 실행한다.
 
 - [ ] **Step 4: 저신뢰 항목 수동 검수**
 
@@ -2895,29 +2895,97 @@ export const GET: APIRoute = async () => {
 export { GET } from "./feed.xml";
 ```
 
-- [ ] **Step 2: sitemap 설정 보강**
+- [ ] **Step 2: 사이트맵 엔드포인트 직접 작성**
 
-`astro.config.mjs`의 `sitemap()` 호출을 교체한다. `noindex` 대상은 사이트맵에서도 뺀다:
+`@astrojs/sitemap`은 쓰지 않는다. 이 플러그인의 출력 파일명은 `filenameBase` 옵션으로만 조절되고 결과는 항상 `<filenameBase>-index.xml`이라, 기존 경로인 `/sitemap.xml`을 만들 수 없다. 게다가 스펙 §5.7이 요구하는 **`lastmod` = git 커밋 시각**을 지원하지 않는다. 직접 만든다.
 
-```js
-    sitemap({
-      filter: (page) =>
-        !page.includes("/og/") &&
-        !page.includes("/search/") &&
-        !page.includes("/404"),
-      serialize: (item) => ({ ...item, changefreq: "weekly" }),
-    }),
+`src/pages/sitemap.xml.ts`:
+
+```ts
+import type { APIRoute } from "astro";
+import { execFileSync } from "node:child_process";
+import { getCollection } from "astro:content";
+import { SITE } from "../lib/seo";
+import { SECTIONS } from "../data/taxonomy";
+import { getHubCounts, hubState } from "../lib/taxonomy";
+import { getTagCounts, TAG_INDEX_THRESHOLD } from "../lib/posts";
+
+/** 해당 파일의 마지막 커밋 시각. 실패하면 null을 돌려 date로 대체한다. */
+function lastCommitDate(file: string): Date | null {
+  try {
+    const out = execFileSync("git", ["log", "-1", "--format=%cI", "--", file], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    return out ? new Date(out) : null;
+  } catch {
+    return null;
+  }
+}
+
+interface Entry { loc: string; lastmod: Date; changefreq: string }
+
+export const GET: APIRoute = async () => {
+  const entries: Entry[] = [];
+
+  const posts = await getCollection("posts");
+  for (const post of posts) {
+    if (post.data.noindex) continue;
+    const file = `src/content/posts/${post.id}.md`;
+    entries.push({
+      loc: post.data.permalink,
+      lastmod: lastCommitDate(file) ?? post.data.date,
+      changefreq: "monthly",
+    });
+  }
+
+  const newest = posts.reduce<Date>(
+    (acc, p) => (p.data.date > acc ? p.data.date : acc),
+    new Date(0),
+  );
+
+  entries.push({ loc: "/", lastmod: newest, changefreq: "daily" });
+  entries.push({ loc: "/about/", lastmod: newest, changefreq: "monthly" });
+  entries.push({ loc: "/tags/", lastmod: newest, changefreq: "weekly" });
+
+  const counts = await getHubCounts();
+  for (const section of SECTIONS) {
+    const sectionPosts = posts.filter((p) => p.data.section === section.id && !p.data.noindex);
+    // 글이 없는 섹션은 noindex이므로 사이트맵에서도 뺀다
+    if (sectionPosts.length > 0) {
+      entries.push({ loc: `/${section.id}/`, lastmod: newest, changefreq: "weekly" });
+    }
+    for (const hub of section.hubs) {
+      // open 상태 허브만 색인 대상 (스펙 6.4)
+      if (hubState(counts.get(`${section.id}/${hub.id}`) ?? 0) !== "open") continue;
+      entries.push({ loc: `/${section.id}/${hub.id}/`, lastmod: newest, changefreq: "weekly" });
+    }
+  }
+
+  for (const [tag, count] of await getTagCounts()) {
+    if (count < TAG_INDEX_THRESHOLD) continue;
+    entries.push({ loc: `/tags/${encodeURIComponent(tag)}/`, lastmod: newest, changefreq: "weekly" });
+  }
+
+  const body = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries
+  .map(
+    (e) => `  <url>
+    <loc>${new URL(e.loc, SITE.url).href}</loc>
+    <lastmod>${e.lastmod.toISOString()}</lastmod>
+    <changefreq>${e.changefreq}</changefreq>
+  </url>`,
+  )
+  .join("\n")}
+</urlset>
+`;
+
+  return new Response(body, { headers: { "Content-Type": "application/xml; charset=utf-8" } });
+};
 ```
 
-`@astrojs/sitemap`은 기본으로 `sitemap-index.xml`을 만든다. 기존 경로가 `/sitemap.xml`이므로 옵션을 지정한다:
-
-```js
-    sitemap({
-      filename: "sitemap.xml",
-      filter: (page) => !page.includes("/og/") && !page.includes("/search/") && !page.includes("/404"),
-      serialize: (item) => ({ ...item, changefreq: "weekly" }),
-    }),
-```
+`/og/`, `/search/`, `/404`는 애초에 추가하지 않으므로 필터가 필요 없다. `noindex` 글과 닫힌 허브, 3편 미만 태그가 빠지는 것이 색인 정책(스펙 §6.4, §6.10)과 정확히 일치한다.
 
 - [ ] **Step 3: Jekyll 잔재 제거**
 
@@ -2972,7 +3040,7 @@ const fs=require('fs');
 const xml=fs.readFileSync('dist/sitemap.xml','utf8');
 const locs=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
 console.log('사이트맵 URL 수:',locs.length);
-if(locs.some(u=>u.includes('/og/'))) throw new Error('OG 이미지가 사이트맵에 포함됨');
+if(locs.some(u=>u.includes('/og/')||u.includes('/search/'))) throw new Error('색인 제외 대상이 사이트맵에 포함됨');
 const map=require('./src/data/url-map.json');
 const missing=map.filter(e=>!locs.includes('https://umanking.github.io'+e.url));
 if(missing.length) throw new Error('사이트맵 누락 '+missing.length+'건: '+missing[0].url);
