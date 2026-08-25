@@ -25,7 +25,7 @@ image: /images/spring.png
 ```properties
 alice.name=alice
 alice.age=${random.int(20,40)} //랜덤한 값으로 설정됨
-alice.fullName=${alice.name} Han //문자열을 추가해도 됨
+alice.fullName=${alice.name} Kim //문자열을 추가해도 됨
 ```
 
 `alice` 라는 prefix로 설정하고, `name`, `age`, `fullName` 속성의 값을 설정했다. 실제 코드에서 사용할 때는 다음과 같다.
