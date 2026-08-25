@@ -67,5 +67,6 @@ export const GET: APIRoute = async ({ props }) => {
   );
 
   const png = new Resvg(svg, { fitTo: { mode: "width", value: 1200 } }).render().asPng();
-  return new Response(png, { headers: { "Content-Type": "image/png" } });
+  // Buffer를 그대로 넘기면 BodyInit 타입에 맞지 않는다. Uint8Array로 감싼다.
+  return new Response(new Uint8Array(png), { headers: { "Content-Type": "image/png" } });
 };

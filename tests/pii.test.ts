@@ -11,11 +11,6 @@ const read = (f: string) => readFileSync(join(DIR, f), "utf8");
 const DEFERRED_EXAMPLE_REPO_LINKS = 10; // github.com/umanking/... 예제 저장소 링크
 const DEFERRED_MEDIUM_LINKS = 1; // medium.com/@umanking 링크
 
-// 경력 연차 표현이 남아 있는 것으로 이미 확인된 노인덱스 회고글.
-// noindex 처리(검색 미노출)로 이미 완화된 상태이며, 본문 재작성은 이 Task 범위 밖이다.
-// 상세: src/content/posts/2021-07-04-2021-half-year-retrospective.md:135 ("지금 4년차정도 되니까")
-const CAREER_YEAR_EXCEPTION_FILES = new Set(["2021-07-04-2021-half-year-retrospective.md"]);
-
 describe("본문 개인정보 비노출", () => {
   it("로컬 홈 경로에 사용자명이 남아 있지 않다", () => {
     const hits = files.filter((f) => /\/Users\/andrew/i.test(read(f)));
@@ -70,10 +65,9 @@ describe("본문 개인정보 비노출", () => {
     expect(offenders).toEqual([]);
   });
 
-  it("경력 연차 표현이 알려진 예외 밖에서 등장하지 않는다", () => {
+  it("경력 연차 표현이 등장하지 않는다", () => {
     const offenders: string[] = [];
     for (const f of files) {
-      if (CAREER_YEAR_EXCEPTION_FILES.has(f)) continue;
       const m = read(f).match(/\d+\s*년\s*차/);
       if (m) offenders.push(`${f}: ${m[0]}`);
     }
@@ -222,12 +216,9 @@ describe.runIf(existsSync("dist"))("빌드 산출물 개인정보 비노출", ()
     expect(hits.slice(0, 5)).toEqual([]);
   });
 
-  it("경력 연차 표현이 알려진 예외 밖에서 노출되지 않는다", () => {
+  it("경력 연차 표현이 노출되지 않는다", () => {
     const offenders: string[] = [];
     for (const f of distFiles) {
-      // 노인덱스 회고글(src/content/posts/2021-07-04-2021-half-year-retrospective.md)의
-      // 빌드 경로만 예외로 둔다. noindex 처리로 검색 노출은 이미 막혀 있다.
-      if (/2021\/07\/04\/2021-half-year-retrospective/.test(f)) continue;
       const m = readDist(f).match(/\d+\s*년\s*차/);
       if (m) offenders.push(`${f}: ${m[0]}`);
     }
