@@ -846,14 +846,33 @@ function guessLevel(title, body) {
   return body.length > 6000 ? "심화" : "중급";
 }
 
+// 부분문자열 매칭은 오탐을 대량 생산한다. 실측: `ts`는 implements/comments/Tests에
+// 걸려 146편 중 77편에, `js`는 json 때문에 49편에 매칭된다(실제 JS 글은 27편).
+// ASCII 키워드는 단어 경계를 강제하고, 한글 키워드는 경계 개념이 다르므로 includes를 쓴다.
+const matcherCache = new Map();
+function matcher(kw) {
+  if (matcherCache.has(kw)) return matcherCache.get(kw);
+  const k = kw.toLowerCase();
+  let fn;
+  if (/^[a-z0-9][a-z0-9.\-+ ]*$/.test(k)) {
+    const escaped = k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, "i");
+    fn = (text) => re.test(text);
+  } else {
+    fn = (text) => text.includes(k);
+  }
+  matcherCache.set(kw, fn);
+  return fn;
+}
+
 function scoreHub(hub, haystack) {
   let score = 0;
   for (const kw of hub.keywords) {
-    const k = kw.toLowerCase();
-    // 태그·제목에 정확히 등장하면 가중치를 크게 준다
-    if (haystack.title.includes(k)) score += 10;
-    if (haystack.tags.includes(k)) score += 8;
-    if (haystack.body.includes(k)) score += 1;
+    const hit = matcher(kw);
+    // 제목·태그 일치에 큰 가중치를 준다. 본문은 보조 신호일 뿐이다.
+    if (hit(haystack.title)) score += 10;
+    if (haystack.tags.some((t) => hit(t))) score += 8;
+    if (hit(haystack.body)) score += 1;
   }
   return score;
 }
@@ -892,7 +911,7 @@ for (const file of readdirSync(DIR).filter((f) => f.endsWith(".md"))) {
   const hubDef = SECTIONS.find((s) => s.id === best.section).hubs.find((h) => h.id === best.hub);
   const merged = new Set([...(data.tags ?? []).map((t) => String(t).toLowerCase())]);
   for (const kw of hubDef.keywords) {
-    if (haystack.title.includes(kw.toLowerCase()) && !kw.includes(" ")) merged.add(kw.toLowerCase());
+    if (!kw.includes(" ") && matcher(kw)(haystack.title)) merged.add(kw.toLowerCase());
   }
   data.tags = [...merged].sort();
 
@@ -935,6 +954,15 @@ echo "=== 난이도별 ==="; grep -h "^level:" src/content/posts/*.md | sort | u
 기대 근사치 (스펙 §6.2 기준): `backend` 60~70편, `web` 25~35편, `infra` 25~35편, `data` 12~18편. `architecture`/`ai`/`news`는 0에 가까워야 정상이다.
 
 크게 벗어나면 `taxonomy.ts`의 `keywords`를 조정하고 `npm run classify`로 다시 실행한다.
+
+단어 경계 매칭이 실제로 오탐을 막았는지 확인한다.
+
+```bash
+echo "web 섹션으로 분류된 글: $(grep -l '^section: web' src/content/posts/*.md | wc -l)편"
+echo "  (실제 JS/TS/Node 관련은 약 30편. 50편을 넘으면 오탐이 남아 있다는 뜻)"
+echo "typescript 허브: $(grep -l '^hub: typescript' src/content/posts/*.md | wc -l)편"
+echo "  (TypeScript 전용 글은 1편뿐이다. 5편을 넘으면 ts 부분문자열 오탐이다)"
+```
 
 - [ ] **Step 4: 저신뢰 항목 수동 검수**
 
