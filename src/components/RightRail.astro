@@ -1,7 +1,9 @@
 ---
+import AdSlot from "./AdSlot.astro";
+
 export interface RailHub { href: string; label: string; count: number }
-interface Props { title: string; hubs: RailHub[] }
-const { title, hubs } = Astro.props;
+interface Props { title: string; hubs: RailHub[]; hasAds?: boolean }
+const { title, hubs, hasAds = true } = Astro.props;
 ---
 
 <div class="widget">
@@ -21,9 +23,7 @@ const { title, hubs } = Astro.props;
     <p class="widget__empty">아직 집계된 주제가 없습니다.</p>
   )}
 </div>
-<div class="widget widget--ad" aria-hidden="true">
-  <span>광고 자리</span>
-</div>
+{hasAds && <AdSlot slot="4527764067" minHeight={250} />}
 
 <style>
   .widget__empty { margin: 0; color: var(--fg-muted); font-size: 0.85rem; }

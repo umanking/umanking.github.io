@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import AdSlot from "../components/AdSlot.astro";
 import PostCard from "../components/PostCard.astro";
 import { getAllPosts, getListedPosts } from "../lib/posts";
 import { getNavTree } from "../lib/taxonomy";
@@ -53,7 +54,12 @@ const jsonLd = [
 
   <section>
     <h2>최신 글</h2>
-    {latest.map((post) => <PostCard post={post} />)}
+    {latest.map((post, i) => (
+      <>
+        <PostCard post={post} />
+        {i === 4 && <AdSlot slot="8849349779" format="fluid" minHeight={240} />}
+      </>
+    ))}
   </section>
 </Base>
 

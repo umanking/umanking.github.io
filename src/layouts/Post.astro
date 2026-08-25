@@ -1,6 +1,7 @@
 ---
 import type { MarkdownHeading } from "astro";
 import Base from "./Base.astro";
+import AdSlot from "../components/AdSlot.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import Toc from "../components/Toc.astro";
 import TypeBadge from "../components/TypeBadge.astro";
@@ -75,6 +76,7 @@ const jsonLd = [
     <Toc headings={headings} />
     <SeriesNav post={post} />
     <slot />
+    <AdSlot slot="9532678736" minHeight={300} />
     <RelatedPosts post={post} />
     <Comments />
   </article>

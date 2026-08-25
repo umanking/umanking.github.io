@@ -56,7 +56,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .widget__list a { flex: 1; padding: 6px 8px; border-radius: 6px; text-decoration: none; color: var(--fg); font-size: 0.88rem; display: flex; justify-content: space-between; gap: var(--space-2); }
 .widget__list a:hover { background: var(--bg-subtle); color: var(--accent); }
 .widget__count { color: var(--fg-muted); }
-.widget--ad { display: flex; align-items: center; justify-content: center; min-height: 250px; color: var(--fg-muted); font-size: 0.85rem; border-style: dashed; }
 
 /* 라이트/다크 아이콘 스위치: data-theme 구조는 tokens.css와 동일하게 맞춘다 */
 .icon-moon { display: none; }
