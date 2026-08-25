@@ -31,35 +31,28 @@ const titleTag =
 ---
 
 <Base title={titleTag} description={post.data.description} canonical={canonical} noindex={post.data.noindex}>
-  <div class="layout">
-    <article class="post prose">
-      <Breadcrumb items={crumbs} />
-      <h1>{post.data.title}</h1>
-      <p class="post__meta">
-        <TypeBadge type={post.data.type} />
-        <LevelBadge level={post.data.level} />
-        <time datetime={post.data.date.toISOString()}>
-          {post.data.date.toLocaleDateString("ko-KR")}
-        </time>
-        <span>· 약 {minutes}분</span>
-      </p>
+  <article class="post prose">
+    <Breadcrumb items={crumbs} />
+    <h1>{post.data.title}</h1>
+    <p class="post__meta">
+      <TypeBadge type={post.data.type} />
+      <LevelBadge level={post.data.level} />
+      <time datetime={post.data.date.toISOString()}>
+        {post.data.date.toLocaleDateString("ko-KR")}
+      </time>
+      <span>· 약 {minutes}분</span>
+    </p>
 
-      <SeriesNav post={post} />
-      <slot />
-      <RelatedPosts post={post} />
-      <Comments />
-    </article>
-
-    <aside class="sidebar">
-      <Toc headings={headings} />
-    </aside>
-  </div>
+    <Toc headings={headings} />
+    <SeriesNav post={post} />
+    <slot />
+    <RelatedPosts post={post} />
+    <Comments />
+  </article>
 </Base>
 
 <style>
-  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: var(--space-5); align-items: start; padding-top: var(--space-4); }
-  .post { min-width: 0; }
+  .post { min-width: 0; padding-top: var(--space-4); }
   .post h1 { font-size: 1.75rem; line-height: 1.4; margin: 0 0 var(--space-2); }
   .post__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); color: var(--fg-muted); font-size: 0.85rem; margin: 0 0 var(--space-4); }
-  @media (max-width: 1024px) { .layout { grid-template-columns: minmax(0, 1fr); } .sidebar { display: none; } }
 </style>

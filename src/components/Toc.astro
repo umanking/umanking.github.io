@@ -6,23 +6,23 @@ const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
 {items.length >= 3 && (
-  <nav class="toc" aria-label="목차">
-    <p class="toc__title">목차</p>
+  <details class="toc">
+    <summary class="toc__title">목차 ({items.length}개 항목)</summary>
     <ul>
       {items.map((h) => (
         <li class={`toc__d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
       ))}
     </ul>
-  </nav>
+  </details>
 )}
 
 <style>
-  .toc { position: sticky; top: 80px; font-size: 0.86rem; }
-  .toc__title { font-weight: 600; margin: 0 0 var(--space-2); }
-  .toc ul { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--border); }
+  .toc { font-size: 0.86rem; border: 1px solid var(--border); border-radius: 8px; padding: var(--space-2) var(--space-3); margin: 0 0 var(--space-4); }
+  .toc__title { font-weight: 600; cursor: pointer; }
+  .toc__title:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toc ul { list-style: none; padding: 0; margin: var(--space-2) 0 0; border-left: 2px solid var(--border); }
   .toc li { padding: 3px 0 3px var(--space-3); }
   .toc__d3 { padding-left: var(--space-4); }
   .toc a { color: var(--fg-muted); text-decoration: none; }
   .toc a:hover { color: var(--accent); }
-  @media (max-width: 1024px) { .toc { display: none; } }
 </style>
