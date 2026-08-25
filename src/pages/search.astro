@@ -19,30 +19,13 @@ import { absolute } from "../lib/seo";
 
   <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
   <script is:inline src="/pagefind/pagefind-ui.js"></script>
-  <script is:inline>
-    window.addEventListener("DOMContentLoaded", () => {
-      const params = new URLSearchParams(location.search);
-      new PagefindUI({
-        element: "#search",
-        showSubResults: true,
-        showImages: false,
-        translations: {
-          placeholder: "검색어를 입력하세요",
-          zero_results: "'[SEARCH_TERM]'에 대한 결과가 없습니다",
-          many_results: "'[SEARCH_TERM]' 검색 결과 [COUNT]건",
-          one_result: "'[SEARCH_TERM]' 검색 결과 1건",
-        },
-      });
-      const q = params.get("q");
-      if (q) {
-        const input = document.querySelector("#search input");
-        if (input) {
-          input.value = q;
-          input.dispatchEvent(new Event("input", { bubbles: true }));
-        }
-      }
-    });
-  </script>
+  {/*
+    DOMContentLoaded로 감싸지 않는다. 이 <script>는 클래식 스크립트라 문서 순서대로
+    실행되고, 위의 #search div와 pagefind-ui.js(동기 로드) 뒤에 위치하므로 이
+    지점에서 이미 DOM과 PagefindUI 전역이 준비돼 있다. 래퍼를 없애면 기능 손실
+    없이 인라인 JS 예산(2048B)을 지킬 수 있다.
+  */}
+  <script is:inline>new PagefindUI({element:"#search",showSubResults:true,showImages:false,translations:{placeholder:"검색어를 입력하세요",zero_results:"'[SEARCH_TERM]'에 대한 결과가 없습니다",many_results:"'[SEARCH_TERM]' 검색 결과 [COUNT]건",one_result:"'[SEARCH_TERM]' 검색 결과 1건"}});const q=new URLSearchParams(location.search).get("q");if(q){const i=document.querySelector("#search input");if(i){i.value=q;i.dispatchEvent(new Event("input",{bubbles:true}))}}</script>
 
   <style>
     /* pagefind-ui가 비동기로 초기화되기 전까지 자리를 확보해 CLS를 막는다 */
