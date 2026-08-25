@@ -1,0 +1,10 @@
+---
+import type { PostLevel } from "../data/taxonomy";
+interface Props { level: PostLevel }
+const { level } = Astro.props;
+---
+<span class="level">{level}</span>
+
+<style>
+  .level { font-size: 0.75rem; color: var(--fg-muted); }
+</style>

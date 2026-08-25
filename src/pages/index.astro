@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import PostCard from "../components/PostCard.astro";
 import { getAllPosts } from "../lib/posts";
 
 const posts = await getAllPosts();
@@ -15,55 +16,25 @@ const years = [...postsByYear.keys()].sort((a, b) => b - a);
 ---
 
 <Base title="CodeNexus" description="CodeNexus 블로그 글 전체 목록" canonical={canonical}>
-  <h1>CodeNexus</h1>
-  <p class="notice">
-    이 페이지는 사이트 개편 작업 중 임시로 만든 전체 글 목록입니다. 정식 홈 화면은 추후
-    별도로 제작됩니다.
-  </p>
+  <h1 class="feed-title">최신 글</h1>
 
   {
     years.map((year) => (
-      <section>
+      <section class="feed-year">
         <h2>{year}</h2>
-        <ul class="post-list">
-          {postsByYear.get(year)!.map((post) => (
-            <li>
-              <a href={post.data.permalink}>{post.data.title}</a>
-              <p class="description">{post.data.description}</p>
-              <time datetime={post.data.date.toISOString()}>
-                {post.data.date.toLocaleDateString("ko-KR")}
-              </time>
-            </li>
-          ))}
-        </ul>
+        {postsByYear.get(year)!.map((post) => <PostCard post={post} />)}
       </section>
     ))
   }
 </Base>
 
 <style>
-  .notice {
+  .feed-title { margin-bottom: var(--space-4); font-size: 1.5rem; }
+  .feed-year h2 {
+    margin: var(--space-5) 0 0;
+    font-size: 1rem;
     color: var(--fg-muted);
-    font-size: 0.9em;
-    padding: var(--space-3);
-    background: var(--bg-subtle);
-    border-radius: 8px;
+    font-weight: 600;
   }
-  .post-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-5);
-  }
-  .post-list li {
-    padding: var(--space-3) 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .post-list .description {
-    color: var(--fg-muted);
-    margin: var(--space-1) 0;
-  }
-  .post-list time {
-    color: var(--fg-muted);
-    font-size: 0.9em;
-  }
+  .feed-year:first-of-type h2 { margin-top: 0; }
 </style>

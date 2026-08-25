@@ -1,0 +1,15 @@
+---
+import { TYPE_LABELS, type PostType } from "../data/taxonomy";
+interface Props { type: PostType }
+const { type } = Astro.props;
+---
+<span class={`badge badge--${type}`}>{TYPE_LABELS[type]}</span>
+
+<style>
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; line-height: 1.6; border: 1px solid var(--border); color: var(--fg-muted); }
+  .badge--tutorial { border-color: var(--badge-tutorial); color: var(--badge-tutorial); }
+  .badge--reference { border-color: var(--badge-reference); color: var(--badge-reference); }
+  .badge--troubleshooting { border-color: var(--badge-troubleshooting); color: var(--badge-troubleshooting); }
+  .badge--deepdive { border-color: var(--badge-deepdive); color: var(--badge-deepdive); }
+  .badge--news { border-color: var(--badge-news); color: var(--badge-news); }
+</style>

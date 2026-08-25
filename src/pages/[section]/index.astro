@@ -1,0 +1,61 @@
+---
+import Hub from "../../layouts/Hub.astro";
+import { SECTIONS } from "../../data/taxonomy";
+import { getPostsBySection } from "../../lib/posts";
+import { getHubCounts, hubState } from "../../lib/taxonomy";
+
+export async function getStaticPaths() {
+  return SECTIONS.map((section) => ({ params: { section: section.id }, props: { section } }));
+}
+
+const { section } = Astro.props;
+const posts = await getPostsBySection(section.id);
+const counts = await getHubCounts();
+const hubs = section.hubs
+  .map((h) => ({ ...h, count: counts.get(`${section.id}/${h.id}`) ?? 0 }))
+  .filter((h) => hubState(h.count) !== "closed")
+  .sort((a, b) => b.count - a.count);
+
+const canonical = new URL(`/${section.id}/`, Astro.site).href;
+// 글이 없는 섹션은 색인하지 않는다 (스펙 6.4)
+const noindex = posts.length === 0;
+---
+
+<Hub
+  title={section.label}
+  pageTitle={`${section.label} | CodeNexus`}
+  description={section.description}
+  lead={section.description}
+  canonical={canonical}
+  noindex={noindex}
+  posts={posts}
+>
+  <div slot="intro">
+    {hubs.length > 0 && (
+      <section class="hublist-wrap">
+        <h2>세부 주제</h2>
+        <ul class="hublist">
+          {hubs.map((hub) => (
+            <li>
+              <a href={`/${section.id}/${hub.id}/`}>{hub.label}</a>
+              <span class="hublist__count">{hub.count}편</span>
+              <p>{hub.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+    {posts.length === 0 && (
+      <p class="hub-empty">이 섹션은 준비 중입니다. 곧 글이 추가됩니다.</p>
+    )}
+  </div>
+</Hub>
+
+<style>
+  .hublist { list-style: none; padding: 0; }
+  .hublist li { padding: var(--space-3) 0; border-bottom: 1px solid var(--border); }
+  .hublist a { font-weight: 600; }
+  .hublist__count { color: var(--fg-muted); font-size: 0.85rem; margin-left: var(--space-2); }
+  .hublist p { margin: var(--space-1) 0 0; color: var(--fg-muted); font-size: 0.9rem; }
+  .hub-empty { padding: var(--space-3); background: var(--bg-subtle); border-radius: 8px; color: var(--fg-muted); }
+</style>

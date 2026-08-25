@@ -1,0 +1,90 @@
+---
+import Base from "./Base.astro";
+import PostCard from "../components/PostCard.astro";
+import RightRail from "../components/RightRail.astro";
+import type { Post } from "../lib/posts";
+
+interface RailHub { href: string; label: string; count: number }
+
+interface Props {
+  title: string;
+  pageTitle: string;
+  description: string;
+  lead: string;
+  canonical: string;
+  noindex?: boolean;
+  posts: Post[];
+  /** 우측 레일 위젯. 넘기지 않으면 Base의 기본(사이트 전체 인기 주제)을 그대로 쓴다. */
+  rightRailTitle?: string;
+  rightRailHubs?: RailHub[];
+}
+const {
+  title,
+  pageTitle,
+  description,
+  lead,
+  canonical,
+  noindex = false,
+  posts,
+  rightRailTitle,
+  rightRailHubs,
+} = Astro.props;
+
+// 학습 순서: 입문 → 중급 → 심화, 같은 난이도 안에서는 오래된 글부터
+const LEVEL_ORDER = { 입문: 0, 중급: 1, 심화: 2 } as const;
+const learningPath = [...posts].sort(
+  (a, b) =>
+    LEVEL_ORDER[a.data.level] - LEVEL_ORDER[b.data.level] ||
+    a.data.date.getTime() - b.data.date.getTime(),
+);
+---
+
+<Base title={pageTitle} description={description} canonical={canonical} noindex={noindex}>
+  <div class="hub">
+    <h1 class="hub__title">{title}</h1>
+    <p class="hub__lead">{lead}</p>
+
+    <slot name="intro" />
+
+    {learningPath.length > 0 && (
+      <section class="hub__path">
+        <h2>학습 순서</h2>
+        <p class="hub__hint">난이도 순으로 읽으면 흐름이 이어집니다.</p>
+        <ol>
+          {learningPath.map((post) => (
+            <li>
+              <a href={post.data.permalink}>{post.data.title}</a>
+              <span class="hub__level">{post.data.level}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    <section class="hub__all">
+      <h2>전체 글 {posts.length}편</h2>
+      <div class="hub__cards">
+        {posts.map((post) => <PostCard post={post} />)}
+      </div>
+    </section>
+  </div>
+
+  {rightRailHubs && (
+    <Fragment slot="right-rail">
+      <RightRail title={rightRailTitle} hubs={rightRailHubs} />
+    </Fragment>
+  )}
+</Base>
+
+<style>
+  .hub__title { margin-bottom: var(--space-1); font-size: 1.7rem; letter-spacing: -0.01em; }
+  .hub__lead { color: var(--fg-muted); font-size: 1.02rem; margin-top: 0; }
+  .hub__path { margin-top: var(--space-4); padding: var(--space-3); border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+  .hub__path h2 { margin-top: 0; }
+  .hub__path ol { padding-left: 1.3em; margin-bottom: 0; }
+  .hub__path li { margin-bottom: var(--space-1); }
+  .hub__hint { color: var(--fg-muted); font-size: 0.88rem; margin-top: -8px; }
+  .hub__level { color: var(--fg-muted); font-size: 0.8rem; margin-left: var(--space-2); }
+  .hub__all { margin-top: var(--space-5); }
+  .hub__cards { margin-top: var(--space-2); }
+</style>
