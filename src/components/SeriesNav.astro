@@ -1,0 +1,33 @@
+---
+import { getAllPosts, type Post } from "../lib/posts";
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const series = post.data.series;
+
+const siblings = series
+  ? (await getAllPosts())
+      .filter((p) => p.data.series?.name === series.name)
+      .sort((a, b) => (a.data.series!.order ?? 0) - (b.data.series!.order ?? 0))
+  : [];
+---
+
+{series && siblings.length > 1 && (
+  <nav class="series" aria-label="시리즈 목차">
+    <p class="series__title">{series.name} 시리즈</p>
+    <ol>
+      {siblings.map((p) => (
+        <li aria-current={p.id === post.id ? "page" : undefined}>
+          {p.id === post.id ? <span>{p.data.title}</span> : <a href={p.data.permalink}>{p.data.title}</a>}
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<style>
+  .series { margin: var(--space-4) 0; padding: var(--space-3); background: var(--bg-subtle); border-radius: 8px; font-size: 0.9rem; }
+  .series__title { font-weight: 600; margin: 0 0 var(--space-2); }
+  .series ol { margin: 0; padding-left: 1.3em; }
+  .series li[aria-current] span { font-weight: 600; }
+</style>
