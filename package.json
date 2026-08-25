@@ -1,0 +1,28 @@
+{
+  "name": "codenexus",
+  "version": "1.0.0",
+  "description": "Atega is a fast and creative theme for creating a minimal blog for Jekyll. This theme was created for those who want to create a personal blog with simple functions and effects, who appreciate simplicity and functionality. You can start sharing your stories today.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umanking/umanking.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umanking/umanking.github.io/issues"
+  },
+  "homepage": "https://github.com/umanking/umanking.github.io#readme",
+  "type": "module",
+  "private": "true",
+  "devDependencies": {
+    "vitest": "^3.2.7"
+  }
+}
