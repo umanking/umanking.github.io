@@ -12,7 +12,7 @@ level: 중급
 tags:
   - javascript
   - js
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 ## **소개**
 

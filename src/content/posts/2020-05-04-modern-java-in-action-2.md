@@ -194,7 +194,7 @@ List<Apple> redAndHeavyApples = filterApples(inventory, new ApplePredicate(){
 List<Apple> redAndHeavyApples = filterApples(inventory, (Apple apple) -> RED.equals(apple.getColor()));
 ```
 
-![](https://user-images.githubusercontent.com/28615416/80940188-f12ff500-8e19-11ea-98cc-c5c7347e51c5.png)
+![](/images/posts/022cf0a131b7.png)
 
 지금 까지 살펴본 내용을 도식화 하면 위와 같다. `값 파라미터화` 와 `동작 파라미터화`는 뻣뻣함과 유연함으로 분류할 수 있다. 요구사항에 변화에 유연하게 대응할 수 있는게 가장 큰 장점이다. 그리고 `동작파라미터화` 는 왼쪽 클래스 -> 익명 클래스 -> 람다 순으로 발전해 나갈 수 있다. 특히나 나중에 소개하겠지만 디자인 패턴에서 보통은 클래스를 정의하고, 인스턴스화 시켜서 (런타임에) 파라미터로 넘겨주는 경우가 많은데 이를 람다식으로 대체할 수 있다.
 

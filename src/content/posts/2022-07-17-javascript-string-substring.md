@@ -9,7 +9,7 @@ type: reference
 level: 중급
 tags:
   - javascript
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 
 Javascript 문자열 자르기는 `split()`, `substr()`, `substring()`, `slice()`를 사용할 수 있습니다.

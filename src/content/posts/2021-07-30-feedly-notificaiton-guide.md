@@ -13,7 +13,7 @@ tags:
   - rss
   - tip
 image: >-
-  https://is4-ssl.mzstatic.com/image/thumb/Purple114/v4/30/34/02/30340262-7832-1c60-2ad0-e743d167eb80/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/1200x630wa.png
+  /images/posts/627ffcebea36.png
 ---
 ## 1. 들어가며
 
@@ -31,10 +31,10 @@ RSS 피드를 구독하는 시스템으로, Feedly를 이용하면 자신이 구
 
 ## 3. 사용방법
 
-![스크린샷 2021-07-30 오후 3 15 39](https://user-images.githubusercontent.com/28615416/127609696-c84a9f67-07ea-4fde-bcda-3ddc85750342.png)
+![스크린샷 2021-07-30 오후 3 15 39](/images/posts/e856bf1189e9.png)
 *Feedly 사이트 추가하기*
 
-![스크린샷 2021-07-30 오후 3 20 11](https://user-images.githubusercontent.com/28615416/127609761-347aa18e-e533-4d26-b4b7-ad96260774df.png)
+![스크린샷 2021-07-30 오후 3 20 11](/images/posts/2a2db09797c7.png)
 *자신이 구독할 WebSite 등록하기*
 
 1. [feedly.com](https://feedly.com/) 사이트에 접속해서 로그인을 한다. 
@@ -51,7 +51,7 @@ RSS 피드를 구독하는 시스템으로, Feedly를 이용하면 자신이 구
 
 ## 4. 구글 크롬 창에서 확인
 
-![스크린샷 2021-07-30 오후 3 15 58](https://user-images.githubusercontent.com/28615416/127609691-5dcc9de5-752c-4e81-9fc7-ca8c7cec60a6.png)
+![스크린샷 2021-07-30 오후 3 15 58](/images/posts/d0103abb9583.png)
 *구글 크롬 창에서 확인* 
 
 Chrome 우측 상단에 Feedly Notifier를 통해서 등록될때마다 알림도 오고, 읽지 않은 글들에 대해서는 Counting한 값들이 표시된다. 

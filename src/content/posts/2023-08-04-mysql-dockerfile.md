@@ -13,7 +13,7 @@ tags:
   - docker
   - dockerfile
   - mysql
-image: 'https://logos-world.net/wp-content/uploads/2021/02/Docker-Logo.png'
+image: '/images/posts/d5ffb56c1e34.png'
 ---
 ## 소개
 

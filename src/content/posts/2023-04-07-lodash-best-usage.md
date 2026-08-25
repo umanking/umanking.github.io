@@ -13,7 +13,7 @@ tags:
   - js
   - lodash
 image: >-
-  https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Lodash.svg/1200px-Lodash.svg.png
+  /images/posts/d5cc45fa039d.svg
 ---
 안녕하세요! lodash는 JavaScript 개발자들이 자주 사용하는 유용한 라이브러리 중 하나입니다. 이번 글에서는 lodash의 몇 가지 사용 예제를 소개하겠습니다.
 

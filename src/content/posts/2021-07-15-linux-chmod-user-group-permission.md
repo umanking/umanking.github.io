@@ -11,7 +11,7 @@ tags:
   - chmod
   - linux
   - 리눅스
-image: 'https://blog.kakaocdn.net/dn/bEUX6s/btqAavSzerd/Q8tjjThKJ82PS4HrBFp5Sk/img.png'
+image: '/images/posts/1c39b101fe56.png'
 ---
 리눅스는 멀티 유저 시스템이기 때문에, 파일과 폴더에 관한 권한 관리가 필요하다. 
 

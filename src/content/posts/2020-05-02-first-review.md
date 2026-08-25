@@ -13,7 +13,7 @@ tags:
   - retrospective
   - review
 image: >-
-  https://user-images.githubusercontent.com/28615416/127739492-f817a13a-8dd0-4f5f-b57b-d8fbb0e9028e.png
+  /images/posts/47de0c1b5f77.png
 noindex: true
 ---
 
@@ -49,7 +49,7 @@ Next Step에서 DDD 교육을 들었다. 사실 나는 리팩토링, TDD와 같�
 
 ### 나의 잔디밭
 
-![](https://user-images.githubusercontent.com/28615416/80854591-4d591480-8c74-11ea-8f1e-56551b86189c.png)
+![](/images/posts/adbdfe82e50e.png)
 
 2020년의 잔디밭이다. 잔디밭을 녹색으로 만드는 것이 목표는 아니었다. 가짜 목표에 집중해서 쓸데 없는데 에너지를 낭비하고 싶지는 않았다. 내가 하는 과정중에 자연스럽게 녹색이 채워지도록 `시스템`을 만드는 것이 더 중요했다. 그래서 여러 가지 시도를 했다. Notion의 칸반보드, Trello의 칸반보드 ...
 
@@ -57,13 +57,13 @@ Next Step에서 DDD 교육을 들었다. 사실 나는 리팩토링, TDD와 같�
 
 하지만 모든 프로젝트를 담을 수 없었기 때문에 Github에서 제공해주는 Project별 칸반보드를 활용하기로 했다.
 
-![](https://user-images.githubusercontent.com/28615416/80854586-492cf700-8c74-11ea-93c8-8ab52cb15e7e.png)
+![](/images/posts/e93ed58f9f0f.png)
 
 이 블로그에 앞으로 추가했으면 좋을 것들을 To Do로 작성했다. 이래야지, 지속적으로 프로젝트에 대한 애정도 생길것 같고, 스스로 동기 부여도 잘 될 것 같다!
 
 ### Github TechBookStudy 조직 개설
 
-![](https://user-images.githubusercontent.com/28615416/80854677-06b7ea00-8c75-11ea-9db9-04ea698787cc.png)
+![](/images/posts/1a3390307597.png)
 
 Github에 TechBookStudy 팀을 만들었다. 책으로 학습한 내용을 기록하는 Repo를 따로 관리하고 계속해서 이어나갈 생각이다. 당연히 나 혼자만의 ㅠㅠ 조직이지만, 🚰 물을 계속 주면 잘 자라겠지?
 일단은 private 레포지토리로 시작하고, 하나씩 완성(?) 정리될 때 마다 open 하는 쪽으로 진행할 것

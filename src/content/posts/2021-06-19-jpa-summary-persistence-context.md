@@ -12,7 +12,7 @@ tags:
   - orm
   - 영속성
 image: >-
-  https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png
+  /images/posts/f662add0a1bb.png
 ---
 > 본 글은, [자바 ORM 표준 JPA 프로그래밍(김영한님)](http://www.yes24.com/Product/Goods/19040233) 책을 요약 정리한 포스팅입니다.
 
@@ -57,7 +57,7 @@ image: >-
 - 준영속(detached): 저장되었다가 분리된 상태
 - 삭제(remove): 삭제된 상태
 
-<img src="https://media.vlpt.us/post-images/conatuseus/3861eed0-d482-11e9-9b0f-dd1a4f570095/image.png" style="zoom:50%;" />
+<img src="/images/posts/16230a677c59.png" style="zoom:50%;" />
 *출처: 자바 JPA 프로그래밍(김영한)*
 
 ## 영속성 컨텍스트의 특징

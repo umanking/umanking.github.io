@@ -10,7 +10,7 @@ level: 중급
 tags:
   - linux
   - 리눅스
-image: 'https://blog.kakaocdn.net/dn/bEUX6s/btqAavSzerd/Q8tjjThKJ82PS4HrBFp5Sk/img.png'
+image: '/images/posts/1c39b101fe56.png'
 ---
 로컬에서 리모트 서버로 파일을 복사하는 SCP에 대해서 알아보자.
 

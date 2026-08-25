@@ -9,7 +9,7 @@ type: reference
 level: 중급
 tags:
   - npm
-image: 'https://heropy.blog/css/images/vendor_icons/npm.png'
+image: '/images/posts/c92714af681a.png'
 ---
 
 ## Semantic Versioning

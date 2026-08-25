@@ -10,7 +10,7 @@ level: 중급
 tags:
   - vscode
 image: >-
-  https://images.velog.io/images/namtaehyun/post/fe5d86d3-f734-4943-b087-3f3e02b9d5ab/vscode.png
+  /images/posts/38572cc83085.png
 ---
 
 
@@ -33,13 +33,13 @@ nest new nesjs-sample
 
 vscode 좌측 패널에서 Run And Debug 메뉴를 클릭한다. 
 
-<img width="359" alt="1" src="https://user-images.githubusercontent.com/28615416/166870619-32c5ed1e-79b5-47e4-b9ef-e786f61125c6.png">
+<img width="359" alt="1" src="/images/posts/fda6d0707776.png">
 
 `create a lauch.json file` 를 클릭한다. 
 
 
 
-<img width="579" alt="2" src="https://user-images.githubusercontent.com/28615416/166870615-ae97338a-d05f-41c1-b608-441adb7afc75.png">
+<img width="579" alt="2" src="/images/posts/d91271db0db6.png">
 
 - 환경을 chrome, node.. 등등 자신의 환경에 맞게 셋팅한다.  (필자는 `Node.js` 를 선택함)
 - `.vscode`하위폴더에 `launch.json` 파일이 만들어졌다.
@@ -75,14 +75,14 @@ vscode 좌측 패널에서 Run And Debug 메뉴를 클릭한다.
 
 ### 2. Run script로 추가하기 
 
-<img width="199" alt="3" src="https://user-images.githubusercontent.com/28615416/166871328-3826643e-f596-4068-aad1-03be3ee77008.png">
+<img width="199" alt="3" src="/images/posts/fa62418a26ab.png">
 
 - Run and Debug 왼쪽 메뉴에서, 제일 상단에 있는 Select를 클릭
 - Node.js... 를 클릭
 
 
 
-<img width="603" alt="4" src="https://user-images.githubusercontent.com/28615416/166870599-a7c9c1db-c991-4535-a7d4-febc1b4b5180.png">
+<img width="603" alt="4" src="/images/posts/0831c626acb1.png">
 
 `package.json`에 설정되어 있는 스크립트들이 나온다. 이중에서 자신이 실행할 스크립트를 지정한다. 
 

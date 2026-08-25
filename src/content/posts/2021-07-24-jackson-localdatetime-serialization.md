@@ -14,7 +14,7 @@ tags:
   - java
   - spring
 image: >-
-  https://i1.wp.com/blog.fossasia.org/wp-content/uploads/2018/08/serialize.png?fit=706%2C367&ssl=1
+  /images/posts/c50005d33d9a.png
 ---
 
 ## 1. 들어가며 
@@ -48,7 +48,7 @@ image: >-
 ```
 Spring Boot 버전 `2.5.3버전`에, `web` 모듈만 추가했을때, 스타터 종속성에 의하여 `jackson라이브러리`가 같이 추가된다. 
 
-![스크린샷 2021-07-24 오후 5 45 33](https://user-images.githubusercontent.com/28615416/126863019-e2f01852-97ef-4362-9b7c-3b6e5ab15e7a.png)
+![스크린샷 2021-07-24 오후 5 45 33](/images/posts/b7510387a5be.png)
 
 간단한 Event POJO를 만든다.
 

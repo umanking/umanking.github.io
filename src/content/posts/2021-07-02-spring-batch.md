@@ -10,14 +10,13 @@ level: 심화
 tags:
   - spring
   - spring-batch
-image: 'https://blog.kakaocdn.net/dn/OkEs9/btq66VktYuY/Yr3TzVnyJpyuS8fNB5BTYK/img.png'
+image: '/images/posts/5019fe931609.png'
 ---
 ## 1. Spring Batch 프로젝트 
 
 ## 2. 구성요소
 자세한 내용은 [문서](https://docs.spring.io/spring-batch/docs/current/reference/html/domain.html#domainLanguageOfBatch)를 참고하자!
 
-![https://docs.spring.io/spring-batch/docs/current/reference/html/images/spring-batch-reference-model.png](https://docs.spring.io/spring-batch/docs/current/reference/html/images/spring-batch-reference-model.png)
 *Spring Batch 아키텍쳐*
 - JobLauncher: Job를 실행시켜주는 역할
 - JobRepository: Job,Step의 메타데이터를 저장해 주는 저장소 역할
@@ -251,7 +250,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 
 `BatchStatue`는 다음과 같이 여러가지 상태값이 Enum으로 존재한다.
 
-![스크린샷 2021-07-02 오후 6 31 58](https://user-images.githubusercontent.com/28615416/124254211-cba89380-db63-11eb-891e-98dc559e66bd.png)
+![스크린샷 2021-07-02 오후 6 31 58](/images/posts/4ebe4e156914.png)
 
 
 이제 위에서 만든 JdbcCompletionNotifioncationListner를 등록해보자!

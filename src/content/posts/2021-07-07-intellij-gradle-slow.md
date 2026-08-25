@@ -13,10 +13,10 @@ tags:
   - gradle
   - intellij
 image: >-
-  https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg
+  /images/posts/234c7b8edf52.jpg
 ---
 ## 1. Gradle 프로젝트에서 실행시 느리게 실행된다면? 
-![스크린샷 2021-07-07 오후 12 17 34](https://user-images.githubusercontent.com/28615416/124728188-587b9480-df4a-11eb-8043-df2a71986cb9.png)
+![스크린샷 2021-07-07 오후 12 17 34](/images/posts/ce9321fd1ddc.png)
 
 - Buil, Execution, Deployment 
   - Build Tools 

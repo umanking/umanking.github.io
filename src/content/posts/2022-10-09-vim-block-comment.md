@@ -23,7 +23,7 @@ image: >-
 - `norm i<입력문자>`
 - 예: `norm i#`를 입력하고 `엔터`를 치면 multi line 주석이 달린다.
 
-![Screen Shot 2022-10-09 at 2 24 27 PM](https://user-images.githubusercontent.com/28615416/194739621-8e5a458c-03ce-4d7e-95eb-1a74df55e92f.png)
+![Screen Shot 2022-10-09 at 2 24 27 PM](/images/posts/37ef52f6f658.png)
 
 
 ## vim 블럭 지정후, 주석 삭제

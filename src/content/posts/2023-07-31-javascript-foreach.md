@@ -12,7 +12,7 @@ level: 중급
 tags:
   - javascript
   - js
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 JavaScript의 `forEach()`는 배열의 각 요소에 대해 주어진 함수를 호출하는 메서드입니다. `forEach()` 메서드를 사용하면 배열의 모든 요소를 반복하며, 각 요소에 대해 지정된 함수를 실행할 수 있습니다.
 

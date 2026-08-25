@@ -11,7 +11,7 @@ tags:
   - mongodb
   - spring
   - springboot
-image: 'https://miro.medium.com/v2/resize:fit:399/0*arJ82E5eU-0jnT4J.jpg'
+image: '/images/posts/714eb83927bc.jpg'
 ---
 ## 소개
 

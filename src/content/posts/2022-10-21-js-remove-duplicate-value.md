@@ -10,7 +10,7 @@ level: 중급
 tags:
   - javascript
   - js
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 다음과 같이 크게 4가지 방법이 존재한다. 
 - Set 함수를 이용

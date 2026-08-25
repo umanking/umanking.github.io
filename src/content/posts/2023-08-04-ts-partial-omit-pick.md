@@ -13,7 +13,7 @@ tags:
   - ts
   - typescript
 image: >-
-  https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png
+  /images/posts/94c1b28cbda0.svg
 ---
 ## TypeScript의 Partial, Omit, Pick이란 무엇인가요?
 

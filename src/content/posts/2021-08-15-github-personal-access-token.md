@@ -9,7 +9,7 @@ type: troubleshooting
 level: 중급
 tags:
   - git
-image: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+image: '/images/posts/feef95b70a3c.png'
 ---
 ## 1. 들어가며
 
@@ -39,12 +39,12 @@ personal access token 발급방식은 github 공식 문서로 대체 하겠다.
 
 ### 2.2. '키체인 접근' 실행
 
-![스크린샷 2021-08-15 오후 12 55 43](https://user-images.githubusercontent.com/28615416/129466779-86cf48cc-f55f-4ab3-bc7d-accf22031ea7.png)
+![스크린샷 2021-08-15 오후 12 55 43](/images/posts/d23cfe68c80d.png)
 
 ###  2.3. 'github'를 검색 > github.com를 찾는다.
 
-![스크린샷 2021-08-15 오후 12 54 49](https://user-images.githubusercontent.com/28615416/129466784-5ab9c0e8-5a0e-41c3-9f0d-0f850310aa2a.png)
+![스크린샷 2021-08-15 오후 12 54 49](/images/posts/535547844de8.png)
 
 ### 2.4. 위에서 만들었던 'personal access token'을 입력
 
-![스크린샷 2021-08-15 오후 12 54 56](https://user-images.githubusercontent.com/28615416/129466781-c2a4c35a-0805-4936-a3b4-d9a75c28aebf.png)
+![스크린샷 2021-08-15 오후 12 54 56](/images/posts/18b9272f22d7.png)

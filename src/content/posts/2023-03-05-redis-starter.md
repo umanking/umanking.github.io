@@ -9,7 +9,7 @@ type: tutorial
 level: 입문
 tags:
   - redis
-image: 'https://dwglogo.com/wp-content/uploads/2017/12/1100px_Redis_Logo_01.png'
+image: '/images/posts/0a84ed20d752.png'
 ---
 ## Introduction
 

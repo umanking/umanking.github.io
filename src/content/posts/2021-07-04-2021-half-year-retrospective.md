@@ -11,7 +11,7 @@ tags:
   - retrospective
   - review
 image: >-
-  https://user-images.githubusercontent.com/28615416/127739492-f817a13a-8dd0-4f5f-b57b-d8fbb0e9028e.png
+  /images/posts/47de0c1b5f77.png
 noindex: true
 ---
 
@@ -54,8 +54,8 @@ noindex: true
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="https://user-images.githubusercontent.com/28615416/124374265-d3d41080-dcd4-11eb-9f80-e87042dd8243.jpg">
-    <img src="https://user-images.githubusercontent.com/28615416/124374264-ce76c600-dcd4-11eb-963a-1863171302fd.jpg">
+    <img src="/images/posts/12d77015a8d1.jpg">
+    <img src="/images/posts/3d01ca89e833.jpg">
   </div>
   <em>강력한 재택 현장</em>
 </div>
@@ -95,8 +95,8 @@ noindex: true
 이 책에서는 망해가는 중소기업에서 동료들은 다 퇴사하고, 혼자남아서 자신앞에 주어진 일에 대해서 혼신을 다해서 일해 나가던 이나모리 가즈오의 청년시절 마음가짐에 대해서 알 수 있었다. 정말 혼신을 다한다는 것이 어떤 것인가, 그리고 일에 대해서 어떻게 바라보는 지에 대해서 어떤 마음가짐으로 임하는지를 엿볼 수 있었다. 특히나, 일을 열심히 하게 되면 인격수양을 하게 된다라는 말이 인상적이었다. 회사에 충성하겠다는 이야기가 아니다. 자신의 맡은 바 일에 충실하게 최선을 다한다는 것은, 자신의 삶에 대한 자부심, 자신감 이런것들이 쌓여서 완벽한 인격체가 된다는 이야기다. 나도 몇일전부터 조금은 최선을 다하고 진심으로 일을 하고 나서, 다음과 같은 피드백을 받았다.
 
 
-![스크린샷 2021-07-04 오후 3 34 01](https://user-images.githubusercontent.com/28615416/124375560-d4bd7000-dcdd-11eb-9f32-ce87c07cd73c.png)
-![스크린샷 2021-07-04 오후 3 33 23](https://user-images.githubusercontent.com/28615416/124375561-d6873380-dcdd-11eb-924e-56c4b913644d.png)
+![스크린샷 2021-07-04 오후 3 34 01](/images/posts/d9640a009bea.png)
+![스크린샷 2021-07-04 오후 3 33 23](/images/posts/cd3c376b628f.png)
 
 
 

@@ -9,8 +9,6 @@ type: troubleshooting
 level: 중급
 tags:
   - spring
-image: >-
-  https://pozafly.github.io/static/bf7a9491463863772f181d36c58051fa/7129a/sentry.png
 ---
 ## 1. 들어가며
 Sentry는 에러트래킹 서비스로 Error,Exception(우리는 2개가 다르다는 것을 아니까)가 발생했을때 (편의상 에러라고 하겠다.) 에러에 대한 기록들을 트래킹하기 쉽게 모니터링을 제공해주는 서비스라고 생각하면 되겠다. 
@@ -65,11 +63,11 @@ pom 파일에 sentry-logback 라이브러리 추가
 
 하지만 다음과 같이 exception이 났다.
 
-![](https://user-images.githubusercontent.com/28615416/81380162-5d299a80-9145-11ea-8e8a-be43c141ba5f.png)
+![](/images/posts/32d18cd44350.png)
 
 해당 exception으로 찾아보니 현재 프로젝트는 스프링 부트 버전이 `1.5.x` 이었다. maven dependency를 확인해 보니 다음과 같다.
 
-![](https://user-images.githubusercontent.com/28615416/81380278-92ce8380-9145-11ea-9077-3305ab78fc76.png)
+![](/images/posts/e4719838b281.png)
 
 spring boot starter 의존성을 관리하는 부분때문에 기존의 logback 버전이 1.1.9로 매핑이 되어있었다. 다음과 같이 .`1.2.3` 버전을 추가하고 실행하니까 잘 동작한다!
 

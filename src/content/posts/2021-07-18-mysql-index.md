@@ -10,7 +10,7 @@ level: 심화
 tags:
   - index
   - mysql
-image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
+image: '/images/posts/55ba5ba6be0f.png'
 ---
 
 ## 1. MySQL 인덱스

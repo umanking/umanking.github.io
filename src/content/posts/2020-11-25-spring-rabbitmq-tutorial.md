@@ -12,15 +12,15 @@ level: 중급
 tags:
   - spring
   - springboot
-image: 'https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png'
+image: '/images/posts/e0ec43847b85.png'
 ---
 
 이번시간에는 오픈소스 메세지 브로커인 RabbitMQ를 로컬에 설치하고, Spring Boot 프로젝트를 이용해서 간단하게 메세지를 전송하고, Listening 하는 샘플 프로젝트를 만들어보도록 하겠습니다.!!
 ## 1. RabbitMQ의 구성요소
 들어가기에 앞서 RabbitMQ는 메세지큐로 Advanced Message Queuing Protocol(AMQP)의 구현체라고 할 수 있습니다. 
 
-![](https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png)
-*출처: https://www.cloudamqp.com/img/blog/exchanges-topic-fanout-direct.png*
+![](/images/posts/e0ec43847b85.png)
+*출처: /images/posts/e0ec43847b85.png*
 
 기본적인 메세지큐에 대해서는 다들 알고 있으니까, 간단한 내용은 생략하겠습니다. Producer가 메세지를 생산하고 Message Broker에게 메세지를 보내고, Consumer는 Broker를 Listening을 하면서 해당 메세지를 소비합니다. RabbitMQ에서는 Exchange라는 개념이 등장하는데, Producer가 어디에다가 보낼래?를 나타냅니다. Exchange 종류에 따라서 `Direct`, `Topic`, `Fanout` 이런 식으로 종류가 나누어지게 됩니다. 
 
@@ -154,7 +154,7 @@ public void receiveMessage(Message message) {
 
 Listener는 비교적 간단하게 앞에서 보냈던 @RabbitListner 어노테이션의 queues 속성을 설정하면 해당 큐에 적재된 메세지를 읽어들일 수 있습니다. 
 
-<img width="1137" alt="스크린샷 2020-11-25 오전 9 20 05" src="https://user-images.githubusercontent.com/28615416/100166175-6de20800-2eff-11eb-8c80-b7029e8c402f.png">
+<img width="1137" alt="스크린샷 2020-11-25 오전 9 20 05" src="/images/posts/4ae0bd1db4a2.png">
 
 
 

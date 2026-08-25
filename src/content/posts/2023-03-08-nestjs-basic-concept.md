@@ -13,7 +13,7 @@ tags:
   - nestjs
   - node
 image: >-
-  https://cdn.dribbble.com/users/808903/screenshots/3831862/dribbble_szablon__1_1.png
+  /images/posts/347708e82c4e.png
 ---
 ## 소개
 

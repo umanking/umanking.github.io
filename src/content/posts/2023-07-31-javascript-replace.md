@@ -12,7 +12,7 @@ level: 중급
 tags:
   - javascript
   - js
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 JavaScript의 `replace()` 메서드는 문자열에서 특정 패턴(문자열 또는 정규식)을 검색하여 해당 패턴을 새로운 문자열로 치환하는 메서드입니다. 이를 통해 문자열 내에서 원하는 부분을 변경하거나 제거하는 작업을 할 수 있습니다.
 

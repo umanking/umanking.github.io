@@ -10,7 +10,7 @@ level: 중급
 tags:
   - docker
   - mysql
-image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
+image: '/images/posts/55ba5ba6be0f.png'
 ---
 local에서 docker를 이용해서 mysql 를 셋팅하는 방법에 대해서 알아보자.
 

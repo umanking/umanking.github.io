@@ -13,7 +13,7 @@ tags:
   - javascript
   - js
   - promise
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 ## 기본 개념: Promise란 무엇인가요?
 

@@ -15,7 +15,7 @@ tags:
   - t
   - 'y'
 image: >-
-  https://images.velog.io/images/suzieep/post/a137794d-1f46-4af8-ac58-954d4dc0696f/logo-python.png
+  /images/posts/d22f9048111a.png
 ---
 ## **소개**
 

@@ -13,7 +13,7 @@ tags:
   - grafana
   - prometheus
 image: >-
-  https://aptira.com/wp-content/uploads/2019/05/aptira_grafana_prometheus_training.png
+  /images/posts/1a5aa73a5938.png
 ---
 ## 1. 들어가며 
 Prometheus,Grafan를 Docker로 띄워보고, nodejs exporter를 통해서 모니터링 대쉬보드를 만들어 보는걸 살펴보자. 
@@ -26,7 +26,6 @@ Prometheus,Grafan를 Docker로 띄워보고, nodejs exporter를 통해서 모니
 - 오픈소스 모니터링, alerting tool로써, metric을 수집하고, 저장하고, 쿼리를 통해서 데이터를 조회할 수 있다.
 - 시계열 데이터를 기반으로 하기 때문에, metric에 관한 정보는 timestamp와 함께 저장된다.
 - 아키텍쳐
-  - ![](https://prometheus.io/assets/architecture.png)
   - 가장 눈에 띄는 방식은, `기존의 모니터링`은 서버에 agent를 설치하고, agent에서 수집한 metric정보를 backend에 직접 push(전송)하는 방식이었다면, 
   - prometheus는 `Pull 방식`을 사용해서 주기적으로 클라이언트에서 접속해서 데이터를 가져온다. 
   - Alertmanager를 통해서 알람을 발송하고 
@@ -64,13 +63,13 @@ $ docker run -p 9090:9090 -v /Users/user/dev/prometheus.yml:/etc/prometheus/prom
 
 Status메뉴에서 Targets를 보면 `prometheus.yml` 파일에서 target으로 셋팅한 정보가 등록된 것을 확인할 수 있다. 
 
-![무제](https://user-images.githubusercontent.com/28615416/130016121-41bed99e-7d1c-4641-ad47-3a8d9d71f346.png)
+![무제](/images/posts/e193eb4f94cd.png)
 
 
 
 Main에서 다양한 쿼리들을 입력해서 Graph형태로 만들어서 볼 수 있다. 
 
-<img width="1018" alt="스크린샷 2021-08-19 오후 3 05 35" src="https://user-images.githubusercontent.com/28615416/130016824-b5ba0a84-d716-4bc8-bcde-9d8a56442577.png">
+<img width="1018" alt="스크린샷 2021-08-19 오후 3 05 35" src="/images/posts/a30ef97955c1.png">
 
 
 
@@ -86,7 +85,7 @@ $ docker run -d -p 3000:3000 grafana/grafana
 
 로그인 이후에, Configuration - Add data soruce를 한다. 
 
-<img width="1006" alt="스크린샷 2021-08-19 오후 3 12 38" src="https://user-images.githubusercontent.com/28615416/130017249-de1ae4d6-bfed-4e6e-929a-74d91f30f2d8.png">
+<img width="1006" alt="스크린샷 2021-08-19 오후 3 12 38" src="/images/posts/843f8624743b.png">
 
 
 
@@ -95,7 +94,7 @@ prometheus를 선택하고
 - url에 : prometheus 서버 정보를 입력한다. (mac환경에서 docker로 띄웠기 때문에, `host.docker.internal`로 설정하였다.)
 - `save & test`  버튼을 누르고 저장한다. 
 
-<img width="1010" alt="스크린샷 2021-08-19 오후 3 12 06" src="https://user-images.githubusercontent.com/28615416/130017235-c631b789-9e2b-497e-8449-4c4ae8cf1543.png">
+<img width="1010" alt="스크린샷 2021-08-19 오후 3 12 06" src="/images/posts/b44368baca84.png">
 
 
 

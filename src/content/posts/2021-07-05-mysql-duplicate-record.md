@@ -9,7 +9,7 @@ type: reference
 level: 중급
 tags:
   - mysql
-image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
+image: '/images/posts/55ba5ba6be0f.png'
 ---
 
 ## 1. MySQL 중복데이터 관리방법 

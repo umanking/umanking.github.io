@@ -12,7 +12,7 @@ level: 중급
 tags:
   - jpa
 image: >-
-  https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png
+  /images/posts/f662add0a1bb.png
 ---
 
 > JPA를 사용해서 엔티티의 일부 데이터만 가져오는 Projection에 대해서 알아보자.

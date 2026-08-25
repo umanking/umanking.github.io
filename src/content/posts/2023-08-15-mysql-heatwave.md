@@ -11,7 +11,7 @@ type: deepdive
 level: 심화
 tags:
   - mysql
-image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
+image: '/images/posts/55ba5ba6be0f.png'
 ---
 ## Introduction
 

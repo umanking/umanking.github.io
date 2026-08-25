@@ -21,13 +21,13 @@ mac에서 제공하는 기본Note 앱을 활용하는데, ~~취소선~~ 이라�
 
 ## 2. 방법
 
-<img width="780" alt="1" src="https://user-images.githubusercontent.com/28615416/124336953-2af5ba80-dbdb-11eb-9d8a-ab742290699d.png">
+<img width="780" alt="1" src="/images/posts/910c9b8c32a9.png">
 
 키보드 - 단축키 - 앱 단축키로 이동한다. 
 
 
 
-<img width="780" alt="2" src="https://user-images.githubusercontent.com/28615416/124336954-2b8e5100-dbdb-11eb-8858-6856fcf1be8a.png">
+<img width="780" alt="2" src="/images/posts/ab54cc6369b1.png">
 
 - +버튼을 눌러서 `응용프로그램`을 선택하고, 메뉴 제목은 `취소선` 으로 입력하고 키보드 `단축키를 매핑`한다.
 
@@ -35,10 +35,10 @@ mac에서 제공하는 기본Note 앱을 활용하는데, ~~취소선~~ 이라�
 >
 > 단, 영문으로 설정한 경우에, 메뉴에 있는 영문 명을 그대로 넣어준다.
 
-<img width="585" alt="스크린샷 2021-07-03 오전 8 50 05" src="https://user-images.githubusercontent.com/28615416/124337109-e3236300-dbdb-11eb-9e03-a9d562fd9357.png">
+<img width="585" alt="스크린샷 2021-07-03 오전 8 50 05" src="/images/posts/df6fc26ee774.png">
 
 
 
 다음과 같이 `단축키`로 `취소선`을 나타낼수 있다. 
 
-![Jul-03-2021 08-54-15](https://user-images.githubusercontent.com/28615416/124337188-47debd80-dbdc-11eb-9f97-f7e345b10bb3.gif)
+![Jul-03-2021 08-54-15](/images/posts/fba6b8ea443a.gif)

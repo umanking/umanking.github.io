@@ -13,7 +13,7 @@ tags:
   - aws
   - lambda
 image: >-
-  https://images.velog.io/images/jeffyoun/post/58ab53ee-c62a-44c1-863b-9431608de91d/1_H5SUqUJhRRG2gbgCXV2ghQ.png
+  /images/posts/626b7e8c7eba.png
 ---
 ## 소개
 

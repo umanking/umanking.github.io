@@ -12,7 +12,7 @@ tags:
   - spring
   - springboot
 image: >-
-  https://media.vlpt.us/images/hanblueblue/post/3f9bafa6-7426-4118-af83-94e597516200/spring-data-mongodb.png
+  /images/posts/34fbc8978362.png
 ---
 
 ## 1. Docker로 MongoDB 띄우기

@@ -14,7 +14,7 @@ tags:
   - javascript
   - js
   - sort
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 JavaScript에서 배열을 정렬하는 방법에 대해 설명드리겠습니다.
 

@@ -10,7 +10,7 @@ level: 중급
 tags:
   - datastructure
 image: >-
-  https://images.velog.io/images/wupajw/post/4a7c55b1-fc4c-4479-af0e-e3d90d32ed0e/Untitled.png
+  /images/posts/e5504510a7f6.png
 ---
 
 오늘은 해시함수와 해시 충돌에 대해서 이야기하겠습니다. 개발하면서 해시라는 용어를 정말 많이 듣게되고, data structure 관련된 자료들을 보면서도 Hash가 참 많이 나오는데 이부분에 대해서 알아보도록 하겠습니다. 
@@ -23,7 +23,7 @@ wiki정의에 의하면 임의의 길이를 데이터로 매핑하는 함수 입
 
 
 
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Hash_table_4_1_1_0_0_1_0_LL.svg/240px-Hash_table_4_1_1_0_0_1_0_LL.svg.png)
+![img](/images/posts/34543e067d8d.svg)
 
 hash function을 이야기할때 보통은 나머지(mod) 연산을 이야기 합니다.mod 연산은 나머지 연산인데. `key % 나머지연산 = 결과값`  의 식으로 완성됩니다. 결과값은 bucket에 들어간다고 생각하면 됩니다. 
 
@@ -47,7 +47,7 @@ hash function을 이야기할때 보통은 나머지(mod) 연산을 이야기 �
 
 ## 해시 테이블 
 
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/220px-Hash_table_3_1_1_0_1_0_0_SP.svg.png)
+![img](/images/posts/21c0164ccfd9.svg)
 
 해시 충돌을 다루기 전에, 해시 테이블까지 간략하게 설명하고 넘어가겠습니다. 해시 테이블은 위으 hash function을 거쳐서 연산된 값(hash  값)을 키(key)값으로 하고, 그에 들어가는 데이터를 Value로 하는 테이블 형태를 만듭니다. 이게 바로 해시 테이블이라고 하고, 버킷 또는 슬롯이라고 표현합니다.
 
@@ -77,7 +77,7 @@ key를 통해서 value값을 찾기 때문에 시간복잡도O(1) 입니다. INS
 
 
 
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Hash_table_5_0_1_1_1_1_0_SP.svg/380px-Hash_table_5_0_1_1_1_1_0_SP.svg.png)
+![img](/images/posts/f4c0a13da280.svg)
 
 그림을 살펴보면, `John Smith`와 `Sandara Dee` 152번으로 동일한 값이 나옵니다. 이 경우에 다음 빈 버킷을 찾아서 153번으로 `Sandara Dee`가 들어간것을 확인 할 수 있습니다. 그러면 `Ted Baker` 이 친구도 153 에서 충돌이 발생해서 다음 빈 버킷인 154번으로 밀려났습니다. 당연히 가장 나이스한 경우는 바로 다음 버킷이 비어있는 경우고, 최악의 경우는 거의 끝까지 모든 버킷이 차있는 경우 입니다.
 
@@ -85,7 +85,7 @@ key를 통해서 value값을 찾기 때문에 시간복잡도O(1) 입니다. INS
 
 ### chaining 
 
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hash_table_5_0_1_1_1_1_1_LL.svg/450px-Hash_table_5_0_1_1_1_1_1_LL.svg.png)
+![img](/images/posts/887c22544bf6.svg)
 
 보통은 chaning 방식으로 해결을 많이 하는데, 이경우는 해시 충돌이 나면, 해당 버킷(노드)에 chaining 형태로 계속 뒤로 붙이는 경우입니다.   `John Smith`와 `Sandara Dee`가 152번에서 충돌이 났습니다. open addressing 기법과 다르게, 이 경우에는 `John Smith`의 체이닝형태로 뒤에 바로 `Sandara Dee`가 붙는 것을 확인할 수 있습니다.
 

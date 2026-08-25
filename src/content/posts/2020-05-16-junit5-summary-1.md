@@ -56,7 +56,7 @@ public static void assertEquals(Object expected, Object actual) {
 
 > ✅ assertEquals의 세번째 파라미터값이 String message 도 있지만, Supplier<String> 도 존재한다. 어떤 차이인가?
 >
-> ![](https://user-images.githubusercontent.com/28615416/82105675-89ea3d00-9757-11ea-80bf-6e7a51c646c3.png)
+> ![](/images/posts/6dd2127cc692.png)
 >
 > 해당 메서드는 테스트가 실패하는 케이스에 세번째 파라미터값으로 입력한 message내용이 출력된다.
 >
@@ -76,7 +76,7 @@ assertAll(
 
 2건다 실패한 것에 대해서 명확하게 리포팅해준다.
 
-![](https://user-images.githubusercontent.com/28615416/82106522-8ad19d80-975c-11ea-937f-3d9d92324c4b.png)
+![](/images/posts/b747dff7688c.png)
 
 ### 2.4. assertThrows
 

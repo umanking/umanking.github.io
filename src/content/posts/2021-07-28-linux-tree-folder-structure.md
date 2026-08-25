@@ -11,7 +11,7 @@ tags:
   - linux
   - tree
   - 리눅스
-image: 'https://blog.kakaocdn.net/dn/bEUX6s/btqAavSzerd/Q8tjjThKJ82PS4HrBFp5Sk/img.png'
+image: '/images/posts/1c39b101fe56.png'
 ---
 ## 1. tree 명령어 설치 
 

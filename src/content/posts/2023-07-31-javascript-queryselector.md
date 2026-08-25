@@ -12,7 +12,7 @@ level: 중급
 tags:
   - javascript
   - js
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 JavaScript의 `querySelector()` 메서드는 CSS 선택자를 사용하여 DOM(Document Object Model)에서 요소를 선택하는 데 사용되는 메서드입니다. `querySelector()`는 해당 CSS 선택자에 일치하는 첫 번째 요소를 반환합니다. 즉, 가장 처음에 일치하는 하나의 요소만 선택됩니다.
 

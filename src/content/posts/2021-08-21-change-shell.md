@@ -11,7 +11,7 @@ type: tutorial
 level: 중급
 tags:
   - shell
-image: 'https://iterm2.com/img/logo2x.jpg'
+image: '/images/posts/63c170e5fc32.jpg'
 ---
 ## 1. shell 목록 확인 방법
 

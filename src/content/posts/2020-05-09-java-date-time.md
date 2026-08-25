@@ -232,7 +232,7 @@ LocalDate date2 = date1.with(nextOrSame(DayOfWeek.SUNDAY)); // 2014-03-23
 LocalDate date3 = date2.with(lasyDayOfMonth()); // 2014-030-31
 ```
 
-![https://docs.oracle.com/javase/8/docs/api/java/time/temporal/TemporalAdjusters.htm](https://user-images.githubusercontent.com/28615416/81462658-15f7e400-91ef-11ea-9de1-fd439dc65fa1.png)
+![https://docs.oracle.com/javase/8/docs/api/java/time/temporal/TemporalAdjusters.htm](/images/posts/8bf4cc02a04f.png)
 *TemporalAdjuster API*
 
 TemporalAdjester를 이용하면 좀 더 복잡한 날짜 조정 기능을 직관적으로 해결할 수 있다. 그뿐만 아니라 필요한 기능이 정의되어 있지 않을때는 비교적 쉽게 커스텀 TemporalAdjuster 구현을 만들 수 있다. 실제로 TemporalAdjuster 인터페이스는 다음처럼 하나의 메서드만 정의한다. TemporalAdjuster 인터페이스 구현은 Temporal 객체를 다른 Temporal객체로 변환할지 정의한다. 결국 TemporalAdjuster 인터페이스를 UnaryOperator<Temporal>과 같은 형식으로 간주할 수 있다.
@@ -334,7 +334,7 @@ ZonedDateTime zdt3 = instant.atZone(romeZone);
 
 다음 그림처럼 ZonedDateTime 컴포넌트를 보면 LocalDate, LocalTime, LocalDateTime, ZoneId의 차이를 쉽게 이해할 수 있다.
 
-![](https://user-images.githubusercontent.com/28615416/81462383-168f7b00-91ed-11ea-941e-8f3145112f65.png)
+![](/images/posts/c4f17dc7dc6e.png)
 
 ZoneId를 이용해서 LocalDateTime을 Instant로 바꾸는 방법도 있다.
 

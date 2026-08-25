@@ -37,4 +37,4 @@ set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 ```
 필자는 `onehalfdark`를 사용하는데, 저 부분을 자기가 원하는 color scheme을 적으면 된다.  
 재 실행하면 다음과 같이 예쁘게 바뀌어있다! 
-<img width="937" alt="스크린샷 2021-06-30 오후 10 49 42" src="https://user-images.githubusercontent.com/28615416/123972011-777fa100-d9f5-11eb-99e9-fe1d49388020.png">
+<img width="937" alt="스크린샷 2021-06-30 오후 10 49 42" src="/images/posts/9c0748136b6d.png">

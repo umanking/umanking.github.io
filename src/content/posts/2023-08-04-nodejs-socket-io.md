@@ -13,7 +13,7 @@ tags:
   - node
   - nodejs
   - socket
-image: 'https://miro.medium.com/v2/resize:fit:1400/0*K91yVP0ewgIiJVz_.png'
+image: '/images/posts/206aee4a1e88.png'
 ---
 ## 소개
 

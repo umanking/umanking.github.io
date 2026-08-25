@@ -10,7 +10,7 @@ level: 중급
 tags:
   - dayjs
 image: >-
-  https://user-images.githubusercontent.com/17680888/39081119-3057bbe2-456e-11e8-862c-646133ad4b43.png
+  /images/posts/9a266ce82bdf.png
 ---
 ## **소개**
 

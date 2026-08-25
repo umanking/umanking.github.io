@@ -38,7 +38,7 @@ public class HomeController {
 
 프로젝트를 띄우고 http://localhost:8080을 호출하면, 현재 KST시간이 표시된다. (내 컴퓨터 타임존 환경이 다음과 같이 `대한 민국 표준시` 로 설정되어있기 때문이다.)
 
-![스크린샷 2021-08-10 오후 1 56 58](https://user-images.githubusercontent.com/28615416/128810970-5296cb7e-bf6b-43ad-9172-66515baf8fc2.png)
+![스크린샷 2021-08-10 오후 1 56 58](/images/posts/35f0bef38b62.png)
 
 
 

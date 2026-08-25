@@ -12,7 +12,7 @@ level: 중급
 tags:
   - jpa
 image: >-
-  https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png
+  /images/posts/f662add0a1bb.png
 ---
 
 > 멤버(Member)와 사물함(Locker) 1:1 매핑 상황을 살펴보고, cascade 옵션이 어떤 상황에서 쓰이는지 알아보자.

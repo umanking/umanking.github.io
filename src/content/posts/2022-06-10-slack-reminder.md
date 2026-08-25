@@ -10,8 +10,6 @@ level: 중급
 tags:
   - slack
   - tip
-image: >-
-  https://support.docswave.com/hc/article_attachments/4407227005465/Slack_RGB.png
 ---
 ## slack remind 기능 사용하기
 

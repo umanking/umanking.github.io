@@ -24,7 +24,7 @@ Automatic(자동으로 동작하는) gc는 heap메모리를 바라보고, 어떤
 ## 3. Step 1: Marking
 
 이 단계는 `마킹`이라고 부릅니다. gc(garbege collector를 줄여서)가 어떤 메모리를 사용하는지 하지 않는지 판단합니다.
-![](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/images/gcslides/Slide3.png)
+![](/images/posts/63ffc70911fc.png)
 
 오렌지색깔이 참조되지 않은 객체들, 파란색은 참조된 객체들 입니다. 이러한 결정을 하기 위해서, 마킹 단계에서 모든 객체를 전체 스캔합니다. 모든 객체가 시스템상에서 전부 스캔해야 하기 때문에 이건 매우 시간 소모가 큰 프로세스 입니다.
 
@@ -33,7 +33,7 @@ Automatic(자동으로 동작하는) gc는 heap메모리를 바라보고, 어떤
 일반적인 삭제는 참조되지 않은 객체들을 삭제 하고, 남은 빈 공간과 참조한 객체들에 대한 포인터를 남깁니다.
 이 포인터로 무엇을 할까요?
 
-![](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/images/gcslides/Slide1b.png)
+![](/images/posts/289933bd6a10.png)
 
 메모리 할당자(allocator)라는 놈은 새로운 객체가 할당 될 수 있는 여유공간 블록에 대한 참조 값을 가지고 있습니다.
 
@@ -41,7 +41,7 @@ Automatic(자동으로 동작하는) gc는 heap메모리를 바라보고, 어떤
 
 추가적으로 성능을 향상시키기 위해서, 남은 참조된 객체들도 압축할 수 있습니다. 참조된 객체를 함께 이동하면 새 메모리 할당이 훨씬 쉽고 빨라집니다.
 
-![](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/images/gcslides/Slide4.png)
+![](/images/posts/c0181ad0180a.png)
 
 ## 6. 왜 ? Generational Garbage Collection ?
 
@@ -49,7 +49,7 @@ Automatic(자동으로 동작하는) gc는 heap메모리를 바라보고, 어떤
 
 한 가지 예를 들면, Y축은 할당된 바이트의 수이고, X축은 시간동안 할당된 바이트의 수 입니다.
 
-![](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/images/ObjectLifetime.gif)
+![](/images/posts/c7812b7c94c9.gif)
 
 보시는 것처럼, 시간이 지남에 따라 할당된 객체들이 남아있는게 점점 적어집니다. 사실, 대부분의 객체는 매우 짧은 수명주기를 가지고 있습니다. 특히나 그래프의 왼쪽의 큰 값을 통해서
 
@@ -57,7 +57,7 @@ Automatic(자동으로 동작하는) gc는 heap메모리를 바라보고, 어떤
 
 객체 할당의 일련의 패턴을 통해서 배운 정보로 JVM의 퍼포먼스를 향상 시킬 수 있습니다. 그러므로 힙영역을 작은 부분으로 쪼개거나 genrations 해야 합니다. heap영역은 Young Generation, Old 또는 Tenured Generation, Permanent Generation 으로 나뉩니다.
 
-![](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/images/gcslides/Slide5.png)
+![](/images/posts/8f96b61ac9b4.png)
 
 Young Generation은 새로운 객체가 할당되고, 나이를 먹습니다. yong generation 영역이 채우지면 minor garbage collection이 일어납니다. 죽은 객체들로 가득찬 young genration은 매우 빠르게 수집 됩니다. 사라남은 객체들은 노화되고, 결국에 old generation으로 이동합니다.
 

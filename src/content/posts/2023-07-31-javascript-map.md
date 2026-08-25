@@ -13,7 +13,7 @@ tags:
   - javascript
   - js
   - map
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 JavaScript의 `map()`은 배열의 모든 요소에 대해 주어진 함수를 호출하여 새로운 배열을 생성하는 메서드입니다. `map()` 메서드를 사용하면 기존 배열의 각 요소를 변형하여 새로운 배열을 만들 수 있습니다. 이렇게 생성된 새 배열은 원본 배열과 같은 크기를 가지며, 각 요소들은 주어진 함수에 의해 반환된 값으로 구성됩니다.
 

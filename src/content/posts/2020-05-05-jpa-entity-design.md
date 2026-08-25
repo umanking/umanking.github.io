@@ -10,7 +10,7 @@ level: 심화
 tags:
   - jpa
 image: >-
-  https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png
+  /images/posts/f662add0a1bb.png
 ---
 
 > 엔티티 설계시 주의사항? 고려사항들을 알아본다. 관련내용은 김영한님의 인프런 강좌내용을 발췌했습니다!

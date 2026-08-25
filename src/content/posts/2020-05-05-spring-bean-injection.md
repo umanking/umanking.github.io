@@ -99,7 +99,7 @@ public class MemberService {
 
 보통은 습관적으로 코딩하게 되면 `@Autowired`로 필드 주입을 사용하게 된다. 현재 2019.3 버전 IntelliJ를 사용하게 되면 노란색으로 경고 표시가 나오고 필드 주입은 추천하지 않는다고 한다. ⌥ + ↵ (alt + enter) 를 누르면 자동으로 생성자 주입으로 변경해 준다.
 
-![2020-05-05 16 56 06-min](https://user-images.githubusercontent.com/28615416/81078512-50c8f600-8f29-11ea-8e66-7e261fbf0c8b.gif)
+![2020-05-05 16 56 06-min](/images/posts/abc25bfdbd33.gif)
 
 
 ## 8. 정리

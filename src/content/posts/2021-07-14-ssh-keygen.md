@@ -11,7 +11,7 @@ tags:
   - git
   - ssh
   - ssh-keygen
-image: 'https://www.abobwhite.com/content/images/2019/06/ssh.jpg'
+image: '/images/posts/814120e98140.jpg'
 ---
 ## 1. SSH는 뭘까요? 
 

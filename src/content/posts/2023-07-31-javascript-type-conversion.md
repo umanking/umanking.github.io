@@ -13,7 +13,7 @@ tags:
   - javascript
   - js
   - type-conversion
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 JavaScript는 동적 타입(dynamic typing) 언어이기 때문에 변수의 타입을 선언할 필요 없이, 할당되는 값에 따라 자동으로 타입이 결정됩니다. 이러한 특성으로 인해 JavaScript에서는 형변환이 자주 발생합니다. 즉, 변수의 값이 자동으로 다른 타입으로 변환되는 것을 의미합니다.
 

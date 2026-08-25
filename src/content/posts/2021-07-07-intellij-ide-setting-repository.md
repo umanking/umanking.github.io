@@ -11,7 +11,7 @@ tags:
   - ide-setting
   - intellij
 image: >-
-  https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg
+  /images/posts/234c7b8edf52.jpg
 ---
 ## 1. 찾게된 이유
 보통은 회사 컴퓨터를 처음 셋팅했을때, 프로그램들을 설치하고, IDE 환경셋팅을 한다. 프로그램 설치는 비교적 금방 끝난다.
@@ -40,14 +40,14 @@ Jetbrains Account로 동기화 하는 방법은, 개인 계정이면 상관없�
 [File] - [Manager IDE Settings] - [Settings Repository...] 클릭!
 
 
-![스크린샷 2021-07-07 오후 5 48 33](https://user-images.githubusercontent.com/28615416/124730962-c45efc80-df4c-11eb-9e7f-a713d9f18dc9.png)
+![스크린샷 2021-07-07 오후 5 48 33](/images/posts/d47e24c4df12.png)
 
 Setting Repository를 클릭하면, 다음과 같이 Upstream URL을 입력하는 팝업이 뜬다. 
 여기에서 자신의 계정에서 ‼️‼️ **반드시 Private 레포지토리**로 생성한 URL 정보를 입력한다. 필자는 `https://github.com/umanking/intellij-ide-setting-repository` 
 다음과 같이 만들었다. 그리고 `Overwrite Remote`를 클릭한다. 조금 이따가, Remote 레포지토리로 푸쉬가 된다!!
 해당 저장소에 가면, 테마, live template, keymap, code style등등 IDE Setting값이 `xml` 파일로 올라가 있다.
 
-![스크린샷 2021-07-07 오후 5 49 11](https://user-images.githubusercontent.com/28615416/124730955-c2953900-df4c-11eb-9886-867783f59629.png)
+![스크린샷 2021-07-07 오후 5 49 11](/images/posts/02b765296374.png)
 
 
 ## 4. 실제 다른 컴퓨터에서 불러와서 사용하는 방법 

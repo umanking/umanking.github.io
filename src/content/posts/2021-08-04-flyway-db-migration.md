@@ -11,8 +11,6 @@ tags:
   - db-migration
   - flyway
   - migration
-image: >-
-  https://digital.ai/sites/default/files/pictures/styles/maxwidth_300/public/pt_logos/flyway.png?itok=B976zlaq
 ---
 
 ## 1. 들어가며 
@@ -92,7 +90,7 @@ public class Account {
 
 ### 2.4. db.migration 하위에 V1__init.sql 파일을 생성
 
-![스크린샷 2021-08-04 오후 4 00 39](https://user-images.githubusercontent.com/28615416/128136306-073fdb0d-3e1f-43dd-812e-2e7264d6f3a0.png)
+![스크린샷 2021-08-04 오후 4 00 39](/images/posts/ab860cd04bec.png)
 *`V1_init.sql`은 다음 위치에 생성한다.*
 
 `src/main/resources/db.migration/V1__init.sql` 
@@ -110,7 +108,7 @@ CREATE TABLE account
 
 - resource 하위의 db.migration폴더 하위에 `V1__init.sql` (언더 스코어 2개임!!) 파일을 만든다. 
 - [파일명 규칙](https://flywaydb.org/documentation/concepts/migrations.html#naming) 
-  - ![스크린샷 2021-08-04 오후 3 39 21](https://user-images.githubusercontent.com/28615416/128133776-83efdcaf-fa47-4cb0-899e-08cfb849926f.png)
+  - ![스크린샷 2021-08-04 오후 3 39 21](/images/posts/a6aaeb87b463.png)
     *flyway naming pattern*
   - Prefix를 `V`, `U`, `R`  으로 명시한다. 
   - Separator: 언더스코어 2개!!!
@@ -137,14 +135,14 @@ CREATE TABLE account
 ### 2.6. DB를 확인해보자.
 실제 DB를 확인해보면 다음과 같다. 
 
-![스크린샷 2021-08-04 오후 2 40 58](https://user-images.githubusercontent.com/28615416/128127972-025a231a-5871-4ef7-a59b-3821b39ccdef.png)
+![스크린샷 2021-08-04 오후 2 40 58](/images/posts/6e882674ca93.png)
 *flyway_schema_history 테이블 자동 생성*
 
 flyway_schema_history라는 테이블이 생겼고, `누가 실행`했고, `언제` 했고, `성공 여부`, `적용된 스크립트 파일명` 등등이 history테이블에 기록이 된다. 
 
 
 
-![스크린샷 2021-08-04 오후 3 00 30](https://user-images.githubusercontent.com/28615416/128129791-b2388913-9392-42ed-85b0-9d4c3cf05560.png)
+![스크린샷 2021-08-04 오후 3 00 30](/images/posts/c726fff00288.png)
 *account table*
 
 물론 account 테이블도 정상적으로 만들어졌다.
@@ -187,11 +185,11 @@ ALTER TABLE account ADD COLUMN age INT(10) ;
 
 ### 2.9. 결과 확인
 
-![스크린샷 2021-08-04 오후 3 02 53](https://user-images.githubusercontent.com/28615416/128130206-09e994ce-15f7-4a7f-b528-830f5a3e16ab.png)
+![스크린샷 2021-08-04 오후 3 02 53](/images/posts/43ad5d3d1cf1.png)
 *account table에 age컬럼이 추가됨*
 
 
-![스크린샷 2021-08-04 오후 3 04 02](https://user-images.githubusercontent.com/28615416/128130210-06e0beb0-f839-4ee0-a257-1ffdc37becff.png)
+![스크린샷 2021-08-04 오후 3 04 02](/images/posts/50ec9eebfbf3.png)
 *fly_schma_history 2번째 ROW 생성*
 
 또한, flyway_schema_history 테이블에도 2번째 스크립트가 실행된것을 확인할 수 있다.

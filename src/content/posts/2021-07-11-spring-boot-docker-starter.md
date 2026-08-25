@@ -14,7 +14,7 @@ tags:
   - spring
   - spring-boot
 image: >-
-  https://images.velog.io/images/secho/post/74c883a3-2b3f-483e-b572-b64a11ba7927/lfVWBmiW_400x400.png
+  /images/posts/34c87e61e941.png
 ---
 간단한 SpringBoot 프로젝트를 만들고, Dockerfile을 통해서 애플리케이션을 docker이미지 파일로 만들고, 실행해보고, docker hub에 remote로 푸시하는 방법에 대해서 알아보자 
 ## 1. Sample 프로젝트 만들기 
@@ -112,7 +112,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 
 ### 4.2. Docker Integration 설정 (with IntelliJ)
 
-![스크린샷 2021-07-11 오후 5 41 12](https://user-images.githubusercontent.com/28615416/125188713-b9b7a680-e26f-11eb-9ab7-cb05378d0f99.png)
+![스크린샷 2021-07-11 오후 5 41 12](/images/posts/17415aabfc77.png)
 
 - `cmd + ,` 설정 창을 연다. 
 - Build, Execution, Deployment 의 Docker를 클릭한다.
@@ -120,7 +120,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 
 ### 4.3. Docker Connect
 
-![screnshot](https://user-images.githubusercontent.com/28615416/125189896-5f214900-e275-11eb-8d0c-4b42b57f6876.png)
+![screnshot](/images/posts/e81638393cbe.png)
 *Docker Connect 하는 방법*
 
 
@@ -130,7 +130,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 
 ### 4.4. Docker Push Image
 
-![스크린샷 2021-07-11 오후 5 51 03](https://user-images.githubusercontent.com/28615416/125188939-c1c41600-e270-11eb-99c5-444276945fec.png)
+![스크린샷 2021-07-11 오후 5 51 03](/images/posts/0557a63d4167.png)
 *Docker 이미지 푸쉬하는 방법*
 
 - 로컬에서 다운 받았던 Docker 이미지들 목록이 나온다. 
@@ -140,7 +140,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 
 
 
-![스크린샷 2021-07-11 오후 5 54 59](https://user-images.githubusercontent.com/28615416/125189078-6b0b0c00-e271-11eb-83cc-24e884623681.png)
+![스크린샷 2021-07-11 오후 5 54 59](/images/posts/2de9b36d3369.png)
 *Push Image*
 
 - 다음과 같이 Push Image에 Repository 명과 Tag명을 입력한다. 
@@ -150,7 +150,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 
 ### 4.5. Docker Hub에서 확인
 
-![스크린샷 2021-07-11 오후 3 42 38](https://user-images.githubusercontent.com/28615416/125189149-9d1c6e00-e271-11eb-85ac-a9241dd65b3f.png)
+![스크린샷 2021-07-11 오후 3 42 38](/images/posts/5947cf48d9b6.png)
 *Docker Hub에서 확인*
 
 

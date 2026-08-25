@@ -9,7 +9,7 @@ type: reference
 level: 중급
 tags:
   - javascript
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 - [1. String.indexOf(): 문자열에 어떤 문자열이 포함되어있는지 확인](#1-stringindexof-문자열에-어떤-문자열이-포함되어있는지-확인)
 - [2. String.includes(): 문자열에 어떤 문자열이 포함되어 있는지 확인](#2-stringincludes-문자열에-어떤-문자열이-포함되어-있는지-확인)

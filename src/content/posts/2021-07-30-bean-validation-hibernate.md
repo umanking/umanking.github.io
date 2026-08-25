@@ -14,7 +14,7 @@ tags:
   - hibernate
   - object-graph
   - spring
-image: 'https://www.popit.kr/wp-content/uploads/2018/01/image2017-12-21_10-5-23.png'
+image: '/images/posts/119a9ae5951f.png'
 ---
 ## 1. 들어가며
 

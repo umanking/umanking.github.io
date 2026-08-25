@@ -11,7 +11,7 @@ type: reference
 level: 중급
 tags:
   - mysql
-image: 'https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png'
+image: '/images/posts/55ba5ba6be0f.png'
 ---
 In the realm of database management systems, MySQL stands tall as one of the most popular choices. Among its many features, temporary tables emerge as a versatile tool that can significantly enhance your data manipulation and query optimization efforts. In this article, we will take a comprehensive journey into the realm of MySQL temporary tables, unraveling their significance, benefits, and practical applications.
 

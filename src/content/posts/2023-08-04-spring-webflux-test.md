@@ -14,7 +14,7 @@ tags:
   - test
   - webflux
 image: >-
-  https://velog.velcdn.com/images/nowod_it/post/ed1b5a5a-f075-48e6-b5b7-01e76e3c003d/image.png
+  /images/posts/995f93ff2497.png
 ---
 ## 소개
 

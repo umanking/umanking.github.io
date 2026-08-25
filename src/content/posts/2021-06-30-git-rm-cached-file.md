@@ -11,7 +11,6 @@ type: reference
 level: 중급
 tags:
   - git
-image: 'https://temxi.com/minfo/logo/69/github-logo.png'
 ---
 ## Github에 잘못올라간 파일 삭제후 .gitignore에 추가하기
 

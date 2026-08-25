@@ -13,7 +13,7 @@ tags:
   - cd
   - ci
   - github
-image: 'https://miro.medium.com/max/1075/1*VtWbCHhIw6MMMXCil7lZ0g.png'
+image: '/images/posts/058a5ee5825c.png'
 ---
 ## 소개
 

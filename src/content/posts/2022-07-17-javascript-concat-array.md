@@ -9,7 +9,7 @@ type: reference
 level: 중급
 tags:
   - javascript
-image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
+image: '/images/posts/2e370a2c5aa3.png'
 ---
 Javascript에서 2개 이상의 배열을 하나의 배열로 만드는 방법에 대해서 알아보겠습니다. 
 - [1. concat()을 이용한 배열 합치기](#1-concat을-이용한-배열-합치기)
