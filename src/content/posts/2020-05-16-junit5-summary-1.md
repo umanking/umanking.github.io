@@ -124,7 +124,7 @@ assertTimeout(Duration.ofMillis(100), () -> {
 #### 3.0.1. programming 방법
 
 ```java
-assumeTrue(System.getenv().get("HOME").equals("/Users/dev"));
+assumeTrue(System.getenv().get("HOME").equals("/Users/user"));
 // 아래 로직 실행
 
 
@@ -133,7 +133,7 @@ assumeTrue(System.getenv().get("HOME").equals("/Users/dev"));
 assumeTrue 파라미터 값 조건에 맞으면 그 다음 로직이 실행된다.
 
 ```java
-assumingThat(System.getenv().get("HOME").equals("/Users/dev"), () -> {
+assumingThat(System.getenv().get("HOME").equals("/Users/user"), () -> {
     // 실행할 부분
 });
 

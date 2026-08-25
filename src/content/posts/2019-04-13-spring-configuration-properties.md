@@ -23,35 +23,35 @@ image: /images/spring.png
 한 개인에 대한 정보를 담고 있는 `application.properties` 를 살펴보자
 
 ```properties
-alice.name=alice
-alice.age=${random.int(20,40)} //랜덤한 값으로 설정됨
-alice.fullName=${alice.name} Kim //문자열을 추가해도 됨
+demo.name=demo
+demo.age=${random.int(20,40)} //랜덤한 값으로 설정됨
+demo.fullName=${demo.name} User //문자열을 추가해도 됨
 ```
 
-`alice` 라는 prefix로 설정하고, `name`, `age`, `fullName` 속성의 값을 설정했다. 실제 코드에서 사용할 때는 다음과 같다.
+`demo` 라는 prefix로 설정하고, `name`, `age`, `fullName` 속성의 값을 설정했다. 실제 코드에서 사용할 때는 다음과 같다.
 
 ```java
-@Value("${alice.name}")
+@Value("${demo.name}")
 private String name;
 
-@Value("${alice.age}")
+@Value("${demo.age}")
 private int age;
 
-@Value("${alice.fullName}")
+@Value("${demo.fullName}")
 private String fullName;
 // 생략
 ```
 
-여기에서는 의미없는 alice라는 prefix를 사용했지만, datasource의 url, user-name 등등 다양한 값들이 필요할 수 있다.
+여기에서는 의미없는 demo라는 prefix를 사용했지만, datasource의 url, user-name 등등 다양한 값들이 필요할 수 있다.
 
 ## 3. 실제 외부 클래스로 빼는 방법
 
 관리할 property를 정의할 class를 만들고, 해당 클래스가 빈으로 등록될 수 있도록 `@Component` 와`@ConfigurationProperties` 어노테이션을 클래스 레벨에 붙였다.
 
 ```java
-@ConfigurationProperties(prefix = "alice")
+@ConfigurationProperties(prefix = "demo")
 @Component
-public class AliceConfiguration {
+public class DemoConfiguration {
 
     String name;
     int age;
@@ -74,39 +74,39 @@ public class AliceConfiguration {
 
 ## 4. 실제 적용
 
-이제 기존의 `@Value(${alice.name})` 이런 코드들 대신, 해당 `AliceConfiguration` 빈을 주입받아서 getter를 통해서 접근할 수 있다.
+이제 기존의 `@Value(${demo.name})` 이런 코드들 대신, 해당 `DemoConfiguration` 빈을 주입받아서 getter를 통해서 접근할 수 있다.
 
 ```java
 @Component
 public class Runner implements ApplicationRunner {
 
 	 // 불필요한 코드
-   /* @Value("${alice.name}")
+   /* @Value("${demo.name}")
     private String name;
 
-    @Value("${alice.age}")
+    @Value("${demo.age}")
     private int age;
 
-    @Value("${alice.fullName}")
+    @Value("${demo.fullName}")
     private String fullName;*/
 
     // 빈으로 주입 받았다.
     @Autowired
-    private AliceConfiguration alice;
+    private DemoConfiguration demo;
 
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("=========================================");
-        System.out.println("name: " + alice.getName());
-        System.out.println("age: " + alice.getAge());
-        System.out.println("fullName: " + alice.getFullName());
+        System.out.println("name: " + demo.getName());
+        System.out.println("age: " + demo.getAge());
+        System.out.println("fullName: " + demo.getFullName());
         System.out.println("=========================================");
     }
 }
 ```
 
-이렇게 해당 값을 `@Value` 어노테이션으로 하드 코딩해서 가져오는 게 아니라, 클래스로 관리 하기 때문에 휴먼 에러를 줄여주고, 특히나 여러 군데서 사용하게 되었을 때 캡슐화의 장점이 살아난다. 관리 포인트가 해당 클래스 하나만 관리 하면 되기 때문이다. 또한, `alice.lastName` 이라는 property를 새롭게 추가하는 경우에도 AliceConfiguration클래스에서 필드 하나만 추가하면 된다.
+이렇게 해당 값을 `@Value` 어노테이션으로 하드 코딩해서 가져오는 게 아니라, 클래스로 관리 하기 때문에 휴먼 에러를 줄여주고, 특히나 여러 군데서 사용하게 되었을 때 캡슐화의 장점이 살아난다. 관리 포인트가 해당 클래스 하나만 관리 하면 되기 때문이다. 또한, `demo.lastName` 이라는 property를 새롭게 추가하는 경우에도 DemoConfiguration클래스에서 필드 하나만 추가하면 된다.
 
 ## 5. 정리
 

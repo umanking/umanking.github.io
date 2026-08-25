@@ -57,7 +57,7 @@ Prometheus,Grafan를 Docker로 띄워보고, nodejs exporter를 통해서 모니
 여기서 targets에는 수집할 메트릭 정보를 제공해주는 서버정보를 넣으면 된다. mac을 사용하고, local에서만 띄우기 때문에 `host.docker.internal:9100` 이라고 사용했다. 실제 서버라면 `ip:port` 로 매핑될 것이다. 
 
 ```shell
-$ docker run -p 9090:9090 -v /Users/dev/dev/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+$ docker run -p 9090:9090 -v /Users/user/dev/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 ```
 
 웹에서 http://localhost:9090으로 접속하면 다음과 같이 Prometheus에 접속할 수 있다. 

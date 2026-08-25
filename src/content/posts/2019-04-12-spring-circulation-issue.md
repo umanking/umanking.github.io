@@ -68,9 +68,9 @@ Description:
 The dependencies of some of the beans in the application context form a cycle:
 
 ┌─────┐
-|  circularA defined in file [/Users/dev/workspace/spring-boot-practice/target/classes/com/example/demo/spring/circular/CircularA.class]
+|  circularA defined in file [/Users/user/workspace/spring-boot-practice/target/classes/com/example/demo/spring/circular/CircularA.class]
 ↑     ↓
-|  circularB defined in file [/Users/dev/workspace/spring-boot-practice/target/classes/com/example/demo/spring/circular/CircularB.class]
+|  circularB defined in file [/Users/user/workspace/spring-boot-practice/target/classes/com/example/demo/spring/circular/CircularB.class]
 └─────┘
 ```
 
