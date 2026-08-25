@@ -17,6 +17,23 @@ export async function getListedPosts(): Promise<Post[]> {
   return (await getAllPosts()).filter((p) => !p.data.noindex);
 }
 
+/**
+ * 태그별 글 수. 목록·색인 정책 판단에 쓰인다.
+ * noindex 글은 태그 집계에서 제외한다 (getListedPosts 기준).
+ */
+export async function getTagCounts(): Promise<Map<string, number>> {
+  const counts = new Map<string, number>();
+  for (const post of await getListedPosts()) {
+    for (const tag of post.data.tags) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    }
+  }
+  return counts;
+}
+
+/** 태그 색인 임계. 허브와 동일하게 3편. */
+export const TAG_INDEX_THRESHOLD = 3;
+
 export async function getPostsByHub(section: string, hub: string): Promise<Post[]> {
   return (await getListedPosts()).filter((p) => p.data.section === section && p.data.hub === hub);
 }

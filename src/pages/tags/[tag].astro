@@ -1,0 +1,31 @@
+---
+import Base from "../../layouts/Base.astro";
+import PostCard from "../../components/PostCard.astro";
+import { getListedPosts, getTagCounts, TAG_INDEX_THRESHOLD } from "../../lib/posts";
+
+export async function getStaticPaths() {
+  // 목록·카운트용 경로이므로 getListedPosts() 기준으로 생성한다 (noindex 글 제외).
+  const posts = await getListedPosts();
+  const counts = await getTagCounts();
+  return [...counts.entries()].map(([tag, count]) => ({
+    params: { tag },
+    props: { tag, count, posts: posts.filter((p) => p.data.tags.includes(tag)) },
+  }));
+}
+
+const { tag, count, posts } = Astro.props;
+const canonical = new URL(`/tags/${encodeURIComponent(tag)}/`, Astro.site).href;
+// 3편 미만 태그는 색인하지 않는다 (스펙 6.10)
+const noindex = count < TAG_INDEX_THRESHOLD;
+---
+
+<Base
+  title={`${tag} 관련 글 ${count}편 | CodeNexus`}
+  description={`${tag} 태그가 붙은 글 ${count}편입니다. 실무 예제와 트러블슈팅 기록을 최신순으로 모았습니다.`}
+  canonical={canonical}
+  noindex={noindex}
+>
+  <h1>{tag}</h1>
+  <p>{count}편</p>
+  {posts.map((post) => <PostCard post={post} />)}
+</Base>
