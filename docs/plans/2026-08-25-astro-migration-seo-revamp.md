@@ -2304,6 +2304,168 @@ git commit -m "feat: 큐레이션 컬렉션과 SNS 스타일 피드 카드 추�
 
 ---
 
+## Task 7.7: 본문 개인정보 정리
+
+> **추가 배경**: 전역 제약 "개인 식별 정보 비노출"은 레이아웃·메타데이터에만 적용된 상태였고,
+> 이전해 온 146편 **본문 안**은 한 번도 훑지 않았다. 실측 결과 25개 파일에 노출이 남아 있다.
+> 사용자 지시 원문: "나에 대한 정보는 노출시키지마 !! andrew든 뭐든"
+
+**Files:**
+- Modify: `src/content/posts/` 하위 25개 파일
+- Test: `tests/pii.test.ts`
+
+**Interfaces:** 없음. 콘텐츠 텍스트만 바꾼다.
+
+### 실측된 노출 (2026-08-25 기준)
+
+| 유형 | 건수 | 처리 |
+|---|---|---|
+| `/Users/andrew/...` 로컬 경로 | 5 | 치환 |
+| `umanking@gmail.com` | 3 | 치환 |
+| `andrew@gmail.com` | 1 | 치환 |
+| `andrew.fullName=${andrew.name} Han` 의 `Han` | 1 | 치환 |
+| 코드 예제 변수명·문자열 `andrew`/`Andrew` | ~110 | 치환 |
+| `github.com/umanking/...` 예제 저장소 링크 | 10 | **유지 (아래 결정 3)** |
+
+### 설계 결정 (구현자는 이 결정을 바꾸지 말 것)
+
+**1. 코드가 깨지면 안 된다.**
+이것은 일괄 `sed` 작업이 아니다. 치환 후에도 **파일 안에서 식별자 정합성이 맞아야 한다.**
+`@ConfigurationProperties(prefix = "andrew")`를 바꾸면 같은 파일의 `andrew.name=`,
+`@Value("${andrew.name}")`, `AndrewConfiguration`, `private AndrewConfiguration andrew;`,
+`andrew.getName()`이 **전부 같은 방향으로** 바뀌어야 한다. 하나라도 어긋나면 예제가 거짓말이 된다.
+파일 단위로 읽고, 맥락을 보고, 일관되게 바꿔라.
+
+**2. 맥락에 따라 치환어가 다르다.**
+- **설정 prefix·프로퍼티 키** (`andrew.name=`, `prefix = "andrew"`, `AndrewConfiguration`)
+  → `demo.name=`, `prefix = "demo"`, `DemoConfiguration`.
+  원문이 "의미없는 andrew라는 prefix를 사용했지만"이라고 스스로 밝히고 있으므로
+  중립어로 바꾸는 편이 오히려 글의 의도에 맞는다.
+- **샘플 인물 이름** (`new User(1, "andrew", 32)`, `name='andrew'`)
+  → `"alice"`. 같은 예제에 `berry`, `robert`가 나란히 있으므로 사람 이름이어야 자연스럽다.
+  출력 예시 블록(`User{id=1, name='andrew', age=32}`)도 **같이** 바꿔야 결과가 일치한다.
+- **JSON 문자열** (`{\"username\": \"andrew\"}`) → `"alice"`.
+- **로컬 경로** (`/Users/andrew/workspace/...`) → `/Users/user/workspace/...`.
+  경로의 나머지 부분은 건드리지 않는다.
+- **이메일** (`umanking@gmail.com`, `andrew@gmail.com`) → `user@example.com`.
+  `example.com`은 RFC 2606이 예약한 문서용 도메인이라 실존 주소와 충돌하지 않는다.
+- **실명 성씨** (`andrew.fullName=${andrew.name} Han`) → `demo.fullName=${demo.name} User`.
+
+**3. `github.com/umanking/...` 링크는 유지한다.**
+도메인 자체가 `umanking.github.io`라 같은 핸들을 이미 노출하고 있어 **정보 증분이 0**이다.
+반면 링크를 지우면 독자가 예제 코드 저장소에 접근할 길이 끊겨 콘텐츠 가치가 실제로 떨어진다.
+`umanking.github.io/2022/05/05/...` 형태의 자기 블로그 내부 링크도 같은 이유로 유지한다.
+
+**4. 본문 의미를 바꾸지 않는다.**
+치환 대상 토큰만 건드린다. 문장을 다듬거나, 코드를 개선하거나, 오타를 고치지 말 것.
+프론트매터(`title`/`description`/`permalink`/`date`/`section`/`hub`/`type`/`level`/`tags`)는
+**한 글자도 바꾸지 않는다.** permalink가 바뀌면 URL이 깨진다.
+
+- [ ] **Step 1: 실패 테스트를 쓴다**
+
+`tests/pii.test.ts`:
+
+```ts
+import { describe, it, expect } from "vitest";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+
+const DIR = "src/content/posts";
+const files = readdirSync(DIR).filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
+const read = (f: string) => readFileSync(join(DIR, f), "utf8");
+
+describe("본문 개인정보 비노출", () => {
+  it("로컬 홈 경로에 사용자명이 남아 있지 않다", () => {
+    const hits = files.filter((f) => /\/Users\/andrew/i.test(read(f)));
+    expect(hits).toEqual([]);
+  });
+
+  it("개인 이메일이 남아 있지 않다", () => {
+    const hits = files.filter((f) => /umanking@|andrew@/i.test(read(f)));
+    expect(hits).toEqual([]);
+  });
+
+  it("실명 성씨가 남아 있지 않다", () => {
+    const hits = files.filter((f) => /\$\{andrew\.name\} Han/i.test(read(f)));
+    expect(hits).toEqual([]);
+  });
+
+  it("andrew는 github.com/umanking 링크 맥락에서만 허용된다", () => {
+    const offenders: string[] = [];
+    for (const f of files) {
+      for (const line of read(f).split("\n")) {
+        if (!/andrew/i.test(line)) continue;
+        // 예제 저장소 링크와 자기 블로그 내부 링크는 유지 대상이다 (결정 3)
+        if (/github\.com\/umanking|umanking\.github\.io/i.test(line)) continue;
+        offenders.push(`${f}: ${line.trim().slice(0, 80)}`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+});
+```
+
+- [ ] **Step 2: 테스트를 돌려 실패를 확인한다**
+
+Run: `npx vitest run tests/pii.test.ts`
+Expected: FAIL — 4개 중 최소 3개가 실패하고, 실패 메시지에 대상 파일 목록이 나온다
+
+- [ ] **Step 3: 대상 파일 목록을 확정한다**
+
+```bash
+grep -ril "andrew" src/content/posts/ | sort
+```
+
+25개가 나온다. 이 목록을 보고서에 그대로 적어라. 목록 밖의 파일은 건드리지 않는다.
+
+- [ ] **Step 4: 파일별로 치환한다**
+
+한 파일씩 **읽고 → 맥락 판단 → 수정**한다. 전체 일괄 `sed`를 쓰지 마라.
+설정 예제와 인물 예제가 한 파일에 섞여 있을 수 있다.
+
+특히 주의할 파일:
+- `2019-04-13-spring-configuration-properties.md` — prefix·클래스명·필드명·본문 설명이
+  전부 얽혀 있다. 가장 조심스럽게 다뤄야 한다. `AndrewConfiguration` 클래스명과
+  `private AndrewConfiguration andrew;` 필드명, `andrew.getName()` 호출까지 일관되게.
+- `2020-03-10-java-comparable-comparator.md` — 코드와 **출력 예시**가 둘 다 있다.
+  코드만 바꾸고 출력을 안 바꾸면 예제가 거짓이 된다.
+- `2019-04-12-spring-circulation-issue.md` — 스택트레이스 안의 로컬 경로.
+
+- [ ] **Step 5: 테스트를 돌려 통과를 확인한다**
+
+Run: `npx vitest run tests/pii.test.ts`
+Expected: PASS (4개)
+
+- [ ] **Step 6: 부수 피해가 없는지 확인한다**
+
+프로그램으로 확인한다:
+- 수정된 파일이 정확히 Step 3의 목록과 일치한다 (`git diff --name-only`)
+- **프론트매터가 하나도 바뀌지 않았다** — 각 파일의 `---` 블록을 diff에서 확인.
+  `permalink` 변경은 URL 파손이므로 절대 있어서는 안 된다.
+- `git diff`의 모든 변경 줄이 치환 대상 토큰을 포함한다 (무관한 줄이 딸려오지 않았다)
+- 코드 펜스 개수가 파일마다 수정 전후 동일하다
+
+- [ ] **Step 7: 빌드와 전체 테스트**
+
+Run: `npx astro build`
+Run: `npm test`
+
+확인:
+- 146개 URL 전부 `dist`에 존재
+- 새 테스트 실패 0건
+- `grep -ri "andrew" dist/ | grep -v "umanking"` → 0건
+
+- [ ] **Step 8: 커밋**
+
+```bash
+git add src/content/posts tests/pii.test.ts
+git commit -m "fix: 본문 개인정보 정리 — 로컬 경로·개인 이메일·실명·예제 식별자 치환"
+```
+
+되돌리기 쉽도록 **이 작업만 담은 커밋 하나**로 만든다. 다른 변경을 섞지 마라.
+
+---
+
 ## Task 8: 태그 페이지와 태그 정책
 
 **Files:**
