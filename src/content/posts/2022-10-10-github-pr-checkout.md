@@ -39,8 +39,6 @@ $ brew install fzf
 $ gh auth login
 ```
 
-<img width="1234" alt="Screen Shot 2022-10-10 at 3 24 26 PM" src="/images/posts/3a3c751290ea.png">
-
 ## 2. alias를 지정한다.
 
 ```bash

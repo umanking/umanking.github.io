@@ -43,8 +43,4 @@ personal access token 발급방식은 github 공식 문서로 대체 하겠다.
 
 ###  2.3. 'github'를 검색 > github.com를 찾는다.
 
-![스크린샷 2021-08-15 오후 12 54 49](/images/posts/535547844de8.png)
-
 ### 2.4. 위에서 만들었던 'personal access token'을 입력
-
-![스크린샷 2021-08-15 오후 12 54 56](/images/posts/18b9272f22d7.png)
