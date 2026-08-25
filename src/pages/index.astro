@@ -1,56 +1,28 @@
 ---
 import Base from "../layouts/Base.astro";
 import PostCard from "../components/PostCard.astro";
-import CurationCard from "../components/CurationCard.astro";
-import { getCurationItems, getMergedFeed } from "../lib/curation";
+import { getListedPosts } from "../lib/posts";
 
 const canonical = new URL("/", Astro.site).href;
-
-const curation = await getCurationItems();
-const topCuration = curation.slice(0, 6);
-const feed = await getMergedFeed(30);
+const posts = (await getListedPosts()).slice(0, 30);
 ---
 
 <Base title="CodeNexus" description="CodeNexus 블로그 글 전체 목록" canonical={canonical}>
   <h1 class="feed-title">최신 글</h1>
 
-  {
-    topCuration.length > 0 && (
-      <section class="home__curation" aria-labelledby="curation-heading">
-        <h2 id="curation-heading">이번 주 큐레이션</h2>
-        <div class="home__curation-grid">
-          {topCuration.map((item) => <CurationCard item={item} />)}
-        </div>
-      </section>
-    )
-  }
-
   <section aria-labelledby="feed-heading">
-    <h2 id="feed-heading">최신</h2>
-    {
-      feed.map((e) =>
-        e.kind === "post" ? <PostCard post={e.post} /> : <CurationCard item={e.item} />
-      )
-    }
+    <h2 id="feed-heading" class="sr-only">최신 글 목록</h2>
+    {posts.map((post) => <PostCard post={post} />)}
   </section>
 </Base>
 
 <style>
   .feed-title { margin-bottom: var(--space-4); font-size: 1.5rem; }
-  .home__curation { margin-bottom: var(--space-5); }
-  .home__curation h2,
-  [aria-labelledby="feed-heading"] h2 {
-    margin: 0 0 var(--space-3);
-    font-size: 1rem;
-    color: var(--fg-muted);
-    font-weight: 600;
-  }
-  .home__curation-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: var(--space-3);
-  }
-  @media (max-width: 480px) {
-    .home__curation-grid { grid-template-columns: 1fr; }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
   }
 </style>
