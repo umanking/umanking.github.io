@@ -93,3 +93,48 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 :root[data-theme="dark"] .astro-code {
   background-color: var(--shiki-dark-bg) !important;
 }
+
+/* 코드블록 박스: 상단 바(언어 라벨 + 복사 버튼) + Shiki pre */
+.codeblock {
+  margin: var(--space-5) 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.codeblock__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 6px 10px 6px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-subtle);
+  font-size: 0.75rem;
+}
+.codeblock__lang {
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+.codeblock__copy {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 10px;
+  background: transparent;
+  color: var(--fg-muted);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.codeblock__copy:hover { color: var(--fg); border-color: var(--fg-muted); }
+.codeblock__copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.codeblock__copy[data-copied] { color: var(--accent); border-color: var(--accent); }
+.codeblock pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+}

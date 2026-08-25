@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
+import rehypeCodeBlock from "./plugins/rehype-code-block.mjs";
 
 export default defineConfig({
   site: "https://umanking.github.io",
@@ -11,5 +12,6 @@ export default defineConfig({
   integrations: [mdx()],
   markdown: {
     shikiConfig: { themes: { light: "github-light", dark: "github-dark" }, wrap: true },
+    rehypePlugins: [rehypeCodeBlock],
   },
 });

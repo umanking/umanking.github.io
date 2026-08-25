@@ -57,6 +57,22 @@ const resolvedRightRail = rightRail ?? {
         }
       })();
     </script>
+    <script is:inline>
+      document.addEventListener("click", function (e) {
+        var btn = e.target.closest && e.target.closest("[data-copy]");
+        if (!btn) return;
+        var pre = btn.closest(".codeblock").querySelector("pre");
+        if (!pre || !navigator.clipboard) return;
+        navigator.clipboard.writeText(pre.innerText).then(function () {
+          btn.setAttribute("data-copied", "");
+          btn.textContent = "복사됨";
+          setTimeout(function () {
+            btn.removeAttribute("data-copied");
+            btn.textContent = "복사";
+          }, 1500);
+        });
+      });
+    </script>
     {/*
       preload 대상은 146편 본문의 문자 빈도를 실측해서 고른 것이다.
       subset.90(48.3%) + 91(20.5%) + 89(14.8%) = 본문 한글의 약 84%.
