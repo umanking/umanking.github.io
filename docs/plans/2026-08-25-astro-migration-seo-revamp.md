@@ -1905,6 +1905,691 @@ git commit -m "feat: 섹션·허브 pillar 페이지
 
 ---
 
+## Task 7.5: 큐레이션 컬렉션과 SNS 스타일 피드
+
+> **추가 배경**: 사용자 지시 — "reddit/dev.to처럼 프로필 아바타가 있으면 좋겠다",
+> "큐레이션을 더 주요하게 보여줘라", "동영상·이미지 같은 SNS 피드 형식으로".
+> 홈 구성은 **큐레이션이 주인공, 기존 글이 그 사이에 섞이는** 형태로 확정.
+> 큐레이션 아이템 자체는 이 Task에서 채우지 않는다(사용자 선택: "구조만 먼저").
+
+**Files:**
+- Modify: `src/content.config.ts`
+- Modify: `src/data/taxonomy.ts` (허브에 `symbol` optional 필드 추가)
+- Create: `src/lib/curation.ts`
+- Create: `src/components/HubAvatar.astro`
+- Create: `src/components/CurationCard.astro`
+- Modify: `src/components/PostCard.astro` (아바타 헤더 추가)
+- Modify: `src/pages/index.astro` (병합 피드)
+- Create: `src/content/curation/.gitkeep`
+- Create: `tests/curation.test.ts`
+
+**Interfaces:**
+- Consumes: `SECTION_IDS`, `getHubById()` (Task 2), `Post` 타입과 `readingMinutes()` (Task 5), `hubState()` (Task 6+7)
+- Produces:
+  - `getCurationItems(): Promise<CurationItem[]>` — date 내림차순
+  - `getMergedFeed(limit?: number): Promise<FeedEntry[]>` — 포스트+큐레이션을 date 내림차순 병합. `FeedEntry = { kind: "post", post: Post } | { kind: "curation", item: CurationItem }`
+  - `HubAvatar.astro` props: `{ hubId: string, size?: number }`
+
+### 설계 결정 (구현자는 이 결정을 바꾸지 말 것)
+
+**1. 큐레이션 아이템은 자체 페이지를 만들지 않는다.**
+아이템마다 페이지를 생성하면 thin content가 N개 늘어 사이트 전체 품질 평가가 내려간다.
+아이템은 피드·섹션·허브 목록에만 나타나고, 카드를 누르면 원문으로 나간다.
+SEO 자산 역할은 Phase 5의 주간 다이제스트 글이 맡는다.
+
+**2. 코멘터리 길이를 스키마에서 강제한다.**
+Google Scaled Content Abuse 정책상 "남의 콘텐츠 링크+요약만 대량으로 모은 페이지"는
+애드센스 게재 중지 사유가 된다. `comment` 최소 80자를 zod로 강제해
+코멘터리 없는 아이템은 **빌드가 실패**하게 만든다. 이 하한을 낮추지 말 것.
+
+**3. 썸네일은 로컬 경로만 허용한다.**
+외부 URL을 `<img src>`에 그대로 쓰면 저작권·성능·프라이버시가 전부 걸린다.
+`/images/curation/` 하위 경로만 정규식으로 통과시킨다.
+
+**4. 영상은 JS 0줄로 구현한다.**
+`<details>`가 닫혀 있으면 내부 `<iframe>`은 렌더되지 않아 네트워크 요청이 발생하지 않는다.
+열었을 때만 `loading="lazy"` iframe이 로드된다. 이것이 lite-embed와 동일한 효과를
+스크립트 한 줄 없이 낸다. zero-JS 제약을 깨는 대안(클릭 핸들러)을 쓰지 말 것.
+도메인은 `www.youtube-nocookie.com`을 쓴다.
+
+**5. 아바타는 개인이 아니라 주제다.**
+전역 제약상 프로필 사진·실명·핸들을 쓸 수 없다. dev.to 카드에서 저자 아바타가 있던
+자리에 **허브 아바타**를 넣는다. 허브 id를 해시해 고정 색상을 뽑고 심볼을 얹은
+인라인 SVG다. 외부 이미지 요청이 없고, 카드마다 허브 페이지로 가는 내부링크가 하나씩 는다.
+
+**6. 아이템이 0개면 홈의 큐레이션 블록을 렌더하지 않는다.**
+허브 단계적 오픈 규칙(스펙 §6.4)과 같은 철학이다. 빈 껍데기를 색인시키지 않는다.
+
+- [ ] **Step 1: 큐레이션 컬렉션 스키마를 추가하는 실패 테스트를 쓴다**
+
+`tests/curation.test.ts`:
+
+```ts
+import { describe, it, expect } from "vitest";
+import { curationSchemaShape } from "../src/lib/curation";
+
+describe("큐레이션 스키마", () => {
+  const base = {
+    title: "Spring Boot 3.5 릴리스",
+    url: "https://spring.io/blog/2026/08/20/spring-boot-3-5",
+    source: "spring.io",
+    date: "2026-08-20",
+    section: "backend",
+    comment: "가",
+  };
+
+  it("코멘터리가 80자 미만이면 거부한다 — 애드센스 정책 방어선이다", () => {
+    const r = curationSchemaShape.safeParse({ ...base, comment: "짧은 코멘트" });
+    expect(r.success).toBe(false);
+  });
+
+  it("코멘터리가 80자 이상이면 통과한다", () => {
+    const r = curationSchemaShape.safeParse({ ...base, comment: "가".repeat(80) });
+    expect(r.success).toBe(true);
+  });
+
+  it("외부 URL 썸네일은 거부한다 — 로컬 경로만 허용한다", () => {
+    const r = curationSchemaShape.safeParse({
+      ...base, comment: "가".repeat(80),
+      thumbnail: "https://example.com/a.png", thumbnailWidth: 640, thumbnailHeight: 360,
+    });
+    expect(r.success).toBe(false);
+  });
+
+  it("썸네일에 width/height가 없으면 거부한다 — CLS 방지", () => {
+    const r = curationSchemaShape.safeParse({
+      ...base, comment: "가".repeat(80), thumbnail: "/images/curation/a.png",
+    });
+    expect(r.success).toBe(false);
+  });
+
+  it("media가 video인데 youtubeId가 없으면 거부한다", () => {
+    const r = curationSchemaShape.safeParse({
+      ...base, comment: "가".repeat(80), media: "video",
+    });
+    expect(r.success).toBe(false);
+  });
+});
+```
+
+- [ ] **Step 2: 테스트를 돌려 실패를 확인한다**
+
+Run: `npx vitest run tests/curation.test.ts`
+Expected: FAIL — `curationSchemaShape`를 찾을 수 없음
+
+- [ ] **Step 3: `src/lib/curation.ts`에 스키마와 조회 함수를 구현한다**
+
+```ts
+import { getCollection, type CollectionEntry } from "astro:content";
+import { z } from "astro:content";
+import { SECTION_IDS } from "../data/taxonomy";
+import { getPosts, type Post } from "./posts";
+
+export const curationSchemaShape = z
+  .object({
+    title: z.string().min(1),
+    url: z.string().url(),
+    source: z.string().min(1),
+    date: z.coerce.date(),
+    // Google Scaled Content Abuse 방어선. 하한을 낮추면 애드센스가 위험해진다.
+    comment: z.string().min(80).max(400),
+    section: z.enum(SECTION_IDS as [string, ...string[]]),
+    hub: z.string().optional(),
+    media: z.enum(["link", "image", "video"]).default("link"),
+    // 로컬 경로만. 외부 이미지 직접 참조는 저작권·성능 양쪽에서 위험하다.
+    thumbnail: z.string().regex(/^\/images\/curation\/[^/]+$/).optional(),
+    thumbnailWidth: z.number().int().positive().optional(),
+    thumbnailHeight: z.number().int().positive().optional(),
+    youtubeId: z.string().regex(/^[A-Za-z0-9_-]{11}$/).optional(),
+    tags: z.array(z.string()).default([]),
+  })
+  .refine((d) => d.media !== "video" || !!d.youtubeId, {
+    message: "media가 video면 youtubeId가 필요하다",
+    path: ["youtubeId"],
+  })
+  .refine((d) => d.media !== "image" || !!d.thumbnail, {
+    message: "media가 image면 thumbnail이 필요하다",
+    path: ["thumbnail"],
+  })
+  .refine((d) => !d.thumbnail || (!!d.thumbnailWidth && !!d.thumbnailHeight), {
+    message: "CLS 방지를 위해 thumbnail에는 width/height가 함께 있어야 한다",
+    path: ["thumbnailWidth"],
+  });
+
+export type CurationItem = CollectionEntry<"curation">;
+
+export async function getCurationItems(): Promise<CurationItem[]> {
+  const items = await getCollection("curation");
+  return items.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+}
+
+export type FeedEntry =
+  | { kind: "post"; date: Date; post: Post }
+  | { kind: "curation"; date: Date; item: CurationItem };
+
+export async function getMergedFeed(limit?: number): Promise<FeedEntry[]> {
+  const [posts, items] = await Promise.all([getPosts(), getCurationItems()]);
+  const merged: FeedEntry[] = [
+    ...posts.map((post) => ({ kind: "post" as const, date: post.data.date, post })),
+    ...items.map((item) => ({ kind: "curation" as const, date: item.data.date, item })),
+  ].sort((a, b) => b.date.getTime() - a.date.getTime());
+  return limit ? merged.slice(0, limit) : merged;
+}
+```
+
+`src/content.config.ts`에 컬렉션을 등록한다. **기존 `posts` 정의는 건드리지 않는다.**
+
+```ts
+const curation = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/curation" }),
+  schema: curationSchemaShape,
+});
+
+export const collections = { posts, curation };
+```
+
+`curationSchemaShape`를 `src/lib/curation.ts`에서 import하면 순환 참조가 생길 수 있다.
+그럴 경우 스키마 정의만 `src/lib/curation-schema.ts`로 분리하고 양쪽에서 import한다.
+
+- [ ] **Step 4: 테스트를 돌려 통과를 확인한다**
+
+Run: `npx vitest run tests/curation.test.ts`
+Expected: PASS (5개)
+
+- [ ] **Step 5: `HubAvatar.astro`를 만든다**
+
+`src/data/taxonomy.ts`의 각 허브에 `symbol?: string`을 optional로 추가한다.
+**기존 필드(`id`/`label`/`description`/`keywords`/`faq`)와 허브 목록은 절대 변경하지 않는다.**
+주요 허브에만 심볼을 넣는다: spring→`SB`, jpa→`JPA`, java→`J`, testing→`T`,
+javascript→`JS`, typescript→`TS`, nodejs→`N`, mysql→`SQL`, redis→`R`,
+docker→`D`, aws→`AWS`, tools→`TL`, llm→`AI`.
+
+```astro
+---
+import { getHubById } from "../lib/taxonomy";
+
+interface Props { hubId: string; size?: number }
+const { hubId, size = 32 } = Astro.props;
+const hub = getHubById(hubId);
+
+// 허브 id를 해시해 고정 색상을 뽑는다. 같은 허브는 언제나 같은 색이다.
+// 개인 아바타를 쓸 수 없으므로(전역 제약) 주제 자체를 아바타로 삼는다.
+let h = 0;
+for (const ch of hubId) h = (h * 31 + ch.charCodeAt(0)) % 360;
+const symbol = hub?.symbol ?? (hub?.label ?? hubId).slice(0, 2).toUpperCase();
+const fontSize = symbol.length >= 3 ? size * 0.34 : size * 0.42;
+---
+
+<span
+  class="avatar"
+  style={`--h:${h}; width:${size}px; height:${size}px; font-size:${fontSize}px;`}
+  aria-hidden="true">{symbol}</span>
+
+<style>
+  .avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    border-radius: 8px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    background: hsl(var(--h) 62% 92%);
+    color: hsl(var(--h) 72% 30%);
+  }
+  :global(:root:not([data-theme="light"])) .avatar {
+    background: hsl(var(--h) 38% 22%);
+    color: hsl(var(--h) 70% 78%);
+  }
+  :global(:root[data-theme="dark"]) .avatar {
+    background: hsl(var(--h) 38% 22%);
+    color: hsl(var(--h) 70% 78%);
+  }
+</style>
+```
+
+다크 모드 규칙은 `tokens.css`가 쓰는 3중 정의 방식(bare `:root` / `prefers-color-scheme` 가드 /
+`[data-theme="dark"]`)을 그대로 따른다. `aria-hidden`을 붙인 이유는 바로 옆에 허브명
+텍스트 링크가 오기 때문이다 — 스크린리더에 심볼이 중복해 읽히면 안 된다.
+
+- [ ] **Step 6: `PostCard.astro`에 아바타 헤더를 넣는다**
+
+제목 위에 한 줄을 추가한다. **기존 제목·설명·메타 구조는 유지한다.**
+
+```astro
+<header class="card__head">
+  <HubAvatar hubId={post.data.hub} size={32} />
+  <span class="card__head-text">
+    <a class="card__hub" href={`/${post.data.section}/${post.data.hub}/`}>{hubLabel}</a>
+    <time class="card__date" datetime={post.data.date.toISOString()}>
+      {post.data.date.toLocaleDateString("ko-KR")}
+    </time>
+  </span>
+</header>
+```
+
+날짜가 헤더로 올라가므로 기존 `.card__meta`의 `<time>`은 제거해 중복을 없앤다.
+`hubLabel`은 `getHubById(post.data.hub)?.label ?? post.data.hub`로 구한다.
+
+- [ ] **Step 7: `CurationCard.astro`를 만든다**
+
+세 가지 `media`를 한 컴포넌트에서 처리한다.
+
+```astro
+---
+import HubAvatar from "./HubAvatar.astro";
+import type { CurationItem } from "../lib/curation";
+
+interface Props { item: CurationItem }
+const { item } = Astro.props;
+const d = item.data;
+const avatarId = d.hub ?? d.section;
+---
+
+<article class="ccard">
+  <header class="ccard__head">
+    <HubAvatar hubId={avatarId} size={32} />
+    <span class="ccard__head-text">
+      <span class="ccard__src">{d.source}</span>
+      <time datetime={d.date.toISOString()}>{d.date.toLocaleDateString("ko-KR")}</time>
+    </span>
+    <span class="ccard__badge">큐레이션</span>
+  </header>
+
+  {d.media === "video" && d.youtubeId && (
+    <details class="ccard__video">
+      <summary>
+        <img
+          src={d.thumbnail} width={d.thumbnailWidth} height={d.thumbnailHeight}
+          alt="" loading="lazy" decoding="async" />
+        <span class="ccard__play" aria-hidden="true">▶</span>
+        <span class="ccard__play-label">영상 재생</span>
+      </summary>
+      {/*
+        details가 닫혀 있는 동안 이 iframe은 렌더되지 않아 네트워크 요청이 없다.
+        열었을 때만 로드된다 — lite-embed와 같은 효과를 스크립트 없이 낸다.
+      */}
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${d.youtubeId}`}
+        title={d.title} loading="lazy" allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </details>
+  )}
+
+  {d.media === "image" && d.thumbnail && (
+    <a href={d.url} rel="noopener nofollow" target="_blank" class="ccard__img">
+      <img src={d.thumbnail} width={d.thumbnailWidth} height={d.thumbnailHeight}
+           alt="" loading="lazy" decoding="async" />
+    </a>
+  )}
+
+  <h3 class="ccard__title">
+    <a href={d.url} rel="noopener nofollow" target="_blank">{d.title}</a>
+  </h3>
+  <p class="ccard__comment">{d.comment}</p>
+  <p class="ccard__meta">
+    {d.tags.slice(0, 3).map((t) => <span class="ccard__tag">#{t}</span>)}
+    <span class="ccard__out">{d.source} ↗</span>
+  </p>
+</article>
+```
+
+`rel="noopener nofollow"`를 붙인다. 큐레이션 링크에 nofollow를 붙이는 이유는
+외부로 나가는 링크가 대량으로 쌓였을 때 링크 스팸으로 오인되지 않게 하기 위해서다.
+이미지·영상 카드는 `aspect-ratio`로 자리를 미리 잡아 CLS를 0으로 만든다.
+
+- [ ] **Step 8: 홈을 병합 피드로 바꾼다**
+
+`src/pages/index.astro`:
+
+```astro
+const curation = await getCurationItems();
+const topCuration = curation.slice(0, 6);
+const feed = await getMergedFeed(30);
+```
+
+```astro
+{topCuration.length > 0 && (
+  <section class="home__curation" aria-labelledby="curation-heading">
+    <h2 id="curation-heading">이번 주 큐레이션</h2>
+    <div class="home__curation-grid">
+      {topCuration.map((item) => <CurationCard item={item} />)}
+    </div>
+  </section>
+)}
+
+<section aria-labelledby="feed-heading">
+  <h2 id="feed-heading">최신</h2>
+  {feed.map((e) =>
+    e.kind === "post" ? <PostCard post={e.post} /> : <CurationCard item={e.item} />
+  )}
+</section>
+```
+
+큐레이션 그리드는 `repeat(auto-fill, minmax(260px, 1fr))`, 모바일에서는 1열.
+**아이템이 0개일 때 `home__curation` 섹션 전체가 DOM에 없어야 한다** — 빈 제목만 남으면
+색인 품질에 해가 된다.
+
+- [ ] **Step 9: 빌드하고 전수 검증한다**
+
+Run: `npx astro build`
+
+다음을 프로그램으로 확인한다:
+- `dist/index.html`에 `이번 주 큐레이션` 문자열이 **없다** (아이템 0개이므로)
+- `src/data/url-map.json`의 146개 URL이 `dist`에 전부 존재한다
+- `grep -r "<script src=" dist/` → 0건
+- `grep -ri "andrew" dist/` → 도메인 문자열 외 0건
+- 모든 `<img>`에 `width`/`height`가 있다
+
+Run: `npm test`
+Expected: 기존 통과 테스트가 하나도 깨지지 않는다 (알려진 `dist/sitemap.xml` 실패 1건은 Task 12에서 해소되므로 그대로 둔다)
+
+- [ ] **Step 10: 샘플 아이템으로 렌더를 확인한 뒤 되돌린다**
+
+`src/content/curation/`에 link·image·video 각 1개씩 임시 아이템을 만들어
+`npx astro build` 후 세 카드가 모두 정상 렌더되는지, 영상 카드의 `details`가
+닫힌 상태에서 `dist`의 HTML에 iframe이 존재하되 브라우저가 요청을 보내지 않는 구조인지
+확인한다. 확인 후 **임시 아이템은 삭제하고 `.gitkeep`만 커밋한다** (사용자가 콘텐츠는
+나중에 채우기로 결정했다).
+
+- [ ] **Step 11: 커밋**
+
+```bash
+git add src/lib/curation.ts src/components/HubAvatar.astro src/components/CurationCard.astro \
+        src/components/PostCard.astro src/content.config.ts src/data/taxonomy.ts \
+        src/pages/index.astro src/content/curation/.gitkeep tests/curation.test.ts
+git commit -m "feat: 큐레이션 컬렉션과 SNS 스타일 피드 카드 추가"
+```
+
+---
+
+## Task 7.6: 코드블록 박스와 복사 버튼
+
+> **추가 배경**: 사용자 지시 — "코드블록 색상은 잘 나오는데 박스 형태로 하고
+> copy 버튼이 있어야 한다. 그런 건 기본이다."
+> 이 Task는 **Global Constraints의 zero client-side JS 항목을 완화한 상태**에서 진행한다.
+> 재정의된 제약: **인라인 스크립트만 허용, 외부 `<script src=>` 금지, 인라인 총합 2KB 이하.**
+> 클립보드 접근은 JS 없이 불가능하고, 이벤트 위임 한 개면 ~500바이트다.
+> `dist/`에 `<script src=`가 0건이라는 검증은 그대로 유지한다.
+
+**Files:**
+- Create: `plugins/rehype-code-block.mjs`
+- Modify: `astro.config.mjs`
+- Modify: `src/styles/global.css` (또는 코드블록 전용 CSS 파일 신설)
+- Modify: `src/layouts/Base.astro` (인라인 복사 스크립트)
+- Test: `tests/code-block.test.ts`
+
+**Interfaces:**
+- Consumes: Task 2의 Shiki 설정(`markdown.shikiConfig`, light/dark 이중 테마)
+- Produces: 마크다운의 모든 펜스 코드블록이 `<figure class="codeblock">` 로 감싸여 렌더된다
+
+### 설계 결정
+
+**1. Shiki 설정을 건드리지 않는다.**
+색상은 이미 정상이라고 사용자가 확인했다. 이 Task는 **감싸는 껍데기와 복사 버튼만** 추가한다.
+`shikiConfig`의 `themes`·`wrap` 값을 바꾸지 말 것.
+
+**2. 인라인 코드는 대상이 아니다.**
+`<pre>` 안에 있는 `<code>`만 감싼다. 본문 중간의 `` `foo` `` 는 그대로 둔다.
+
+**3. 이벤트 위임 하나만 쓴다.**
+코드블록마다 리스너를 붙이면 긴 글에서 수십 개가 생긴다. `document`에 클릭 리스너
+하나를 걸고 `closest()`로 판정한다.
+
+**4. 복사 버튼은 `aria-live`로 결과를 알린다.**
+시각적 "복사됨" 표시만으로는 스크린리더 사용자가 성공 여부를 알 수 없다.
+
+- [ ] **Step 1: rehype 플러그인의 실패 테스트를 쓴다**
+
+`tests/code-block.test.ts`:
+
+```ts
+import { describe, it, expect } from "vitest";
+import { unified } from "unified";
+import rehypeParse from "rehype-parse";
+import rehypeStringify from "rehype-stringify";
+import rehypeCodeBlock from "../plugins/rehype-code-block.mjs";
+
+const run = (html: string) =>
+  unified()
+    .use(rehypeParse, { fragment: true })
+    .use(rehypeCodeBlock)
+    .use(rehypeStringify)
+    .processSync(html)
+    .toString();
+
+describe("코드블록 rehype 플러그인", () => {
+  it("pre를 figure.codeblock으로 감싼다", () => {
+    const out = run('<pre class="astro-code" data-language="java"><code>x</code></pre>');
+    expect(out).toContain('class="codeblock"');
+    expect(out).toContain("<figure");
+  });
+
+  it("언어 라벨을 헤더에 넣는다", () => {
+    const out = run('<pre class="astro-code" data-language="java"><code>x</code></pre>');
+    expect(out).toContain("java");
+  });
+
+  it("복사 버튼을 넣는다", () => {
+    const out = run('<pre class="astro-code" data-language="java"><code>x</code></pre>');
+    expect(out).toContain("data-copy");
+    expect(out).toContain("<button");
+  });
+
+  it("data-language가 없어도 깨지지 않는다", () => {
+    const out = run("<pre><code>x</code></pre>");
+    expect(out).toContain('class="codeblock"');
+  });
+
+  it("인라인 code는 감싸지 않는다", () => {
+    const out = run("<p>이것은 <code>inline</code> 입니다</p>");
+    expect(out).not.toContain("codeblock");
+  });
+
+  it("이미 감싼 pre를 두 번 감싸지 않는다", () => {
+    const once = run('<pre data-language="js"><code>x</code></pre>');
+    const twice = run(once);
+    expect(twice.match(/class="codeblock"/g)?.length).toBe(1);
+  });
+});
+```
+
+- [ ] **Step 2: 테스트를 돌려 실패를 확인한다**
+
+Run: `npx vitest run tests/code-block.test.ts`
+Expected: FAIL — `plugins/rehype-code-block.mjs`가 없음
+
+- [ ] **Step 3: 플러그인을 구현한다**
+
+```js
+// plugins/rehype-code-block.mjs
+import { visit } from "unist-util-visit";
+
+export default function rehypeCodeBlock() {
+  return (tree) => {
+    visit(tree, "element", (node, index, parent) => {
+      if (node.tagName !== "pre" || !parent || index === null) return;
+      // 이미 감싼 것을 다시 감싸지 않는다 (플러그인이 두 번 실행되는 경우 대비)
+      if (parent.type === "element" && parent.properties?.className?.includes?.("codeblock")) return;
+
+      const lang = node.properties?.dataLanguage ?? "";
+      const label = typeof lang === "string" && lang ? lang : "code";
+
+      parent.children[index] = {
+        type: "element",
+        tagName: "figure",
+        properties: { className: ["codeblock"] },
+        children: [
+          {
+            type: "element",
+            tagName: "figcaption",
+            properties: { className: ["codeblock__bar"] },
+            children: [
+              {
+                type: "element",
+                tagName: "span",
+                properties: { className: ["codeblock__lang"] },
+                children: [{ type: "text", value: label }],
+              },
+              {
+                type: "element",
+                tagName: "button",
+                properties: {
+                  type: "button",
+                  className: ["codeblock__copy"],
+                  "data-copy": "",
+                  "aria-label": `${label} 코드 복사`,
+                },
+                children: [{ type: "text", value: "복사" }],
+              },
+            ],
+          },
+          node,
+        ],
+      };
+    });
+  };
+}
+```
+
+`data-language`는 hast에서 `dataLanguage`로 접근한다. Shiki 버전에 따라 속성이
+없을 수 있으니 **반드시 실제 빌드 산출물에서 확인하고**, 없으면 `<code>`의
+`className`에서 `language-xxx`를 파싱하는 경로를 추가한다.
+
+`astro.config.mjs`의 `markdown`에 등록한다. **기존 `shikiConfig`는 그대로 둔다.**
+
+```js
+markdown: {
+  shikiConfig: { /* 기존 값 그대로 */ },
+  rehypePlugins: [rehypeCodeBlock],
+},
+```
+
+- [ ] **Step 4: 테스트를 돌려 통과를 확인한다**
+
+Run: `npx vitest run tests/code-block.test.ts`
+Expected: PASS (6개)
+
+- [ ] **Step 5: 코드블록 스타일을 넣는다**
+
+박스 형태로 만든다. 색상 값은 하드코딩하지 말고 `tokens.css`의 토큰을 쓰거나,
+없으면 토큰을 새로 정의한다(라이트 / `prefers-color-scheme` 가드 / `[data-theme="dark"]`
+3중 정의 규칙을 따를 것).
+
+```css
+.codeblock {
+  margin: var(--space-5) 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.codeblock__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 6px 10px 6px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 0.75rem;
+}
+.codeblock__lang {
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+.codeblock__copy {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 10px;
+  background: transparent;
+  color: var(--fg-muted);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.codeblock__copy:hover { color: var(--fg); border-color: var(--fg-muted); }
+.codeblock__copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.codeblock__copy[data-copied] { color: var(--accent); border-color: var(--accent); }
+.codeblock pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+```
+
+`.codeblock pre`가 기존 `pre` 스타일의 테두리·라운드·마진을 확실히 덮는지 확인한다.
+박스 안에 박스가 겹쳐 보이면 안 된다.
+
+가로 스크롤은 `pre`가 자체적으로 처리한다 — **페이지 body가 가로로 스크롤되면 안 된다.**
+`shikiConfig.wrap`이 켜져 있으므로 긴 줄은 줄바꿈되지만, 표·긴 URL 등이 있는 블록을
+실제로 확인할 것.
+
+- [ ] **Step 6: 복사 스크립트를 `Base.astro`에 인라인으로 넣는다**
+
+기존 테마 스크립트 아래에 둔다. **`<script is:inline>`을 쓴다** — Astro가 번들해
+외부 파일로 빼내면 `<script src=` 0건 검증이 깨진다.
+
+```html
+<script is:inline>
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest("[data-copy]");
+    if (!btn) return;
+    var pre = btn.closest(".codeblock").querySelector("pre");
+    if (!pre || !navigator.clipboard) return;
+    navigator.clipboard.writeText(pre.innerText).then(function () {
+      btn.setAttribute("data-copied", "");
+      btn.textContent = "복사됨";
+      setTimeout(function () {
+        btn.removeAttribute("data-copied");
+        btn.textContent = "복사";
+      }, 1500);
+    });
+  });
+</script>
+```
+
+`navigator.clipboard`는 보안 컨텍스트(https 또는 localhost)에서만 존재한다.
+없으면 조용히 아무 일도 하지 않는다 — 버튼이 에러를 던지면 안 된다.
+
+- [ ] **Step 7: 빌드하고 검증한다**
+
+Run: `npx astro build`
+
+프로그램으로 확인한다:
+- `dist/` 전체에서 `<script src=` → **0건** (제약 유지 확인)
+- 코드 예제가 있는 글(예: `dist/2019/04/12/` 하위)의 HTML에 `class="codeblock"`과
+  `data-copy`가 존재한다
+- `<figure class="codeblock">` 개수와 `<pre` 개수가 일치한다 (감싸지지 않은 pre가 없다)
+- 146개 URL 전부 존재
+
+Run: `npm test`
+Expected: 기존 통과 테스트가 하나도 깨지지 않는다 (알려진 `dist/sitemap.xml` 실패 1건 제외)
+
+- [ ] **Step 8: 실제 브라우저 확인**
+
+`npm run dev` 후 코드 예제가 많은 글을 열어 다음을 눈으로 확인한다:
+- 박스 테두리와 상단 바가 정상 렌더되고, 안에 겹친 테두리가 없다
+- 복사 버튼을 누르면 "복사됨"으로 바뀌었다가 1.5초 뒤 되돌아온다
+- 라이트/다크 모드 양쪽에서 상단 바와 코드 배경의 대비가 충분하다
+- 키보드 Tab으로 복사 버튼에 포커스가 가고 포커스 링이 보인다
+
+확인 후 **개발 서버를 끈다.**
+
+- [ ] **Step 9: 커밋**
+
+```bash
+git add plugins/rehype-code-block.mjs astro.config.mjs src/styles/ src/layouts/Base.astro tests/code-block.test.ts
+git commit -m "feat: 코드블록 박스 UI와 복사 버튼 추가"
+```
+
+---
+
 ## Task 8: 태그 페이지와 태그 정책
 
 **Files:**
