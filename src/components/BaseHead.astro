@@ -1,0 +1,67 @@
+---
+import { SITE, absolute } from "../lib/seo";
+import { graph } from "../lib/jsonld";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  noindex?: boolean;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  section?: string;
+  tags?: string[];
+  jsonLd?: object[];
+}
+const {
+  title,
+  description,
+  canonical,
+  noindex = false,
+  ogImage = absolute("/images/og-default.png"),
+  ogType = "website",
+  publishedTime,
+  modifiedTime,
+  section,
+  tags = [],
+  jsonLd = [],
+} = Astro.props;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex
+  ? <meta name="robots" content="noindex, follow" />
+  : <meta name="robots" content="index, follow, max-image-preview:large" />}
+
+<meta name="naver-site-verification" content="46d4c4d3f1013de17dee96a763e94028323e4b00" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="alternate" type="application/rss+xml" title={SITE.name} href="/feed.xml" />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{section && <meta property="article:section" content={section} />}
+{tags.map((tag) => <meta property="article:tag" content={tag} />)}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{jsonLd.length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify(graph(jsonLd))} />
+)}

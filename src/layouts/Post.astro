@@ -10,6 +10,8 @@ import SeriesNav from "../components/SeriesNav.astro";
 import Comments from "../components/Comments.astro";
 import { readingMinutes, type Post } from "../lib/posts";
 import { getSection, getHub } from "../lib/taxonomy";
+import { blogPostingLd, breadcrumbLd, organizationLd } from "../lib/jsonld";
+import { buildTitle, absolute } from "../lib/seo";
 
 interface Props { post: Post; headings: MarkdownHeading[] }
 const { post, headings } = Astro.props;
@@ -26,11 +28,38 @@ const crumbs = [
   { label: post.data.title },
 ];
 
-const titleTag =
-  post.data.title.length > 30 ? post.data.title : `${post.data.title} | CodeNexus`;
+const titleTag = buildTitle(post.data.title);
+
+const ogImage = absolute(`/og${post.data.permalink}index.png`);
+const jsonLd = [
+  organizationLd(),
+  blogPostingLd({
+    title: post.data.title,
+    description: post.data.description,
+    url: canonical,
+    datePublished: post.data.date,
+    dateModified: post.data.date,
+    image: ogImage,
+    section: section?.label ?? "",
+    keywords: post.data.tags,
+  }),
+  breadcrumbLd(crumbs),
+];
 ---
 
-<Base title={titleTag} description={post.data.description} canonical={canonical} noindex={post.data.noindex}>
+<Base
+  title={titleTag}
+  description={post.data.description}
+  canonical={canonical}
+  noindex={post.data.noindex}
+  ogType="article"
+  ogImage={ogImage}
+  publishedTime={post.data.date.toISOString()}
+  modifiedTime={post.data.date.toISOString()}
+  section={section?.label}
+  tags={post.data.tags}
+  jsonLd={jsonLd}
+>
   <article class="post prose">
     <Breadcrumb items={crumbs} />
     <h1>{post.data.title}</h1>
