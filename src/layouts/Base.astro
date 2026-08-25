@@ -3,23 +3,36 @@ import "../styles/global.css";
 import TopBar from "../components/TopBar.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import RightRail from "../components/RightRail.astro";
-import { getTopHubs } from "../lib/taxonomy";
+import RightRail, { type RailHub } from "../components/RightRail.astro";
+import { getNavTree, getSectionCounts, topHubsFromTree } from "../lib/taxonomy";
 
 interface Props {
   title: string;
   description: string;
   canonical: string;
   noindex?: boolean;
+  /**
+   * 우측 레일 위젯. 페이지가 넘기지 않으면 사이트 전체 인기 주제로 대체한다.
+   * 슬롯이 아니라 prop인 이유: Astro named slot은 부모가 슬롯을 "전달"만
+   * 해도(내용이 실제로 비어 있어도) 채워진 것으로 간주해 폴백을 무력화한다.
+   * prop 기본값은 순수 JS 로직이라 그 문제가 없다.
+   */
+  rightRail?: { title: string; hubs: RailHub[] };
 }
-const { title, description, canonical, noindex = false } = Astro.props;
+const { title, description, canonical, noindex = false, rightRail } = Astro.props;
 
-// 우측 레일 기본값: 어떤 페이지가 named slot을 채우지 않으면 사이트 전체 인기 주제를 보여준다.
-const defaultTopHubs = (await getTopHubs(5)).map((h) => ({
-  href: `/${h.sectionId}/${h.id}/`,
-  label: h.label,
-  count: h.count,
-}));
+// Nav/Footer/우측 레일 기본값이 각자 getNavTree()·getSectionCounts()를 따로
+// 호출하던 것을 여기서 한 번만 계산해 내려보낸다.
+const tree = await getNavTree();
+const sectionCounts = await getSectionCounts();
+const resolvedRightRail = rightRail ?? {
+  title: "인기 주제",
+  hubs: topHubsFromTree(tree, 5).map((h) => ({
+    href: `/${h.sectionId}/${h.id}/`,
+    label: h.label,
+    count: h.count,
+  })),
+};
 ---
 
 <!doctype html>
@@ -59,16 +72,14 @@ const defaultTopHubs = (await getTopHubs(5)).map((h) => ({
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
     <TopBar />
     <div class="shell">
-      <Nav />
+      <Nav tree={tree} sectionCounts={sectionCounts} />
       <main id="main" class="shell__main">
         <slot />
       </main>
       <aside class="shell__right" aria-label="관련 정보">
-        <slot name="right-rail">
-          <RightRail title="인기 주제" hubs={defaultTopHubs} />
-        </slot>
+        <RightRail title={resolvedRightRail.title} hubs={resolvedRightRail.hubs} />
       </aside>
     </div>
-    <Footer />
+    <Footer tree={tree} sectionCounts={sectionCounts} />
   </body>
 </html>

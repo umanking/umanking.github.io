@@ -1,8 +1,9 @@
 ---
-import { getNavTree, getSectionCounts } from "../lib/taxonomy";
+import type { NavSection } from "../lib/taxonomy";
+import type { SectionId } from "../data/taxonomy";
 
-const tree = await getNavTree();
-const sectionCounts = await getSectionCounts();
+interface Props { tree: NavSection[]; sectionCounts: Map<SectionId, number> }
+const { tree, sectionCounts } = Astro.props;
 const current = Astro.url.pathname;
 
 const rows = tree.map((section) => {

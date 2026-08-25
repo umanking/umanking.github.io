@@ -2,7 +2,7 @@
 import Hub from "../../layouts/Hub.astro";
 import { SECTIONS } from "../../data/taxonomy";
 import { getPostsBySection } from "../../lib/posts";
-import { getHubCounts, hubState } from "../../lib/taxonomy";
+import { getHubCounts, getTopHubs, hubState } from "../../lib/taxonomy";
 
 export async function getStaticPaths() {
   return SECTIONS.map((section) => ({ params: { section: section.id }, props: { section } }));
@@ -19,6 +19,13 @@ const hubs = section.hubs
 const canonical = new URL(`/${section.id}/`, Astro.site).href;
 // 글이 없는 섹션은 색인하지 않는다 (스펙 6.4)
 const noindex = posts.length === 0;
+
+// 우측 레일: 섹션 페이지는 자체 "형제"가 없으므로 사이트 전체 인기 주제를 그대로 보여준다.
+const rightRailHubs = (await getTopHubs(5)).map((h) => ({
+  href: `/${h.sectionId}/${h.id}/`,
+  label: h.label,
+  count: h.count,
+}));
 ---
 
 <Hub
@@ -29,6 +36,8 @@ const noindex = posts.length === 0;
   canonical={canonical}
   noindex={noindex}
   posts={posts}
+  rightRailTitle="인기 주제"
+  rightRailHubs={rightRailHubs}
 >
   <div slot="intro">
     {hubs.length > 0 && (

@@ -1,12 +1,12 @@
 ---
-interface RailHub { href: string; label: string; count: number }
-interface Props { title?: string; hubs?: RailHub[] }
-const { title, hubs = [] } = Astro.props;
+export interface RailHub { href: string; label: string; count: number }
+interface Props { title: string; hubs: RailHub[] }
+const { title, hubs } = Astro.props;
 ---
 
-{hubs.length > 0 && (
-  <div class="widget">
-    <h2 class="widget__title">{title}</h2>
+<div class="widget">
+  <h2 class="widget__title">{title}</h2>
+  {hubs.length > 0 ? (
     <ul class="widget__list">
       {hubs.map((hub) => (
         <li>
@@ -17,8 +17,14 @@ const { title, hubs = [] } = Astro.props;
         </li>
       ))}
     </ul>
-  </div>
-)}
+  ) : (
+    <p class="widget__empty">아직 집계된 주제가 없습니다.</p>
+  )}
+</div>
 <div class="widget widget--ad" aria-hidden="true">
   <span>광고 자리</span>
 </div>
+
+<style>
+  .widget__empty { margin: 0; color: var(--fg-muted); font-size: 0.85rem; }
+</style>

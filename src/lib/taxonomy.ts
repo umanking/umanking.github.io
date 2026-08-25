@@ -55,9 +55,8 @@ export async function getNavTree(): Promise<NavSection[]> {
 
 export interface TopHub { sectionId: SectionId; sectionLabel: string; id: string; label: string; count: number }
 
-/** 사이트 전체에서 글 수가 많은 순으로 정렬한 오픈 허브 목록 (우측 레일 "인기 주제" 위젯용) */
-export async function getTopHubs(limit = 5): Promise<TopHub[]> {
-  const tree = await getNavTree();
+/** 이미 계산된 트리에서 인기 허브를 뽑는 순수 함수 (getNavTree를 다시 호출하지 않는다) */
+export function topHubsFromTree(tree: NavSection[], limit = 5): TopHub[] {
   const flat: TopHub[] = [];
   for (const section of tree) {
     for (const hub of section.hubs) {
@@ -65,4 +64,9 @@ export async function getTopHubs(limit = 5): Promise<TopHub[]> {
     }
   }
   return flat.sort((a, b) => b.count - a.count).slice(0, limit);
+}
+
+/** 사이트 전체에서 글 수가 많은 순으로 정렬한 오픈 허브 목록 (우측 레일 "인기 주제" 위젯용) */
+export async function getTopHubs(limit = 5): Promise<TopHub[]> {
+  return topHubsFromTree(await getNavTree(), limit);
 }

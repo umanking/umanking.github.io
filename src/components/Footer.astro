@@ -1,9 +1,9 @@
 ---
-import { getNavTree, getSectionCounts } from "../lib/taxonomy";
-import { SECTIONS } from "../data/taxonomy";
+import type { NavSection } from "../lib/taxonomy";
+import { SECTIONS, type SectionId } from "../data/taxonomy";
 
-const tree = await getNavTree();
-const sectionCounts = await getSectionCounts();
+interface Props { tree: NavSection[]; sectionCounts: Map<SectionId, number> }
+const { tree, sectionCounts } = Astro.props;
 const year = new Date().getFullYear();
 ---
 

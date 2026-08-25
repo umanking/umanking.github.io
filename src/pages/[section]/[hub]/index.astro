@@ -2,7 +2,7 @@
 import Hub from "../../../layouts/Hub.astro";
 import { SECTIONS } from "../../../data/taxonomy";
 import { getPostsByHub } from "../../../lib/posts";
-import { getHubCounts, hubState } from "../../../lib/taxonomy";
+import { getHubCounts, getTopHubs, hubState } from "../../../lib/taxonomy";
 
 export async function getStaticPaths() {
   const counts = await getHubCounts();
@@ -12,26 +12,39 @@ export async function getStaticPaths() {
       const count = counts.get(`${section.id}/${hub.id}`) ?? 0;
       // 0편 허브는 빌드 산출물을 만들지 않는다 (스펙 6.4)
       if (hubState(count) === "closed") continue;
-      paths.push({ params: { section: section.id, hub: hub.id }, props: { section, hub, count } });
+
+      // 우측 레일: 같은 섹션의 다른 오픈 허브들. getStaticPaths에서 이미 구한
+      // counts를 재사용해 페이지 렌더 시점에 getHubCounts()를 다시 부르지 않는다.
+      const siblingHubs = section.hubs
+        .filter((h) => h.id !== hub.id)
+        .map((h) => ({ ...h, count: counts.get(`${section.id}/${h.id}`) ?? 0 }))
+        .filter((h) => hubState(h.count) === "open")
+        .sort((a, b) => b.count - a.count)
+        .map((h) => ({ href: `/${section.id}/${h.id}/`, label: h.label, count: h.count }));
+
+      paths.push({ params: { section: section.id, hub: hub.id }, props: { section, hub, count, siblingHubs } });
     }
   }
   return paths;
 }
 
-const { section, hub, count } = Astro.props;
+const { section, hub, count, siblingHubs } = Astro.props;
 const posts = await getPostsByHub(section.id, hub.id);
 const canonical = new URL(`/${section.id}/${hub.id}/`, Astro.site).href;
 // 1~2편이면 noindex, follow
 const noindex = hubState(count) === "partial";
 
-// 우측 레일: 같은 섹션의 다른 오픈 허브들
-const counts = await getHubCounts();
-const siblingHubs = section.hubs
-  .filter((h) => h.id !== hub.id)
-  .map((h) => ({ ...h, count: counts.get(`${section.id}/${h.id}`) ?? 0 }))
-  .filter((h) => hubState(h.count) === "open")
-  .sort((a, b) => b.count - a.count)
-  .map((h) => ({ href: `/${section.id}/${h.id}/`, label: h.label, count: h.count }));
+// 같은 섹션에 다른 오픈 허브가 없으면(형제가 0개) 사이트 전체 인기 주제로
+// 대체한다 — 우측 레일이 광고 자리만 남고 위젯 없이 비는 것을 막는다.
+let rightRailTitle = `${section.label}의 다른 주제`;
+let rightRailHubs = siblingHubs;
+if (rightRailHubs.length === 0) {
+  rightRailTitle = "인기 주제";
+  rightRailHubs = (await getTopHubs(6))
+    .filter((h) => !(h.sectionId === section.id && h.id === hub.id))
+    .slice(0, 5)
+    .map((h) => ({ href: `/${h.sectionId}/${h.id}/`, label: h.label, count: h.count }));
+}
 ---
 
 <Hub
@@ -42,6 +55,6 @@ const siblingHubs = section.hubs
   canonical={canonical}
   noindex={noindex}
   posts={posts}
-  rightRailTitle={`${section.label}의 다른 주제`}
-  rightRailHubs={siblingHubs}
+  rightRailTitle={rightRailTitle}
+  rightRailHubs={rightRailHubs}
 />

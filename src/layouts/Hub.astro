@@ -1,10 +1,8 @@
 ---
 import Base from "./Base.astro";
 import PostCard from "../components/PostCard.astro";
-import RightRail from "../components/RightRail.astro";
+import type { RailHub } from "../components/RightRail.astro";
 import type { Post } from "../lib/posts";
-
-interface RailHub { href: string; label: string; count: number }
 
 interface Props {
   title: string;
@@ -14,9 +12,9 @@ interface Props {
   canonical: string;
   noindex?: boolean;
   posts: Post[];
-  /** 우측 레일 위젯. 넘기지 않으면 Base의 기본(사이트 전체 인기 주제)을 그대로 쓴다. */
-  rightRailTitle?: string;
-  rightRailHubs?: RailHub[];
+  /** 우측 레일 위젯. 호출부가 항상 넘긴다(비어 있지 않은 값 보장은 호출부 책임). */
+  rightRailTitle: string;
+  rightRailHubs: RailHub[];
 }
 const {
   title,
@@ -39,7 +37,13 @@ const learningPath = [...posts].sort(
 );
 ---
 
-<Base title={pageTitle} description={description} canonical={canonical} noindex={noindex}>
+<Base
+  title={pageTitle}
+  description={description}
+  canonical={canonical}
+  noindex={noindex}
+  rightRail={{ title: rightRailTitle, hubs: rightRailHubs }}
+>
   <div class="hub">
     <h1 class="hub__title">{title}</h1>
     <p class="hub__lead">{lead}</p>
@@ -68,12 +72,6 @@ const learningPath = [...posts].sort(
       </div>
     </section>
   </div>
-
-  {rightRailHubs && (
-    <Fragment slot="right-rail">
-      <RightRail title={rightRailTitle} hubs={rightRailHubs} />
-    </Fragment>
-  )}
 </Base>
 
 <style>
