@@ -616,8 +616,19 @@ Content Collections 스키마에서 description 20~150자를 강제해 D5를 빌
 - [ ] **Step 1: gray-matter 설치**
 
 ```bash
-npm install --save-dev gray-matter@^4
+npm install --save-dev gray-matter@^4 js-yaml@^4
 ```
+
+**중복 키 주의.** 2019년 글 8편의 프론트매터에 `image:` 키가 두 번 들어 있고, js-yaml은 기본 설정에서 중복 키를 만나면 `YAMLException: duplicated mapping key`를 던진다. 실측으로 확인한 대상은 다음 8편이다.
+
+```
+2019-04-12-jpa-1-n-mapping.md          2019-04-12-jpa-null.md
+2019-04-12-jpa-cascade.md              2019-04-12-jpa-persist-merge.md
+2019-04-12-jpa-custom-repository.md    2019-04-12-jpa-projection.md
+2019-04-12-jpa-domain-class-converter.md   2019-04-12-jpa-proxy.md
+```
+
+`json: true` 옵션을 주면 중복 키를 예외 대신 "마지막 값으로 덮어쓰기"로 처리한다. 두 `image` 값이 동일하므로 결과는 손실 없이 하나로 접힌다. 146편 전부가 이 옵션에서 파싱되는 것을 확인했다.
 
 - [ ] **Step 2: 마이그레이션 스크립트 작성**
 
@@ -629,6 +640,11 @@ npm install --save-dev gray-matter@^4
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import matter from "gray-matter";
+import yaml from "js-yaml";
+
+// 2019년 글 8편에 `image:` 키가 중복돼 있다. js-yaml 기본값은 여기서 예외를 던지므로
+// json:true로 "마지막 값 우선" 동작을 쓴다. 두 값이 같아서 손실은 없다.
+const MATTER_OPTS = { engines: { yaml: (str) => yaml.load(str, { json: true }) } };
 
 const SRC = "_posts";
 const OUT = "src/content/posts";
@@ -688,7 +704,7 @@ function normalizeDate(raw, file) {
 let converted = 0;
 for (const file of readdirSync(SRC).filter((f) => f.endsWith(".md"))) {
   const raw = readFileSync(join(SRC, file), "utf8");
-  const { data, content } = matter(raw);
+  const { data, content } = matter(raw, MATTER_OPTS);
 
   const permalink = urlMap.get(file);
   if (!permalink) throw new Error(`url-map에 없음: ${file}`);
@@ -719,7 +735,7 @@ for (const file of readdirSync(SRC).filter((f) => f.endsWith(".md"))) {
     type: "reference",
     level: "중급",
     tags,
-    // gray-matter가 중복 image 키를 이미 하나로 접어준다 (스펙 §8)
+    // MATTER_OPTS의 json:true가 중복 image 키를 하나로 접어준다 (스펙 §8)
     ...(data.image ? { image: String(data.image) } : {}),
   };
 
@@ -747,7 +763,11 @@ echo "categories 잔존: $(grep -l '^categories:' src/content/posts/*.md | wc -l
 echo "description 없는 글: $(grep -L '^description:' src/content/posts/*.md | wc -l)"
 echo "--- 본문 선두 h1 잔존 확인 ---"
 head -12 src/content/posts/2023-08-15-mysql-heatwave.md
+echo "--- 중복 image 키 8편이 정상 변환됐는지 ---"
+grep -c "^image:" src/content/posts/2019-04-12-jpa-1-n-mapping.md
 ```
+
+마지막 값은 반드시 `1`이어야 한다. 중복 키가 하나로 접혔다는 뜻이다.
 
 기대: 파일 146 / permalink 146 / categories 0 / description 없는 글 0. 마지막 출력에서 프론트매터 직후 `# Unlocking the Power...` 줄이 사라지고 `## Introduction`부터 시작해야 한다.
 
@@ -756,6 +776,7 @@ head -12 src/content/posts/2023-08-15-mysql-heatwave.md
 ```bash
 node -e "
 const fs=require('fs'),m=require('gray-matter');
+// 변환 후 파일에는 중복 키가 없으므로 기본 옵션으로 충분하다
 const bad=fs.readdirSync('src/content/posts').filter(f=>f.endsWith('.md')).map(f=>{
   const d=m(fs.readFileSync('src/content/posts/'+f,'utf8')).data;
   return {f,len:(d.description||'').length};
