@@ -2466,6 +2466,137 @@ git commit -m "fix: 본문 개인정보 정리 — 로컬 경로·개인 이메�
 
 ---
 
+## Task 7.8: mermaid 다이어그램 빌드 타임 렌더링
+
+> **추가 배경**: 사용자 지시 — "나중에 아키텍처나 이런 글을 좀 많이 써야 한다면
+> mermaid workflow 이런 것도 잘 보이게 해주는 것도 중요할 것 같네".
+> `/architecture/`는 스펙 §6.2에서 확장 여지가 가장 큰 섹션이고, 아키텍처 글에는
+> 다이어그램이 사실상 필수다. 글을 쓰기 전에 인프라를 먼저 깐다.
+
+**Files:**
+- Modify: `astro.config.mjs`
+- Modify: `package.json` (devDependencies)
+- Modify: `src/styles/global.css` (다이어그램 컨테이너 스타일)
+- Create: `src/content/posts/`에는 손대지 않는다 — 기존 146편에 mermaid 블록은 0개다
+- Create: `tests/mermaid.test.ts`
+
+**Interfaces:**
+- Consumes: 없음
+- Produces: 마크다운의 ` ```mermaid ` 코드펜스가 빌드 산출물에서 인라인 SVG가 된다
+
+### 설계 결정 (구현자는 이 결정을 바꾸지 말 것)
+
+**1. 클라이언트 렌더링은 금지한다.**
+mermaid.js를 브라우저에서 돌리면 번들이 약 500KB 늘고 LCP·CLS가 모두 나빠진다.
+전역 제약(런타임 JS 최소화)에도 정면으로 어긋난다.
+`rehype-mermaid`(3.0.0 확인)로 **빌드 타임에 SVG로 굽는다.**
+`dist/`에 `<script src=`가 0건이라는 검증은 그대로 유지된다.
+
+**2. 다크모드 대응 방식은 구현자가 먼저 확인하고 정한다.**
+mermaid가 뱉는 SVG는 색이 하드코딩되므로 다크 테마에서 읽히지 않을 수 있다.
+`rehype-mermaid`의 `dark` 옵션이 라이트/다크 두 벌을 만들어 주는지 **먼저 실측하고**,
+- 지원하면 그 방식을 쓴다 (CSS로 테마별 전환)
+- 지원하지 않으면 `themeVariables`로 색을 CSS 변수(`var(--fg)` 등)에 묶는다
+어느 쪽이든 **라이트·다크 양쪽에서 텍스트와 선이 배경과 충분히 대비되는지**
+실제 렌더 결과로 확인해야 한다. 추측으로 끝내지 말 것.
+
+**3. CLS를 0으로 유지한다.**
+SVG에 `width`/`height` 또는 `aspect-ratio`가 없으면 레이아웃이 흔들린다.
+품질 게이트가 CLS < 0.1이므로 다이어그램 컨테이너에 크기를 고정한다.
+넓은 다이어그램은 `overflow-x: auto` 컨테이너 안에서 가로 스크롤시키고,
+**페이지 본문 자체가 가로 스크롤되게 두지 않는다.**
+
+**4. 빌드 비용을 기록한다.**
+`rehype-mermaid`는 headless 브라우저(playwright)를 요구한다. CI 빌드 시간이 늘고
+러너에 브라우저 설치 단계가 필요하다. Task 19(GitHub Actions)에서 이 단계를
+빠뜨리면 배포가 깨지므로, 이 Task에서 **필요한 설치 명령을 계획에 남긴다.**
+
+- [ ] **Step 1: 실패하는 테스트를 쓴다**
+
+`tests/mermaid.test.ts`:
+
+```ts
+import { describe, it, expect } from "vitest";
+import { existsSync, readFileSync } from "node:fs";
+
+const FIXTURE = "dist/__mermaid-smoke/index.html";
+
+describe.runIf(existsSync("dist"))("mermaid 빌드 타임 렌더링", () => {
+  it("mermaid 코드펜스가 인라인 SVG로 렌더된다", () => {
+    const html = readFileSync(FIXTURE, "utf8");
+    expect(html).toContain("<svg");
+    // 코드펜스가 그대로 남아 있으면 렌더에 실패한 것이다
+    expect(html).not.toContain("class=\"language-mermaid\"");
+  });
+
+  it("클라이언트에서 mermaid를 로드하지 않는다", () => {
+    const html = readFileSync(FIXTURE, "utf8");
+    expect(html).not.toMatch(/<script[^>]*src=[^>]*mermaid/i);
+  });
+});
+```
+
+- [ ] **Step 2: 테스트를 돌려 실패를 확인한다**
+
+Run: `npx vitest run tests/mermaid.test.ts`
+Expected: FAIL — 픽스처 페이지가 아직 없다
+
+- [ ] **Step 3: 의존성을 설치한다**
+
+```bash
+npm i -D rehype-mermaid playwright
+npx playwright install --with-deps chromium
+```
+
+- [ ] **Step 4: astro.config.mjs에 플러그인을 단다**
+
+```js
+import rehypeMermaid from "rehype-mermaid";
+
+// markdown 설정 안에 추가한다. shikiConfig는 그대로 둔다.
+markdown: {
+  shikiConfig: { themes: { light: "github-light", dark: "github-dark" }, wrap: true },
+  rehypePlugins: [
+    [rehypeMermaid, { strategy: "inline-svg" }],
+  ],
+},
+```
+
+`strategy: "inline-svg"`를 쓴다. `img-svg`나 `img-png`는 외부 파일 요청이 늘고
+다크모드 전환이 더 어려워진다.
+
+- [ ] **Step 5: 스모크 픽스처 페이지를 만든다**
+
+`src/pages/__mermaid-smoke.astro` — 렌더가 실제로 되는지 확인하는 최소 페이지다.
+이 페이지는 `noindex`로 두고 사이트맵·내비에 넣지 않는다.
+
+- [ ] **Step 6: 빌드하고 테스트를 통과시킨다**
+
+Run: `npx astro build && npx vitest run tests/mermaid.test.ts`
+Expected: PASS
+
+- [ ] **Step 7: 다크모드를 실측한다**
+
+빌드 산출물의 SVG에서 텍스트·선 색을 확인하고, 라이트·다크 양쪽에서
+배경과 대비되는지 본다. 결정 2에 따라 방식을 정하고 무엇을 확인했는지 보고한다.
+
+- [ ] **Step 8: URL 불변성과 zero-JS를 재확인한다**
+
+```bash
+npm test
+grep -r "<script src=" dist/ | wc -l   # 0이어야 한다
+```
+
+- [ ] **Step 9: 커밋**
+
+```bash
+git add astro.config.mjs package.json package-lock.json \
+        src/pages/__mermaid-smoke.astro src/styles/global.css tests/mermaid.test.ts
+git commit -m "feat: mermaid 다이어그램을 빌드 타임 SVG로 렌더링"
+```
+
+---
+
 ## Task 8: 태그 페이지와 태그 정책
 
 **Files:**
