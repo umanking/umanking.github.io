@@ -50,6 +50,15 @@ export default function rehypeCodeBlock() {
                 },
                 children: [{ type: "text", value: "복사" }],
               },
+              {
+                // 복사 결과를 스크린리더에 알리는 라이브 리전. 버튼의
+                // aria-label은 "복사"라는 고정된 목적만 나타내고 바뀌지
+                // 않으므로, 결과("복사됨")는 이 숨김 텍스트로 별도 공지한다.
+                type: "element",
+                tagName: "span",
+                properties: { className: ["sr-only"], "aria-live": "polite", "data-copy-status": "" },
+                children: [],
+              },
             ],
           },
           node,
