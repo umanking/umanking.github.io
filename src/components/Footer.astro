@@ -1,0 +1,45 @@
+---
+import { getNavTree, getSectionCounts } from "../lib/taxonomy";
+import { SECTIONS } from "../data/taxonomy";
+
+const tree = await getNavTree();
+const sectionCounts = await getSectionCounts();
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      {SECTIONS.map((section) => {
+        const hubs = tree.find((t) => t.id === section.id)?.hubs ?? [];
+        const count = sectionCounts.get(section.id) ?? 0;
+        if (count === 0) return null;
+        return (
+          <div class="footer__col">
+            <a class="footer__section" href={`/${section.id}/`}>{section.label}</a>
+            <ul>
+              {hubs.map((hub) => (
+                <li><a href={`/${section.id}/${hub.id}/`}>{hub.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+    <div class="footer__meta">
+      <span>© {year} CodeNexus</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { border-top: 1px solid var(--border); margin-top: var(--space-6); padding: var(--space-5) 0; background: var(--bg-subtle); font-size: 0.9rem; }
+  .footer__inner { max-width: 1360px; margin: 0 auto; padding: 0 var(--space-3); }
+  .footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-4); }
+  .footer__section { font-weight: 600; color: var(--fg); text-decoration: none; }
+  .footer__section:hover { color: var(--accent); }
+  .footer__grid ul { list-style: none; padding: 0; margin: var(--space-2) 0 0; display: flex; flex-direction: column; gap: 4px; }
+  .footer__grid a { color: var(--fg-muted); text-decoration: none; }
+  .footer__grid a:hover { color: var(--accent); }
+  .footer__meta { margin-top: var(--space-5); padding-top: var(--space-3); border-top: 1px solid var(--border); color: var(--fg-muted); }
+</style>

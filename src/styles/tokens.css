@@ -1,11 +1,19 @@
 :root {
   --bg: #ffffff;
   --bg-subtle: #f7f8fa;
+  --surface: #ffffff;
   --fg: #1a1d21;
   --fg-muted: #5b6470;
   --border: #e3e6ea;
+  --border-muted: #eef0f3;
   --accent: #2f6feb;
   --accent-soft: #e8f0fe;
+
+  --badge-tutorial: #2f9e44;
+  --badge-reference: #1971c2;
+  --badge-troubleshooting: #e8590c;
+  --badge-deepdive: #7048e8;
+  --badge-news: #868e96;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -27,20 +35,36 @@
   :root:not([data-theme="light"]) {
     --bg: #0f1216;
     --bg-subtle: #161b22;
+    --surface: #171c23;
     --fg: #e6e9ee;
     --fg-muted: #9aa4b2;
     --border: #262d36;
+    --border-muted: #1c2129;
     --accent: #6ea3ff;
     --accent-soft: #16233a;
+
+    --badge-tutorial: #51cf66;
+    --badge-reference: #4dabf7;
+    --badge-troubleshooting: #ff922b;
+    --badge-deepdive: #9775fa;
+    --badge-news: #adb5bd;
   }
 }
 
 :root[data-theme="dark"] {
   --bg: #0f1216;
   --bg-subtle: #161b22;
+  --surface: #171c23;
   --fg: #e6e9ee;
   --fg-muted: #9aa4b2;
   --border: #262d36;
+  --border-muted: #1c2129;
   --accent: #6ea3ff;
   --accent-soft: #16233a;
+
+  --badge-tutorial: #51cf66;
+  --badge-reference: #4dabf7;
+  --badge-troubleshooting: #ff922b;
+  --badge-deepdive: #9775fa;
+  --badge-news: #adb5bd;
 }

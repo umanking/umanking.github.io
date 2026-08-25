@@ -1,0 +1,24 @@
+---
+interface RailHub { href: string; label: string; count: number }
+interface Props { title?: string; hubs?: RailHub[] }
+const { title, hubs = [] } = Astro.props;
+---
+
+{hubs.length > 0 && (
+  <div class="widget">
+    <h2 class="widget__title">{title}</h2>
+    <ul class="widget__list">
+      {hubs.map((hub) => (
+        <li>
+          <a href={hub.href}>
+            <span>{hub.label}</span>
+            <span class="widget__count">{hub.count}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+<div class="widget widget--ad" aria-hidden="true">
+  <span>광고 자리</span>
+</div>

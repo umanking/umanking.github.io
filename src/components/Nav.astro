@@ -1,0 +1,195 @@
+---
+import { getNavTree, getSectionCounts } from "../lib/taxonomy";
+
+const tree = await getNavTree();
+const sectionCounts = await getSectionCounts();
+const current = Astro.url.pathname;
+
+const rows = tree.map((section) => {
+  const count = sectionCounts.get(section.id) ?? 0;
+  return {
+    ...section,
+    count,
+    muted: count === 0,
+    active: current.startsWith(`/${section.id}/`),
+  };
+});
+---
+
+<!-- 데스크톱: 상시 노출되는 좌측 레일. 섹션마다 details로 허브 목록을 접고 편다 -->
+<nav class="rail" aria-label="주요 메뉴">
+  <ul class="rail__list">
+    {rows.map((section) => (
+      <li class="rail__item">
+        {section.hubs.length > 0 ? (
+          <details class="rail__group" open={section.active}>
+            <summary class="rail__summary">
+              <a
+                class="rail__link"
+                href={`/${section.id}/`}
+                aria-current={section.active ? "page" : undefined}
+              >
+                {section.label}
+              </a>
+              {section.count > 0 && <span class="rail__count">{section.count}</span>}
+            </summary>
+            <ul class="rail__hubs">
+              {section.hubs.map((hub) => (
+                <li>
+                  <a
+                    href={`/${section.id}/${hub.id}/`}
+                    aria-current={current === `/${section.id}/${hub.id}/` ? "page" : undefined}
+                  >
+                    {hub.label}
+                    <span class="rail__count">{hub.count}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ) : (
+          <a
+            class={`rail__link rail__link--flat${section.muted ? " rail__link--muted" : ""}`}
+            href={`/${section.id}/`}
+            aria-current={section.active ? "page" : undefined}
+          >
+            {section.label}
+            {section.count > 0 && <span class="rail__count">{section.count}</span>}
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<!-- 모바일(≤860px): 상단바 바로 아래 details 아코디언 하나로 전체 메뉴를 접는다 -->
+<details class="rail-mobile">
+  <summary aria-label="메뉴 열기">메뉴</summary>
+  <ul>
+    {rows.map((section) => (
+      <li>
+        <a
+          class={section.muted ? "rail__link--muted" : ""}
+          href={`/${section.id}/`}
+          aria-current={section.active ? "page" : undefined}
+        >
+          {section.label}
+          {section.count > 0 && <span class="rail__count">{section.count}</span>}
+        </a>
+        {section.hubs.length > 0 && (
+          <ul>
+            {section.hubs.map((hub) => (
+              <li>
+                <a
+                  href={`/${section.id}/${hub.id}/`}
+                  aria-current={current === `/${section.id}/${hub.id}/` ? "page" : undefined}
+                >
+                  {hub.label}
+                  <span class="rail__count">{hub.count}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))}
+  </ul>
+</details>
+
+<style>
+  .rail { grid-column: 1; align-self: start; position: sticky; top: 76px; padding: var(--space-4) 0; }
+  .rail__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .rail__item { display: block; }
+
+  .rail__group { border: none; }
+  .rail__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    list-style: none;
+  }
+  .rail__summary::-webkit-details-marker { display: none; }
+  .rail__summary::after {
+    content: "▾";
+    font-size: 0.7em;
+    color: var(--fg-muted);
+    margin-left: auto;
+    transition: transform 0.12s;
+  }
+  .rail__group:not([open]) .rail__summary::after { transform: rotate(-90deg); }
+  .rail__summary:hover { background: var(--bg-subtle); }
+
+  .rail__link {
+    color: var(--fg);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .rail__link--flat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: 8px 10px;
+    border-radius: 8px;
+  }
+  .rail__link--flat:hover { background: var(--bg-subtle); }
+  .rail__link--muted { color: var(--fg-muted); font-weight: 500; }
+  .rail__link[aria-current="page"] { color: var(--accent); }
+
+  .rail__hubs { list-style: none; margin: 2px 0 6px; padding: 0 0 0 var(--space-3); display: flex; flex-direction: column; gap: 1px; }
+  .rail__hubs a {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-size: 0.87rem;
+  }
+  .rail__hubs a:hover { background: var(--bg-subtle); color: var(--accent); }
+  .rail__hubs a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+
+  .rail__count { color: var(--fg-muted); font-size: 0.8em; }
+  .rail__link[aria-current="page"] .rail__count,
+  .rail__hubs a[aria-current="page"] .rail__count { color: inherit; }
+
+  .rail-mobile { display: none; }
+
+  @media (max-width: 860px) {
+    .rail { display: none; }
+    .rail-mobile {
+      display: block;
+      grid-column: 1 / -1;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .rail-mobile summary {
+      padding: var(--space-3);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .rail-mobile > ul {
+      list-style: none;
+      margin: 0;
+      padding: 0 var(--space-3) var(--space-3);
+    }
+    .rail-mobile > ul > li { padding: 6px 0; }
+    .rail-mobile > ul a {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-2);
+      color: var(--fg);
+      text-decoration: none;
+      padding: 6px 0;
+    }
+    .rail-mobile ul ul { list-style: none; padding-left: var(--space-3); margin: 0; }
+    .rail-mobile ul ul a { color: var(--fg-muted); font-size: 0.9rem; }
+    .rail-mobile a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+  }
+</style>
