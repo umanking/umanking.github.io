@@ -1,28 +1,72 @@
 ---
 import Base from "../layouts/Base.astro";
 import PostCard from "../components/PostCard.astro";
-import { getListedPosts } from "../lib/posts";
+import { getAllPosts, getListedPosts } from "../lib/posts";
+import { getNavTree } from "../lib/taxonomy";
+import { SITE, absolute } from "../lib/seo";
+import { organizationLd, webSiteLd, itemListLd } from "../lib/jsonld";
 
-const canonical = new URL("/", Astro.site).href;
-const posts = (await getListedPosts()).slice(0, 30);
+const all = await getAllPosts();
+const listed = await getListedPosts();
+const latest = listed.slice(0, 15);
+const tree = (await getNavTree()).filter((s) => s.hubs.length > 0);
+
+const jsonLd = [
+  organizationLd(),
+  webSiteLd(),
+  itemListLd({
+    name: "최신 글",
+    items: latest.map((p) => ({ title: p.data.title, url: p.data.permalink })),
+  }),
+];
 ---
 
-<Base title="CodeNexus" description="CodeNexus 블로그 글 전체 목록" canonical={canonical}>
-  <h1 class="feed-title">최신 글</h1>
+<Base
+  title="백엔드 · 아키텍처 · 데이터 · 인프라 · AI 기술 매체 | CodeNexus"
+  description={SITE.description}
+  canonical={absolute("/")}
+  jsonLd={jsonLd}
+>
+  <section class="hero">
+    <h1>백엔드 · 아키텍처 · 데이터 · 인프라 · AI 기술 매체</h1>
+    <p>
+      실무에서 마주친 문제와 해결 과정을 기록합니다.
+      Spring · JPA · 데이터 · 인프라 전반 {all.length}편과 매주 이어지는 AI · 개발 뉴스 큐레이션.
+    </p>
+  </section>
 
-  <section aria-labelledby="feed-heading">
-    <h2 id="feed-heading" class="sr-only">최신 글 목록</h2>
-    {posts.map((post) => <PostCard post={post} />)}
+  <section class="topics">
+    <h2>주제별로 보기</h2>
+    <div class="topics__grid">
+      {tree.map((section) => (
+        <div class="topics__card">
+          <a class="topics__title" href={`/${section.id}/`}>{section.label}</a>
+          <ul>
+            {section.hubs.slice(0, 4).map((hub) => (
+              <li><a href={`/${section.id}/${hub.id}/`}>{hub.label} <span>{hub.count}</span></a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <h2>최신 글</h2>
+    {latest.map((post) => <PostCard post={post} />)}
   </section>
 </Base>
 
 <style>
-  .feed-title { margin-bottom: var(--space-4); font-size: 1.5rem; }
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-  }
+  .hero { padding: var(--space-6) 0 var(--space-5); border-bottom: 1px solid var(--border); }
+  .hero h1 { font-size: 2rem; line-height: 1.35; margin: 0 0 var(--space-3); }
+  .hero p { color: var(--fg-muted); max-width: var(--measure); margin: 0; }
+  .topics { padding: var(--space-5) 0; border-bottom: 1px solid var(--border); }
+  .topics__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); }
+  .topics__card { padding: var(--space-3); border: 1px solid var(--border); border-radius: 10px; }
+  .topics__title { font-weight: 600; color: var(--fg); text-decoration: none; }
+  .topics__card ul { list-style: none; padding: 0; margin: var(--space-2) 0 0; font-size: 0.9rem; }
+  .topics__card li { padding: 3px 0; }
+  .topics__card a { text-decoration: none; }
+  .topics__card span { color: var(--fg-muted); font-size: 0.85em; }
 </style>
