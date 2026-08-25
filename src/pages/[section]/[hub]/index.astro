@@ -3,6 +3,7 @@ import Hub from "../../../layouts/Hub.astro";
 import { SECTIONS } from "../../../data/taxonomy";
 import { getPostsByHub } from "../../../lib/posts";
 import { getHubCounts, getTopHubs, hubState } from "../../../lib/taxonomy";
+import { organizationLd, breadcrumbLd, itemListLd, faqPageLd } from "../../../lib/jsonld";
 
 export async function getStaticPaths() {
   const counts = await getHubCounts();
@@ -45,6 +46,21 @@ if (rightRailHubs.length === 0) {
     .slice(0, 5)
     .map((h) => ({ href: `/${h.sectionId}/${h.id}/`, label: h.label, count: h.count }));
 }
+
+const crumbs = [
+  { label: "홈", href: "/" },
+  { label: section.label, href: `/${section.id}/` },
+  { label: hub.label },
+];
+const jsonLd = [
+  organizationLd(),
+  breadcrumbLd(crumbs),
+  itemListLd({
+    name: `${hub.label} 글 목록`,
+    items: posts.map((p) => ({ title: p.data.title, url: p.data.permalink })),
+  }),
+  ...(hub.faq?.length ? [faqPageLd(hub.faq)] : []),
+];
 ---
 
 <Hub
@@ -57,4 +73,6 @@ if (rightRailHubs.length === 0) {
   posts={posts}
   rightRailTitle={rightRailTitle}
   rightRailHubs={rightRailHubs}
+  faq={hub.faq ?? []}
+  jsonLd={jsonLd}
 />

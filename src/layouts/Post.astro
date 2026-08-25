@@ -9,6 +9,7 @@ import LevelBadge from "../components/LevelBadge.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
 import SeriesNav from "../components/SeriesNav.astro";
 import Comments from "../components/Comments.astro";
+import ReadingProgress from "../components/ReadingProgress.astro";
 import { readingMinutes, type Post } from "../lib/posts";
 import { getSection, getHub } from "../lib/taxonomy";
 import { blogPostingLd, breadcrumbLd, organizationLd } from "../lib/jsonld";
@@ -61,6 +62,7 @@ const jsonLd = [
   tags={post.data.tags}
   jsonLd={jsonLd}
 >
+  <ReadingProgress />
   <article class="post prose">
     <Breadcrumb items={crumbs} />
     <h1>{post.data.title}</h1>

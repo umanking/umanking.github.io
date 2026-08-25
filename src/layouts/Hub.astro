@@ -15,6 +15,8 @@ interface Props {
   /** 우측 레일 위젯. 호출부가 항상 넘긴다(비어 있지 않은 값 보장은 호출부 책임). */
   rightRailTitle: string;
   rightRailHubs: RailHub[];
+  faq?: Array<{ q: string; a: string }>;
+  jsonLd?: object[];
 }
 const {
   title,
@@ -26,6 +28,8 @@ const {
   posts,
   rightRailTitle,
   rightRailHubs,
+  faq = [],
+  jsonLd = [],
 } = Astro.props;
 
 // 학습 순서: 입문 → 중급 → 심화, 같은 난이도 안에서는 오래된 글부터
@@ -43,6 +47,7 @@ const learningPath = [...posts].sort(
   canonical={canonical}
   noindex={noindex}
   rightRail={{ title: rightRailTitle, hubs: rightRailHubs }}
+  jsonLd={jsonLd}
 >
   <div class="hub">
     <h1 class="hub__title">{title}</h1>
@@ -62,6 +67,18 @@ const learningPath = [...posts].sort(
             </li>
           ))}
         </ol>
+      </section>
+    )}
+
+    {faq.length > 0 && (
+      <section class="hub__faq">
+        <h2>자주 묻는 질문</h2>
+        {faq.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
       </section>
     )}
 
@@ -85,4 +102,8 @@ const learningPath = [...posts].sort(
   .hub__level { color: var(--fg-muted); font-size: 0.8rem; margin-left: var(--space-2); }
   .hub__all { margin-top: var(--space-5); }
   .hub__cards { margin-top: var(--space-2); }
+  .hub__faq { margin-top: var(--space-5); }
+  .hub__faq details { border-bottom: 1px solid var(--border); padding: var(--space-3) 0; }
+  .hub__faq summary { cursor: pointer; font-weight: 600; }
+  .hub__faq p { margin: var(--space-2) 0 0; color: var(--fg-muted); }
 </style>

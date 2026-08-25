@@ -81,6 +81,17 @@ export function itemListLd(args: { name: string; items: Array<{ title: string; u
   };
 }
 
+export function faqPageLd(items: Array<{ q: string; a: string }>) {
+  return {
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+}
+
 /** 여러 노드를 하나의 @graph로 묶는다 */
 export function graph(nodes: object[]) {
   return { "@context": "https://schema.org", "@graph": nodes };

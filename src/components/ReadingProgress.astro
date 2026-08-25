@@ -1,0 +1,11 @@
+---
+---
+
+<div class="progress" role="presentation"><span data-progress></span></div>
+
+<script is:inline>(function(){var b=document.querySelector("[data-progress]");if(!b)return;var t=false;function u(){var m=document.documentElement.scrollHeight-innerHeight,r=m>0?Math.min(1,scrollY/m):0;b.style.transform="scaleX("+r+")";t=false}addEventListener("scroll",function(){if(!t){t=true;requestAnimationFrame(u)}},{passive:true});u()})();</script>
+
+<style>
+  .progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 70; pointer-events: none; }
+  .progress span { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; }
+</style>

@@ -40,8 +40,48 @@ export const SECTIONS: readonly Section[] = [
     label: "백엔드",
     description: "Spring, JPA, Java로 서버를 만들며 마주친 문제와 해결 과정을 정리합니다.",
     hubs: [
-      { id: "spring", label: "Spring · Spring Boot", description: "Spring 핵심 개념부터 실무 설정까지.", keywords: ["spring", "spring-boot", "springboot"], symbol: "SB" },
-      { id: "jpa", label: "JPA · Hibernate", description: "연관관계 매핑, 영속성 컨텍스트, 성능 최적화.", keywords: ["jpa", "hibernate", "querydsl", "orm", "영속성"], symbol: "JPA" },
+      {
+        id: "spring",
+        label: "Spring · Spring Boot",
+        description: "Spring 핵심 개념부터 실무 설정까지.",
+        keywords: ["spring", "spring-boot", "springboot"],
+        symbol: "SB",
+        faq: [
+          {
+            q: "Spring과 Spring Boot는 무엇이 다른가요?",
+            a: "Spring은 DI 컨테이너를 중심으로 한 프레임워크이고, Spring Boot는 그 위에서 자동 설정과 내장 서버, 의존성 묶음(starter)을 제공해 설정을 줄여 주는 도구입니다. Spring Boot를 쓴다고 Spring을 안 쓰는 것이 아니라, Spring을 더 적은 설정으로 쓰는 것입니다.",
+          },
+          {
+            q: "빈 순환 참조(circular dependency)는 왜 생기고 어떻게 푸나요?",
+            a: "두 빈이 생성자에서 서로를 주입받으면 어느 쪽도 먼저 만들어질 수 없어 발생합니다. 근본 해법은 책임을 분리해 의존 방향을 한쪽으로 정리하는 것이고, 불가피하면 setter 주입이나 @Lazy로 생성 시점을 늦출 수 있습니다.",
+          },
+          {
+            q: "빈 주입은 생성자와 필드 중 어느 쪽이 좋나요?",
+            a: "생성자 주입이 기본입니다. 필수 의존성이 누락되면 객체 생성 단계에서 바로 드러나고, 필드를 final로 둘 수 있어 불변성이 보장되며, 테스트에서 의존성을 직접 넣기도 쉽습니다.",
+          },
+        ],
+      },
+      {
+        id: "jpa",
+        label: "JPA · Hibernate",
+        description: "연관관계 매핑, 영속성 컨텍스트, 성능 최적화.",
+        keywords: ["jpa", "hibernate", "querydsl", "orm", "영속성"],
+        symbol: "JPA",
+        faq: [
+          {
+            q: "연관관계의 주인은 무엇이고 어떻게 정하나요?",
+            a: "외래 키를 실제로 관리하는 쪽이 연관관계의 주인입니다. 다대일 관계에서는 외래 키를 가진 다(N) 쪽이 주인이 되며, 반대편에는 mappedBy를 지정합니다. 주인이 아닌 쪽에서 값을 바꿔도 DB에 반영되지 않습니다.",
+          },
+          {
+            q: "persist와 merge는 어떻게 다른가요?",
+            a: "persist는 새 엔티티를 영속 상태로 만들고 그 인스턴스 자체가 관리됩니다. merge는 준영속·비영속 엔티티의 값을 복사한 새로운 영속 인스턴스를 반환하므로, 넘긴 객체가 아니라 반환된 객체를 써야 합니다.",
+          },
+          {
+            q: "지연 로딩과 즉시 로딩 중 무엇을 써야 하나요?",
+            a: "기본은 지연 로딩입니다. 즉시 로딩은 예상하지 못한 조인과 N+1 쿼리를 만들기 쉽습니다. 함께 조회해야 하는 구간은 fetch join이나 엔티티 그래프로 그 시점에만 명시적으로 해결합니다.",
+          },
+        ],
+      },
       { id: "java", label: "Java", description: "언어 기능, 동시성, GC.", keywords: ["java"], symbol: "J" },
       { id: "testing", label: "테스트", description: "JUnit, AssertJ, 테스트 전략.", keywords: ["junit", "junit5", "assertj", "test"], symbol: "T" },
     ],
