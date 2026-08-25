@@ -1,0 +1,31 @@
+---
+import { render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { getAllPosts, permalinkToParam, readingMinutes } from "../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    params: { permalink: permalinkToParam(post.data.permalink) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const canonical = new URL(post.data.permalink, Astro.site).href;
+const minutes = readingMinutes(post.body ?? "");
+---
+
+<Base title={`${post.data.title} | CodeNexus`} description={post.data.description} canonical={canonical}>
+  <article class="prose">
+    <h1>{post.data.title}</h1>
+    <p>
+      <time datetime={post.data.date.toISOString()}>
+        {post.data.date.toLocaleDateString("ko-KR")}
+      </time>
+      · 약 {minutes}분
+    </p>
+    <Content />
+  </article>
+</Base>

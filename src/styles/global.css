@@ -1,0 +1,48 @@
+@import "./tokens.css";
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+img, video { max-width: 100%; height: auto; }
+pre { overflow-x: auto; padding: var(--space-3); border-radius: 8px; }
+code { font-family: var(--font-mono); font-size: 0.92em; }
+table { display: block; overflow-x: auto; border-collapse: collapse; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-3); }
+.prose { max-width: var(--measure); }
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus { left: var(--space-3); top: var(--space-3); z-index: 100; }
+
+/*
+ * Shiki dual-theme (light/dark) output sets fixed light-theme colors as inline
+ * `style` attributes on `.astro-code` and its child spans, and only exposes the
+ * dark variant as unused `--shiki-dark` / `--shiki-dark-bg` custom properties.
+ * Without this override, code blocks stay light-themed even when the page is
+ * dark. `!important` is required because inline styles otherwise win.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .astro-code,
+  :root:not([data-theme="light"]) .astro-code span {
+    color: var(--shiki-dark) !important;
+  }
+  :root:not([data-theme="light"]) .astro-code {
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}
+
+:root[data-theme="dark"] .astro-code,
+:root[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark) !important;
+}
+:root[data-theme="dark"] .astro-code {
+  background-color: var(--shiki-dark-bg) !important;
+}
