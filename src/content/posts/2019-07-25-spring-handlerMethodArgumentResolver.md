@@ -64,7 +64,7 @@ public class MyCustomHandlerMethodArgumentResolver implements HandlerMethodArgum
   @Override
   public User resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
     // 바인딩할 객체를 조작할 수 있다.
-    return new User("andrew han", "umanking@gmail.com");
+    return new User("alice han", "user@example.com");
   }
 }
 ```
@@ -88,7 +88,7 @@ public class WebMvcConfigure implements WebMvcConfigurer {
 }
 ```
 
-실제 요청을 날리게 되면 MyCustomHandlerMethodArgumentResolver에서 정의한 resolveArgument 메서드를 호출함으로써 `new User(“andrew”, “umanking@gmail.com”)` 의 값을 리던하게 되고 원하는 결과를 얻게 됩니다.
+실제 요청을 날리게 되면 MyCustomHandlerMethodArgumentResolver에서 정의한 resolveArgument 메서드를 호출함으로써 `new User(“alice”, “user@example.com”)` 의 값을 리던하게 되고 원하는 결과를 얻게 됩니다.
 
 ```java
 @RestController("/api/v1/user")

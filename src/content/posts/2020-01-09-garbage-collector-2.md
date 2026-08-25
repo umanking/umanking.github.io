@@ -15,7 +15,7 @@ tags:
 
 ## 1. 목표
 
-이전 시간에 [Garbage Collection - #1부 JVM HotSpot](https://umanking.github.io/java/java-garbage-collector/)에 대해서 알아보았습니다. 오늘은 Garbage Collection이 heap 영역에서 어떻게 이루어 지는 지 알아 보도록 하겠습니다.
+이전 시간에 Garbage Collection - #1부 JVM HotSpot에 대해서 알아보았습니다. 오늘은 Garbage Collection이 heap 영역에서 어떻게 이루어 지는 지 알아 보도록 하겠습니다.
 
 ## 2. Automatic Garbage Collection?
 

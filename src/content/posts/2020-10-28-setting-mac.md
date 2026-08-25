@@ -119,8 +119,8 @@ IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 �
 ```shell
 # .gitconfig 파일
 [user]
-  email = andrew@회사도메인.com
-  name = andrew
+  email = alice@회사도메인.com
+  name = alice
 [includeIf "gitdir:~/workspace/"]
   path = .gitconfig-personal
 ```
@@ -130,8 +130,8 @@ IntelliJ 프로젝트의 폴더별로 구분해서 개인것, 회사것으로 �
 ```shell
 #.gitconfig-personal
 [user]
-  email = andrew@gmail.com
-  name = andrew han
+  email = user@example.com
+  name = alice han
 ```
 
 ### 7.2. 확인

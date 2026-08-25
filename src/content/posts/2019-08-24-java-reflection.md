@@ -84,7 +84,7 @@ Class<?> aClass = Class.forName("com.example.basicjava.reflection.Member");
 
 // newInstance 만들기
 Member memberInstance = (Member) aClass.getDeclaredConstructor().newInstance();
-memberInstance.setName("andrew");
+memberInstance.setName("alice");
 memberInstance.setAge(32);
 ```
 

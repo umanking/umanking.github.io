@@ -14,6 +14,7 @@ tags:
   - review
 image: >-
   https://user-images.githubusercontent.com/28615416/127739492-f817a13a-8dd0-4f5f-b57b-d8fbb0e9028e.png
+noindex: true
 ---
 
 사실 회고를 할 정도의 성취한 것과 이런 것들은 없다. 하지만 어떻게 마음이 변하였고, 그에 따라서 어떤 것들에 집중하고 자 했는지를 돌아 보면서 앞으로를 계획하기 위해서 글을 작성한다.

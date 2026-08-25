@@ -70,7 +70,7 @@ Member -> Locker 단방향 1:1 매핑에 대해서 살펴보자.
 
         //given
         Member member = new Member();
-        member.setName("andrew");
+        member.setName("alice");
         member.setAge(32);
 
 
@@ -230,7 +230,7 @@ mappedBy 속성을 통해서 마무리 지었다.
 
         //given
         Member member = new Member();
-        member.setName("andrew");
+        member.setName("alice");
         member.setAge(32);
 
         Locker locker = new Locker();
@@ -246,7 +246,7 @@ mappedBy 속성을 통해서 마무리 지었다.
 
         //then
         assertEquals(exsitMember.getLocker().getName(), "1번 사물함");
-        assertEquals(existLocker.getMember().getName(), "andrew");
+        assertEquals(existLocker.getMember().getName(), "alice");
 
     }
 

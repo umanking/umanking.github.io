@@ -71,8 +71,8 @@ echo "hello, $name"
 
 ```bash
 $ ./test.sh 
-andrew 					
-hello, andrew 	
+alice 					
+hello, alice 	
 ```
 
 ## 4. **변수**
@@ -83,7 +83,7 @@ hello, andrew
 ```bash
 #!/bin/sh
 
-myname='andrew'
+myname='alice'
 MY_NAME1="betty"
 MY_NAME2=didi
 
@@ -112,10 +112,10 @@ echo $MY_NAME2
 | 문법               | 설명                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | $name 또는 ${name} | 해당 변수값을 치환                                           |
-| ${name:=andrew}    | 변수가 아직 셋팅되지 않거나 공백 문자열의 경우, andrew를 반환하고, name변수에 저장함 ✅ |
-| ${name:-andrew}    | 변수가 아직 셋팅되지 않거나 공백문자열의 경우, andrew를 반환하고, name변수에 저장되지 않음 |
-| ${name:+andrew}    | 변수가 셋팅되지 않은 경우에, andrew를 반환하고, name변수에 저장되지 않음 |
-| ${name:?andrew}    | name값이 없으면 변환에 실패하고, 에러를 표시한다.            |
+| ${name:=alice}    | 변수가 아직 셋팅되지 않거나 공백 문자열의 경우, alice를 반환하고, name변수에 저장함 ✅ |
+| ${name:-alice}    | 변수가 아직 셋팅되지 않거나 공백문자열의 경우, alice를 반환하고, name변수에 저장되지 않음 |
+| ${name:+alice}    | 변수가 셋팅되지 않은 경우에, alice를 반환하고, name변수에 저장되지 않음 |
+| ${name:?alice}    | name값이 없으면 변환에 실패하고, 에러를 표시한다.            |
 
 이렇게 써놨지만 사실 그냥 변수 치환 정도만 쓰임!!
 

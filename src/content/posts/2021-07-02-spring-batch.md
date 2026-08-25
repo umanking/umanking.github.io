@@ -67,7 +67,7 @@ starter-batch, hsqldb 모듈 추가
 `resource/sample.csv`  resource하위에 sample.csv파일을 생성한다.
 
 ```
-andrew,han
+alice,han
 betty,han
 andy,kim
 ```

@@ -34,11 +34,11 @@ CREATE TABLE person
 일반적인 INSERT 문에서 name이 unique인덱스로 걸려있는 경우, 아래 2개의 쿼리는 동작하지 않고 에러가 난다. 중복된 데이터라고 알려준다. 
 
 ```sql
-INSERT INTO person VALUES ('Andrew', 'Seoul');
+INSERT INTO person VALUES ('Alice', 'Seoul');
 
 -- 아래 2개의 쿼리는 에러가 난다
-INSERT INTO person VALUES ('Andrew', 'Incheon');
-INSERT INTO person VALUES ('Andrew', 'Busan');
+INSERT INTO person VALUES ('Alice', 'Incheon');
+INSERT INTO person VALUES ('Alice', 'Busan');
 ```
 
 
@@ -46,11 +46,11 @@ INSERT INTO person VALUES ('Andrew', 'Busan');
 아래처럼 `IGNORE`키워드를 사용했을때 중복된 데이터 컬럼인 경우, 0 row affected 를 반환한다. IGNORE는 id값이 증감하지 않는다. 
 
 ```sql
-INSERT IGNORE INTO person VALUES ('Andrew', 'Seoul');
+INSERT IGNORE INTO person VALUES ('Alice', 'Seoul');
 
 -- 아래 2개의 쿼리는 0 row affected로 반환한다. (에러는 아님)
-INSERT IGNORE INTO person VALUES ('Andrew', 'Incheon');
-INSERT IGNORE INTO person VALUES ('Andrew', 'Busan');
+INSERT IGNORE INTO person VALUES ('Alice', 'Incheon');
+INSERT IGNORE INTO person VALUES ('Alice', 'Busan');
 ```
 
 person테이블을 조회해보면 다음과 같이 최초에 입력된 값과 Id값을 반환한다.
@@ -59,7 +59,7 @@ person테이블을 조회해보면 다음과 같이 최초에 입력된 값과 I
 +----+---------+---------+
 | id | name    | address |
 +----+---------+---------+
-|  1 | Andrew  | Seoul   |
+|  1 | Alice  | Seoul   |
 +----+---------+---------+
 ```
 
@@ -88,13 +88,13 @@ CREATE TABLE person
 `ON DUPLICATE KEY UPDATE`키워드는 각각 처음 삽입된 쿼리를 제외하고, 2 row affected를 리턴한다.
 
 ```sql
-INSERT INTO person VALUES ('Andrew', 'Seoul', 1) 
+INSERT INTO person VALUES ('Alice', 'Seoul', 1) 
 	ON DUPLICATE KEY UPDATE inserted_cnt = inserted_cnt + 1;
 
-INSERT INTO person VALUES ('Andrew', 'Incheon', 1) 
+INSERT INTO person VALUES ('Alice', 'Incheon', 1) 
 	ON DUPLICATE KEY UPDATE inserted_cnt = inserted_cnt + 1;
 
-INSERT INTO person VALUES ('Andrew', 'Busan', 1) 
+INSERT INTO person VALUES ('Alice', 'Busan', 1) 
 	ON DUPLICATE KEY UPDATE inserted_cnt = inserted_cnt + 1;
 
 
@@ -106,7 +106,7 @@ INSERT INTO person VALUES ('Andrew', 'Busan', 1)
 +----+---------+---------+--------------+
 | id | name    | address | inserted_cnt |
 +----+---------+---------+--------------+
-|  1 | Andrew  | Busan   |            3 |
+|  1 | Alice  | Busan   |            3 |
 +----+---------+---------+--------------+
 ```
 
@@ -119,10 +119,10 @@ INSERT INTO person VALUES ('Andrew', 'Busan', 1)
 첫번재 삽입되는 항목을 제외하고, 나머지 2개의 쿼리는 2 row affected를 반환한다. 
 
 ```sql
-REPLACE INTO person VALUES ('Andrew', 'Seoul');
+REPLACE INTO person VALUES ('Alice', 'Seoul');
 
-REPLACE INTO person VALUES ('Andrew', 'Incheon');
-REPLACE INTO person VALUES ('Andrew', 'Busan');
+REPLACE INTO person VALUES ('Alice', 'Incheon');
+REPLACE INTO person VALUES ('Alice', 'Busan');
 ```
 
 person테이블을 조회하면 다음과 같이 id값이 3인, 주소도 제일 마지막에 삽입한 `Busan` 이 나온다.
@@ -131,7 +131,7 @@ person테이블을 조회하면 다음과 같이 id값이 3인, 주소도 제일
 +----+---------+---------+
 | id | name    | address |
 +----+---------+---------+
-|  3 | Andrew  | Busan   |
+|  3 | Alice  | Busan   |
 +----+---------+---------+
  ```
 

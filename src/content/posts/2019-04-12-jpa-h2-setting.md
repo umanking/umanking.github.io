@@ -111,7 +111,7 @@ public class MemberServiceTests {
 
         //given
         Member member = new Member();
-        member.setName("andrew");
+        member.setName("alice");
         member.setAge(32);
         memberRepository.save(member);
 
@@ -119,7 +119,7 @@ public class MemberServiceTests {
         Member retrivedMember = memberRepository.findById(member.getId()).get();
 
         // then
-        Assert.assertEquals(retrivedMember.getName(), "andrew");
+        Assert.assertEquals(retrivedMember.getName(), "alice");
         Assert.assertEquals(retrivedMember.getAge(), Integer.valueOf(32));
     }
 ```

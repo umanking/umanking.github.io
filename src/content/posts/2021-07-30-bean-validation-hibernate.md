@@ -106,8 +106,8 @@ public class PersonalInfo {
 
 ```json
 {
-  "name": "andrew", 
-  "email": "umanking@gmail.com", 
+  "name": "alice", 
+  "email": "user@example.com", 
   "address": "서울" 
 }
 ```

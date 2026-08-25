@@ -19,8 +19,8 @@ image: /images/junit5.png
 
 ```java
 void test() {
-  Account actual = new Account("andrew", 32);
-  Account expected = new Account("andrew", 32);  
+  Account actual = new Account("alice", 32);
+  Account expected = new Account("alice", 32);  
   
   // 모든 필드를 비교해야 한다
   assertThat(actual.getName()).isEuqualTo(expected.getName());
@@ -40,8 +40,8 @@ void test() {
 
 ```java
 void test() {
-  Account actual = new Account(1L, "andrew", 32);
-  Account expected = new Account(2L, "andrew", 32);  
+  Account actual = new Account(1L, "alice", 32);
+  Account expected = new Account(2L, "alice", 32);  
   
   assertThat(actual)
     .usingRecursiveComparison("id")

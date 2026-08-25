@@ -37,7 +37,7 @@ public class Account {
 ```java
   Account account = new Account();
   account.setId(1L);
-  account.setName("andrew");
+  account.setName("alice");
   account.setAge("32");
 
   String accountString = objectMapper.writeValueAsString(account);
@@ -49,7 +49,7 @@ public class Account {
 결과 값
 
 ```java
-{"id":1,"name":"andrew","age": "32"}
+{"id":1,"name":"alice","age": "32"}
 ```
 
 ## 1. @JsonProperty
@@ -67,7 +67,7 @@ public class Account {
 결과 값
 
 ```java
-{"id":1,"userName":"andrew","age": "32"}
+{"id":1,"userName":"alice","age": "32"}
 ```
 
 ## 2. @JsonIgnore
@@ -126,7 +126,7 @@ type은 Account가 어디를 통해서 접속했는지를 판단해주는 필드
 
       Account account = new Account();
       account.setId(1L);
-      account.setName("andrew");
+      account.setName("alice");
       account.setAge("32");
       account.setPassword("1234");
 
@@ -134,7 +134,7 @@ type은 Account가 어디를 통해서 접속했는지를 판단해주는 필드
       String s = objectMapper.writeValueAsString(account);
       System.out.println(s);
 
-      Assert.assertThat(s, containsString("andrew"));
+      Assert.assertThat(s, containsString("alice"));
       Assert.assertThat(s, containsString("Name"));
   }
 ```
@@ -142,13 +142,13 @@ type은 Account가 어디를 통해서 접속했는지를 판단해주는 필드
 만약에 @JsonRawValue를 사용하지 않았다면 결과는 다음과 같습니다
 
 ```java
-{"id":1,"Name":"andrew","type":"{\"device\":\"mobile\"}"}
+{"id":1,"Name":"alice","type":"{\"device\":\"mobile\"}"}
 ```
 
 우리가 원하지 않는 이스케이프 문자까지 다 포함되어서 나오는 것을 확인할 수 있습니다. `@JsonRawValue` 를 넣고 다시 실행하면
 
 ```java
-{"id":1,"Name":"andrew","type":{"device":"mobile"}}
+{"id":1,"Name":"alice","type":{"device":"mobile"}}
 ```
 
 ### 정리

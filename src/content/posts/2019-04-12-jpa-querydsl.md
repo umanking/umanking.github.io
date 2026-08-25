@@ -235,15 +235,15 @@ public class AccountRepositoryTest {
     public void crud() {
 
         Account account = new Account();
-        account.setFirstName("andrew");
+        account.setFirstName("alice");
         account.setLastName("han");
         accountRepository.save(account);
 
         QAccount qAccount = QAccount.account;
-        Optional<Account> andrew = accountRepository.findOne(qAccount.firstName.eq("andrew"));
+        Optional<Account> alice = accountRepository.findOne(qAccount.firstName.eq("alice"));
 
-        Account result = andrew.get();
-        Assert.assertEquals(result.getFirstName(), "andrew");
+        Account result = alice.get();
+        Assert.assertEquals(result.getFirstName(), "alice");
 
 
     }
@@ -251,7 +251,7 @@ public class AccountRepositoryTest {
 
 ```
 
-Account 하나를 만들어서 저장하고, QAccount형의 필드 qAccount를 만들어 놓고, 아래와 같이 typeSafe하게 접근해서 사용할 수 있다. 예제에서는 account의 firstName이 "andrew"인 조건절을 찾는 메서드 이다.
+Account 하나를 만들어서 저장하고, QAccount형의 필드 qAccount를 만들어 놓고, 아래와 같이 typeSafe하게 접근해서 사용할 수 있다. 예제에서는 account의 firstName이 "alice"인 조건절을 찾는 메서드 이다.
 
 ```
 ...// 생략

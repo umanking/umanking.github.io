@@ -38,7 +38,7 @@ public class Team {
 
 ```java
 Member member = new Member();
-member.setName("andrew");
+member.setName("alice");
 member.setAge(32);
 memberRepository.save(member);
 
@@ -53,7 +53,7 @@ System.out.println(memberRepository.findById(member.getId()));
 다음과 같이 team에 null 값이 나온다.
 
 ```java
-Optional[Member(id=1, name=andrew, age=32, team=null)]
+Optional[Member(id=1, name=alice, age=32, team=null)]
 ```
 
 왜 이런 현상이 나올까? 

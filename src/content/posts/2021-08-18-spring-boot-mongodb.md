@@ -147,7 +147,7 @@ public class AccountController {
 $ curl -X POST 'localhost:8080/account' \
 -H 'Content-Type: application/json' \
 -d '{
-    "name" :"andrew",
+    "name" :"alice",
     "age": 32
 }'
 ```
@@ -180,7 +180,7 @@ public ApplicationRunner applicationRunner() {
 id값이 hash값으로 들어간다. 일반적인 RDBMS의 primary key처럼 `Long` 타입이 아니라, String 타입이어야 한다.
 
 ```
-account = Account(id=611d0b6ebc18cc4de7fc3ef7, name=andrew, age=32)
+account = Account(id=611d0b6ebc18cc4de7fc3ef7, name=alice, age=32)
 account = Account(id=611d0b76bc18cc4de7fc3ef8, name=betty, age=25)
 ```
 

@@ -63,10 +63,10 @@ public class User{
 
 ```java
 public static void main(final String[] args) {
-    final User andrew = new User(1, "andrew", 32);
+    final User alice = new User(1, "alice", 32);
     final User berry = new User(2, "berry", 26);
     final User robert = new User(3, "robert", 28);
-    final User[] users = {andrew, berry, robert};
+    final User[] users = {alice, berry, robert};
 
     Arrays.sort(users);
 
@@ -108,7 +108,7 @@ public class User implements Comparable {
 ```shell
 [User{id=2, name='berry', age=26},
  User{id=3, name='robert', age=28}, 
- User{id=1, name='andrew', age=32}]
+ User{id=1, name='alice', age=32}]
 ```
 
 age순으로 오름차순 정렬이 되었다.
@@ -143,16 +143,16 @@ User클래스에 nameComparator, ageComparator를 각각 만들고, 람다식을
 
 ```java
 public static void main(final String[] args) {
-        final User andrew = new User(1, "andrew", 32);
+        final User alice = new User(1, "alice", 32);
         final User berry = new User(2, "berry", 26);
         final User robert = new User(3, "robert", 28);
 
-        final User[] users = {andrew, berry, robert};
+        final User[] users = {alice, berry, robert};
         // 나이순으로 정렬
         Arrays.sort(users,  User.ageComparator);
         System.out.println(Arrays.toString(users));
 
-        final List<User> userList = Arrays.asList(andrew, berry, robert);
+        final List<User> userList = Arrays.asList(alice, berry, robert);
         // 이름순으로 정렬
         Collections.sort(userList, User.nameComparator);
         System.out.println(userList);
@@ -161,8 +161,8 @@ public static void main(final String[] args) {
 ```
 
 ```shell
-[User{id=2, name='berry', age=26}, User{id=3, name='robert', age=28}, User{id=1, name='andrew', age=32}]
-[User{id=1, name='andrew', age=32}, User{id=2, name='berry', age=26}, User{id=3, name='robert', age=28}]
+[User{id=2, name='berry', age=26}, User{id=3, name='robert', age=28}, User{id=1, name='alice', age=32}]
+[User{id=1, name='alice', age=32}, User{id=2, name='berry', age=26}, User{id=3, name='robert', age=28}]
 ```
 
 나이순으로, 이름순으로 정렬됨을 확인 할 수 있다.

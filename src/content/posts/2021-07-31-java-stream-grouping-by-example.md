@@ -66,11 +66,11 @@ public enum OrderType {
 ```java
 private static List<Order> orders() {
     return List.of(
-        new Order("후라이드 치킨", 17_000, OrderType.DELIVERY, "Andrew"),
-        new Order("양념 치킨", 18_000, OrderType.DELIVERY, "Andrew"),
-        new Order("피자", 18_000, OrderType.PICKUP, "Andrew"),
-        new Order("돈가스", 10_000, OrderType.PICKUP, "Andrew"),
-        new Order("모둠초밥", 13_000, OrderType.PRESENT, "Andrew")
+        new Order("후라이드 치킨", 17_000, OrderType.DELIVERY, "Alice"),
+        new Order("양념 치킨", 18_000, OrderType.DELIVERY, "Alice"),
+        new Order("피자", 18_000, OrderType.PICKUP, "Alice"),
+        new Order("돈가스", 10_000, OrderType.PICKUP, "Alice"),
+        new Order("모둠초밥", 13_000, OrderType.PRESENT, "Alice")
     );
 }
 ```

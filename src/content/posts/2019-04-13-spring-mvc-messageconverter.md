@@ -65,7 +65,7 @@ public class UserControllerTest {
 
     @Test
     public void createUser_JSON() throws Exception {
-        String user = "{\"username\":  \"andrew\",\n" +
+        String user = "{\"username\":  \"alice\",\n" +
                 "  \"password\": 1234" + "}"; 
 
       	mockMvc.perform(post("/user/create")
@@ -74,7 +74,7 @@ public class UserControllerTest {
                 .content(user))
 
                 .andDo(print())
-                .andExpect(jsonPath("$.username", Matchers.is(equalTo("andrew"))))
+                .andExpect(jsonPath("$.username", Matchers.is(equalTo("alice"))))
                 .andExpect(status().isOk());
     }
 }

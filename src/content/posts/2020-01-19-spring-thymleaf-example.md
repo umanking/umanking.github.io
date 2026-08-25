@@ -14,7 +14,7 @@ image: /images/spring.png
 ---
 
 
-오늘은 저번시간에 다룬 간단한 [Spring, Thymleaf로 예제](https://umanking.github.io/spring/spring-thymeleaf/)를 중심으로 실무에서 자주 사용하는 Thymeleaf를 알아보도록 하겠습니다.
+오늘은 저번시간에 다룬 간단한 [Spring, Thymleaf로 예제](/2020/01/19/spring-thymeleaf/)를 중심으로 실무에서 자주 사용하는 Thymeleaf를 알아보도록 하겠습니다.
 
 ## 1. 값 자체, Value를 화면에 렌더링 - `th:text`, `th:value`
 

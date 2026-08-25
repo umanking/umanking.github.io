@@ -1,5 +1,5 @@
-import { SECTIONS, HUB_OPEN_THRESHOLD, type Section, type SectionId } from "../data/taxonomy";
-import { getAllPosts } from "./posts";
+import { SECTIONS, HUB_OPEN_THRESHOLD, type Section, type SectionId, type Hub } from "../data/taxonomy";
+import { getListedPosts } from "./posts";
 
 export type HubState = "closed" | "partial" | "open";
 
@@ -17,10 +17,19 @@ export function getHub(sectionId: string, hubId: string) {
   return getSection(sectionId)?.hubs.find((h) => h.id === hubId);
 }
 
+/** 섹션 id 없이 허브 id만으로 조회한다 (허브 id는 섹션 전체에서 유일하다). */
+export function getHubById(hubId: string): Hub | undefined {
+  for (const section of SECTIONS) {
+    const hub = section.hubs.find((h) => h.id === hubId);
+    if (hub) return hub;
+  }
+  return undefined;
+}
+
 /** "section/hub" → 글 수 */
 export async function getHubCounts(): Promise<Map<string, number>> {
   const counts = new Map<string, number>();
-  for (const post of await getAllPosts()) {
+  for (const post of await getListedPosts()) {
     const key = `${post.data.section}/${post.data.hub}`;
     counts.set(key, (counts.get(key) ?? 0) + 1);
   }
@@ -30,7 +39,7 @@ export async function getHubCounts(): Promise<Map<string, number>> {
 /** 섹션 id → 글 수 (허브 상태와 무관하게 섹션에 속한 전체 글 수) */
 export async function getSectionCounts(): Promise<Map<SectionId, number>> {
   const counts = new Map<SectionId, number>();
-  for (const post of await getAllPosts()) {
+  for (const post of await getListedPosts()) {
     const id = post.data.section as SectionId;
     counts.set(id, (counts.get(id) ?? 0) + 1);
   }

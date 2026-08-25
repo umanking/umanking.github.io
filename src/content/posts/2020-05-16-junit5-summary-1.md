@@ -124,7 +124,7 @@ assertTimeout(Duration.ofMillis(100), () -> {
 #### 3.0.1. programming 방법
 
 ```java
-assumeTrue(System.getenv().get("HOME").equals("/Users/andrew"));
+assumeTrue(System.getenv().get("HOME").equals("/Users/dev"));
 // 아래 로직 실행
 
 
@@ -133,11 +133,11 @@ assumeTrue(System.getenv().get("HOME").equals("/Users/andrew"));
 assumeTrue 파라미터 값 조건에 맞으면 그 다음 로직이 실행된다.
 
 ```java
-assumingThat(System.getenv().get("HOME").equals("/Users/andrew"), () -> {
+assumingThat(System.getenv().get("HOME").equals("/Users/dev"), () -> {
     // 실행할 부분
 });
 
-assumingThat(System.getenv().get("TEST_ENV").equals("andrew"), () -> {
+assumingThat(System.getenv().get("TEST_ENV").equals("alice"), () -> {
     // 실행할 부분
 });
 ```
@@ -150,7 +150,7 @@ assumingThat를 통해서 코드 블럭으로 지정할 수 있다.
 @Test
 @EnabledOnJre(JRE.JAVA_8)
 @EnabledOnOs(OS.MAC)
-@EnabledIfEnvironmentVariable(named = "TEST_ENV", matches = "andrew")
+@EnabledIfEnvironmentVariable(named = "TEST_ENV", matches = "alice")
 void test(){
     // ..
 }

@@ -63,7 +63,7 @@ dummy 데이터를 생성
 
 ```java
 protected List<User> getUsers() {
-  return List.of(betty(), andrew(), sam());
+  return List.of(betty(), alice(), sam());
 }
 
 protected User sam() {
@@ -74,8 +74,8 @@ protected User betty() {
   return new User("betty", 20, RoleType.USER);
 }
 
-protected User andrew() {
-  return new User("andrew", 32, RoleType.ADMIN);
+protected User alice() {
+  return new User("alice", 32, RoleType.ADMIN);
 }
 
 ```
@@ -94,7 +94,7 @@ assertThat(users).allSatisfy(user -> {
 
 // 적어도 하나의 element 값을 충족시키는
 assertThat(users).anySatisfy(user -> {
-    assertThat(user.getName()).isEqualTo("andrew");
+    assertThat(user.getName()).isEqualTo("alice");
     assertThat(user.getAge()).isEqualTo(32);
 });
 
@@ -123,7 +123,7 @@ List<User> users = getUsers();
 // element의 방향을 탐색하는것
 // 객체 간의 비교를 할때는 EqualsAndHashCode를 선언해줘야 한다.
 assertThat(users).first().isEqualTo(betty());
-assertThat(users).element(1).isEqualTo(andrew());
+assertThat(users).element(1).isEqualTo(alice());
 assertThat(users).last().isEqualTo(sam());
 ```
 
@@ -136,23 +136,23 @@ assertThat(users).last().isEqualTo(sam());
 ```java
 // Filtering - Predicate
 assertThat(users).filteredOn(user -> user.getName().startsWith("and"))
-    .containsOnly(andrew());
+    .containsOnly(alice());
 
 // Filtering - Property(fieldName, value)
-assertThat(users).filteredOn("name", "andrew")
-    .containsOnly(andrew());
+assertThat(users).filteredOn("name", "alice")
+    .containsOnly(alice());
 
-assertThat(users).filteredOn("name", in("andrew", "sam"))
-    .containsOnly(andrew(), sam());
+assertThat(users).filteredOn("name", in("alice", "sam"))
+    .containsOnly(alice(), sam());
 
 assertThat(users).filteredOn("name", notIn("mike", "nu"))
-    .containsOnly(andrew(), sam(), betty());
+    .containsOnly(alice(), sam(), betty());
 
 // Property 를 메서드 레퍼런스로 표현가능하지만, not, in, notIn 오퍼레이터는 사용불가함
 assertThat(users)
-    .filteredOn(User::getName, "andrew")
+    .filteredOn(User::getName, "alice")
     .filteredOn(User::getAge, 32)
-    .containsOnly(andrew());
+    .containsOnly(alice());
 
 
 // null value 값을 찾는다.
@@ -171,22 +171,22 @@ List<User> users = getUsers();
 // field or property
 assertThat(users)
     .extracting("name")
-    .contains("andrew", "betty", "sam");
+    .contains("alice", "betty", "sam");
 
 // 람다 표현식 가능
 assertThat(users)
     .extracting(User::getName)
-    .contains("andrew", "betty", "sam");
+    .contains("alice", "betty", "sam");
 
 // map으로 변환해서 가능
 assertThat(users)
     .map(User::getName)
-    .contains("andrew", "betty", "sam");
+    .contains("alice", "betty", "sam");
 
 // 2번째 파라미터로 강력하게 타입을 지정해서 > 이렇게 할거면 람다표현식이 나은듯
 assertThat(users)
     .extracting("name", String.class)
-    .contains("andrew", "betty", "sam");
+    .contains("alice", "betty", "sam");
 ```
 
 - User객체 안에 `name`필드로만 값들을 비교하고 싶을때, extract 메서드를 통해서 해당 컬렉션에서 필드값만 추출해서 비교가 가능하다. 
@@ -197,13 +197,13 @@ assertThat(users)
 
 ```java
 assertThat(users).extracting("name", "age")
-  .contains(tuple("andrew", 32),
+  .contains(tuple("alice", 32),
             tuple("betty", 20),
             tuple("sam", 25)
            );
 
 assertThat(users).extracting(User::getName, User::getAge)
-  .contains(tuple("andrew", 32),
+  .contains(tuple("alice", 32),
             tuple("betty", 20),
             tuple("sam", 25)
            );

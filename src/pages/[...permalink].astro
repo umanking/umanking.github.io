@@ -17,7 +17,12 @@ const canonical = new URL(post.data.permalink, Astro.site).href;
 const minutes = readingMinutes(post.body ?? "");
 ---
 
-<Base title={`${post.data.title} | CodeNexus`} description={post.data.description} canonical={canonical}>
+<Base
+  title={`${post.data.title} | CodeNexus`}
+  description={post.data.description}
+  canonical={canonical}
+  noindex={post.data.noindex}
+>
   <article class="prose">
     <h1>{post.data.title}</h1>
     <p>

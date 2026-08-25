@@ -151,7 +151,7 @@ public class MemberTeamTests {
         teamRepository.save(team); // team 저장
 
         Member member = new Member();
-        member.setName("andrew");
+        member.setName("alice");
         member.setAge(32L);
         member.setTeam(team); //member의 team setting
         memberRepository.save(member); //member 저장
