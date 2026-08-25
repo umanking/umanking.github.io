@@ -1,0 +1,44 @@
+---
+import { getHubById } from "../lib/taxonomy";
+
+interface Props { hubId: string; size?: number }
+const { hubId, size = 32 } = Astro.props;
+const hub = getHubById(hubId);
+
+// 허브 id를 해시해 고정 색상을 뽑는다. 같은 허브는 언제나 같은 색이다.
+// 개인 아바타를 쓸 수 없으므로(전역 제약) 주제 자체를 아바타로 삼는다.
+let h = 0;
+for (const ch of hubId) h = (h * 31 + ch.charCodeAt(0)) % 360;
+const symbol = hub?.symbol ?? (hub?.label ?? hubId).slice(0, 2).toUpperCase();
+const fontSize = symbol.length >= 3 ? size * 0.34 : size * 0.42;
+---
+
+<span
+  class="avatar"
+  style={`--h:${h}; width:${size}px; height:${size}px; font-size:${fontSize}px;`}
+  aria-hidden="true">{symbol}</span>
+
+<style>
+  .avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    border-radius: 8px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    background: hsl(var(--h) 62% 92%);
+    color: hsl(var(--h) 72% 30%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .avatar {
+      background: hsl(var(--h) 38% 22%);
+      color: hsl(var(--h) 70% 78%);
+    }
+  }
+  :global(:root[data-theme="dark"]) .avatar {
+    background: hsl(var(--h) 38% 22%);
+    color: hsl(var(--h) 70% 78%);
+  }
+</style>

@@ -12,6 +12,8 @@ export interface Hub {
   keywords: string[];
   /** 허브 pillar 페이지의 FAQ. 있으면 FAQPage 스키마로도 출력한다. */
   faq?: FaqItem[];
+  /** 허브 아바타에 표시할 짧은 심볼. 없으면 label 앞 두 글자로 대체한다. */
+  symbol?: string;
 }
 
 export interface Section {
@@ -38,10 +40,10 @@ export const SECTIONS: readonly Section[] = [
     label: "백엔드",
     description: "Spring, JPA, Java로 서버를 만들며 마주친 문제와 해결 과정을 정리합니다.",
     hubs: [
-      { id: "spring", label: "Spring · Spring Boot", description: "Spring 핵심 개념부터 실무 설정까지.", keywords: ["spring", "spring-boot", "springboot"] },
-      { id: "jpa", label: "JPA · Hibernate", description: "연관관계 매핑, 영속성 컨텍스트, 성능 최적화.", keywords: ["jpa", "hibernate", "querydsl", "orm", "영속성"] },
-      { id: "java", label: "Java", description: "언어 기능, 동시성, GC.", keywords: ["java"] },
-      { id: "testing", label: "테스트", description: "JUnit, AssertJ, 테스트 전략.", keywords: ["junit", "junit5", "assertj", "test"] },
+      { id: "spring", label: "Spring · Spring Boot", description: "Spring 핵심 개념부터 실무 설정까지.", keywords: ["spring", "spring-boot", "springboot"], symbol: "SB" },
+      { id: "jpa", label: "JPA · Hibernate", description: "연관관계 매핑, 영속성 컨텍스트, 성능 최적화.", keywords: ["jpa", "hibernate", "querydsl", "orm", "영속성"], symbol: "JPA" },
+      { id: "java", label: "Java", description: "언어 기능, 동시성, GC.", keywords: ["java"], symbol: "J" },
+      { id: "testing", label: "테스트", description: "JUnit, AssertJ, 테스트 전략.", keywords: ["junit", "junit5", "assertj", "test"], symbol: "T" },
     ],
   },
   {
@@ -49,9 +51,9 @@ export const SECTIONS: readonly Section[] = [
     label: "웹",
     description: "JavaScript, TypeScript, Node.js 실무 예제와 자주 쓰는 패턴.",
     hubs: [
-      { id: "javascript", label: "JavaScript", description: "배열·문자열·비동기 등 자주 쓰는 문법과 패턴.", keywords: ["javascript", "js", "promise", "lodash"] },
-      { id: "typescript", label: "TypeScript", description: "타입 시스템과 유틸리티 타입.", keywords: ["typescript", "ts"] },
-      { id: "nodejs", label: "Node.js", description: "Node 런타임, NestJS, 패키지 관리.", keywords: ["nodejs", "node", "nestjs", "npm", "yarn", "socket"] },
+      { id: "javascript", label: "JavaScript", description: "배열·문자열·비동기 등 자주 쓰는 문법과 패턴.", keywords: ["javascript", "js", "promise", "lodash"], symbol: "JS" },
+      { id: "typescript", label: "TypeScript", description: "타입 시스템과 유틸리티 타입.", keywords: ["typescript", "ts"], symbol: "TS" },
+      { id: "nodejs", label: "Node.js", description: "Node 런타임, NestJS, 패키지 관리.", keywords: ["nodejs", "node", "nestjs", "npm", "yarn", "socket"], symbol: "N" },
     ],
   },
   {
@@ -59,8 +61,8 @@ export const SECTIONS: readonly Section[] = [
     label: "데이터",
     description: "MySQL, Redis를 비롯한 데이터 저장소의 동작 원리와 튜닝.",
     hubs: [
-      { id: "mysql", label: "MySQL", description: "인덱스, 쿼리 튜닝, 트리거.", keywords: ["mysql", "sql"] },
-      { id: "redis", label: "Redis", description: "캐시 전략과 운영 주의점.", keywords: ["redis", "cache"] },
+      { id: "mysql", label: "MySQL", description: "인덱스, 쿼리 튜닝, 트리거.", keywords: ["mysql", "sql"], symbol: "SQL" },
+      { id: "redis", label: "Redis", description: "캐시 전략과 운영 주의점.", keywords: ["redis", "cache"], symbol: "R" },
       { id: "modeling", label: "데이터 모델링", description: "스키마 설계와 마이그레이션.", keywords: ["flyway", "migration", "모델링"] },
     ],
   },
@@ -69,11 +71,11 @@ export const SECTIONS: readonly Section[] = [
     label: "인프라",
     description: "Docker, AWS, CI/CD, 관측성, 그리고 개발 환경 세팅.",
     hubs: [
-      { id: "docker", label: "Docker", description: "컨테이너 빌드와 로컬 개발 환경.", keywords: ["docker", "dockerfile", "container"] },
-      { id: "aws", label: "AWS", description: "서버리스와 클라우드 운영.", keywords: ["aws", "lambda"] },
+      { id: "docker", label: "Docker", description: "컨테이너 빌드와 로컬 개발 환경.", keywords: ["docker", "dockerfile", "container"], symbol: "D" },
+      { id: "aws", label: "AWS", description: "서버리스와 클라우드 운영.", keywords: ["aws", "lambda"], symbol: "AWS" },
       { id: "cicd", label: "CI/CD", description: "빌드·배포 파이프라인 자동화.", keywords: ["ci", "cd", "github action", "githubaction"] },
       { id: "observability", label: "관측성", description: "모니터링, 로깅, 에러 트래킹.", keywords: ["prometheus", "grafana", "sentry", "monitoring"] },
-      { id: "tools", label: "개발 도구", description: "IntelliJ, Mac, 터미널, Git 생산성.", keywords: ["intellij", "mac", "vim", "shell", "git", "ssh", "iterm", "vscode", "linux", "리눅스"] },
+      { id: "tools", label: "개발 도구", description: "IntelliJ, Mac, 터미널, Git 생산성.", keywords: ["intellij", "mac", "vim", "shell", "git", "ssh", "iterm", "vscode", "linux", "리눅스"], symbol: "TL" },
     ],
   },
   {
@@ -81,7 +83,7 @@ export const SECTIONS: readonly Section[] = [
     label: "AI",
     description: "LLM 활용, AI 코딩 도구, RAG와 에이전트 설계.",
     hubs: [
-      { id: "llm", label: "LLM", description: "모델 비교와 기본 개념.", keywords: ["llm", "gpt", "claude"] },
+      { id: "llm", label: "LLM", description: "모델 비교와 기본 개념.", keywords: ["llm", "gpt", "claude"], symbol: "AI" },
       { id: "ai-coding", label: "AI 코딩", description: "AI 코딩 도구와 에이전트 활용.", keywords: ["ai coding", "copilot", "agent"] },
       { id: "rag", label: "RAG", description: "임베딩, 벡터 검색, 검색 증강 생성.", keywords: ["rag", "embedding", "vector"] },
       { id: "engineering", label: "LLM 엔지니어링", description: "LLM 애플리케이션 설계와 운영.", keywords: ["prompt", "llmops"] },

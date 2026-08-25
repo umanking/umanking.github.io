@@ -1,6 +1,7 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 import { POST_TYPES, POST_LEVELS, SECTION_IDS } from "./data/taxonomy";
+import { curationSchemaShape } from "./lib/curation";
 
 const posts = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
@@ -22,4 +23,9 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+const curation = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/curation" }),
+  schema: curationSchemaShape,
+});
+
+export const collections = { posts, curation };
