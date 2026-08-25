@@ -47,7 +47,6 @@ Setting Repository를 클릭하면, 다음과 같이 Upstream URL을 입력하�
 다음과 같이 만들었다. 그리고 `Overwrite Remote`를 클릭한다. 조금 이따가, Remote 레포지토리로 푸쉬가 된다!!
 해당 저장소에 가면, 테마, live template, keymap, code style등등 IDE Setting값이 `xml` 파일로 올라가 있다.
 
-![스크린샷 2021-07-07 오후 5 49 11](/images/posts/02b765296374.png)
 
 
 ## 4. 실제 다른 컴퓨터에서 불러와서 사용하는 방법 

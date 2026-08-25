@@ -120,8 +120,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 
 ### 4.3. Docker Connect
 
-![screnshot](/images/posts/e81638393cbe.png)
-*Docker Connect 하는 방법*
+Docker Connect 하는 방법이다.
 
 
 - Docker를 설정한 후에, 다음과 같이 Service 영역에서 Docker가 연결이 되었다. 
@@ -150,8 +149,7 @@ IntelliJ에서 Docker플러그인을 설치하고, IntelliJ GUI상에서 Docker 
 
 ### 4.5. Docker Hub에서 확인
 
-![스크린샷 2021-07-11 오후 3 42 38](/images/posts/5947cf48d9b6.png)
-*Docker Hub에서 확인*
+Docker Hub에서 확인한다.
 
 
 
