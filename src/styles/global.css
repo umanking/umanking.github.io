@@ -138,3 +138,67 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   padding: var(--space-4);
   overflow-x: auto;
 }
+
+/*
+ * mermaid 다이어그램 (빌드 타임 SVG, rehype-mermaid inline-svg 전략).
+ * 각 다이어그램은 자체 <style id="mermaid-N">으로 색을 하드코딩해 넣는다.
+ * inline-svg 전략은 `dark` 옵션(라이트/다크 <picture> 이중화)을 지원하지
+ * 않는다(실측: node_modules/rehype-mermaid/readme.md — "This strategy does
+ * not support the dark option"). theme:"base" + themeVariables를 var(--x)로
+ * 묶는 방식도 실측: mermaid가 git/quadrant 등 미사용 다이어그램 타입의 파생
+ * 색상까지 내부적으로 khroma darken()/lighten() 색상 연산을 무조건 돌리다가
+ * "var(--fg)" 문자열을 색상으로 못 읽어 빌드가 그대로 죽었다(Theme.calculate
+ * → darken → mermaid.js Object.parse 에러). 그래서 Shiki 이중 테마와 동일한
+ * 패턴 — 여기 있는 !important로 mermaid의 스코프드 <style>보다 우선시켜
+ * 라이트/다크 공통으로 사이트 토큰에 묶는다.
+ */
+.mermaid-diagram {
+  margin: var(--space-5) 0;
+  overflow-x: auto;
+}
+.mermaid-diagram svg {
+  display: block;
+  /* mermaid는 width="100%"를 속성으로 박아 컨테이너 폭까지 늘어나려 한다.
+     viewBox가 있는 SVG는 width/height를 auto로 두면 뷰박스 비율대로 원래
+     크기를 그대로 쓴다 — pre·table과 같은 overflow-x:auto 패턴으로 좁은
+     화면·긴 다이어그램에서도 축소 없이 가로 스크롤된다. */
+  width: auto;
+  height: auto;
+  max-width: none;
+}
+.mermaid-diagram .node rect,
+.mermaid-diagram .node circle,
+.mermaid-diagram .node ellipse,
+.mermaid-diagram .node polygon,
+.mermaid-diagram .node path {
+  fill: var(--surface) !important;
+  stroke: var(--accent) !important;
+}
+.mermaid-diagram .cluster rect {
+  fill: var(--bg-subtle) !important;
+  stroke: var(--border) !important;
+}
+.mermaid-diagram .label,
+.mermaid-diagram .nodeLabel,
+.mermaid-diagram .edgeLabel,
+.mermaid-diagram .cluster-label,
+.mermaid-diagram .flowchartTitleText,
+.mermaid-diagram text,
+.mermaid-diagram tspan,
+.mermaid-diagram span {
+  fill: var(--fg) !important;
+  color: var(--fg) !important;
+}
+.mermaid-diagram .edgeLabel,
+.mermaid-diagram .edgeLabel rect,
+.mermaid-diagram .edgeLabel p {
+  background-color: var(--bg) !important;
+  fill: var(--bg) !important;
+}
+.mermaid-diagram .flowchart-link,
+.mermaid-diagram .edgePath .path,
+.mermaid-diagram .arrowheadPath,
+.mermaid-diagram .marker {
+  stroke: var(--fg-muted) !important;
+  fill: var(--fg-muted) !important;
+}

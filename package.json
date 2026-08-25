@@ -31,6 +31,8 @@
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.3.1",
     "pagefind": "^1.5.2",
+    "playwright": "^1.62.1",
+    "rehype-mermaid": "^3.0.0",
     "rehype-parse": "^9.0.1",
     "typescript": "^6.0.3",
     "vitest": "^3.2.7"
