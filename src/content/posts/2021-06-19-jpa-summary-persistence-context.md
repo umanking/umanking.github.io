@@ -28,8 +28,6 @@ image: >-
 - 실무에서 필요한JPA - 트랜잭션과 락 2차 캐시(11)
 
 
-# 실무에서 필요한JPA - 영속성 관리(1)
-
 ## 학습목표
 
 - EntityMangerFacotry와 EntityManager의 관계를 이해한다.

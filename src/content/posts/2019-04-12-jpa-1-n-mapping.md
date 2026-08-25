@@ -14,7 +14,6 @@ tags:
 image: >-
   https://user-images.githubusercontent.com/20104232/64585171-96511580-d3d2-11e9-947d-8f1e98e46100.png
 ---
-
 ## 들어가며
 
 JPA 연관관계 매핑중, 실무에서 가장 많이 쓰이는 1:N (일대다) 매핑에 대해서 알아보자.  
@@ -84,7 +83,7 @@ public class Team {
 
 > 데이터베이스 테이블에서 항상 다애일 관계에서 다(Many) 쪽이 외래키를 가진다. 그래서 @ManyToOne에는 mappedBy속성이 존재하지 않고, @OneToMany에만 mappedBy 속성이 존재한다.
 
-# 2.예제 코드
+## 2.예제 코드
 
 ```java
 @Data

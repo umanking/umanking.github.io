@@ -15,8 +15,6 @@ tags:
 image: >-
   https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png
 ---
-# TypeScript의 Partial, Omit, Pick에 대한 상세한 이해
-
 ## TypeScript의 Partial, Omit, Pick이란 무엇인가요?
 
 TypeScript는 JavaScript에 타입을 추가하여 더욱 안전하고 가독성이 좋은 코드를 작성할 수 있게 해줍니다. Partial, Omit, Pick은 TypeScript에서 제공하는 유용한 타입 유틸리티입니다.

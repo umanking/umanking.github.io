@@ -15,8 +15,6 @@ tags:
   - docker
 image: 'https://logos-world.net/wp-content/uploads/2021/02/Docker-Logo.png'
 ---
-# 제목: MySQL Docker 컨테이너 만들기: 상세 가이드
-
 ## 소개
 
 이 블로그에서는 Docker를 사용하여 MySQL 데이터베이스를 실행하는 방법을 상세히 알아보겠습니다. Docker는 컨테이너 기반의 가상화 기술로서, 애플리케이션과 모든 종속성을 컨테이너로 패키징하여 빠르고 효율적인 배포를 가능하게 합니다. MySQL 데이터베이스를 Docker 컨테이너로 실행하는 과정을 단계별로 안내하며, 데이터베이스 설정과 데이터 보존에 대한 고려 사항도 다루겠습니다.

@@ -13,9 +13,6 @@ tags:
 image: >-
   https://media.vlpt.us/images/ovan/post/e93cf8ca-449d-45a1-b190-5084887d4c43/intellij_series_logo.jpg
 ---
-
-# IntelliJ IDE 셋팅 동기화(Repository를 이용)
-
 ## 1. 찾게된 이유
 보통은 회사 컴퓨터를 처음 셋팅했을때, 프로그램들을 설치하고, IDE 환경셋팅을 한다. 프로그램 설치는 비교적 금방 끝난다.
 하지만 IDE 환경 셋팅은 **Keymap, Live template, color schema 까지** 정말 다채롭게 셋팅했다. 

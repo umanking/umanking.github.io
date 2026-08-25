@@ -14,8 +14,6 @@ tags:
   - reduce
 image: 'https://blog.kakaocdn.net/dn/cr1ks0/btqAq3iFZQH/m9yoWxkN0SfKHpZ2MnfyKk/img.png'
 ---
-# JavaScript의 Reduce 메서드: 기초부터 심화까지
-
 ## Reduce 메서드란?
 
 JavaScript의 배열 메서드 중에서 가장 강력하면서도 다소 난해한 메서드인 'reduce'에 대해 알아보겠습니다. Reduce 메서드는 배열의 각 요소를 순차적으로 처리하면서 배열을 단일 값으로 줄여주는 함수입니다. 이를 통해 배열의 합계, 평균, 최대값 또는 최소값 등을 구하는 데 유용하게 사용할 수 있습니다.

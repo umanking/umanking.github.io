@@ -12,9 +12,6 @@ tags:
 image: >-
   https://pozafly.github.io/static/bf7a9491463863772f181d36c58051fa/7129a/sentry.png
 ---
-
-# 스프링 부트 프로젝트 sentry 적용
-
 ## 1. 들어가며
 Sentry는 에러트래킹 서비스로 Error,Exception(우리는 2개가 다르다는 것을 아니까)가 발생했을때 (편의상 에러라고 하겠다.) 에러에 대한 기록들을 트래킹하기 쉽게 모니터링을 제공해주는 서비스라고 생각하면 되겠다. 
 

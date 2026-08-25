@@ -17,20 +17,82 @@ const urlMap = new Map(
 
 mkdirSync(OUT, { recursive: true });
 
-/** 본문 첫 번째 h1이 title과 사실상 같으면 제거한다 (D4) */
-function stripLeadingH1(body, title) {
+/** 문자열을 영숫자/한글만 남기고 소문자로 정규화한다 */
+function norm(s) {
+  return s.toLowerCase().replace(/[^a-z0-9가-힣]/g, "");
+}
+
+/** 두 정규화 문자열의 최장 공통 부분문자열(연속) 길이 */
+function longestCommonSubstringLen(a, b) {
+  if (!a || !b) return 0;
+  let prevRow = new Array(b.length + 1).fill(0);
+  let max = 0;
+  for (let i = 1; i <= a.length; i++) {
+    const curRow = new Array(b.length + 1).fill(0);
+    for (let j = 1; j <= b.length; j++) {
+      if (a[i - 1] === b[j - 1]) {
+        curRow[j] = prevRow[j - 1] + 1;
+        if (curRow[j] > max) max = curRow[j];
+      }
+    }
+    prevRow = curRow;
+  }
+  return max;
+}
+
+/** h1이 title과 사실상 같은 글인지 판단한다 (완전 포함 + 느슨한 부분일치) */
+function isTitleDuplicate(h1, title) {
+  const nH = norm(h1);
+  const nT = norm(title);
+  if (!nH || !nT) return false;
+  if (nH === nT || nT.includes(nH) || nH.includes(nT)) return true;
+  const lcs = longestCommonSubstringLen(nH, nT);
+  const ratio = lcs / Math.min(nH.length, nT.length);
+  return lcs >= 4 && ratio >= 0.3;
+}
+
+/**
+ * 본문 전체에서 펜스(코드블록) 밖에 있는 h1을 처리한다 (D4).
+ * title과 사실상 같으면 그 줄을 제거하고, 아니면 h2로 낮춰서 레이아웃의
+ * <h1>{title}</h1>과 중복되는 h1이 본문에 남지 않도록 한다.
+ */
+function normalizeBodyHeadings(body, title) {
   const lines = body.split("\n");
-  let i = 0;
-  while (i < lines.length && lines[i].trim() === "") i++;
-  if (i < lines.length && /^#\s+/.test(lines[i])) {
-    const h1 = lines[i].replace(/^#\s+/, "").trim();
-    const norm = (s) => s.toLowerCase().replace(/[^a-z0-9가-힣]/g, "");
-    if (norm(h1) === norm(title) || norm(title).includes(norm(h1)) || norm(h1).includes(norm(title))) {
-      lines.splice(i, 1);
-      return lines.join("\n").replace(/^\n+/, "");
+  const fenceRe = /^\s{0,3}(`{3,}|~{3,})/;
+  let fence = null; // 현재 열려 있는 펜스 문자('`' 또는 '~'), 없으면 null
+  let changed = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const fm = line.match(fenceRe);
+    if (fm) {
+      const ch = fm[1][0];
+      if (fence === ch) fence = null;
+      else if (!fence) fence = ch;
+      continue;
+    }
+    if (fence) continue;
+
+    if (/^#\s+/.test(line)) {
+      const h1 = line.replace(/^#\s+/, "").trim();
+      if (isTitleDuplicate(h1, title)) {
+        lines.splice(i, 1);
+        // 제거로 생긴 빈 줄 중복만 정리하고, 다른 곳의 의도된 공백은 건드리지 않는다.
+        if ((lines[i - 1] ?? "").trim() === "" && (lines[i] ?? "").trim() === "") {
+          lines.splice(i, 1);
+        }
+        i -= 1;
+        changed = true;
+      } else {
+        lines[i] = `#${line}`;
+        changed = true;
+      }
     }
   }
-  return body;
+
+  // 변경이 없으면 원본 body를 그대로 반환한다 (다른 144편의 본문에 영향 없음).
+  if (!changed) return body;
+  return lines.join("\n").replace(/^\n+/, "");
 }
 
 /** 본문에서 description 초안을 만든다. 상위 글은 이후 수기로 교체한다 (D5) */
@@ -75,7 +137,7 @@ for (const file of readdirSync(SRC).filter((f) => f.endsWith(".md"))) {
   const title = String(data.title ?? "").trim();
   if (!title) throw new Error(`title 없음: ${file}`);
 
-  const body = stripLeadingH1(content, title);
+  const body = normalizeBodyHeadings(content, title);
 
   // categories를 tags로 합치고 중복 제거 (스펙 §8)
   const tags = [
