@@ -33,6 +33,8 @@ interface Props {
    * 광고 없는 페이지에는 애드센스 스크립트 자체를 로드하지 않는다.
    */
   hasAds?: boolean;
+  /** GA4 계측 삽입 여부. 기본값 true. BaseHead로 그대로 전달된다. */
+  analytics?: boolean;
 }
 // /search/는 Task 15(Pagefind 검색) 소유 파일이라 이 작업 범위에서
 // src/pages/search.astro를 직접 건드릴 수 없다. hasAds prop을 넘기지

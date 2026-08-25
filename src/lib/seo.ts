@@ -1,3 +1,6 @@
+/** GA4 측정 ID. 페이지 소스에 노출되는 공개 값이라 상수로 직접 둔다. */
+export const GA4_ID = "G-JH1JXZKK0Y";
+
 export const SITE = {
   name: "CodeNexus",
   url: "https://umanking.github.io",

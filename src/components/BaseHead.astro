@@ -1,5 +1,5 @@
 ---
-import { SITE, absolute } from "../lib/seo";
+import { SITE, GA4_ID, absolute } from "../lib/seo";
 import { graph } from "../lib/jsonld";
 
 interface Props {
@@ -14,6 +14,8 @@ interface Props {
   section?: string;
   tags?: string[];
   jsonLd?: object[];
+  /** GA4 계측 삽입 여부. 기본값 true. /search/처럼 제외해야 하는 페이지만 false. */
+  analytics?: boolean;
 }
 const {
   title,
@@ -27,6 +29,7 @@ const {
   section,
   tags = [],
   jsonLd = [],
+  analytics = true,
 } = Astro.props;
 ---
 
@@ -64,4 +67,11 @@ const {
 
 {jsonLd.length > 0 && (
   <script type="application/ld+json" set:html={JSON.stringify(graph(jsonLd))} />
+)}
+
+{import.meta.env.PROD && analytics && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+    <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA4_ID}")`} />
+  </>
 )}
