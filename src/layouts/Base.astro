@@ -20,6 +20,8 @@ const { title, description, canonical, noindex = false } = Astro.props;
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="naver-site-verification" content="46d4c4d3f1013de17dee96a763e94028323e4b00" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/pretendard/PretendardVariable.subset.0.woff2" crossorigin />
+    <link rel="stylesheet" href="/fonts/pretendard/pretendard.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
