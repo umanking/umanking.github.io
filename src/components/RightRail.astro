@@ -1,9 +1,7 @@
 ---
-import AdSlot from "./AdSlot.astro";
-
 export interface RailHub { href: string; label: string; count: number }
-interface Props { title: string; hubs: RailHub[]; hasAds?: boolean }
-const { title, hubs, hasAds = true } = Astro.props;
+interface Props { title: string; hubs: RailHub[] }
+const { title, hubs } = Astro.props;
 ---
 
 {hubs.length > 0 && (
@@ -21,4 +19,3 @@ const { title, hubs, hasAds = true } = Astro.props;
     </ul>
   </div>
 )}
-{hasAds && <AdSlot slot="4527764067" minHeight={250} />}

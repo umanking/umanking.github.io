@@ -1,6 +1,5 @@
 ---
 import Base from "../layouts/Base.astro";
-import AdSlot from "../components/AdSlot.astro";
 import PostCard from "../components/PostCard.astro";
 import { getAllPosts, getListedPosts } from "../lib/posts";
 import { SITE, absolute } from "../lib/seo";
@@ -42,7 +41,6 @@ const jsonLd = [
     {latest.map((post, i) => (
       <>
         <PostCard post={post} featured={i === 0} />
-        {i === 4 && <AdSlot slot="8849349779" format="fluid" layout="in-article" minHeight={240} />}
       </>
     ))}
   </section>
