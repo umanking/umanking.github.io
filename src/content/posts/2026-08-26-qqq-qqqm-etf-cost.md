@@ -17,7 +17,7 @@ editorial:
     - https://indexes.nasdaqomx.com/docs/Methodology_NDX_Effective_May_1_2026.pdf
 ---
 
-QQQ와 QQQM은 모두 Nasdaq 100 지수를 기초로 하지만 같은 상품은 아닙니다. Invesco가 공개한 총보수는 QQQ가 연 0.18%, QQQM이 연 0.15%입니다.
+QQQ와 QQQM은 모두 Nasdaq 100 지수를 기초로 하지만 같은 상품은 아닙니다. **Invesco가 공개한 총보수는 QQQ가 연 0.18%, QQQM이 연 0.15%**입니다.
 
 ## 비용 차이가 의미하는 것
 
@@ -49,4 +49,4 @@ Nasdaq 100은 나스닥 상장 비금융 대형주로 구성되며 정보기술 
 
 [Invesco ETF 상품 비교](https://www.invesco.com/us/en/solutions/innovation-suite.html) · [Nasdaq 100 방법론](https://indexes.nasdaqomx.com/docs/Methodology_NDX_Effective_May_1_2026.pdf)
 
-이 글은 ETF 구조를 설명하는 비개인화 정보이며 특정 상품의 매수·매도 추천이 아닙니다.
+이 글은 ETF 구조를 설명하며 특정 상품의 매수·매도 추천이 아닙니다.

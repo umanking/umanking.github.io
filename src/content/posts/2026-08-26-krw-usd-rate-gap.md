@@ -54,4 +54,4 @@ editorial:
 
 [한국은행 통화정책방향](https://www.bok.or.kr/portal/bbs/P0000559/view.do?menuNo=200690&nttId=11062942) · [연준 FOMC 성명](https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm)
 
-이 글은 공개 자료를 해설한 비개인화 정보이며 환율 전망이나 투자 자문이 아닙니다.
+이 글은 공개 자료를 해설하며 특정 환율 방향이나 금융상품의 매수·매도를 권하지 않습니다.
