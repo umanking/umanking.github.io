@@ -1,6 +1,5 @@
 ---
 import Hub from "../../layouts/Hub.astro";
-import FinanceRadar from "../../components/FinanceRadar.astro";
 import { SECTIONS } from "../../data/taxonomy";
 import { getPostsBySection } from "../../lib/posts";
 
@@ -28,5 +27,4 @@ const noindex = posts.length === 0;
   rightRailTitle=""
   rightRailHubs={[]}
 >
-  {section.id === "finance" && <FinanceRadar slot="intro" />}
 </Hub>
