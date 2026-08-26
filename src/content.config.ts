@@ -18,6 +18,13 @@ const posts = defineCollection({
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
     noindex: z.boolean().default(false),
+    /** AI 자동 발행 파이프라인의 투명성과 편집 검수 상태를 보존한다. */
+    editorial: z.object({
+      authorship: z.enum(["human", "ai-assisted", "ai-generated"]),
+      reviewed: z.boolean().default(false),
+      model: z.string().optional(),
+      sources: z.array(z.string().url()).default([]),
+    }).optional(),
     series: z.object({ name: z.string(), order: z.number().int().positive() }).optional(),
   }),
 });

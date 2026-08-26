@@ -3,14 +3,12 @@ import Base from "../layouts/Base.astro";
 import AdSlot from "../components/AdSlot.astro";
 import PostCard from "../components/PostCard.astro";
 import { getAllPosts, getListedPosts } from "../lib/posts";
-import { getNavTree } from "../lib/taxonomy";
 import { SITE, absolute } from "../lib/seo";
 import { organizationLd, webSiteLd, itemListLd } from "../lib/jsonld";
 
 const all = await getAllPosts();
 const listed = await getListedPosts();
 const latest = listed.slice(0, 15);
-const tree = (await getNavTree()).filter((s) => s.hubs.length > 0);
 
 const jsonLd = [
   organizationLd(),
@@ -23,32 +21,19 @@ const jsonLd = [
 ---
 
 <Base
-  title="백엔드 · 아키텍처 · 데이터 · 인프라 · AI 기술 매체 | CodeNexus"
+  title="기술 · AI · 금융·투자 · 부동산 인사이트 미디어 | 맥락"
   description={SITE.description}
   canonical={absolute("/")}
   jsonLd={jsonLd}
 >
   <section class="hero">
-    <h1>백엔드 · 아키텍처 · 데이터 · 인프라 · AI 기술 매체</h1>
-    <p>
-      실무에서 마주친 문제와 해결 과정을 기록합니다.
-      Spring · JPA · 데이터 · 인프라 전반 {all.length}편과 매주 이어지는 AI · 개발 뉴스 큐레이션.
-    </p>
-  </section>
-
-  <section class="topics">
-    <h2>주제별로 보기</h2>
-    <div class="topics__grid">
-      {tree.map((section) => (
-        <div class="topics__card">
-          <a class="topics__title" href={`/${section.id}/`}>{section.label}</a>
-          <ul>
-            {section.hubs.slice(0, 4).map((hub) => (
-              <li><a href={`/${section.id}/${hub.id}/`}>{hub.label} <span>{hub.count}</span></a></li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div class="hero__copy">
+      <p class="hero__eyebrow"><span class="hero__dot"></span>CONTEXT / INSIGHT MEDIA</p>
+      <h1>복잡한 변화에서<br />쓸모 있는 맥락을 찾습니다</h1>
+      <p>
+        기술의 원리부터 AI의 변화, 금융과 투자의 흐름, 부동산 시장까지.
+        직접 확인한 근거와 분명한 관점으로 {all.length}편의 지식과 뉴스를 전합니다.
+      </p>
     </div>
   </section>
 
@@ -56,7 +41,7 @@ const jsonLd = [
     <h2>최신 글</h2>
     {latest.map((post, i) => (
       <>
-        <PostCard post={post} />
+        <PostCard post={post} featured={i === 0} />
         {i === 4 && <AdSlot slot="8849349779" format="fluid" layout="in-article" minHeight={240} />}
       </>
     ))}
@@ -64,15 +49,12 @@ const jsonLd = [
 </Base>
 
 <style>
-  .hero { padding: var(--space-6) 0 var(--space-5); border-bottom: 1px solid var(--border); }
-  .hero h1 { font-size: 2rem; line-height: 1.35; margin: 0 0 var(--space-3); }
-  .hero p { color: var(--fg-muted); max-width: var(--measure); margin: 0; }
-  .topics { padding: var(--space-5) 0; border-bottom: 1px solid var(--border); }
-  .topics__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); }
-  .topics__card { padding: var(--space-3); border: 1px solid var(--border); border-radius: 10px; }
-  .topics__title { font-weight: 600; color: var(--fg); text-decoration: none; }
-  .topics__card ul { list-style: none; padding: 0; margin: var(--space-2) 0 0; font-size: 0.9rem; }
-  .topics__card li { padding: 3px 0; }
-  .topics__card a { text-decoration: none; }
-  .topics__card span { color: var(--fg-muted); font-size: 0.85em; }
+  .hero { position: relative; padding: clamp(3rem, 8vw, 6.5rem) 0 var(--space-6); border-bottom: 1px solid var(--border); overflow: hidden; }
+  .hero::before { content: ""; position: absolute; width: 460px; height: 460px; top: -190px; right: 40px; border: 1px solid var(--border-muted); border-radius: 50%; box-shadow: 0 0 0 42px var(--bg), 0 0 0 43px var(--border-muted), 0 0 0 86px var(--bg), 0 0 0 87px var(--border-muted); opacity: .8; pointer-events: none; }
+  .hero__copy { position: relative; z-index: 1; }
+  .hero__eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: var(--space-3) !important; color: var(--accent) !important; font-size: .72rem; font-weight: 750; letter-spacing: .14em; }
+  .hero__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .hero h1 { max-width: 760px; font-size: clamp(2.35rem, 6vw, 4.8rem); line-height: 1.08; letter-spacing: -.055em; margin: 0 0 var(--space-4); }
+  .hero__copy > p:last-child { color: var(--fg-muted); max-width: 650px; margin: 0; font-size: 1.05rem; }
+  @media (max-width: 760px) { .hero::before { right: -250px; top: -130px; } }
 </style>

@@ -2,10 +2,10 @@
 import "../styles/global.css";
 import BaseHead from "../components/BaseHead.astro";
 import TopBar from "../components/TopBar.astro";
-import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import RightRail, { type RailHub } from "../components/RightRail.astro";
-import { getNavTree, getSectionCounts, topHubsFromTree } from "../lib/taxonomy";
+import { getNavTree, getSectionCounts, getHubCounts } from "../lib/taxonomy";
+import { CHANNELS, SECTIONS } from "../data/taxonomy";
 
 interface Props {
   title: string;
@@ -48,14 +48,29 @@ const hasAds = hasAdsProp && !isAdFreeRoute;
 // 호출하던 것을 여기서 한 번만 계산해 내려보낸다.
 const tree = await getNavTree();
 const sectionCounts = await getSectionCounts();
-const resolvedRightRail = rightRail ?? {
-  title: "인기 주제",
-  hubs: topHubsFromTree(tree, 5).map((h) => ({
-    href: `/${h.sectionId}/${h.id}/`,
-    label: h.label,
-    count: h.count,
-  })),
-};
+const hubCounts = await getHubCounts();
+const currentSection = SECTIONS.find((item) =>
+  Astro.url.pathname.startsWith(`/${item.id}/`) || item.label === Astro.props.section
+);
+const currentChannel = CHANNELS.find((channel) =>
+  Astro.url.pathname === channel.href || (currentSection && channel.sections.includes(currentSection.id))
+);
+const channelHubs: RailHub[] = currentChannel?.id === "technology"
+  ? currentChannel.sections
+      .map((id) => {
+        const section = SECTIONS.find((item) => item.id === id)!;
+        return { href: `/${id}/`, label: section.label, count: sectionCounts.get(id) ?? 0 };
+      })
+      .filter((item) => item.count > 0)
+  : (currentChannel?.sections ?? []).flatMap((id) => {
+      const section = SECTIONS.find((item) => item.id === id);
+      return (section?.hubs ?? [])
+        .map((hub) => ({ href: `/${id}/${hub.id}/`, label: hub.label, count: hubCounts.get(`${id}/${hub.id}`) ?? 0 }))
+        .filter((item) => item.count > 0);
+    });
+const resolvedRightRail = currentChannel
+  ? { title: `${currentChannel.label} 세부 주제`, hubs: channelHubs }
+  : (rightRail ?? { title: "", hubs: [] });
 ---
 
 <!doctype html>
@@ -88,9 +103,8 @@ const resolvedRightRail = rightRail ?? {
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
-    <TopBar />
+    <TopBar sectionCounts={sectionCounts} />
     <div class="shell">
-      <Nav tree={tree} sectionCounts={sectionCounts} />
       <main id="main" class="shell__main">
         <slot />
       </main>

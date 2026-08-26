@@ -6,7 +6,7 @@ const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
 {items.length >= 3 && (
-  <details class="toc">
+  <details class="toc" open>
     <summary class="toc__title">목차 ({items.length}개 항목)</summary>
     <ul>
       {items.map((h) => (

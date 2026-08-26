@@ -1,20 +1,18 @@
 ---
 import TypeBadge from "./TypeBadge.astro";
 import LevelBadge from "./LevelBadge.astro";
-import HubAvatar from "./HubAvatar.astro";
 import { readingMinutes, type Post } from "../lib/posts";
 import { getHubById } from "../lib/taxonomy";
 
-interface Props { post: Post }
-const { post } = Astro.props;
+interface Props { post: Post; featured?: boolean }
+const { post, featured = false } = Astro.props;
 const minutes = readingMinutes(post.body ?? "");
 const tags = post.data.tags.slice(0, 3);
 const hubLabel = getHubById(post.data.hub)?.label ?? post.data.hub;
 ---
 
-<article class="card">
+<article class:list={["card", { "card--featured": featured }]}>
   <header class="card__head">
-    <HubAvatar hubId={post.data.hub} size={32} />
     <span class="card__head-text">
       <a class="card__hub" href={`/${post.data.section}/${post.data.hub}/`}>{hubLabel}</a>
       <time class="card__date" datetime={post.data.date.toISOString()}>
@@ -39,10 +37,13 @@ const hubLabel = getHubById(post.data.hub)?.label ?? post.data.hub;
     padding: var(--space-4) 0;
     border-bottom: 1px solid var(--border);
   }
+  .card--featured { padding: var(--space-5) 0; }
+  .card--featured .card__title { max-width: 760px; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1.25; letter-spacing: -.045em; }
+  .card--featured .card__desc { max-width: 680px; font-size: 1rem; -webkit-line-clamp: 3; }
+  .card--featured .card__head::before { content: "EDITOR'S NOTE"; margin-right: 10px; color: var(--accent); font: 700 .62rem/1 var(--font-mono); letter-spacing: .08em; }
   .card__head {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
     margin-bottom: var(--space-2);
   }
   .card__head-text {

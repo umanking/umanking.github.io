@@ -1,4 +1,46 @@
-export type SectionId = "architecture" | "backend" | "web" | "data" | "infra" | "ai" | "news";
+export type SectionId = "architecture" | "backend" | "web" | "data" | "infra" | "ai" | "finance" | "realestate" | "news";
+
+export type ChannelId = "technology" | "finance" | "realestate" | "news";
+
+export interface Channel {
+  id: ChannelId;
+  label: string;
+  description: string;
+  href: string;
+  sections: readonly SectionId[];
+}
+
+/** 독자에게 보이는 상위 정보 구조. 기존 섹션 URL은 유지하고 메뉴만 범용 채널로 묶는다. */
+export const CHANNELS: readonly Channel[] = [
+  {
+    id: "technology",
+    label: "기술·AI",
+    description: "소프트웨어 설계와 운영부터 AI 모델·도구·산업의 변화까지 깊이 있게 다룹니다.",
+    href: "/technology/",
+    sections: ["architecture", "backend", "web", "data", "infra", "ai"],
+  },
+  {
+    id: "finance",
+    label: "금융·투자",
+    description: "시장과 기업, 자산관리와 투자 원칙을 데이터에 근거해 정리합니다.",
+    href: "/finance/",
+    sections: ["finance"],
+  },
+  {
+    id: "realestate",
+    label: "부동산",
+    description: "주택시장 지표, 공급·정책, 청약과 임대차 제도를 자료에 근거해 해설합니다.",
+    href: "/realestate/",
+    sections: ["realestate"],
+  },
+  {
+    id: "news",
+    label: "뉴스·인사이트",
+    description: "기술, AI, 금융의 중요한 흐름을 선별해 맥락과 함께 전합니다.",
+    href: "/news/",
+    sections: ["news"],
+  },
+] as const;
 
 export interface FaqItem {
   q: string;
@@ -130,12 +172,38 @@ export const SECTIONS: readonly Section[] = [
     ],
   },
   {
-    id: "news",
-    label: "뉴스",
-    description: "매주 정리하는 AI · 개발 소식과 주요 릴리스.",
+    id: "finance",
+    label: "금융·투자",
+    description: "시장과 기업을 읽는 데이터, 자산관리와 장기 투자 원칙을 다룹니다.",
     hubs: [
-      { id: "weekly", label: "위클리 다이제스트", description: "주간 AI · 개발 뉴스 큐레이션.", keywords: ["weekly", "digest"] },
+      { id: "macro", label: "거시경제", description: "금리, 물가, 고용과 경기 흐름.", keywords: ["macro", "금리", "물가", "경기"] },
+      { id: "forex", label: "환율", description: "원·달러 환율과 통화정책, 자금 흐름.", keywords: ["환율", "원달러", "외환", "currency"] },
+      { id: "stocks", label: "개별주", description: "기업 실적과 사업 구조, 위험 요인 분석.", keywords: ["개별주", "기업", "실적", "earnings"] },
+      { id: "semiconductors", label: "반도체", description: "메모리, 파운드리, AI 가속기 산업과 기업.", keywords: ["반도체", "semiconductor", "AI chip"] },
+      { id: "indices", label: "증시·지수", description: "KOSPI, Nasdaq 100 등 주요 지수의 구조와 흐름.", keywords: ["kospi", "nasdaq100", "지수", "index"] },
+      { id: "etf", label: "ETF", description: "지수 추종 상품의 구조, 비용과 위험.", keywords: ["etf", "qqq", "qqqm", "상장지수펀드"] },
+      { id: "personal-finance", label: "자산관리", description: "현금 흐름, 세금, 연금과 개인 재무.", keywords: ["자산관리", "연금", "세금", "재무"] },
+    ],
+  },
+  {
+    id: "realestate",
+    label: "부동산",
+    description: "주택시장 지표, 공급·정책, 청약과 임대차 제도를 자료에 근거해 해설합니다.",
+    hubs: [
+      { id: "market-trends", label: "시장 동향", description: "매매·전세·월세 가격과 거래 흐름.", keywords: ["주택시장", "아파트", "매매", "전세"] },
+      { id: "policy", label: "정책·제도", description: "주택 공급, 대출, 세금과 규제 변화.", keywords: ["부동산 정책", "공급", "대출", "규제"] },
+      { id: "subscription", label: "청약·분양", description: "청약 제도, 분양 일정과 입주자 모집.", keywords: ["청약", "분양", "신혼희망타운", "뉴홈"] },
+      { id: "rent", label: "전세·임대", description: "전월세 시장, 보증금과 임대차 제도.", keywords: ["전세", "월세", "임대차", "보증금"] },
+      { id: "reits", label: "리츠·상업용", description: "리츠와 오피스·상업용 부동산 시장.", keywords: ["리츠", "REITs", "오피스", "상업용"] },
+    ],
+  },
+  {
+    id: "news",
+    label: "뉴스·인사이트",
+    description: "기술, AI, 금융의 중요한 흐름을 선별해 맥락과 함께 전합니다.",
+    hubs: [
       { id: "releases", label: "릴리스", description: "주요 도구·프레임워크 릴리스 정리.", keywords: ["release"] },
+      { id: "analysis", label: "이슈 해설", description: "중요한 사건의 배경과 영향을 설명합니다.", keywords: ["analysis", "인사이트", "해설"] },
     ],
   },
 ] as const;

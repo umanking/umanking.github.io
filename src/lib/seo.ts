@@ -2,11 +2,11 @@
 export const GA4_ID = "G-JH1JXZKK0Y";
 
 export const SITE = {
-  name: "CodeNexus",
+  name: "맥락",
   url: "https://umanking.github.io",
   locale: "ko_KR",
   description:
-    "아키텍처 · 백엔드 · 데이터 · AI를 다루는 한국어 기술 매체. Spring, JPA, Java, MySQL 실무 예제와 트러블슈팅을 정리합니다.",
+    "기술 · AI · 금융·투자 · 부동산의 중요한 흐름에서 쓸모 있는 맥락을 찾아 전하는 한국어 인사이트 미디어입니다.",
 } as const;
 
 /** SERP는 한국어 기준 30~35자에서 잘린다. 제목이 길면 사이트명을 생략한다. */
