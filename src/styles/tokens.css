@@ -8,6 +8,7 @@
   --border-muted: #eef0f3;
   --accent: #2f6feb;
   --accent-soft: #e8f0fe;
+  --highlight: #fff09a;
 
   --badge-tutorial: #2f9e44;
   --badge-reference: #1971c2;
@@ -42,6 +43,7 @@
     --border-muted: #1c2129;
     --accent: #6ea3ff;
     --accent-soft: #16233a;
+    --highlight: #665b1a;
 
     --badge-tutorial: #51cf66;
     --badge-reference: #4dabf7;
@@ -61,6 +63,7 @@
   --border-muted: #1c2129;
   --accent: #6ea3ff;
   --accent-soft: #16233a;
+  --highlight: #665b1a;
 
   --badge-tutorial: #51cf66;
   --badge-reference: #4dabf7;
