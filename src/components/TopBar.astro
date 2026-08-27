@@ -8,9 +8,11 @@ const { sectionCounts } = Astro.props;
 
 <header class="topbar">
   <div class="topbar__inner">
-    <a class="topbar__brand" href="/" aria-label="맥락 홈">
-      <span class="topbar__mark" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="topbar__wordmark">맥락</span>
+    <a class="topbar__brand" href="/" aria-label="Layer 홈">
+      <svg class="topbar__mark" viewBox="0 0 28 28" aria-hidden="true">
+        <path d="M5 7.5h18M7.5 14h13M10 20.5h8" />
+      </svg>
+      <span class="topbar__wordmark">Layer</span>
     </a>
 
     <Nav sectionCounts={sectionCounts} />
@@ -43,8 +45,10 @@ const { sectionCounts } = Astro.props;
     position: sticky;
     top: 0;
     z-index: 60;
-    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
     border-bottom: 1px solid var(--border);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
   }
   .topbar__inner {
     max-width: 1180px;
@@ -52,35 +56,34 @@ const { sectionCounts } = Astro.props;
     padding: 0 var(--space-3);
     min-height: 56px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-4);
   }
   .topbar__brand {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    font-weight: 700;
-    font-size: 1.15rem;
-    letter-spacing: -0.01em;
+    min-height: 56px;
+    font-weight: 650;
+    font-size: 1.12rem;
+    letter-spacing: -0.035em;
     color: var(--fg);
     text-decoration: none;
   }
-  .topbar__mark { width: 24px; height: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; align-items: end; padding: 4px; border-radius: 7px; background: var(--fg); }
-  .topbar__mark i { display: block; border-radius: 2px; background: var(--accent); }
-  .topbar__mark i:nth-child(1) { height: 45%; opacity: .55; }
-  .topbar__mark i:nth-child(2) { height: 70%; opacity: .8; }
-  .topbar__mark i:nth-child(3) { height: 100%; }
-  .topbar__wordmark { letter-spacing: -.06em; }
+  .topbar__mark { width: 27px; height: 27px; color: var(--fg); }
+  .topbar__mark path { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+  .topbar__wordmark { letter-spacing: -.045em; }
   .topbar__search {
     width: min(240px, 20vw);
     margin-left: auto;
+    margin-top: 10px;
   }
   .topbar__search input {
     width: 100%;
     padding: 8px 12px;
-    border-radius: 8px;
+    border-radius: 999px;
     border: 1px solid var(--border);
-    background: var(--bg-subtle);
+    background: var(--surface-translucent);
     color: var(--fg-muted);
     font-size: 0.9rem;
   }
@@ -92,7 +95,8 @@ const { sectionCounts } = Astro.props;
     align-items: center;
     justify-content: center;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    margin-top: 10px;
+    border-radius: 999px;
     background: var(--surface);
     color: var(--fg);
     font-size: 1rem;

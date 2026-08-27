@@ -46,7 +46,7 @@ export const GET: APIRoute = async () => {
   entries.push({ loc: "/about/", lastmod: newest, changefreq: "monthly" });
 
   // 글이 하나도 없는 섹션은 noindex이므로 뺀다 (스펙 6.4)
-  for (const section of SECTIONS) {
+  for (const section of SECTIONS.filter((section) => section.id !== "news")) {
     const hasListedPost = posts.some((p) => p.data.section === section.id);
     if (!hasListedPost) continue;
     entries.push({ loc: `/${section.id}/`, lastmod: newest, changefreq: "weekly" });
@@ -54,7 +54,7 @@ export const GET: APIRoute = async () => {
 
   // open 상태(3편 이상) 허브만 색인 대상 (스펙 6.4)
   const hubCounts = await getHubCounts();
-  for (const section of SECTIONS) {
+  for (const section of SECTIONS.filter((section) => section.id !== "news")) {
     for (const hub of section.hubs) {
       const count = hubCounts.get(`${section.id}/${hub.id}`) ?? 0;
       if (hubState(count) !== "open") continue;

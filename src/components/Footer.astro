@@ -10,7 +10,7 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__grid">
-      {SECTIONS.map((section) => {
+      {SECTIONS.filter((section) => section.id !== "news").map((section) => {
         const hubs = tree.find((t) => t.id === section.id)?.hubs ?? [];
         const count = sectionCounts.get(section.id) ?? 0;
         if (count === 0) return null;
@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
       })}
     </div>
     <div class="footer__meta">
-      <span>© {year} 맥락</span>
+      <span>© {year} Layer</span>
       <a href="/about/">소개</a>
     </div>
   </div>

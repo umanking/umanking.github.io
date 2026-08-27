@@ -1,11 +1,20 @@
 ---
 import Base from "../layouts/Base.astro";
 import { absolute } from "../lib/seo";
+import { getListedPosts } from "../lib/posts";
+
+const searchDocuments = (await getListedPosts()).map((post) => ({
+  title: post.data.title,
+  description: post.data.description,
+  url: post.data.permalink,
+  tags: post.data.tags,
+}));
+const searchData = JSON.stringify(searchDocuments).replaceAll("<", "\\u003c");
 ---
 
 <Base
-  title="검색 | 맥락"
-  description="맥락의 모든 글을 검색합니다. Spring, JPA, JavaScript, MySQL 등 주제와 키워드로 찾아보세요."
+  title="검색 | Layer"
+  description="Layer의 모든 글을 검색합니다. Spring, JPA, JavaScript, MySQL 등 주제와 키워드로 찾아보세요."
   canonical={absolute("/search/")}
   noindex
   hasAds={false}
@@ -16,22 +25,26 @@ import { absolute } from "../lib/seo";
   <div data-pagefind-ignore>
     <h1>검색</h1>
     <div id="search"></div>
+    <script is:inline id="search-data" type="application/json" set:html={searchData}></script>
   </div>
 
   <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
   <script is:inline src="/pagefind/pagefind-ui.js"></script>
-  {/*
-    DOMContentLoaded로 감싸지 않는다. 이 <script>는 클래식 스크립트라 문서 순서대로
-    실행되고, 위의 #search div와 pagefind-ui.js(동기 로드) 뒤에 위치하므로 이
-    지점에서 이미 DOM과 PagefindUI 전역이 준비돼 있다. 래퍼를 없애면 기능 손실
-    없이 인라인 JS 예산(2048B)을 지킬 수 있다.
-  */}
-  <script is:inline>new PagefindUI({element:"#search",showSubResults:true,showImages:false,translations:{placeholder:"검색어를 입력하세요",zero_results:"[SEARCH_TERM]에 대한 결과가 없습니다",many_results:"[SEARCH_TERM] 검색 결과 [COUNT]건",one_result:"[SEARCH_TERM] 검색 결과 1건"}});const q=new URLSearchParams(location.search).get("q"),i=q&&document.querySelector("#search input");i&&(i.value=q,i.dispatchEvent(new Event("input",{bubbles:true})))</script>
+  <script is:inline src="/search.js"></script>
 
   <style>
     /* pagefind-ui가 비동기로 초기화되기 전까지 자리를 확보해 CLS를 막는다 */
     #search {
       min-height: 4rem;
     }
+    :global(.local-search__form) { position: relative; }
+    :global(.local-search__input) { width: 100%; padding: 14px 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--fg); font: inherit; }
+    :global(.local-search__input:focus) { border-color: var(--accent); outline: 3px solid var(--accent-soft); }
+    :global(.local-search__status) { margin: var(--space-3) 0 var(--space-2); color: var(--fg-muted); font-size: .88rem; }
+    :global(.local-search__list) { list-style: none; margin: 0; padding: 0; }
+    :global(.local-search__item) { padding: var(--space-3) 0; border-bottom: 1px solid var(--border); }
+    :global(.local-search__title) { color: var(--fg); font-weight: 650; text-decoration: none; }
+    :global(.local-search__title:hover) { color: var(--accent); }
+    :global(.local-search__description) { margin: var(--space-1) 0 0; color: var(--fg-muted); font-size: .92rem; }
   </style>
 </Base>

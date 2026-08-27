@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.andrew.umanking.codex-daily</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>/Users/andrew/dev/umanking.github.io/scripts/codex-daily-publish.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/andrew/dev/umanking.github.io</string>
+
+    <!-- 매일 09:40 (시스템 로컬 타임존 = KST) -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>40</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/andrew/Library/Logs/codenexus-codex-daily.launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/andrew/Library/Logs/codenexus-codex-daily.launchd.err.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+    <key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>

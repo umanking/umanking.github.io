@@ -34,13 +34,24 @@ const hubLabel = getHubById(post.data.hub)?.label ?? post.data.hub;
 
 <style>
   .card {
-    padding: var(--space-4) 0;
+    padding: var(--space-4);
     border-bottom: 1px solid var(--border);
+    border-radius: 18px;
+    transition: background-color .2s ease, transform .2s ease;
   }
-  .card--featured { padding: var(--space-5) 0; }
+  .card:hover { background: var(--bg-subtle); transform: translateY(-1px); }
+  .card--featured { margin: var(--space-3) 0 var(--space-4); padding: clamp(2rem, 6vw, 4rem); border: 1px solid var(--border-muted); border-radius: var(--radius-card); background: linear-gradient(145deg, var(--bg-subtle), var(--surface)); box-shadow: var(--shadow-card); }
   .card--featured .card__title { max-width: 760px; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1.25; letter-spacing: -.045em; }
   .card--featured .card__desc { max-width: 680px; font-size: 1rem; -webkit-line-clamp: 3; }
-  .card--featured .card__head::before { content: "EDITOR'S NOTE"; margin-right: 10px; color: var(--accent); font: 700 .62rem/1 var(--font-mono); letter-spacing: .08em; }
+  .card--featured .card__head::before {
+    content: "FEATURED";
+    margin-right: 10px;
+    color: var(--accent);
+    font: inherit;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+  }
   .card__head {
     display: flex;
     align-items: center;

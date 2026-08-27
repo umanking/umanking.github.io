@@ -48,7 +48,7 @@ export const GET: APIRoute = async ({ props }) => {
             props: {
               style: { display: "flex", justifyContent: "space-between", fontSize: 26, color: "#9aa4b2" },
               children: [
-                { type: "div", props: { children: "맥락" } },
+                { type: "div", props: { children: "Layer" } },
                 { type: "div", props: { children: post.data.date.toLocaleDateString("ko-KR") } },
               ],
             },
