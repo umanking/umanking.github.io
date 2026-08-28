@@ -26,23 +26,10 @@ interface Props {
    * prop 기본값은 순수 JS 로직이라 그 문제가 없다.
    */
   rightRail?: { title: string; hubs: RailHub[] };
-  /**
-   * 이 페이지에 애드센스 광고를 실을지 여부. 기본값 true — 우측 레일 광고를
-   * 사이트 전반에 노출하는 것이 의도다. 광고가 없어야 하는 페이지(404 등)는
-   * 명시적으로 false를 넘긴다. 로더 스크립트와 push 트리거도 이 값을 따라
-   * 광고 없는 페이지에는 애드센스 스크립트 자체를 로드하지 않는다.
-   */
-  hasAds?: boolean;
   /** GA4 계측 삽입 여부. 기본값 true. BaseHead로 그대로 전달된다. */
   analytics?: boolean;
 }
-// /search/는 Task 15(Pagefind 검색) 소유 파일이라 이 작업 범위에서
-// src/pages/search.astro를 직접 건드릴 수 없다. hasAds prop을 넘기지
-// 않은 채로 병합될 가능성에 대비해 경로로도 한 번 더 막는다 — 광고
-// 없는 페이지에 애드센스 스크립트를 싣지 않는다는 정책 요구가 우선한다.
-const isAdFreeRoute = Astro.url.pathname === "/search/";
-const { rightRail, hasAds: hasAdsProp = true } = Astro.props;
-const hasAds = hasAdsProp && !isAdFreeRoute;
+const { rightRail } = Astro.props;
 
 // Nav/Footer/우측 레일 기본값이 각자 getNavTree()·getSectionCounts()를 따로
 // 호출하던 것을 여기서 한 번만 계산해 내려보낸다.
@@ -94,12 +81,6 @@ const resolvedRightRail = currentChannel
     <link rel="preload" as="font" type="font/woff2" href="/fonts/pretendard/PretendardVariable.subset.91.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/pretendard/PretendardVariable.subset.89.woff2" crossorigin />
     <link rel="stylesheet" href="/fonts/pretendard/pretendard.css" />
-    {/* 애드센스 로더는 광고가 실제로 표시되는 페이지에만 싣는다.
-       async라 렌더 블로킹은 없지만, /search/·404처럼 광고 없는 페이지까지
-       실어 보내는 건 불필요한 외부 요청이다. */}
-    {hasAds && (
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2431823363518805" crossorigin="anonymous"></script>
-    )}
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -113,10 +94,5 @@ const resolvedRightRail = currentChannel
       </aside>
     </div>
     <Footer tree={tree} sectionCounts={sectionCounts} />
-    {/* 슬롯마다 push({}) 스크립트를 반복하면 인라인 JS 예산을 금방 넘긴다.
-       페이지에 광고가 몇 개든 이 스크립트 하나로 전부 처리한다. */}
-    {hasAds && (
-      <script is:inline>document.querySelectorAll("ins.adsbygoogle").forEach(()=>(adsbygoogle=window.adsbygoogle||[]).push({}))</script>
-    )}
   </body>
 </html>

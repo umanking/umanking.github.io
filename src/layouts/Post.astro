@@ -1,7 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
 import Base from "./Base.astro";
-import AdSlot from "../components/AdSlot.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import Toc from "../components/Toc.astro";
 import TypeBadge from "../components/TypeBadge.astro";
@@ -78,7 +77,22 @@ const jsonLd = [
     <Toc headings={headings} />
     <SeriesNav post={post} />
     <slot />
-    <AdSlot slot="9532678736" minHeight={300} />
+    <script
+      is:inline
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2431823363518805"
+      crossorigin="anonymous"
+    ></script>
+    <!-- display광고 -->
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-2431823363518805"
+      data-ad-slot="3137269925"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    ></ins>
+    <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     <RelatedPosts post={post} />
     <Comments />
   </article>
