@@ -1,0 +1,24 @@
+---
+import { getHubById } from "../lib/taxonomy";
+import type { Post } from "../lib/posts";
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const label = getHubById(post.data.hub)?.label ?? post.data.hub;
+---
+<a class="badge" href={`/${post.data.section}/${post.data.hub}/`}>{label}</a>
+
+<style>
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--fg-muted);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .badge:hover { color: var(--accent); border-color: var(--accent); }
+</style>

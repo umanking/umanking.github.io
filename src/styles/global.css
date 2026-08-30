@@ -21,7 +21,7 @@ table { display: block; overflow-x: auto; border-collapse: collapse; }
 .prose { max-width: var(--measure); }
 .prose strong, .prose mark {
   background: linear-gradient(transparent 18%, var(--highlight) 18%, var(--highlight) 88%, transparent 88%);
-  color: inherit;
+  color: var(--highlight-fg);
   padding: 0 .08em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;

@@ -1,32 +1,25 @@
 ---
-import TypeBadge from "./TypeBadge.astro";
-import LevelBadge from "./LevelBadge.astro";
+import CategoryBadge from "./CategoryBadge.astro";
 import { readingMinutes, type Post } from "../lib/posts";
-import { getHubById } from "../lib/taxonomy";
 
 interface Props { post: Post; featured?: boolean }
 const { post, featured = false } = Astro.props;
 const minutes = readingMinutes(post.body ?? "");
 const tags = post.data.tags.slice(0, 3);
-const hubLabel = getHubById(post.data.hub)?.label ?? post.data.hub;
 ---
 
 <article class:list={["card", { "card--featured": featured }]}>
   <header class="card__head">
-    <span class="card__head-text">
-      <a class="card__hub" href={`/${post.data.section}/${post.data.hub}/`}>{hubLabel}</a>
-      <time class="card__date" datetime={post.data.date.toISOString()}>
-        {post.data.date.toLocaleDateString("ko-KR")}
-      </time>
-    </span>
+    <time class="card__date" datetime={post.data.date.toISOString()}>
+      {post.data.date.toLocaleDateString("ko-KR")}
+    </time>
   </header>
   <h3 class="card__title">
     <a href={post.data.permalink}>{post.data.title}</a>
   </h3>
   <p class="card__desc">{post.data.description}</p>
   <p class="card__meta">
-    <TypeBadge type={post.data.type} />
-    <LevelBadge level={post.data.level} />
+    <CategoryBadge post={post} />
     <span>약 {minutes}분</span>
     {tags.map((tag) => <span class="card__tag">#{tag}</span>)}
   </p>
@@ -34,12 +27,20 @@ const hubLabel = getHubById(post.data.hub)?.label ?? post.data.hub;
 
 <style>
   .card {
-    padding: var(--space-4);
-    border-bottom: 1px solid var(--border);
-    border-radius: 18px;
-    transition: background-color .2s ease, transform .2s ease;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid transparent;
+    border-radius: 16px;
+    transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
   }
-  .card:hover { background: var(--bg-subtle); transform: translateY(-1px); }
+  /* 카드끼리 맞붙어 보이던 문제: 카드 사이 여백(16px)을 카드 내부 요소
+     간격(4~8px)보다 크게 둬서 한 카드가 하나의 덩어리로 읽히게 한다.
+     구분선 대신 여백과 hover 채움으로 경계를 만든다. */
+  .card + .card { margin-top: var(--space-3); }
+  .card:hover {
+    background: var(--bg-subtle);
+    border-color: var(--border-muted);
+    transform: translateY(-1px);
+  }
   .card--featured { margin: var(--space-3) 0 var(--space-4); padding: clamp(2rem, 6vw, 4rem); border: 1px solid var(--border-muted); border-radius: var(--radius-card); background: linear-gradient(145deg, var(--bg-subtle), var(--surface)); box-shadow: var(--shadow-card); }
   .card--featured .card__title { max-width: 760px; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1.25; letter-spacing: -.045em; }
   .card--featured .card__desc { max-width: 680px; font-size: 1rem; -webkit-line-clamp: 3; }
@@ -56,20 +57,6 @@ const hubLabel = getHubById(post.data.hub)?.label ?? post.data.hub;
     display: flex;
     align-items: center;
     margin-bottom: var(--space-2);
-  }
-  .card__head-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.3;
-  }
-  .card__hub {
-    color: var(--fg);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .card__hub:hover {
-    color: var(--accent);
   }
   .card__date {
     color: var(--fg-muted);

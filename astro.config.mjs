@@ -36,7 +36,7 @@ export default defineConfig({
   // "lastmod = git 커밋 시각"도 지원하지 않는다. Task 12에서 직접 구현한다.
   integrations: [mdx()],
   markdown: {
-    shikiConfig: { themes: { light: "github-light", dark: "github-dark" }, wrap: true },
+    shikiConfig: { themes: { light: "github-light", dark: "github-dark-dimmed" }, wrap: true },
     // Shiki는 사용자 rehypePlugins보다 먼저 실행돼 mermaid 코드펜스를
     // 일반 <pre class="astro-code">로 하이라이트해버린다(실측: rehype-mermaid가
     // <code class="language-mermaid">를 못 찾고 통과시킴). excludeLangs로

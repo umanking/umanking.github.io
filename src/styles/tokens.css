@@ -10,14 +10,9 @@
   --accent: #0071e3;
   --accent-soft: #e8f3ff;
   --highlight: #fff09a;
+  --highlight-fg: var(--fg);
   --radius-card: 24px;
   --shadow-card: 0 18px 50px rgba(0, 0, 0, .07);
-
-  --badge-tutorial: #2f9e44;
-  --badge-reference: #1971c2;
-  --badge-troubleshooting: #e8590c;
-  --badge-deepdive: #7048e8;
-  --badge-news: #868e96;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -37,42 +32,44 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #000000;
-    --bg-subtle: #1c1c1e;
-    --surface: #1c1c1e;
-    --surface-translucent: rgba(28, 28, 30, .72);
-    --fg: #f5f5f7;
-    --fg-muted: #a1a1a6;
-    --border: #333336;
-    --border-muted: #242426;
-    --accent: #2997ff;
-    --accent-soft: #102b46;
-    --highlight: #665b1a;
-
-    --badge-tutorial: #51cf66;
-    --badge-reference: #4dabf7;
-    --badge-troubleshooting: #ff922b;
-    --badge-deepdive: #9775fa;
-    --badge-news: #adb5bd;
+    /* GitHub Dark Dimmed (primer dark_dimmed 스케일). 눈부심이 적은 저채도
+       계열이라 장문 읽기에 유리하다. 다만 원본 fg.muted(#768390)는 배경
+       대비 4.0:1로 카드 본문에 쓰기엔 부족해서 #9aa5b1(6.0:1)로 올렸다. */
+    --bg: #22272e;
+    --bg-subtle: #373e47;
+    --surface: #2d333b;
+    --surface-translucent: rgba(45, 51, 59, .78);
+    --fg: #adbac7;
+    --fg-muted: #9aa5b1;
+    --border: #444c56;
+    --border-muted: #373e47;
+    --accent: #539bf5;
+    --accent-soft: #2d4a73;
+    /* 어두운 배경에 노란 형광펜을 그대로 깔면 글자가 묻힌다. 밴드는 옅게
+       깔고 글자색을 노랑으로 올려 대비를 확보한다(#e3b341 on #22272e
+       = 7.7:1). */
+    --highlight: rgba(227, 179, 65, .16);
+    --highlight-fg: #e3b341;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #000000;
-  --bg-subtle: #1c1c1e;
-  --surface: #1c1c1e;
-  --surface-translucent: rgba(28, 28, 30, .72);
-  --fg: #f5f5f7;
-  --fg-muted: #a1a1a6;
-  --border: #333336;
-  --border-muted: #242426;
-  --accent: #2997ff;
-  --accent-soft: #102b46;
-  --highlight: #665b1a;
-
-  --badge-tutorial: #51cf66;
-  --badge-reference: #4dabf7;
-  --badge-troubleshooting: #ff922b;
-  --badge-deepdive: #9775fa;
-  --badge-news: #adb5bd;
+  /* GitHub Dark Dimmed (primer dark_dimmed 스케일). 눈부심이 적은 저채도
+     계열이라 장문 읽기에 유리하다. 다만 원본 fg.muted(#768390)는 배경
+     대비 4.0:1로 카드 본문에 쓰기엔 부족해서 #9aa5b1(6.0:1)로 올렸다. */
+  --bg: #22272e;
+  --bg-subtle: #373e47;
+  --surface: #2d333b;
+  --surface-translucent: rgba(45, 51, 59, .78);
+  --fg: #adbac7;
+  --fg-muted: #9aa5b1;
+  --border: #444c56;
+  --border-muted: #373e47;
+  --accent: #539bf5;
+  --accent-soft: #2d4a73;
+  /* 어두운 배경에 노란 형광펜을 그대로 깔면 글자가 묻힌다. 밴드는 옅게
+     깔고 글자색을 노랑으로 올려 대비를 확보한다(#e3b341 on #22272e
+     = 7.7:1). */
+  --highlight: rgba(227, 179, 65, .16);
+  --highlight-fg: #e3b341;
 }

@@ -3,8 +3,6 @@ import type { MarkdownHeading } from "astro";
 import Base from "./Base.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import Toc from "../components/Toc.astro";
-import TypeBadge from "../components/TypeBadge.astro";
-import LevelBadge from "../components/LevelBadge.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
 import SeriesNav from "../components/SeriesNav.astro";
 import Comments from "../components/Comments.astro";
@@ -66,8 +64,6 @@ const jsonLd = [
     <Breadcrumb items={crumbs} />
     <h1>{post.data.title}</h1>
     <p class="post__meta">
-      <TypeBadge type={post.data.type} />
-      <LevelBadge level={post.data.level} />
       <time datetime={post.data.date.toISOString()}>
         {post.data.date.toLocaleDateString("ko-KR")}
       </time>
