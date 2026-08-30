@@ -1,6 +1,6 @@
-export type SectionId = "architecture" | "backend" | "web" | "data" | "infra" | "ai" | "finance" | "realestate" | "news";
+export type SectionId = "architecture" | "backend" | "web" | "data" | "infra" | "ai" | "finance" | "news";
 
-export type ChannelId = "technology" | "finance" | "realestate";
+export type ChannelId = "technology" | "finance";
 
 export interface Channel {
   id: ChannelId;
@@ -25,13 +25,6 @@ export const CHANNELS: readonly Channel[] = [
     description: "시장과 기업, 자산관리와 투자 원칙을 데이터에 근거해 정리합니다.",
     href: "/finance/",
     sections: ["finance"],
-  },
-  {
-    id: "realestate",
-    label: "부동산",
-    description: "주택시장 지표, 공급·정책, 청약과 임대차 제도를 자료에 근거해 해설합니다.",
-    href: "/realestate/",
-    sections: ["realestate"],
   },
 ] as const;
 
@@ -176,19 +169,6 @@ export const SECTIONS: readonly Section[] = [
       { id: "indices", label: "증시·지수", description: "KOSPI, Nasdaq 100 등 주요 지수의 구조와 흐름.", keywords: ["kospi", "nasdaq100", "지수", "index"] },
       { id: "etf", label: "ETF 분석", description: "지수 추종 상품의 구성, 비용, 분배와 위험을 비교합니다.", keywords: ["etf", "qqq", "qqqm", "상장지수펀드"] },
       { id: "personal-finance", label: "자산관리", description: "현금 흐름, 세금, 연금과 개인 재무.", keywords: ["자산관리", "연금", "세금", "재무"] },
-    ],
-  },
-  {
-    id: "realestate",
-    label: "부동산",
-    description: "주택시장 지표, 공급·정책, 청약과 임대차 제도를 자료에 근거해 해설합니다.",
-    hubs: [
-      { id: "market-trends", label: "시장 동향", description: "매매·전세·월세 가격과 거래 흐름.", keywords: ["주택시장", "아파트", "매매", "전세"] },
-      { id: "supply", label: "공급", description: "인허가·착공·분양·입주와 공공·민간 공급 계획.", keywords: ["주택 공급", "공급", "입주", "착공", "인허가"] },
-      { id: "policy", label: "정책·제도", description: "주택 금융, 세금, 규제와 제도 변화.", keywords: ["부동산 정책", "대출", "세금", "규제"] },
-      { id: "subscription", label: "청약·분양", description: "청약 제도, 분양 일정과 입주자 모집.", keywords: ["청약", "분양", "신혼희망타운", "뉴홈"] },
-      { id: "rent", label: "전세·임대", description: "전월세 시장, 보증금과 임대차 제도.", keywords: ["전세", "월세", "임대차", "보증금"] },
-      { id: "reits", label: "리츠·상업용", description: "리츠와 오피스·상업용 부동산 시장.", keywords: ["리츠", "REITs", "오피스", "상업용"] },
     ],
   },
   // 기존 뉴스 포스트의 URL·스키마 호환을 위한 보관 섹션. 신규 발행과 주 메뉴에서는 사용하지 않는다.

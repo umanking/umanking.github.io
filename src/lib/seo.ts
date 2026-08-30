@@ -6,7 +6,7 @@ export const SITE = {
   url: "https://umanking.github.io",
   locale: "ko_KR",
   description:
-    "기술 · AI · 금융·투자 · 부동산의 표면 아래 구조를 읽고 근거와 함께 전하는 한국어 인사이트 저널입니다.",
+    "기술 · AI · 금융·투자의 표면 아래 구조를 읽고 근거와 함께 전하는 한국어 인사이트 저널입니다.",
 } as const;
 
 /** SERP는 한국어 기준 30~35자에서 잘린다. 제목이 길면 사이트명을 생략한다. */

@@ -1,5 +1,5 @@
 ---
-import { CHANNELS, SECTIONS, type SectionId } from "../data/taxonomy";
+import { CHANNELS, type SectionId } from "../data/taxonomy";
 
 interface Props { sectionCounts: Map<SectionId, number> }
 const { sectionCounts } = Astro.props;
@@ -9,30 +9,6 @@ const rows = CHANNELS.map((channel) => ({
   count: channel.sections.reduce((sum, id) => sum + (sectionCounts.get(id) ?? 0), 0),
   active: channel.sections.some((id) => current.startsWith(`/${id}/`)) || current === channel.href,
 }));
-const activeChannel = rows.find((channel) => channel.active);
-const defaultSubcategories = [
-  { href: "/ai/", label: "AI", active: false },
-  { href: "/finance/etf/", label: "ETF 분석", active: false },
-  { href: "/finance/macro/", label: "거시경제", active: false },
-  { href: "/realestate/market-trends/", label: "시장 동향", active: false },
-  { href: "/realestate/supply/", label: "공급", active: false },
-  { href: "/realestate/subscription/", label: "청약·분양", active: false },
-];
-const subcategories = !activeChannel
-  ? defaultSubcategories
-  : activeChannel.id === "technology"
-  ? activeChannel.sections.map((id) => {
-      const section = SECTIONS.find((item) => item.id === id)!;
-      return { href: `/${id}/`, label: section.label, active: current.startsWith(`/${id}/`) };
-    })
-  : (activeChannel?.sections ?? []).flatMap((id) => {
-      const section = SECTIONS.find((item) => item.id === id);
-      return (section?.hubs ?? []).map((hub) => ({
-        href: `/${id}/${hub.id}/`,
-        label: hub.label,
-        active: current.startsWith(`/${id}/${hub.id}/`),
-      }));
-    });
 ---
 
 <nav class="channel-nav" aria-label="콘텐츠 분야">
@@ -46,19 +22,6 @@ const subcategories = !activeChannel
       </li>
     ))}
   </ul>
-  {subcategories.length > 0 && (
-    <div class="channel-nav__sub" aria-label={`${activeChannel?.label} 세부 카테고리`}>
-      <ul>
-        {subcategories.map((subcategory) => (
-          <li>
-            <a href={subcategory.href} aria-current={subcategory.active ? "page" : undefined}>
-              {subcategory.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )}
 </nav>
 
 <style>
@@ -70,16 +33,6 @@ const subcategories = !activeChannel
   .channel-nav a[aria-current="page"] { color: var(--fg); }
   .channel-nav a[aria-current="page"]::after { content: ""; position: absolute; right: 12px; bottom: -1px; left: 12px; height: 2px; background: var(--accent); }
   .channel-nav span { margin-left: 5px; color: var(--accent); font-size: .58rem; font-weight: 750; letter-spacing: .05em; }
-  .channel-nav__sub {
-    border-top: 1px solid var(--border);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .channel-nav__sub::-webkit-scrollbar { display: none; }
-  .channel-nav__sub ul { width: max-content; min-height: 38px; gap: 2px; }
-  .channel-nav__sub a { min-height: 38px; padding: 0 10px; color: var(--fg-muted); font-size: .78rem; font-weight: 500; }
-  .channel-nav__sub a[aria-current="page"] { color: var(--accent); font-weight: 650; }
-  .channel-nav__sub a[aria-current="page"]::after { right: 10px; bottom: 0; left: 10px; height: 2px; }
   @media (max-width: 760px) {
     .channel-nav { order: 3; width: 100%; }
     .channel-nav__main { width: max-content; min-height: 44px; }

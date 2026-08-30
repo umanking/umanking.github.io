@@ -3,9 +3,9 @@ import { SECTIONS, SECTION_IDS, HUB_OPEN_THRESHOLD } from "../src/data/taxonomy"
 import { hubState } from "../src/lib/taxonomy";
 
 describe("분류 체계", () => {
-  it("최상위 섹션은 9개이고 순서가 고정돼야 한다", () => {
+  it("최상위 섹션은 8개이고 순서가 고정돼야 한다", () => {
     expect(SECTION_IDS).toEqual([
-      "architecture", "backend", "web", "data", "infra", "ai", "finance", "realestate", "news",
+      "architecture", "backend", "web", "data", "infra", "ai", "finance", "news",
     ]);
   });
 

@@ -19,11 +19,6 @@ const channels = [
     hubs: ["macro", "forex", "indices", "etf", "stocks", "semiconductors", "personal-finance"],
     profile: "독립 리서치 애널리스트처럼 핵심 판단, 이전 발표·시장 예상과 비교, 전달 경로, 기본·대안 시나리오, 다음 지표와 위험 요인을 분석한다. 목표가와 매수·매도 의견은 쓰지 않는다.",
   },
-  {
-    section: "realestate", label: "부동산", focus: "주택시장, 공급, 청약, 임대차 중 하나의 개별 이슈",
-    hubs: ["market-trends", "supply", "policy", "subscription", "rent", "reits"],
-    profile: "주택시장·정책 전문가처럼 기준일과 지역 범위, 가격·거래·공급·금융의 교차 신호, 계획과 집행, 자격·일정·공식 신청 경로를 구분한다. 지역 매수 추천이나 당첨 가능성을 예측하지 않는다.",
-  },
 ];
 
 function slugify(value) {
