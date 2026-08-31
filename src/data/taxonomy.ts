@@ -1,6 +1,6 @@
-export type SectionId = "architecture" | "backend" | "web" | "data" | "infra" | "ai" | "finance" | "news";
+export type SectionId = "architecture" | "backend" | "web" | "data" | "infra" | "ai" | "finance" | "realestate" | "news";
 
-export type ChannelId = "technology" | "finance";
+export type ChannelId = "technology" | "finance" | "realestate";
 
 export interface Channel {
   id: ChannelId;
@@ -25,6 +25,13 @@ export const CHANNELS: readonly Channel[] = [
     description: "시장과 기업, 자산관리와 투자 원칙을 데이터에 근거해 정리합니다.",
     href: "/finance/",
     sections: ["finance"],
+  },
+  {
+    id: "realestate",
+    label: "부동산",
+    description: "주택시장과 공급, 정책, 청약과 임대차를 공식 자료에 근거해 해석합니다.",
+    href: "/realestate/",
+    sections: ["realestate"],
   },
 ] as const;
 
@@ -169,6 +176,19 @@ export const SECTIONS: readonly Section[] = [
       { id: "indices", label: "증시·지수", description: "KOSPI, Nasdaq 100 등 주요 지수의 구조와 흐름.", keywords: ["kospi", "nasdaq100", "지수", "index"] },
       { id: "etf", label: "ETF 분석", description: "지수 추종 상품의 구성, 비용, 분배와 위험을 비교합니다.", keywords: ["etf", "qqq", "qqqm", "상장지수펀드"] },
       { id: "personal-finance", label: "자산관리", description: "현금 흐름, 세금, 연금과 개인 재무.", keywords: ["자산관리", "연금", "세금", "재무"] },
+    ],
+  },
+  {
+    id: "realestate",
+    label: "부동산",
+    description: "주택시장·공급·정책·청약·임대차·리츠를 공식 자료와 확인 가능한 조건으로 해설합니다.",
+    hubs: [
+      { id: "market-trends", label: "시장동향", description: "가격·거래·전세·입주 흐름.", keywords: ["시장동향", "주택가격", "거래"] },
+      { id: "supply", label: "공급", description: "인허가·착공·분양·입주와 공급 계획.", keywords: ["공급", "인허가", "착공", "입주"] },
+      { id: "policy", label: "정책", description: "주택·토지 정책과 제도 변화.", keywords: ["정책", "토지거래허가", "제도"] },
+      { id: "subscription", label: "청약", description: "청약 자격·일정·공고 해설.", keywords: ["청약", "분양", "공고"] },
+      { id: "rent", label: "임대차", description: "전세·월세와 임차인 보호.", keywords: ["전세", "월세", "임대차"] },
+      { id: "reits", label: "리츠", description: "부동산 간접투자와 임대수익 구조.", keywords: ["리츠", "REITs", "임대수익"] },
     ],
   },
   // 기존 뉴스 포스트의 URL·스키마 호환을 위한 보관 섹션. 신규 발행과 주 메뉴에서는 사용하지 않는다.
