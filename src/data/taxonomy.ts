@@ -1,6 +1,6 @@
-export type SectionId = "architecture" | "backend" | "web" | "data" | "infra" | "ai" | "finance" | "realestate" | "news";
+export type SectionId = "architecture" | "backend" | "web" | "data" | "infra" | "ai" | "finance" | "realestate" | "life" | "news";
 
-export type ChannelId = "technology" | "finance" | "realestate";
+export type ChannelId = "technology" | "finance" | "realestate" | "life";
 
 export interface Channel {
   id: ChannelId;
@@ -32,6 +32,13 @@ export const CHANNELS: readonly Channel[] = [
     description: "주택시장과 공급, 정책, 청약과 임대차를 공식 자료에 근거해 해석합니다.",
     href: "/realestate/",
     sections: ["realestate"],
+  },
+  {
+    id: "life",
+    label: "건강·생활",
+    description: "건강 정보와 일상에서 바로 확인할 수 있는 생활·소비·행정 정보를 공식 근거로 정리합니다.",
+    href: "/life/",
+    sections: ["life"],
   },
 ] as const;
 
@@ -189,6 +196,15 @@ export const SECTIONS: readonly Section[] = [
       { id: "subscription", label: "청약", description: "청약 자격·일정·공고 해설.", keywords: ["청약", "분양", "공고"] },
       { id: "rent", label: "임대차", description: "전세·월세와 임차인 보호.", keywords: ["전세", "월세", "임대차"] },
       { id: "reits", label: "리츠", description: "부동산 간접투자와 임대수익 구조.", keywords: ["리츠", "REITs", "임대수익"] },
+    ],
+  },
+  {
+    id: "life",
+    label: "건강·생활",
+    description: "건강, 생활비, 일상 행정 정보를 정확한 기준과 확인 순서로 정리합니다.",
+    hubs: [
+      { id: "health", label: "건강", description: "증상·예방·검진 정보를 공식 의료 정보에 근거해 설명합니다.", keywords: ["건강", "증상", "검진", "예방"] },
+      { id: "daily-life", label: "생활", description: "생활 혜택, 소비, 이동과 일상 행정의 확인 방법을 다룹니다.", keywords: ["생활", "혜택", "교통", "소비"] },
     ],
   },
   // 기존 뉴스 포스트의 URL·스키마 호환을 위한 보관 섹션. 신규 발행과 주 메뉴에서는 사용하지 않는다.
