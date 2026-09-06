@@ -8,6 +8,7 @@ import SeriesNav from "../components/SeriesNav.astro";
 import Comments from "../components/Comments.astro";
 import ReadingProgress from "../components/ReadingProgress.astro";
 import PostTags from "../components/PostTags.astro";
+import MarketChart from "../components/MarketChart.astro";
 import { readingMinutes, type Post } from "../lib/posts";
 import { getSection, getHub } from "../lib/taxonomy";
 import { blogPostingLd, breadcrumbLd, organizationLd } from "../lib/jsonld";
@@ -78,6 +79,7 @@ const jsonLd = [
     <Toc headings={headings} />
     <SeriesNav post={post} />
     <slot />
+    {post.data.marketSymbols?.length && <MarketChart symbols={post.data.marketSymbols} />}
     <PostTags tags={post.data.tags} />
     <script
       is:inline

@@ -17,6 +17,7 @@ const posts = defineCollection({
     level: z.enum(POST_LEVELS),
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
+    marketSymbols: z.array(z.string().regex(/^(NASDAQ|AMEX|NYSE):[A-Z0-9.]+$/)).max(3).optional(),
     noindex: z.boolean().default(false),
     /** AI 자동 발행 파이프라인의 투명성과 편집 검수 상태를 보존한다. */
     editorial: z.object({
