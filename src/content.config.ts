@@ -9,6 +9,8 @@ const posts = defineCollection({
     // 검색 스니펫에 그대로 쓰이므로 길이를 강제한다 (스펙 D5)
     description: z.string().min(20).max(150),
     date: z.coerce.date(),
+    // Publisher-owned, immutable first publication time; absent for legacy dated entries.
+    firstPublishedAt: z.coerce.date().optional(),
     // URL 정본. 파일명에서 유추하지 않는다 (Global Constraints 참조)
     permalink: z.string().regex(/^\/\d{4}\/\d{2}\/\d{2}\/[^/]+\/$/),
     section: z.enum(SECTION_IDS as [string, ...string[]]),

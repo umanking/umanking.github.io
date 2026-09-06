@@ -6,7 +6,7 @@ import { SITE, absolute } from "../lib/seo";
 import { organizationLd, webSiteLd, itemListLd } from "../lib/jsonld";
 const listed = await getListedPosts();
 const latest = listed.slice(0, 15);
-const featured = latest.find(p => p.data.hub === "daily-life") ?? latest[0];
+const featured = latest[0];
 const supporting = latest.filter(p => p !== featured).slice(0, 3);
 const topics = [{ id: "all", label: "전체" }, { id: "life", label: "건강·생활" }, { id: "finance", label: "금융·혜택" }, { id: "realestate", label: "부동산" }, { id: "technology", label: "기술·AI" }];
 const topicFor = (section: string) => ["life", "finance", "realestate"].includes(section) ? section : "technology";
@@ -18,7 +18,7 @@ const jsonLd = [organizationLd(), webSiteLd(), itemListLd({ name: "최신 글", 
     <div class="intro-note"><p>내게 맞는 혜택부터 건강, 돈, 기술까지.<br />복잡한 이야기를 읽기 쉬운 정보로 전합니다.</p><a href="#latest">새로운 이야기 만나보기 <span aria-hidden="true">↓</span></a></div>
   </section>
   <section class="editorial" aria-label="주요 이야기">
-    <div><p class="kicker">THE SPOTLIGHT <span>지금 읽어볼 이야기</span></p>{featured && <JournalCard post={featured} variant="feature" />}</div>
+    <div><p class="kicker">THE SPOTLIGHT <span>가장 최근 발행한 글</span></p>{featured && <JournalCard post={featured} variant="feature" />}</div>
     <div class="radar"><p class="kicker">ON YOUR RADAR <span>함께 읽어보세요</span></p><div class="supporting">{supporting.map(post => <JournalCard post={post} variant="compact" />)}</div><a class="editor-note" href="/about/"><span>THE BRIEFLO PERSPECTIVE</span><p>알아두면 달라지는<br />작은 선택들.</p><span>BRIEFLO를 소개합니다 ↗</span></a></div>
   </section>
   <section id="latest" class="latest">

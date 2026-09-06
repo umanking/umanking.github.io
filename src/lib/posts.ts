@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
+import { newestPublishedFirst } from "./post-order";
 
 export type Post = CollectionEntry<"posts">;
 
@@ -9,7 +10,7 @@ export type Post = CollectionEntry<"posts">;
  */
 export async function getAllPosts(): Promise<Post[]> {
   const posts = await getCollection("posts");
-  return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  return posts.sort(newestPublishedFirst);
 }
 
 /** 목록·피드·사이트맵에 노출할 글. noindex 글은 제외한다. */
