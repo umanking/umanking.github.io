@@ -8,7 +8,8 @@ export function organizationLd() {
     "@id": ORG_ID,
     name: SITE.name,
     url: SITE.url,
-    logo: { "@type": "ImageObject", url: absolute("/images/og-default.png") },
+    alternateName: "브리플로",
+    logo: { "@type": "ImageObject", url: absolute("/brand/brieflo-icon.png") },
   };
 }
 

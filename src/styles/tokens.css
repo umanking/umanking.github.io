@@ -1,17 +1,17 @@
 :root {
-  --bg: #ffffff;
-  --bg-subtle: #f5f5f7;
+  --bg: #faf9f5;
+  --bg-subtle: #efeee7;
   --surface: #ffffff;
   --surface-translucent: rgba(255, 255, 255, .72);
-  --fg: #1d1d1f;
-  --fg-muted: #6e6e73;
-  --border: #e5e5e7;
-  --border-muted: #f0f0f2;
-  --accent: #0071e3;
-  --accent-soft: #e8f3ff;
+  --fg: #262b22;
+  --fg-muted: #62675c;
+  --border: #d9dcd1;
+  --border-muted: #e9eae2;
+  --accent: #4c6037;
+  --accent-soft: #eaf0df;
   --highlight: #fff09a;
   --highlight-fg: var(--fg);
-  --radius-card: 24px;
+  --radius-card: 12px;
   --shadow-card: 0 18px 50px rgba(0, 0, 0, .07);
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
@@ -43,8 +43,8 @@
     --fg-muted: #9aa5b1;
     --border: #444c56;
     --border-muted: #373e47;
-    --accent: #539bf5;
-    --accent-soft: #2d4a73;
+    --accent: #b6cd92;
+    --accent-soft: #35412b;
     /* 어두운 배경에 노란 형광펜을 그대로 깔면 글자가 묻힌다. 밴드는 옅게
        깔고 글자색을 노랑으로 올려 대비를 확보한다(#e3b341 on #22272e
        = 7.7:1). */
@@ -65,8 +65,8 @@
   --fg-muted: #9aa5b1;
   --border: #444c56;
   --border-muted: #373e47;
-  --accent: #539bf5;
-  --accent-soft: #2d4a73;
+  --accent: #b6cd92;
+  --accent-soft: #35412b;
   /* 어두운 배경에 노란 형광펜을 그대로 깔면 글자가 묻힌다. 밴드는 옅게
      깔고 글자색을 노랑으로 올려 대비를 확보한다(#e3b341 on #22272e
      = 7.7:1). */

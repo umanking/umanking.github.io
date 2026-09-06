@@ -4,8 +4,9 @@ import { SECTIONS } from "../../../data/taxonomy";
 import { getPostsByHub } from "../../../lib/posts";
 import { getHubCounts, getTopHubs, hubState } from "../../../lib/taxonomy";
 import { organizationLd, breadcrumbLd, itemListLd, faqPageLd } from "../../../lib/jsonld";
+import type { GetStaticPaths } from "astro";
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async ({ paginate }) => {
   const counts = await getHubCounts();
   const paths = [];
   for (const section of SECTIONS) {
@@ -23,15 +24,15 @@ export async function getStaticPaths() {
         .sort((a, b) => b.count - a.count)
         .map((h) => ({ href: `/${section.id}/${h.id}/`, label: h.label, count: h.count }));
 
-      paths.push({ params: { section: section.id, hub: hub.id }, props: { section, hub, count, siblingHubs } });
+      paths.push(...paginate(await getPostsByHub(section.id, hub.id), { pageSize: 12, params: { section: section.id, hub: hub.id }, props: { section, hub, count, siblingHubs } }));
     }
   }
   return paths;
-}
+}) satisfies GetStaticPaths;
 
-const { section, hub, count, siblingHubs } = Astro.props;
-const posts = await getPostsByHub(section.id, hub.id);
-const canonical = new URL(`/${section.id}/${hub.id}/`, Astro.site).href;
+const { section, hub, count, siblingHubs, page } = Astro.props;
+const posts = page.data;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 // 0~2편이면 noindex, follow
 const noindex = hubState(count) !== "open";
 
@@ -64,13 +65,14 @@ const jsonLd = [
 ---
 
 <Hub
-  title={`${hub.label} 정리 — ${count}편`}
-  pageTitle={`${hub.label} 정리 — ${count}편 | Layer`}
+  title={hub.label}
+  pageTitle={`${hub.label} 정리 — ${count}편${page.currentPage > 1 ? ` · ${page.currentPage}페이지` : ""} | BRIEFLO`}
   description={`${hub.description} ${section.label} 섹션의 ${hub.label} 관련 글 ${count}편을 최신순으로 정리했습니다.`.slice(0, 150)}
   lead={hub.description}
   canonical={canonical}
   noindex={noindex}
   posts={posts}
+  page={page}
   rightRailTitle={rightRailTitle}
   rightRailHubs={rightRailHubs}
   faq={hub.faq ?? []}

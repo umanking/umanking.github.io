@@ -1,56 +1,74 @@
 ---
 import Base from "../layouts/Base.astro";
-import PostCard from "../components/PostCard.astro";
-import { getAllPosts, getListedPosts } from "../lib/posts";
+import JournalCard from "../components/JournalCard.astro";
+import { getListedPosts } from "../lib/posts";
 import { SITE, absolute } from "../lib/seo";
 import { organizationLd, webSiteLd, itemListLd } from "../lib/jsonld";
-
-const all = await getAllPosts();
 const listed = await getListedPosts();
 const latest = listed.slice(0, 15);
-
-const jsonLd = [
-  organizationLd(),
-  webSiteLd(),
-  itemListLd({
-    name: "최신 글",
-    items: latest.map((p) => ({ title: p.data.title, url: p.data.permalink })),
-  }),
-];
+const featured = latest.find(p => p.data.hub === "daily-life") ?? latest[0];
+const supporting = latest.filter(p => p !== featured).slice(0, 3);
+const topics = [{ id: "all", label: "전체" }, { id: "life", label: "건강·생활" }, { id: "finance", label: "금융·혜택" }, { id: "realestate", label: "부동산" }, { id: "technology", label: "기술·AI" }];
+const topicFor = (section: string) => ["life", "finance", "realestate"].includes(section) ? section : "technology";
+const jsonLd = [organizationLd(), webSiteLd(), itemListLd({ name: "최신 글", items: latest.map(p => ({ title: p.data.title, url: p.data.permalink })) })];
 ---
-
-<Base
-  title="기술 · AI · 금융·투자 인사이트 미디어 | Layer"
-  description={SITE.description}
-  canonical={absolute("/")}
-  jsonLd={jsonLd}
->
-  <section class="hero">
-    <div class="hero__copy">
-      <p class="hero__eyebrow">INDEPENDENT INSIGHT JOURNAL</p>
-      <h1>변화의 층을<br /><span>읽습니다.</span></h1>
-      <p>
-        기술의 원리부터 AI의 변화, 금융과 투자의 흐름까지.<br />
-        직접 확인한 근거로 {all.length}편의 깊이 있는 이야기를 전합니다.
-      </p>
-    </div>
+<Base wide title="BRIEFLO 브리플로 — 필요한 정보를 명확하게" description={SITE.description} canonical={absolute("/")} jsonLd={jsonLd}>
+  <section class="intro">
+    <div><p class="eyebrow">LESS NOISE. MORE CLARITY.</p><h1>필요한 정보만,<br /><em>흐름까지 명확하게.</em></h1></div>
+    <div class="intro-note"><p>내게 맞는 혜택부터 건강, 돈, 기술까지.<br />복잡한 이야기를 읽기 쉬운 정보로 전합니다.</p><a href="#latest">새로운 이야기 만나보기 <span aria-hidden="true">↓</span></a></div>
   </section>
-
-  <section>
-    <h2>최신 글</h2>
-    {latest.map((post, i) => (
-      <>
-        <PostCard post={post} featured={i === 0} />
-      </>
-    ))}
+  <section class="editorial" aria-label="주요 이야기">
+    <div><p class="kicker">THE SPOTLIGHT <span>지금 읽어볼 이야기</span></p>{featured && <JournalCard post={featured} variant="feature" />}</div>
+    <div class="radar"><p class="kicker">ON YOUR RADAR <span>함께 읽어보세요</span></p><div class="supporting">{supporting.map(post => <JournalCard post={post} variant="compact" />)}</div><a class="editor-note" href="/about/"><span>THE BRIEFLO PERSPECTIVE</span><p>알아두면 달라지는<br />작은 선택들.</p><span>BRIEFLO를 소개합니다 ↗</span></a></div>
   </section>
+  <section id="latest" class="latest">
+    <div class="section-heading"><div><p class="eyebrow">LATEST STORIES</p><h2>새롭게 쌓인 이야기</h2></div><a href="/search/">전체 글 찾기 ↗</a></div>
+    <div class="filters" aria-label="글 주제 필터">{topics.map(topic => <button type="button" data-topic={topic.id} aria-pressed={topic.id === "all"}>{topic.label}</button>)}</div>
+    <p class="sr-only" role="status" data-filter-status></p>
+    <div class="story-grid">{latest.map(post => <div data-story-topic={topicFor(post.data.section)}><JournalCard post={post} /></div>)}</div>
+    <p class="empty" data-empty hidden>최근 글에 이 주제의 이야기가 없습니다. <a href="/search/">전체 글에서 찾아보세요.</a></p>
+  </section>
+  <section class="archive"><p class="eyebrow">KEEP EXPLORING</p><h2>오늘의 궁금함이,<br />내일의 기준이 되도록.</h2><a href="/search/">관심 있는 이야기 찾아보기 ↗</a></section>
 </Base>
-
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-topic]");
+  const stories = document.querySelectorAll<HTMLElement>("[data-story-topic]");
+  buttons.forEach(button => button.addEventListener("click", () => {
+    const topic = button.dataset.topic;
+    buttons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+    let count = 0;
+    stories.forEach(story => { story.hidden = topic !== "all" && story.dataset.storyTopic !== topic; if (!story.hidden) count++; });
+    const status = document.querySelector("[data-filter-status]");
+    if (status) status.textContent = `${button.textContent} 글 ${count}개`;
+    const empty = document.querySelector<HTMLElement>("[data-empty]");
+    if (empty) empty.hidden = count > 0;
+  }));
+</script>
 <style>
-  .hero { min-height: clamp(390px, 56vw, 570px); display: grid; place-items: center; padding: clamp(4.5rem, 10vw, 8rem) var(--space-3); border-bottom: 1px solid var(--border); text-align: center; }
-  .hero__copy { max-width: 920px; }
-  .hero__eyebrow { margin: 0 0 var(--space-3) !important; color: var(--accent) !important; font-size: .72rem; font-weight: 650; letter-spacing: .16em; }
-  .hero h1 { margin: 0 0 var(--space-4); font-size: clamp(3rem, 8vw, 6.6rem); line-height: .98; font-weight: 700; letter-spacing: -.07em; }
-  .hero h1 span { color: var(--fg-muted); }
-  .hero__copy > p:last-child { max-width: 700px; margin: 0 auto; color: var(--fg-muted); font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.65; }
+  .intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; padding: 48px 0 52px; border-bottom: 1px solid var(--border); }
+  .eyebrow, .kicker { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .13em; margin: 0 0 18px; }
+  h1 { font-size: clamp(38px, 5.4vw, 68px); line-height: 1.15; letter-spacing: -.065em; margin: 0; font-weight: 650; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .intro-note { padding-bottom: 4px; font-size: 15px; color: var(--fg-muted); }
+  .intro-note p { margin: 0 0 22px; }
+  .intro-note a, .section-heading a, .archive a { color: var(--fg); font-size: 14px; text-decoration: none; border-bottom: 1px solid var(--border); padding: 12px 0; display: inline-block; }
+  .intro-note a span { margin-left: 24px; }
+  .editorial { display: grid; grid-template-columns: 1.25fr 1fr; gap: 42px; padding: 36px 0 56px; border-bottom: 1px solid var(--border); }
+  .kicker { display: flex; justify-content: space-between; gap: 12px; }
+  .kicker span { letter-spacing: 0; font-weight: 400; color: var(--fg-muted); }
+  .supporting { display: grid; gap: 22px; }
+  .editor-note { display: block; margin-top: 26px; padding: 24px; background: var(--accent-soft); border-radius: 10px; color: var(--accent); text-decoration: none; }
+  .editor-note span { font-size: 11px; letter-spacing: .08em; } .editor-note p { font-size: 25px; line-height: 1.35; letter-spacing: -.04em; margin: 10px 0 16px; }
+  .latest { padding: 48px 0 64px; }
+  .section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+  .section-heading .eyebrow { margin-bottom: 8px; }
+  .section-heading h2 { margin: 0; font-size: 30px; letter-spacing: -.045em; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 30px; }
+  .filters button { min-height: 44px; padding: 8px 20px; border: 1px solid var(--border); border-radius: 24px; background: transparent; color: var(--fg-muted); font: inherit; font-size: 14px; cursor: pointer; }
+  .filters button[aria-pressed="true"] { color: var(--bg); background: var(--fg); border-color: var(--fg); }
+  .story-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 42px 28px; }
+  .archive { border-top: 1px solid var(--border); text-align: center; padding: 60px 20px 24px; }
+  .archive h2 { font-size: clamp(28px, 3vw, 42px); line-height: 1.35; letter-spacing: -.05em; margin: 0 0 20px; }
+  @media (max-width: 900px) { .editorial { grid-template-columns: 1fr; } .editor-note { display: none; } .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .intro { gap: 24px; } }
+  @media (max-width: 600px) { .intro { display: block; padding: 30px 0; } .intro-note { margin-top: 24px; } .intro-note p { margin-bottom: 8px; } .editorial { padding: 26px 0 36px; gap: 32px; } .story-grid { grid-template-columns: 1fr; gap: 34px; } .section-heading h2 { font-size: 25px; } .section-heading a { font-size: 12px; white-space: nowrap; } .filters { gap: 6px; } .filters button { padding: 8px 14px; } .latest { padding: 34px 0 44px; } }
 </style>

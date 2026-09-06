@@ -1,5 +1,15 @@
 @import "./tokens.css";
 
+.shell.shell--wide { max-width: 1240px; grid-template-columns: minmax(0, 1fr); padding-inline: 32px; }
+html { scroll-padding-top: 120px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.prose th, .prose td { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--bg-subtle); }
+.prose h2 { margin-top: 2.5em; letter-spacing: -.035em; }
+.prose img { border-radius: 10px; }
+@media (max-width: 600px) { .shell.shell--wide { padding-inline: 20px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
@@ -18,8 +28,9 @@ pre { overflow-x: auto; padding: var(--space-3); border-radius: 8px; }
 code { font-family: var(--font-mono); font-size: 0.92em; }
 table { display: block; overflow-x: auto; border-collapse: collapse; }
 .container { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-3); }
-.prose { max-width: var(--measure); }
-.prose strong, .prose mark {
+.prose { max-width: var(--measure); margin-inline: auto; }
+.prose strong { font-weight: 700; }
+.prose mark {
   background: linear-gradient(transparent 18%, var(--highlight) 18%, var(--highlight) 88%, transparent 88%);
   color: var(--highlight-fg);
   padding: 0 .08em;
@@ -40,7 +51,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   margin: 0 auto;
   padding: 0 var(--space-3);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
   gap: var(--space-4);
 }

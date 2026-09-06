@@ -1,8 +1,13 @@
 ---
+import type { Page } from "astro";
 import Base from "./Base.astro";
-import PostCard from "../components/PostCard.astro";
+import JournalCard from "../components/JournalCard.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
 import type { RailHub } from "../components/RightRail.astro";
 import type { Post } from "../lib/posts";
+import { CHANNELS, SECTIONS } from "../data/taxonomy";
+import { getHubCounts, getSectionCounts } from "../lib/taxonomy";
+import { organizationLd, breadcrumbLd, itemListLd } from "../lib/jsonld";
 
 interface Props {
   title: string;
@@ -12,75 +17,80 @@ interface Props {
   canonical: string;
   noindex?: boolean;
   posts: Post[];
-  /** 우측 레일 위젯. 호출부가 항상 넘긴다(비어 있지 않은 값 보장은 호출부 책임). */
+  page?: Page<Post>;
   rightRailTitle: string;
   rightRailHubs: RailHub[];
   faq?: Array<{ q: string; a: string }>;
   jsonLd?: object[];
 }
-const {
-  title,
-  pageTitle,
-  description,
-  lead,
-  canonical,
-  noindex = false,
-  posts,
-  rightRailTitle,
-  rightRailHubs,
-  faq = [],
-  jsonLd = [],
-} = Astro.props;
-
+const { title, pageTitle, description, lead, canonical, noindex = false, posts, page, faq = [], jsonLd } = Astro.props;
+const section = SECTIONS.find(item => item.id === Astro.params.section);
+const technology = CHANNELS.find(item => item.id === "technology")!;
+const isTechnology = Astro.url.pathname.startsWith("/technology/");
+const sectionCounts = await getSectionCounts();
+const hubCounts = await getHubCounts();
+const sectionTotal = section ? sectionCounts.get(section.id) ?? 0 : page?.total ?? posts.length;
+const tabs = isTechnology
+  ? [{ href: "/technology/", label: "전체", count: page?.total ?? posts.length }, ...technology.sections.map(id => ({ href: `/${id}/`, label: SECTIONS.find(item => item.id === id)!.label, count: sectionCounts.get(id) ?? 0 }))]
+  : section ? [{ href: `/${section.id}/`, label: "전체", count: sectionTotal }, ...section.hubs.map(hub => ({ href: `/${section.id}/${hub.id}/`, label: hub.label, count: hubCounts.get(`${section.id}/${hub.id}`) ?? 0 }))] : [];
+const currentPage = page?.currentPage ?? 1;
+const lastPage = page?.lastPage ?? 1;
+const rootPath = currentPage > 1 ? Astro.url.pathname.replace(/\/\d+\/?$/, "/") : Astro.url.pathname;
+const pageHref = (number: number) => number === 1 ? rootPath : `${rootPath}${number}/`;
+const pageNumbers = [...new Set([1, currentPage - 1, currentPage, currentPage + 1, lastPage])].filter(n => n >= 1 && n <= lastPage).sort((a, b) => a - b);
+const crumbs = [{ label: "홈", href: "/" }, ...(section && technology.sections.includes(section.id) ? [{ label: "기술·AI", href: "/technology/" }] : []), ...(section && Astro.params.hub ? [{ label: section.label, href: `/${section.id}/` }] : []), { label: title }];
+const structuredData = jsonLd ?? [organizationLd(), breadcrumbLd(crumbs), itemListLd({ name: `${title} 글 목록`, items: posts.map(post => ({ title: post.data.title, url: post.data.permalink })) })];
 ---
-
-<Base
-  title={pageTitle}
-  description={description}
-  canonical={canonical}
-  noindex={noindex}
-  rightRail={{ title: rightRailTitle, hubs: rightRailHubs }}
-  jsonLd={jsonLd}
->
+<Base wide title={pageTitle} description={description} canonical={canonical} noindex={noindex} jsonLd={structuredData}>
   <div class="hub">
     <header class="hub__hero">
-      <p class="hub__eyebrow">EXPLORE LAYER</p>
-      <h1 class="hub__title">{title}</h1>
+      <Breadcrumb items={crumbs} />
+      <p class="hub__eyebrow">THE BRIEFLO COLLECTION</p>
+      <h1>{title}</h1>
       <p class="hub__lead">{lead}</p>
     </header>
-
     <slot name="intro" />
-
-    {faq.length > 0 && (
-      <section class="hub__faq">
-        <h2>자주 묻는 질문</h2>
-        {faq.map((item) => (
-          <details>
-            <summary>{item.q}</summary>
-            <p>{item.a}</p>
-          </details>
-        ))}
-      </section>
-    )}
-
-    <section class="hub__all">
-      <h2>전체 글 {posts.length}편</h2>
-      <div class="hub__cards">
-        {posts.map((post) => <PostCard post={post} />)}
-      </div>
+    {tabs.length > 0 && <nav class="hub__topics" aria-label="세부 주제">{tabs.map(tab => <a href={tab.href} aria-current={rootPath === tab.href ? "page" : undefined}>{tab.label}<span>{tab.count}</span></a>)}</nav>}
+    <section class="hub__all" aria-labelledby="stories-heading">
+      <div class="hub__list-heading"><h2 id="stories-heading">전체 글 <span>{page?.total ?? posts.length}편</span></h2><p>최신순{posts.length > 0 && page ? ` · ${page.start + 1}–${page.end + 1}편` : ""}</p></div>
+      {posts.length ? <div class="hub__cards">{posts.map(post => <JournalCard post={post} />)}</div> : <div class="hub__empty"><h3>아직 쌓인 이야기가 없습니다.</h3><p>다른 주제를 살펴보거나 관심 있는 정보를 검색해 보세요.</p><a href="/search/">전체 글 검색하기 ↗</a></div>}
+      {lastPage > 1 && <nav class="hub__pagination" aria-label="글 목록 페이지">
+        {currentPage > 1 ? <a href={pageHref(currentPage - 1)} rel="prev" aria-label="이전 페이지">←</a> : <span class="unavailable" aria-hidden="true">←</span>}
+        {pageNumbers.map((number, index) => <>{index > 0 && number - pageNumbers[index - 1] > 1 && <span class="ellipsis" aria-hidden="true">…</span>}<a href={pageHref(number)} aria-label={`${number}페이지`} aria-current={number === currentPage ? "page" : undefined}>{number}</a></>)}
+        {currentPage < lastPage ? <a href={pageHref(currentPage + 1)} rel="next" aria-label="다음 페이지">→</a> : <span class="unavailable" aria-hidden="true">→</span>}
+      </nav>}
     </section>
+    {faq.length > 0 && <section class="hub__faq"><p class="hub__eyebrow">GOOD TO KNOW</p><h2>자주 묻는 질문</h2>{faq.map(item => <details><summary>{item.q}</summary><p>{item.a}</p></details>)}</section>}
   </div>
 </Base>
-
 <style>
-  .hub__hero { min-height: 280px; display: flex; flex-direction: column; justify-content: center; margin-bottom: var(--space-5); padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 5vw, 4rem); border-radius: var(--radius-card); background: linear-gradient(145deg, var(--bg-subtle), var(--surface)); border: 1px solid var(--border-muted); }
-  .hub__eyebrow { margin: 0 0 var(--space-2); color: var(--accent); font-size: .7rem; font-weight: 650; letter-spacing: .16em; }
-  .hub__title { margin: 0 0 var(--space-2); font-size: clamp(2.5rem, 6vw, 4.7rem); line-height: 1; letter-spacing: -.06em; }
-  .hub__lead { max-width: 650px; margin: 0; color: var(--fg-muted); font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.65; }
-  .hub__all { margin-top: var(--space-5); }
-  .hub__cards { margin-top: var(--space-2); }
-  .hub__faq { margin-top: var(--space-5); }
-  .hub__faq details { border-bottom: 1px solid var(--border); padding: var(--space-3) 0; }
-  .hub__faq summary { cursor: pointer; font-weight: 600; }
-  .hub__faq p { margin: var(--space-2) 0 0; color: var(--fg-muted); }
+  .hub__hero { padding: 20px 0 32px; border-bottom: 1px solid var(--border); }
+  .hub__eyebrow { margin: 28px 0 12px; color: var(--accent); font-size: 12px; font-weight: 650; letter-spacing: .13em; }
+  h1 { margin: 0 0 16px; font-size: clamp(36px, 4.5vw, 54px); line-height: 1.2; letter-spacing: -.055em; }
+  .hub__lead { max-width: 720px; margin: 0; color: var(--fg-muted); font-size: 17px; line-height: 1.75; }
+  .hub__topics { display: flex; flex-wrap: wrap; gap: 8px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .hub__topics a { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border: 1px solid var(--border); border-radius: 24px; color: var(--fg-muted); text-decoration: none; font-size: 14px; }
+  .hub__topics a[aria-current] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .hub__topics span { font-size: 12px; font-variant-numeric: tabular-nums; }
+  .hub__all { padding-top: 28px; }
+  .hub__list-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+  .hub__list-heading h2 { margin: 0; font-size: 22px; letter-spacing: -.03em; }
+  .hub__list-heading h2 span { color: var(--accent); font-size: 16px; margin-left: 8px; font-weight: 500; }
+  .hub__list-heading p { margin: 0; color: var(--fg-muted); font-size: 13px; }
+  .hub__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 28px; }
+  .hub__empty { padding: 48px 24px; background: var(--bg-subtle); border-radius: 12px; text-align: center; }
+  .hub__empty h3 { font-size: 22px; margin: 0; } .hub__empty p { color: var(--fg-muted); }
+  .hub__empty a { display: inline-block; padding: 12px; color: var(--accent); }
+  .hub__pagination { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 40px 0 0; }
+  .hub__pagination a, .unavailable { min-width: 44px; min-height: 44px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 50%; text-decoration: none; color: var(--fg); font-size: 14px; }
+  .hub__pagination a[aria-current] { background: var(--fg); color: var(--bg); }
+  .unavailable { opacity: .35; } .ellipsis { align-self: center; color: var(--fg-muted); }
+  .hub__faq { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); max-width: 780px; }
+  .hub__faq h2 { font-size: 26px; margin: 0 0 20px; }
+  .hub__faq details { border-bottom: 1px solid var(--border); padding: 8px 0; }
+  .hub__faq summary { min-height: 44px; align-content: center; cursor: pointer; font-weight: 600; }
+  .hub__faq p { margin: 8px 0 16px; color: var(--fg-muted); }
+  @media (hover: hover) { .hub__topics a:hover, .hub__pagination a:hover { border-color: var(--accent); } }
+  @media (max-width: 900px) { .hub__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .hub__hero { padding: 8px 0 24px; } .hub__lead { font-size: 16px; } .hub__cards { grid-template-columns: 1fr; gap: 32px; } .hub__topics a { padding: 8px 14px; } .hub__list-heading h2 { font-size: 20px; } .hub__pagination { gap: 8px; } }
 </style>

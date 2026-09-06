@@ -2,11 +2,11 @@
 export const GA4_ID = "G-JH1JXZKK0Y";
 
 export const SITE = {
-  name: "Layer",
+  name: "BRIEFLO",
   url: "https://umanking.github.io",
   locale: "ko_KR",
   description:
-    "기술 · AI · 금융·투자의 표면 아래 구조를 읽고 근거와 함께 전하는 한국어 인사이트 저널입니다.",
+    "건강·생활, 금융·혜택부터 기술·AI까지. 일상에 필요한 정보를 근거와 함께 읽기 쉽게 전하는 한국어 인사이트 저널입니다.",
 } as const;
 
 /** SERP는 한국어 기준 30~35자에서 잘린다. 제목이 길면 사이트명을 생략한다. */

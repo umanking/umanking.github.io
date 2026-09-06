@@ -8,11 +8,11 @@ const { sectionCounts } = Astro.props;
 
 <header class="topbar">
   <div class="topbar__inner">
-    <a class="topbar__brand" href="/" aria-label="Layer 홈">
+    <a class="topbar__brand" href="/" aria-label="BRIEFLO 홈">
       <svg class="topbar__mark" viewBox="0 0 28 28" aria-hidden="true">
-        <path d="M5 7.5h18M7.5 14h13M10 20.5h8" />
+        <path d="M8 4v20h7a6 6 0 0 0 0-12H8m0 0h6a4 4 0 0 0 0-8H8" />
       </svg>
-      <span class="topbar__wordmark">Layer</span>
+      <span class="topbar__wordmark">brieflo</span>
     </a>
 
     <Nav sectionCounts={sectionCounts} />
@@ -22,6 +22,7 @@ const { sectionCounts } = Astro.props;
       <input id="topbar-search" name="q" type="search" placeholder="검색어를 입력하세요" autocomplete="off" />
     </form>
 
+    <a class="topbar__mobile-search" href="/search/">검색</a>
     <button
       id="theme-toggle"
       class="topbar__theme"
@@ -65,7 +66,7 @@ const { sectionCounts } = Astro.props;
     gap: 9px;
     min-height: 56px;
     font-weight: 650;
-    font-size: 1.12rem;
+    font-size: 1.65rem;
     letter-spacing: -0.035em;
     color: var(--fg);
     text-decoration: none;
@@ -89,13 +90,13 @@ const { sectionCounts } = Astro.props;
   }
   .topbar__theme {
     flex: 0 0 auto;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid var(--border);
-    margin-top: 10px;
+    margin-top: 6px;
     border-radius: 999px;
     background: var(--surface);
     color: var(--fg);
@@ -106,6 +107,7 @@ const { sectionCounts } = Astro.props;
     border-color: var(--accent);
     color: var(--accent);
   }
+  .topbar__mobile-search { display: none; }
   .sr-only {
     position: absolute;
     width: 1px;
@@ -118,6 +120,7 @@ const { sectionCounts } = Astro.props;
     .topbar__search {
       display: none;
     }
-    .topbar__theme { margin-left: auto; }
+    .topbar__mobile-search { display: grid; place-items: center; min-width: 44px; min-height: 44px; margin-top: 6px; margin-left: auto; color: var(--fg); font-size: 14px; text-decoration: none; }
+    .topbar__theme { margin-left: 0; }
   }
 </style>

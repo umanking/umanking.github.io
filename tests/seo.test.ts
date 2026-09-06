@@ -3,7 +3,7 @@ import { buildTitle, SITE } from "../src/lib/seo";
 
 describe("title 생성 규칙", () => {
   it("짧은 제목에는 사이트명을 붙인다", () => {
-    expect(buildTitle("JPA 연관관계 매핑")).toBe("JPA 연관관계 매핑 | Layer");
+    expect(buildTitle("JPA 연관관계 매핑")).toBe("JPA 연관관계 매핑 | BRIEFLO");
   });
 
   it("30자를 넘으면 사이트명을 붙이지 않는다", () => {

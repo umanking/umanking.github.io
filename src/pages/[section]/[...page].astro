@@ -1,0 +1,30 @@
+---
+import Hub from "../../layouts/Hub.astro";
+import { SECTIONS } from "../../data/taxonomy";
+import { getPostsBySection } from "../../lib/posts";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async ({ paginate }) => (await Promise.all(SECTIONS.map(async (section) => paginate(await getPostsBySection(section.id), { pageSize: 12, params: { section: section.id }, props: { section } })))).flat()) satisfies GetStaticPaths;
+
+const { section, page } = Astro.props;
+const posts = page.data;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// 글이 없는 섹션은 색인하지 않는다 (스펙 6.4)
+const noindex = posts.length === 0;
+
+---
+
+<Hub
+  title={section.label}
+  pageTitle={`${section.label}${page.currentPage > 1 ? ` — ${page.currentPage}페이지` : ""} | BRIEFLO`}
+  description={section.description}
+  lead={section.description}
+  canonical={canonical}
+  noindex={noindex}
+  posts={posts}
+  page={page}
+  rightRailTitle=""
+  rightRailHubs={[]}
+>
+</Hub>

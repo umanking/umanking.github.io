@@ -1,0 +1,51 @@
+---
+import { existsSync } from "node:fs";
+import { readingMinutes, type Post } from "../lib/posts";
+import { getSection } from "../lib/taxonomy";
+interface Props { post: Post; variant?: "feature" | "compact" | "standard" }
+const { post, variant = "standard" } = Astro.props;
+const candidate = post.data.image;
+const cover = candidate?.startsWith("/images/") && existsSync(`public${candidate}`) ? candidate : null;
+const section = getSection(post.data.section)?.label ?? "인사이트";
+const Heading = variant === "feature" ? "h2" : "h3";
+---
+<article class:list={["journal-card", `journal-card--${variant}`]}>
+  <a href={post.data.permalink}>
+    <div class="visual">
+      {cover ? <img src={cover} alt="" width="1536" height="1024" loading={variant === "feature" ? "eager" : "lazy"} fetchpriority={variant === "feature" ? "high" : "auto"} /> : <div class="placeholder" aria-hidden="true"><span>BRIEFLO / FIELD NOTES</span><b>{section}</b><span>조금 더 깊이,<br />조금 더 명확하게.</span></div>}
+      <span class="arrow" aria-hidden="true">↗</span>
+    </div>
+    <div class="copy">
+      <p class="category">{section}<span>약 {readingMinutes(post.body ?? "")}분</span></p>
+      <Heading>{post.data.title}</Heading>
+      {variant !== "compact" && <p class="description">{post.data.description}</p>}
+      <time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString("ko-KR", { year: "numeric", month: "2-digit", day: "2-digit", timeZone: "Asia/Seoul" })}</time>
+    </div>
+  </a>
+</article>
+<style>
+  a { display: block; color: inherit; text-decoration: none; border-radius: 10px; }
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; }
+  .visual { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 10px; background: var(--accent-soft); }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+  @media (hover: hover) { a:hover img { transform: scale(1.025); } a:hover h2, a:hover h3 { color: var(--accent); } }
+  .arrow { position: absolute; right: 12px; bottom: 12px; width: 36px; height: 36px; display: grid; place-items: center; background: var(--bg); border-radius: 50%; font-size: 22px; }
+  .placeholder { height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; color: var(--accent); }
+  .placeholder span { font-size: 11px; letter-spacing: .08em; } .placeholder b { font-size: 36px; letter-spacing: -.05em; }
+  .copy { padding-top: 16px; }
+  .category { display: flex; align-items: center; gap: 12px; margin: 0 0 8px; color: var(--accent); font-size: 12px; font-weight: 650; }
+  .category span { color: var(--fg-muted); font-weight: 400; }
+  h2, h3 { margin: 0; font-size: 21px; line-height: 1.45; letter-spacing: -.035em; }
+  .description { color: var(--fg-muted); font-size: 15px; line-height: 1.7; margin: 12px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  time { display: block; margin-top: 12px; font-size: 12px; color: var(--fg-muted); }
+  .journal-card--feature h2 { font-size: clamp(25px, 2.8vw, 35px); line-height: 1.35; }
+  .journal-card--compact a { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 18px; align-items: center; }
+  .journal-card--compact .visual { aspect-ratio: 1; }
+  .journal-card--compact img { object-fit: contain; }
+  .journal-card--compact .copy { padding: 0; }
+  .journal-card--compact h3 { font-size: 18px; }
+  .journal-card--compact .arrow { display: none; }
+  .journal-card--compact .placeholder { padding: 12px; }
+  .journal-card--compact .placeholder b { font-size: 22px; }
+  @media (max-width: 600px) { .journal-card--compact a { grid-template-columns: 100px minmax(0, 1fr); gap: 14px; } .journal-card--compact h3 { font-size: 17px; } }
+</style>

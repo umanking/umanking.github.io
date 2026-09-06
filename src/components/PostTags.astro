@@ -1,0 +1,22 @@
+---
+import { getTagCounts } from "../lib/posts";
+interface Props { tags: string[] }
+const counts = await getTagCounts();
+const tags = [...new Set(Astro.props.tags)].filter(tag => counts.has(tag));
+---
+{tags.length > 0 && <nav class="post-tags" aria-label="이 글의 태그">
+  <div class="post-tags__heading"><h2>이 주제 더 읽기</h2><a href="/tags/">전체 태그 ↗</a></div>
+  <ul>{tags.map(tag => <li><a href={`/tags/${encodeURIComponent(tag)}/`} rel="tag">
+    <span>#{tag}</span><small aria-label={`${counts.get(tag)}편`}>{counts.get(tag)}</small>
+  </a></li>)}</ul>
+</nav>}
+<style>
+  .post-tags { margin: 40px 0; padding-top: 24px; border-top: 1px solid var(--border); }
+  .post-tags__heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .post-tags__heading h2 { margin: 0; font-size: 1rem; }
+  .post-tags__heading > a { font-size: .8rem; color: var(--fg-muted); }
+  ul { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 16px 0 0; list-style: none; }
+  li > a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--fg); background: var(--bg-subtle); text-decoration: none; font-size: .85rem; }
+  li > a:hover { border-color: var(--accent); color: var(--accent); }
+  small { color: var(--fg-muted); }
+</style>

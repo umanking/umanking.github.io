@@ -7,6 +7,7 @@ import RelatedPosts from "../components/RelatedPosts.astro";
 import SeriesNav from "../components/SeriesNav.astro";
 import Comments from "../components/Comments.astro";
 import ReadingProgress from "../components/ReadingProgress.astro";
+import PostTags from "../components/PostTags.astro";
 import { readingMinutes, type Post } from "../lib/posts";
 import { getSection, getHub } from "../lib/taxonomy";
 import { blogPostingLd, breadcrumbLd, organizationLd } from "../lib/jsonld";
@@ -70,9 +71,14 @@ const jsonLd = [
       <span>· 약 {minutes}분</span>
     </p>
 
+    <section class="post__brief" aria-label="글 요약">
+      <span>IN BRIEF · 읽기 전에</span>
+      <p>{post.data.description}</p>
+    </section>
     <Toc headings={headings} />
     <SeriesNav post={post} />
     <slot />
+    <PostTags tags={post.data.tags} />
     <script
       is:inline
       async
@@ -96,6 +102,9 @@ const jsonLd = [
 
 <style>
   .post { min-width: 0; padding-top: var(--space-4); }
-  .post h1 { font-size: 1.75rem; line-height: 1.4; margin: 0 0 var(--space-2); }
+  .post h1 { font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1.3; letter-spacing: -.045em; margin: 0 0 20px; }
+  .post__brief { margin: 28px 0; padding: 24px; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; }
+  .post__brief span { font-size: .7rem; font-weight: 700; letter-spacing: .08em; color: var(--accent); }
+  .post__brief p { margin: 10px 0 0; font-size: 1rem; }
   .post__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); color: var(--fg-muted); font-size: 0.85rem; margin: 0 0 var(--space-4); }
 </style>

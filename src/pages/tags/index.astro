@@ -1,23 +1,23 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { getTagCounts, TAG_INDEX_THRESHOLD } from "../../lib/posts";
+import { getTagCounts } from "../../lib/posts";
 
 const counts = [...(await getTagCounts()).entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 const canonical = new URL("/tags/", Astro.site).href;
 ---
 
 <Base
-  title="태그 전체 목록 | Layer"
-  description="Layer의 모든 글을 태그로 모아 봅니다. Spring, JPA, JavaScript, MySQL 등 주제별 태그와 글 수를 확인할 수 있습니다."
+  title="태그 전체 목록 | BRIEFLO"
+  description="금융·투자, 건강·생활, 부동산, 기술까지 관심 있는 태그로 관련 글을 모아 보세요."
   canonical={canonical}
 >
   <h1>태그</h1>
+  <p>관심 있는 주제를 선택하면 관련 글을 한곳에서 볼 수 있습니다.</p>
   <ul class="tags">
     {counts.map(([tag, count]) => (
       <li>
         <a href={`/tags/${encodeURIComponent(tag)}/`}>{tag}</a>
         <span>{count}</span>
-        {count < TAG_INDEX_THRESHOLD && <span class="tags__thin">비색인</span>}
       </li>
     ))}
   </ul>
@@ -27,5 +27,5 @@ const canonical = new URL("/tags/", Astro.site).href;
   .tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .tags li { display: flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; font-size: 0.88rem; }
   .tags span { color: var(--fg-muted); font-size: 0.8rem; }
-  .tags__thin { opacity: 0.6; }
+  .tags a { display: inline-flex; align-items: center; min-height: 44px; }
 </style>

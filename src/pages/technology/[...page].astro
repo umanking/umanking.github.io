@@ -1,0 +1,29 @@
+---
+import Hub from "../../layouts/Hub.astro";
+import { getListedPosts } from "../../lib/posts";
+import { CHANNELS } from "../../data/taxonomy";
+import { absolute } from "../../lib/seo";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const channel = CHANNELS.find((item) => item.id === "technology")!;
+  const posts = (await getListedPosts()).filter(post => channel.sections.includes(post.data.section as never));
+  return paginate(posts, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+const channel = CHANNELS.find((item) => item.id === "technology")!;
+const { page } = Astro.props;
+const posts = page.data;
+---
+
+<Hub
+  title="기술·AI"
+  pageTitle={`기술·AI${page.currentPage > 1 ? ` — ${page.currentPage}페이지` : ""} | BRIEFLO`}
+  description={channel.description}
+  lead={channel.description}
+  canonical={absolute(Astro.url.pathname)}
+  posts={posts}
+  page={page}
+  rightRailTitle=""
+  rightRailHubs={[]}
+/>
