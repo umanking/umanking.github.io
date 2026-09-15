@@ -10,9 +10,9 @@ describe("홈 전체 글 목록", () => {
     expect(home).not.toContain("journal-card");
     expect(home).not.toContain("manifesto");
     expect(home).toContain('href="/2026/09/15/kubernetes-cbt-beta/"');
-    expect(home).toContain('href="https://kubernetes.io/blog/2026/09/14/csi-changed-block-tracking-beta/"');
     expect(home).toContain('href="/2026/09/15/retirement-age-reemployment-income-risk/"');
-    expect(item).toContain("const titleUrl = source?.sourceUrl ?? post.data.permalink");
+    expect(item).toContain('<h2><a href={post.data.permalink}>');
+    expect(item).not.toContain("titleUrl");
     expect(item).toContain('<p class="curation-item__summary"><a href={post.data.permalink}>');
     expect(item).not.toContain("curation-item__why");
     expect(item).not.toContain("DEEP DIVE");

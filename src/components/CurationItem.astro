@@ -7,7 +7,6 @@ const { post, rank } = Astro.props;
 const section = getSection(post.data.section)?.label ?? "기술";
 const source = post.data.curation;
 const date = post.data.firstPublishedAt ?? post.data.date;
-const titleUrl = source?.sourceUrl ?? post.data.permalink;
 ---
 
 <article class="curation-item">
@@ -18,7 +17,7 @@ const titleUrl = source?.sourceUrl ?? post.data.permalink;
       {source && <span>{source.sourceName}</span>}
       <time datetime={date.toISOString()}>{date.toLocaleDateString("ko-KR", { month: "2-digit", day: "2-digit", timeZone: "Asia/Seoul" })}</time>
     </p>
-    <h2><a href={titleUrl} target={source ? "_blank" : undefined} rel={source ? "noopener noreferrer" : undefined}>{post.data.title}{source && <span aria-hidden="true"> ↗</span>}</a></h2>
+    <h2><a href={post.data.permalink}>{post.data.title}</a></h2>
     <p class="curation-item__summary"><a href={post.data.permalink}>{post.data.description}</a></p>
   </div>
 </article>
