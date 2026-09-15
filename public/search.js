@@ -59,13 +59,16 @@
       const item = document.createElement("li");
       const link = document.createElement("a");
       const description = document.createElement("p");
+      const meta = document.createElement("span");
       item.className = "local-search__item";
       link.className = "local-search__title";
       link.href = result.url;
       link.textContent = result.title;
+      meta.className = "local-search__meta";
+      meta.textContent = result.archive ? "이전 아카이브" : "기술 큐레이션";
       description.className = "local-search__description";
       description.textContent = result.description;
-      item.append(link, description);
+      item.append(meta, link, description);
       list.append(item);
     }
   };

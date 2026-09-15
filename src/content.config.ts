@@ -2,9 +2,7 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 import { POST_TYPES, POST_LEVELS, SECTION_IDS } from "./data/taxonomy";
 
-const posts = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
-  schema: z.object({
+export const postSchema = z.object({
     title: z.string().min(1),
     // 검색 스니펫에 그대로 쓰이므로 길이를 강제한다 (스펙 D5)
     description: z.string().min(20).max(150),
@@ -20,6 +18,12 @@ const posts = defineCollection({
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
     marketSymbols: z.array(z.string().regex(/^(NASDAQ|AMEX|NYSE):[A-Z0-9.]+$/)).max(3).optional(),
+    curation: z.object({
+      sourceUrl: z.string().url(),
+      sourceName: z.string().min(1).max(80),
+      sourcePublishedAt: z.coerce.date().optional(),
+      whyItMatters: z.string().min(10).max(240),
+    }).optional(),
     noindex: z.boolean().default(false),
     /** AI 자동 발행 파이프라인의 투명성과 편집 검수 상태를 보존한다. */
     editorial: z.object({
@@ -29,7 +33,15 @@ const posts = defineCollection({
       sources: z.array(z.string().url()).default([]),
     }).optional(),
     series: z.object({ name: z.string(), order: z.number().int().positive() }).optional(),
-  }),
+  }).superRefine((post, context) => {
+    if (post.type === "brief" && !post.curation) {
+      context.addIssue({ code: "custom", path: ["curation"], message: "Brief에는 원문과 선정 이유가 필요합니다." });
+    }
+  });
+
+const posts = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
+  schema: postSchema,
 });
 
 

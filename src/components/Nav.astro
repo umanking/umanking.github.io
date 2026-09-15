@@ -1,14 +1,11 @@
 ---
-import { CHANNELS, type SectionId } from "../data/taxonomy";
+import type { SectionId } from "../data/taxonomy";
 
 interface Props { sectionCounts: Map<SectionId, number> }
-const { sectionCounts } = Astro.props;
 const current = Astro.url.pathname;
-const rows = CHANNELS.map((channel) => ({
-  ...channel,
-  count: channel.sections.reduce((sum, id) => sum + (sectionCounts.get(id) ?? 0), 0),
-  active: channel.sections.some((id) => current.startsWith(`/${id}/`)) || current === channel.href,
-}));
+const rows = [
+  { href: "/", label: "큐레이션", active: current === "/" || current.startsWith("/technology/") },
+];
 ---
 
 <nav class="channel-nav" aria-label="콘텐츠 분야">
@@ -17,7 +14,6 @@ const rows = CHANNELS.map((channel) => ({
       <li>
         <a href={channel.href} aria-current={channel.active ? "page" : undefined}>
           {channel.label}
-          {channel.count === 0 && <span>NEW</span>}
         </a>
       </li>
     ))}
@@ -32,11 +28,11 @@ const rows = CHANNELS.map((channel) => ({
   .channel-nav a:hover { color: var(--fg); }
   .channel-nav a[aria-current="page"] { color: var(--fg); }
   .channel-nav a[aria-current="page"]::after { content: ""; position: absolute; right: 12px; bottom: -1px; left: 12px; height: 2px; background: var(--accent); }
-  .channel-nav span { margin-left: 5px; color: var(--accent); font-size: .58rem; font-weight: 750; letter-spacing: .05em; }
   @media (max-width: 760px) {
-    .channel-nav { order: 3; width: 100%; }
-    .channel-nav__main { width: max-content; min-height: 44px; }
-    .channel-nav a { min-height: 44px; padding: 0 11px; }
-    .channel-nav a[aria-current="page"]::after { right: 11px; left: 11px; }
+    .channel-nav { order: initial; width: auto; overflow: visible; }
+    .channel-nav::-webkit-scrollbar { display: none; }
+    .channel-nav__main { width: auto; min-height: 56px; }
+    .channel-nav a { min-height: 56px; padding: 0 7px; font-size: 13px; }
+    .channel-nav a[aria-current="page"]::after { right: 7px; left: 7px; }
   }
 </style>

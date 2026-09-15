@@ -221,13 +221,14 @@ export const SECTIONS: readonly Section[] = [
 
 export const SECTION_IDS = SECTIONS.map((s) => s.id) as SectionId[];
 
-export const POST_TYPES = ["tutorial", "reference", "troubleshooting", "deepdive", "news"] as const;
+export const POST_TYPES = ["brief", "tutorial", "reference", "troubleshooting", "deepdive", "news"] as const;
 export const POST_LEVELS = ["입문", "중급", "심화"] as const;
 
 export type PostType = (typeof POST_TYPES)[number];
 export type PostLevel = (typeof POST_LEVELS)[number];
 
 export const TYPE_LABELS: Record<PostType, string> = {
+  brief: "브리프",
   tutorial: "튜토리얼",
   reference: "레퍼런스",
   troubleshooting: "트러블슈팅",

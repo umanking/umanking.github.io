@@ -44,6 +44,7 @@ export const GET: APIRoute = async () => {
   entries.push({ loc: "/tags/", lastmod: newest, changefreq: "weekly" });
   // About은 색인 대상이며 내부링크가 푸터 한 곳뿐이라 sitemap에 명시한다.
   entries.push({ loc: "/about/", lastmod: newest, changefreq: "monthly" });
+  entries.push({ loc: "/technology/", lastmod: newest, changefreq: "daily" });
 
   // 글이 하나도 없는 섹션은 noindex이므로 뺀다 (스펙 6.4)
   for (const section of SECTIONS.filter((section) => section.id !== "news")) {

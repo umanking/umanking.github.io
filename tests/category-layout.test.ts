@@ -3,9 +3,9 @@ import { readFileSync, existsSync } from "node:fs";
 import { SECTIONS } from "../src/data/taxonomy";
 
 const html = (path: string) => readFileSync(`dist${path}index.html`, "utf8");
-const cards = (body: string) => [...body.matchAll(/<article class="journal-card[^>]*>\s*<a href="([^"]+)"/g)].map(match => match[1]);
+const rows = (body: string) => [...body.matchAll(/<article class="curation-item"[^>]*>[\s\S]*?<h2[^>]*><a href="([^"]+)"/g)].map(match => match[1]);
 
-describe("magazine category archives", () => {
+describe("기술 큐레이션과 기존 아카이브", () => {
   it("uses BRIEFLO identity across page metadata and assets", () => {
     const home = html("/");
     expect(home).toContain('property="og:site_name" content="BRIEFLO"');
@@ -22,7 +22,7 @@ describe("magazine category archives", () => {
     expect(post).toMatch(/href="\/tags\/VFLO\/"[^>]*rel="tag"/);
     expect(post.indexOf('aria-label="이 글의 태그"')).toBeLessThan(post.indexOf('data-ad-format="fluid"'));
     const tags = html("/tags/VFLO/");
-    expect(cards(tags)).toHaveLength(2);
+    expect(rows(tags)).toHaveLength(2);
     expect(tags).toMatch(/name="robots" content="noindex,\s*follow"/);
     expect(html("/tags/")).not.toContain('비색인');
   });
@@ -33,20 +33,31 @@ describe("magazine category archives", () => {
     }
   });
 
-  it("paginates technology with distinct card sets and self canonicals", () => {
+  it("기술 큐레이션만 한 목록으로 제공한다", () => {
     const first = html("/technology/");
-    const second = html("/technology/2/");
-    expect(cards(first)).toHaveLength(12);
-    expect(cards(second)).toHaveLength(12);
-    expect(cards(first).filter(url => cards(second).includes(url))).toEqual([]);
-    expect(second).toContain('href="https://umanking.github.io/technology/2/"');
-    expect(first).toMatch(/href="\/technology\/2\/"[^>]*rel="next"/);
-    expect(second).toMatch(/href="\/technology\/"[^>]*rel="prev"/);
+    expect(rows(first)).toHaveLength(3);
+    expect(first).toContain('href="/2026/09/15/dbt-charts-git-ai/"');
+    expect(first).not.toContain('aria-label="세부 주제"');
   });
 
-  it("uses image cards and topic links without the redundant right rail", () => {
+  it("큐레이션 하나에 집중하는 내비게이션을 제공한다", () => {
+    const home = html("/");
+    expect(home).toContain('>큐레이션</a>');
+    expect(home).not.toContain('href="/ai/"');
+    expect(home).not.toContain('href="/deep-dive/"');
+    expect(home).not.toContain('href="/finance/"');
+  });
+
+  it("색인 가능한 기술 랜딩 페이지를 sitemap에 넣는다", () => {
+    const sitemap = readFileSync("dist/sitemap.xml", "utf8");
+    expect(sitemap).toContain("https://umanking.github.io/technology/");
+    expect(sitemap).not.toContain("https://umanking.github.io/deep-dive/");
+  });
+
+  it("uses compact list rows and topic links without the redundant right rail", () => {
     const life = html("/life/");
-    expect(cards(life).length).toBeGreaterThan(0);
+    expect(rows(life).length).toBeGreaterThan(0);
+    expect(life).not.toContain('class="journal-card');
     expect(life).toContain('aria-label="세부 주제"');
     expect(life).toContain('href="/life/health/"');
     expect(life).not.toContain('class="shell__right"');

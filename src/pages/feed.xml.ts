@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
 import type { APIRoute } from "astro";
-import { getAllPosts } from "../lib/posts";
+import { getTechnologyPosts } from "../lib/posts";
 import { SITE } from "../lib/seo";
 
 // 기존 Jekyll feed.xml과 동일하게 최근 150편을 담는다 (limit:150).
@@ -8,7 +8,7 @@ import { SITE } from "../lib/seo";
 const FEED_LIMIT = 150;
 
 export const GET: APIRoute = async () => {
-  const posts = await getAllPosts();
+  const posts = await getTechnologyPosts();
   return rss({
     title: SITE.name,
     description: SITE.description,

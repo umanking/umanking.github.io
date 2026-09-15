@@ -1,7 +1,7 @@
 ---
 import type { Page } from "astro";
 import Base from "./Base.astro";
-import JournalCard from "../components/JournalCard.astro";
+import CurationItem from "../components/CurationItem.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
 import type { RailHub } from "../components/RightRail.astro";
 import type { Post } from "../lib/posts";
@@ -31,7 +31,7 @@ const sectionCounts = await getSectionCounts();
 const hubCounts = await getHubCounts();
 const sectionTotal = section ? sectionCounts.get(section.id) ?? 0 : page?.total ?? posts.length;
 const tabs = isTechnology
-  ? [{ href: "/technology/", label: "전체", count: page?.total ?? posts.length }, ...technology.sections.map(id => ({ href: `/${id}/`, label: SECTIONS.find(item => item.id === id)!.label, count: sectionCounts.get(id) ?? 0 }))]
+  ? []
   : section ? [{ href: `/${section.id}/`, label: "전체", count: sectionTotal }, ...section.hubs.map(hub => ({ href: `/${section.id}/${hub.id}/`, label: hub.label, count: hubCounts.get(`${section.id}/${hub.id}`) ?? 0 }))] : [];
 const currentPage = page?.currentPage ?? 1;
 const lastPage = page?.lastPage ?? 1;
@@ -53,7 +53,7 @@ const structuredData = jsonLd ?? [organizationLd(), breadcrumbLd(crumbs), itemLi
     {tabs.length > 0 && <nav class="hub__topics" aria-label="세부 주제">{tabs.map(tab => <a href={tab.href} aria-current={rootPath === tab.href ? "page" : undefined}>{tab.label}<span>{tab.count}</span></a>)}</nav>}
     <section class="hub__all" aria-labelledby="stories-heading">
       <div class="hub__list-heading"><h2 id="stories-heading">전체 글 <span>{page?.total ?? posts.length}편</span></h2><p>최신순{posts.length > 0 && page ? ` · ${page.start + 1}–${page.end + 1}편` : ""}</p></div>
-      {posts.length ? <div class="hub__cards">{posts.map(post => <JournalCard post={post} />)}</div> : <div class="hub__empty"><h3>아직 쌓인 이야기가 없습니다.</h3><p>다른 주제를 살펴보거나 관심 있는 정보를 검색해 보세요.</p><a href="/search/">전체 글 검색하기 ↗</a></div>}
+      {posts.length ? <div class="hub__list">{posts.map((post, index) => <CurationItem post={post} rank={(page?.start ?? 0) + index + 1} />)}</div> : <div class="hub__empty"><h3>아직 쌓인 이야기가 없습니다.</h3><p>다른 주제를 살펴보거나 관심 있는 정보를 검색해 보세요.</p><a href="/search/">전체 글 검색하기 ↗</a></div>}
       {lastPage > 1 && <nav class="hub__pagination" aria-label="글 목록 페이지">
         {currentPage > 1 ? <a href={pageHref(currentPage - 1)} rel="prev" aria-label="이전 페이지">←</a> : <span class="unavailable" aria-hidden="true">←</span>}
         {pageNumbers.map((number, index) => <>{index > 0 && number - pageNumbers[index - 1] > 1 && <span class="ellipsis" aria-hidden="true">…</span>}<a href={pageHref(number)} aria-label={`${number}페이지`} aria-current={number === currentPage ? "page" : undefined}>{number}</a></>)}
@@ -77,7 +77,7 @@ const structuredData = jsonLd ?? [organizationLd(), breadcrumbLd(crumbs), itemLi
   .hub__list-heading h2 { margin: 0; font-size: 22px; letter-spacing: -.03em; }
   .hub__list-heading h2 span { color: var(--accent); font-size: 16px; margin-left: 8px; font-weight: 500; }
   .hub__list-heading p { margin: 0; color: var(--fg-muted); font-size: 13px; }
-  .hub__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 28px; }
+  .hub__list { border-bottom: 1px solid var(--border); }
   .hub__empty { padding: 48px 24px; background: var(--bg-subtle); border-radius: 12px; text-align: center; }
   .hub__empty h3 { font-size: 22px; margin: 0; } .hub__empty p { color: var(--fg-muted); }
   .hub__empty a { display: inline-block; padding: 12px; color: var(--accent); }
@@ -91,6 +91,5 @@ const structuredData = jsonLd ?? [organizationLd(), breadcrumbLd(crumbs), itemLi
   .hub__faq summary { min-height: 44px; align-content: center; cursor: pointer; font-weight: 600; }
   .hub__faq p { margin: 8px 0 16px; color: var(--fg-muted); }
   @media (hover: hover) { .hub__topics a:hover, .hub__pagination a:hover { border-color: var(--accent); } }
-  @media (max-width: 900px) { .hub__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 600px) { .hub__hero { padding: 8px 0 24px; } .hub__lead { font-size: 16px; } .hub__cards { grid-template-columns: 1fr; gap: 32px; } .hub__topics a { padding: 8px 14px; } .hub__list-heading h2 { font-size: 20px; } .hub__pagination { gap: 8px; } }
+  @media (max-width: 600px) { .hub__hero { padding: 8px 0 24px; } .hub__lead { font-size: 16px; } .hub__topics a { padding: 8px 14px; } .hub__list-heading h2 { font-size: 20px; } .hub__pagination { gap: 8px; } }
 </style>

@@ -1,0 +1,45 @@
+<div
+  class="support-gate"
+  data-support-gate
+  hidden
+  role="alertdialog"
+  aria-modal="true"
+  aria-labelledby="support-gate-title"
+  aria-describedby="support-gate-description"
+>
+  <section class="support-gate__card">
+    <span class="support-gate__eyebrow">BRIEFLO SUPPORT</span>
+    <h2 id="support-gate-title">광고 차단을 해제해 주세요</h2>
+    <p id="support-gate-description">
+      BRIEFLO는 광고 수익으로 기술 콘텐츠를 선별하고 요약합니다. 이 사이트의 광고를 허용해야 글을 계속 읽을 수 있어요.
+    </p>
+    <ol>
+      <li>광고 차단 확장 프로그램에서 <strong>이 사이트 허용</strong>을 선택해 주세요.</li>
+      <li>아래 버튼으로 페이지를 새로고침해 주세요.</li>
+    </ol>
+    <button type="button" data-support-retry>광고 차단 해제 후 새로고침</button>
+  </section>
+</div>
+<span class="ad adsbox ad-banner adblock-bait" data-adblock-bait aria-hidden="true"></span>
+
+<script is:inline>
+(()=>{const g=document.querySelector("[data-support-gate]"),b=document.querySelector("[data-adblock-bait]");if(!g||!b)return;let l=false;const s=()=>{if(l)return;l=true;document.body.appendChild(g);g.hidden=false;document.body.classList.add("support-locked");for(const e of document.body.children){if(e!==g){e.inert=true;e.setAttribute("aria-hidden","true")}}const r=g.querySelector("[data-support-retry]");r?.focus();document.addEventListener("keydown",e=>{if(e.key==="Tab"){e.preventDefault();r?.focus()}},true)};document.addEventListener("error",e=>{const t=e.target;if(t instanceof HTMLScriptElement&&t.hasAttribute("data-ad-loader"))s()},true);addEventListener("load",()=>setTimeout(()=>{const c=getComputedStyle(b),r=b.getBoundingClientRect();if(c.display==="none"||c.visibility==="hidden"||r.height===0)s()},800),{once:true});g.querySelector("[data-support-retry]")?.addEventListener("click",()=>location.reload())})();
+</script>
+
+<style>
+  .support-gate { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; overflow-y: auto; padding: 24px; background: color-mix(in srgb, var(--bg) 96%, var(--accent-soft)); }
+  .support-gate[hidden] { display: none; }
+  .support-gate__card { width: min(100%, 520px); padding: clamp(28px, 6vw, 44px); border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--border)); border-radius: 16px; background: var(--bg); box-shadow: 0 24px 80px rgb(0 0 0 / 14%); }
+  .support-gate__eyebrow { display: block; margin-bottom: 14px; color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .14em; }
+  .support-gate h2 { margin: 0; font-size: clamp(1.55rem, 5vw, 2.1rem); line-height: 1.25; letter-spacing: -.04em; }
+  .support-gate p { margin: 14px 0 0; color: var(--fg-muted); font-size: .95rem; line-height: 1.7; }
+  .support-gate ol { margin: 24px 0; padding-left: 1.35rem; color: var(--fg); font-size: .9rem; line-height: 1.75; }
+  .support-gate button { width: 100%; min-height: 48px; border: 0; border-radius: 8px; background: var(--accent); color: white; font: inherit; font-size: .9rem; font-weight: 750; cursor: pointer; }
+  .support-gate button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent); outline-offset: 3px; }
+  .adblock-bait { position: absolute; left: -10000px; width: 1px; height: 1px; pointer-events: none; }
+  :global(body.support-locked) { overflow: hidden; }
+  @media (max-width: 520px) {
+    .support-gate { place-items: end center; padding: 12px; }
+    .support-gate__card { padding: 28px 22px; border-radius: 14px; }
+  }
+</style>

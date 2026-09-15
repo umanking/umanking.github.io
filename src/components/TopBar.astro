@@ -116,11 +116,13 @@ const { sectionCounts } = Astro.props;
     clip: rect(0 0 0 0);
   }
   @media (max-width: 760px) {
-    .topbar__inner { flex-wrap: wrap; gap: 0 var(--space-3); }
+    .topbar__inner { flex-wrap: nowrap; gap: 6px; padding: 0 16px; }
+    .topbar__brand { gap: 6px; font-size: 1.35rem; }
+    .topbar__mark { width: 23px; height: 23px; }
     .topbar__search {
       display: none;
     }
-    .topbar__mobile-search { display: grid; place-items: center; min-width: 44px; min-height: 44px; margin-top: 6px; margin-left: auto; color: var(--fg); font-size: 14px; text-decoration: none; }
+    .topbar__mobile-search { display: grid; place-items: center; min-width: 44px; min-height: 44px; margin-top: 6px; margin-left: auto; color: var(--fg); font-size: 13px; text-decoration: none; }
     .topbar__theme { margin-left: 0; }
   }
 </style>

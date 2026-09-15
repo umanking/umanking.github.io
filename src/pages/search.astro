@@ -1,20 +1,21 @@
 ---
 import Base from "../layouts/Base.astro";
 import { absolute } from "../lib/seo";
-import { getListedPosts } from "../lib/posts";
+import { getTechnologyPosts } from "../lib/posts";
 
-const searchDocuments = (await getListedPosts()).map((post) => ({
+const searchDocuments = (await getTechnologyPosts()).map((post) => ({
   title: post.data.title,
   description: post.data.description,
   url: post.data.permalink,
   tags: post.data.tags,
+  archive: false,
 }));
 const searchData = JSON.stringify(searchDocuments).replaceAll("<", "\\u003c");
 ---
 
 <Base
   title="검색 | BRIEFLO"
-  description="브리플로의 금융·생활·정책·부동산·기술 정보를 주제와 키워드로 찾아보세요."
+  description="BRIEFLO의 기술 큐레이션을 제목·주제·키워드로 검색하세요."
   canonical={absolute("/search/")}
   noindex
   analytics={false}
@@ -22,7 +23,9 @@ const searchData = JSON.stringify(searchDocuments).replaceAll("<", "\\u003c");
   {/* 검색 페이지 자체는 Pagefind 인덱스에도 들어가지 않아야 한다(제목·플레이스홀더가
      검색 결과에 섞이는 것을 막는다). */}
   <div data-pagefind-ignore>
-    <h1>검색</h1>
+    <p class="search__eyebrow">BRIEFLO INDEX</p>
+    <h1>기술 큐레이션 검색</h1>
+    <p class="search__lead">선별해 발행한 기술 큐레이션만 검색합니다.</p>
     <div id="search"></div>
     <script is:inline id="search-data" type="application/json" set:html={searchData}></script>
   </div>
@@ -36,12 +39,16 @@ const searchData = JSON.stringify(searchDocuments).replaceAll("<", "\\u003c");
     #search {
       min-height: 4rem;
     }
+    .search__eyebrow { margin: 0 0 8px; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+    h1 { margin: 0; font-size: clamp(34px, 5vw, 54px); letter-spacing: -.05em; }
+    .search__lead { margin: 10px 0 28px; color: var(--fg-muted); }
     :global(.local-search__form) { position: relative; }
     :global(.local-search__input) { width: 100%; padding: 14px 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--fg); font: inherit; }
     :global(.local-search__input:focus) { border-color: var(--accent); outline: 3px solid var(--accent-soft); }
     :global(.local-search__status) { margin: var(--space-3) 0 var(--space-2); color: var(--fg-muted); font-size: .88rem; }
     :global(.local-search__list) { list-style: none; margin: 0; padding: 0; }
     :global(.local-search__item) { padding: var(--space-3) 0; border-bottom: 1px solid var(--border); }
+    :global(.local-search__meta) { display: block; margin-bottom: 3px; color: var(--accent); font-size: 11px; font-weight: 650; letter-spacing: .04em; }
     :global(.local-search__title) { color: var(--fg); font-weight: 650; text-decoration: none; }
     :global(.local-search__title:hover) { color: var(--accent); }
     :global(.local-search__description) { margin: var(--space-1) 0 0; color: var(--fg-muted); font-size: .92rem; }

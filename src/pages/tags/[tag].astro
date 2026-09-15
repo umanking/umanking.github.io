@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import JournalCard from "../../components/JournalCard.astro";
+import CurationItem from "../../components/CurationItem.astro";
 import { getListedPosts, getTagCounts, TAG_INDEX_THRESHOLD } from "../../lib/posts";
 
 export async function getStaticPaths() {
@@ -28,14 +28,12 @@ const noindex = count < TAG_INDEX_THRESHOLD;
 >
   <header class="tag-heading"><a href="/tags/">← 전체 태그</a><h1>#{tag}</h1>
   <p>같은 주제를 다른 관점에서 · {count}편</p></header>
-  <div class="tag-posts">{posts.map((post) => <JournalCard post={post} />)}</div>
+  <div class="tag-posts">{posts.map((post, index) => <CurationItem post={post} rank={index + 1} />)}</div>
 </Base>
 <style>
   .tag-heading { margin: 20px 0 36px; }
   .tag-heading > a { font-size: .85rem; }
   h1 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 20px 0 12px; letter-spacing: -.04em; }
   p { color: var(--fg-muted); }
-  .tag-posts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 40px 28px; }
-  @media (max-width: 1000px) { .tag-posts { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media (max-width: 600px) { .tag-posts { grid-template-columns: minmax(0,1fr); } }
+  .tag-posts { border-bottom: 1px solid var(--border); }
 </style>

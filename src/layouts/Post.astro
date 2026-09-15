@@ -8,6 +8,7 @@ import SeriesNav from "../components/SeriesNav.astro";
 import Comments from "../components/Comments.astro";
 import ReadingProgress from "../components/ReadingProgress.astro";
 import PostTags from "../components/PostTags.astro";
+import AdBlockNotice from "../components/AdBlockNotice.astro";
 import MarketChart from "../components/MarketChart.astro";
 import { readingMinutes, type Post } from "../lib/posts";
 import { getSection, getHub } from "../lib/taxonomy";
@@ -21,6 +22,7 @@ const section = getSection(post.data.section);
 const hub = getHub(post.data.section, post.data.hub);
 const canonical = new URL(post.data.permalink, Astro.site).href;
 const minutes = readingMinutes(post.body ?? "");
+const curation = post.data.curation;
 
 const crumbs = [
   { label: "홈", href: "/" },
@@ -72,6 +74,12 @@ const jsonLd = [
       <span>· 약 {minutes}분</span>
     </p>
 
+    {curation && <aside class="post__source" aria-label="큐레이션 원문">
+      <span>CURATED SOURCE</span>
+      <p>{curation.whyItMatters}</p>
+      <a href={curation.sourceUrl} target="_blank" rel="noopener noreferrer">{curation.sourceName} 원문 읽기 <span aria-hidden="true">↗</span></a>
+    </aside>}
+
     <section class="post__brief" aria-label="글 요약">
       <span>IN BRIEF · 읽기 전에</span>
       <p>{post.data.description}</p>
@@ -81,9 +89,11 @@ const jsonLd = [
     <slot />
     {post.data.marketSymbols?.length && <MarketChart symbols={post.data.marketSymbols} />}
     <PostTags tags={post.data.tags} />
+    <AdBlockNotice />
     <script
       is:inline
       async
+      data-ad-loader
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2431823363518805"
       crossorigin="anonymous"
     ></script>
@@ -109,4 +119,8 @@ const jsonLd = [
   .post__brief span { font-size: .7rem; font-weight: 700; letter-spacing: .08em; color: var(--accent); }
   .post__brief p { margin: 10px 0 0; font-size: 1rem; }
   .post__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); color: var(--fg-muted); font-size: 0.85rem; margin: 0 0 var(--space-4); }
+  .post__source { margin: 28px 0; padding: 20px 22px; border: 1px solid var(--border); border-radius: 10px; }
+  .post__source > span { color: var(--accent); font-size: .7rem; font-weight: 700; letter-spacing: .08em; }
+  .post__source p { margin: 8px 0 12px; color: var(--fg-muted); font-size: .95rem; }
+  .post__source a { min-height: 44px; display: inline-flex; align-items: center; color: var(--fg); font-size: .85rem; font-weight: 650; text-decoration: none; }
 </style>

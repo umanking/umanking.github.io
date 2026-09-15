@@ -1,26 +1,23 @@
 ---
 import Hub from "../../layouts/Hub.astro";
-import { getListedPosts } from "../../lib/posts";
-import { CHANNELS } from "../../data/taxonomy";
+import { getTechnologyPosts } from "../../lib/posts";
 import { absolute } from "../../lib/seo";
 import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const channel = CHANNELS.find((item) => item.id === "technology")!;
-  const posts = (await getListedPosts()).filter(post => channel.sections.includes(post.data.section as never));
+  const posts = await getTechnologyPosts();
   return paginate(posts, { pageSize: 12 });
 }) satisfies GetStaticPaths;
 
-const channel = CHANNELS.find((item) => item.id === "technology")!;
 const { page } = Astro.props;
 const posts = page.data;
 ---
 
 <Hub
-  title="기술·AI"
-  pageTitle={`기술·AI${page.currentPage > 1 ? ` — ${page.currentPage}페이지` : ""} | BRIEFLO`}
-  description={channel.description}
-  lead={channel.description}
+  title="기술 큐레이션"
+  pageTitle={`기술 큐레이션${page.currentPage > 1 ? ` — ${page.currentPage}페이지` : ""} | BRIEFLO`}
+  description="AI와 소프트웨어의 중요한 변화만 골라 실무 맥락과 함께 짧게 전합니다."
+  lead="원문을 대신 쌓지 않습니다. 지금 읽을 이유가 분명한 기술 변화만 짧게 큐레이션합니다."
   canonical={absolute(Astro.url.pathname)}
   posts={posts}
   page={page}

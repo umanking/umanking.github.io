@@ -2,6 +2,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import { newestPublishedFirst } from "./post-order";
 
 export type Post = CollectionEntry<"posts">;
+export const TECHNOLOGY_SECTIONS = ["architecture", "backend", "web", "data", "infra", "ai"] as const;
 
 /**
  * 모든 글. **페이지 생성용이다.**
@@ -16,6 +17,12 @@ export async function getAllPosts(): Promise<Post[]> {
 /** 목록·피드·사이트맵에 노출할 글. noindex 글은 제외한다. */
 export async function getListedPosts(): Promise<Post[]> {
   return (await getAllPosts()).filter((p) => !p.data.noindex);
+}
+
+/** BRIEFLO의 현재 편집 범위. 기존 글의 URL은 보존하되 큐레이션 피드에는 Brief만 싣는다. */
+export async function getTechnologyPosts(): Promise<Post[]> {
+  return (await getListedPosts()).filter((post) =>
+    TECHNOLOGY_SECTIONS.includes(post.data.section as (typeof TECHNOLOGY_SECTIONS)[number]) && post.data.type === "brief");
 }
 
 /**
