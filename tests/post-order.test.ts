@@ -14,21 +14,18 @@ describe('first publication order',()=>{
     expect([post('/a/'),post('/z/')].sort(newestPublishedFirst)[0].data.permalink).toBe('/z/');
     expect([post('/old/'),post('/new/','2026-09-06T15:00:00Z')].sort(newestPublishedFirst)[0].data.permalink).toBe('/new/');
   });
-  it('홈은 가장 최신 기술 글부터 노출하고 비기술 글을 섞지 않는다',()=>{
-    const technical = new Set(['architecture', 'backend', 'web', 'data', 'infra', 'ai']);
+  it('홈은 섹션과 관계없이 기존 글을 유지하고 최신 발행 순으로 노출한다',()=>{
     const posts = readdirSync('src/content/posts', { recursive: true })
       .filter((file): file is string => typeof file === 'string' && /\.mdx?$/.test(file))
       .map(file => matter(readFileSync(`src/content/posts/${file}`, 'utf8')).data)
-      .filter(data => !data.noindex && technical.has(data.section))
+      .filter(data => !data.noindex)
       .map(data => ({ data: { permalink: data.permalink as string,
         date: new Date(data.date), firstPublishedAt: data.firstPublishedAt ? new Date(data.firstPublishedAt) : undefined } }))
       .sort(newestPublishedFirst);
     expect(posts.length).toBeGreaterThan(0);
     const html=readFileSync('dist/index.html','utf8');
-    const first=html.match(/curation-item[\s\S]*?<h2[^>]*><a href="([^"]+)"/);
-    expect(first?.[1]).toBe(posts[0].data.permalink);
-    expect(html).toContain('최신 기술');
-    expect(html).not.toContain('건강·생활');
-    expect(html).not.toContain('금융·투자');
+    expect(html).toContain(`href="${posts[0].data.permalink}"`);
+    expect(html).toContain('최신 글');
+    expect(html).toContain('금융·투자');
   });
 });

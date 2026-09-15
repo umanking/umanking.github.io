@@ -7,6 +7,7 @@ const { post, rank } = Astro.props;
 const section = getSection(post.data.section)?.label ?? "기술";
 const source = post.data.curation;
 const date = post.data.firstPublishedAt ?? post.data.date;
+const titleUrl = source?.sourceUrl ?? post.data.permalink;
 ---
 
 <article class="curation-item">
@@ -14,11 +15,11 @@ const date = post.data.firstPublishedAt ?? post.data.date;
   <div class="curation-item__body">
     <p class="curation-item__meta">
       <span>{section}</span>
-      {source && <a href={source.sourceUrl} target="_blank" rel="noopener noreferrer">{source.sourceName} ↗</a>}
+      {source && <span>{source.sourceName}</span>}
       <time datetime={date.toISOString()}>{date.toLocaleDateString("ko-KR", { month: "2-digit", day: "2-digit", timeZone: "Asia/Seoul" })}</time>
     </p>
-    <h2><a href={post.data.permalink}>{post.data.title}</a></h2>
-    <p class="curation-item__summary">{post.data.description}</p>
+    <h2><a href={titleUrl} target={source ? "_blank" : undefined} rel={source ? "noopener noreferrer" : undefined}>{post.data.title}{source && <span aria-hidden="true"> ↗</span>}</a></h2>
+    <p class="curation-item__summary"><a href={post.data.permalink}>{post.data.description}</a></p>
   </div>
 </article>
 
@@ -27,12 +28,12 @@ const date = post.data.firstPublishedAt ?? post.data.date;
   .curation-item__rank { color: var(--accent); font-family: var(--font-mono); font-size: 11px; padding-top: 2px; }
   .curation-item__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 11px; margin: 0 0 4px; color: var(--fg-muted); font-size: 11px; font-weight: 650; letter-spacing: .025em; }
   .curation-item__meta span:first-child { color: var(--accent); }
-  .curation-item__meta a { color: inherit; text-decoration: none; }
   .curation-item__meta time { font-variant-numeric: tabular-nums; }
   h2 { margin: 0; font-size: clamp(17px, 1.55vw, 19px); line-height: 1.4; letter-spacing: -.02em; }
   h2 a { color: var(--fg); text-decoration: none; }
-  .curation-item__summary { max-width: 880px; margin: 3px 0 0; overflow: hidden; color: var(--fg-muted); font-size: 13px; line-height: 1.5; text-overflow: ellipsis; white-space: nowrap; }
-  @media (hover: hover) { h2 a:hover, .curation-item__meta a:hover { color: var(--accent); } }
+  .curation-item__summary { max-width: 880px; margin: 3px 0 0; overflow: hidden; font-size: 13px; line-height: 1.5; text-overflow: ellipsis; white-space: nowrap; }
+  .curation-item__summary a { color: var(--fg-muted); text-decoration: none; }
+  @media (hover: hover) { h2 a:hover, .curation-item__summary a:hover { color: var(--accent); } }
   @media (max-width: 600px) {
     .curation-item { grid-template-columns: 21px minmax(0, 1fr); gap: 8px; padding: 12px 0; }
     .curation-item__rank { font-size: 10px; }

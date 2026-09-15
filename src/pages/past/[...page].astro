@@ -1,0 +1,23 @@
+---
+import Hub from "../../layouts/Hub.astro";
+import { getListedPosts } from "../../lib/posts";
+import { absolute } from "../../lib/seo";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async ({ paginate }) =>
+  paginate(await getListedPosts(), { pageSize: 20 })) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<Hub
+  title="예전 글"
+  pageTitle={`예전 글${page.currentPage > 1 ? ` — ${page.currentPage}페이지` : ""} | BRIEFLO`}
+  description="BRIEFLO가 발행한 기존 글과 기술 큐레이션을 최신순으로 모두 확인합니다."
+  lead="기존에 발행한 글을 내리지 않고 그대로 보존합니다. 20편씩 최신순으로 확인할 수 있습니다."
+  canonical={absolute(Astro.url.pathname)}
+  posts={page.data}
+  page={page}
+  rightRailTitle=""
+  rightRailHubs={[]}
+/>

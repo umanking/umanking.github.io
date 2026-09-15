@@ -1,19 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
 import CurationItem from "../components/CurationItem.astro";
-import { getTechnologyPosts } from "../lib/posts";
+import { getListedPosts } from "../lib/posts";
 import { SITE, absolute } from "../lib/seo";
 import { organizationLd, webSiteLd, itemListLd } from "../lib/jsonld";
 
-const posts = await getTechnologyPosts();
-const latest = posts;
-const topicFor = (section: string) => section === "ai" ? "ai" : ["architecture", "backend", "data", "infra"].includes(section) ? "platform" : "web";
-const topics = [
-  { id: "all", label: "전체" },
-  { id: "ai", label: "AI·에이전트" },
-  { id: "platform", label: "백엔드·플랫폼" },
-  { id: "web", label: "웹·도구" },
-];
+const posts = await getListedPosts();
+const latest = posts.slice(0, 20);
 const jsonLd = [organizationLd(), webSiteLd(), itemListLd({ name: "최신 기술 큐레이션", items: latest.map(post => ({ title: post.data.title, url: post.data.permalink })) })];
 ---
 
@@ -27,35 +20,16 @@ const jsonLd = [organizationLd(), webSiteLd(), itemListLd({ name: "최신 기술
 
     <section class="feed" aria-labelledby="latest-heading">
       <div class="section-heading">
-        <h2 id="latest-heading">전체 큐레이션</h2>
-        <p>{latest.length}편 · 좋은 글이 없으면 발행하지 않습니다</p>
+        <h2 id="latest-heading">최신 글</h2>
+        <p>기존 글 {posts.length}편 유지 · 최신 20편</p>
       </div>
-      <div class="filters" aria-label="기술 주제 필터">
-        {topics.map(topic => <button type="button" data-topic={topic.id} aria-pressed={topic.id === "all"}>{topic.label}</button>)}
-      </div>
-      <p class="sr-only" role="status" data-filter-status></p>
       <div class="feed__items">
-        {latest.map((post, index) => <div data-story-topic={topicFor(post.data.section)}><CurationItem post={post} rank={index + 1} /></div>)}
+        {latest.map((post, index) => <CurationItem post={post} rank={index + 1} />)}
       </div>
-      <p class="empty" data-empty hidden>이 주제의 최근 글이 없습니다.</p>
+      <a class="more" href="/past/">예전 글 모두 보기 →</a>
     </section>
   </div>
 </Base>
-
-<script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-topic]");
-  const stories = document.querySelectorAll<HTMLElement>("[data-story-topic]");
-  buttons.forEach(button => button.addEventListener("click", () => {
-    const topic = button.dataset.topic;
-    buttons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
-    let count = 0;
-    stories.forEach(story => { story.hidden = topic !== "all" && story.dataset.storyTopic !== topic; if (!story.hidden) count++; });
-    const status = document.querySelector("[data-filter-status]");
-    if (status) status.textContent = `${button.textContent} 글 ${count}개`;
-    const empty = document.querySelector<HTMLElement>("[data-empty]");
-    if (empty) empty.hidden = count > 0;
-  }));
-</script>
 
 <style>
   .eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 10px; font-weight: 750; letter-spacing: .14em; }
@@ -68,12 +42,8 @@ const jsonLd = [organizationLd(), webSiteLd(), itemListLd({ name: "최신 기술
   .section-heading h2 { margin: 0; font-size: 22px; letter-spacing: -.03em; }
   .section-heading p { margin: 0; color: var(--fg-muted); font-size: 12px; }
   .section-heading a { color: inherit; }
-  .filters { display: flex; gap: 7px; overflow-x: auto; padding: 0 0 18px; scrollbar-width: none; }
-  .filters::-webkit-scrollbar { display: none; }
-  .filters button { min-width: max-content; min-height: 44px; padding: 7px 15px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--fg-muted); font: inherit; font-size: 13px; cursor: pointer; }
-  .filters button[aria-pressed="true"] { border-color: var(--fg); background: var(--fg); color: var(--bg); }
   .feed__items { border-bottom: 1px solid var(--border); }
-  .empty { color: var(--fg-muted); }
+  .more { min-height: 48px; display: inline-flex; align-items: center; margin-top: 12px; color: var(--fg); font-size: 13px; font-weight: 650; text-decoration: none; }
   @media (max-width: 700px) {
     .masthead { padding: 28px 0 24px; }
     .section-heading { display: block; }

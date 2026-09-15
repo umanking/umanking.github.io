@@ -4,7 +4,8 @@ import type { SectionId } from "../data/taxonomy";
 interface Props { sectionCounts: Map<SectionId, number> }
 const current = Astro.url.pathname;
 const rows = [
-  { href: "/", label: "큐레이션", active: current === "/" || current.startsWith("/technology/") },
+  { href: "/", label: "최신글", active: current === "/" },
+  { href: "/past/", label: "예전글", active: current.startsWith("/past/") },
 ];
 ---
 

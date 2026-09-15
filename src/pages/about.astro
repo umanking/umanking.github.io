@@ -1,10 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
-import { getTechnologyPosts } from "../lib/posts";
+import { getListedPosts } from "../lib/posts";
 import { absolute } from "../lib/seo";
 import { organizationLd, breadcrumbLd } from "../lib/jsonld";
 
-const all = await getTechnologyPosts();
+const all = await getListedPosts();
 
 const crumbs = [{ label: "홈", href: "/" }, { label: "소개" }];
 const jsonLd = [organizationLd(), breadcrumbLd(crumbs)];
@@ -21,7 +21,7 @@ const jsonLd = [organizationLd(), breadcrumbLd(crumbs)];
     <p>
       브리플로는 AI와 소프트웨어를 만드는 사람에게 필요한 기술 원문과 구현 사례를 선별합니다.
       무엇이 발표됐는지만 옮기지 않고, 실무에서 왜 읽을 만한지와 어떤 조건에서 적용할 수 있는지를
-      한국어로 설명합니다. 현재 기준을 통과한 큐레이션 {all.length}편을 공개하고 있습니다.
+      한국어로 설명합니다. 새 큐레이션과 기존 글을 포함해 {all.length}편을 공개하고 있습니다.
     </p>
 
     <h2>선별 기준</h2>

@@ -19,10 +19,10 @@ export async function getListedPosts(): Promise<Post[]> {
   return (await getAllPosts()).filter((p) => !p.data.noindex);
 }
 
-/** BRIEFLO의 현재 편집 범위. 기존 글의 URL은 보존하되 큐레이션 피드에는 Brief만 싣는다. */
+/** 기술·AI 아카이브. 기존 글과 새 큐레이션을 모두 유지한다. */
 export async function getTechnologyPosts(): Promise<Post[]> {
   return (await getListedPosts()).filter((post) =>
-    TECHNOLOGY_SECTIONS.includes(post.data.section as (typeof TECHNOLOGY_SECTIONS)[number]) && post.data.type === "brief");
+    TECHNOLOGY_SECTIONS.includes(post.data.section as (typeof TECHNOLOGY_SECTIONS)[number]));
 }
 
 /**

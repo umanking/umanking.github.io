@@ -33,16 +33,20 @@ describe("기술 큐레이션과 기존 아카이브", () => {
     }
   });
 
-  it("기술 큐레이션만 한 목록으로 제공한다", () => {
+  it("기존 기술 글과 새 큐레이션을 페이지로 나눠 모두 제공한다", () => {
     const first = html("/technology/");
-    expect(rows(first)).toHaveLength(3);
+    const second = html("/technology/2/");
+    expect(rows(first)).toHaveLength(12);
+    expect(rows(second)).toHaveLength(12);
     expect(first).toContain('href="/2026/09/15/dbt-charts-git-ai/"');
     expect(first).not.toContain('aria-label="세부 주제"');
+    expect(first).toMatch(/href="\/technology\/2\/"[^>]*rel="next"/);
   });
 
-  it("큐레이션 하나에 집중하는 내비게이션을 제공한다", () => {
+  it("최신글과 예전글만 두는 단순한 내비게이션을 제공한다", () => {
     const home = html("/");
-    expect(home).toContain('>큐레이션</a>');
+    expect(home).toContain('>최신글</a>');
+    expect(home).toContain('href="/past/"');
     expect(home).not.toContain('href="/ai/"');
     expect(home).not.toContain('href="/deep-dive/"');
     expect(home).not.toContain('href="/finance/"');
@@ -51,7 +55,13 @@ describe("기술 큐레이션과 기존 아카이브", () => {
   it("색인 가능한 기술 랜딩 페이지를 sitemap에 넣는다", () => {
     const sitemap = readFileSync("dist/sitemap.xml", "utf8");
     expect(sitemap).toContain("https://umanking.github.io/technology/");
+    expect(sitemap).toContain("https://umanking.github.io/past/");
     expect(sitemap).not.toContain("https://umanking.github.io/deep-dive/");
+  });
+
+  it("예전 글 목록에서 기존 발행물을 20편씩 탐색할 수 있다", () => {
+    expect(rows(html("/past/"))).toHaveLength(20);
+    expect(existsSync("dist/past/2/index.html")).toBe(true);
   });
 
   it("uses compact list rows and topic links without the redundant right rail", () => {
